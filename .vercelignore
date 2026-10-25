@@ -1,0 +1,9 @@
+.git
+.github
+node_modules
+server/node_modules
+client/node_modules
+test
+tmp
+.DS_Store
+*.log

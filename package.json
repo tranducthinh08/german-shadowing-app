@@ -1,0 +1,29 @@
+{
+  "name": "german-english-shadowing",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "YouTube Dictation and Shadowing App for German and English learners",
+  "scripts": {
+    "dev": "concurrently -n \"SERVER,CLIENT\" -c \"blue,green\" \"npm run server:dev\" \"npm run client:dev\"",
+    "server:dev": "npm --prefix server run dev",
+    "client:dev": "npm --prefix client run dev",
+    "install:all": "npm install && npm --prefix server install && npm --prefix client install",
+    "build": "cd client && npm install && npm run build",
+    "test": "node test/test_core.js && node test/test_grammar.js && node test/test_gamification.js && node test/test_user_storage.js",
+    "start": "node server/src/index.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "youtube-transcript": "^1.2.1",
+    "youtubei.js": "^18.3.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

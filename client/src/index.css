@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #070b14;
+    color: #dfe2f0;
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  body {
+    overscroll-behavior: none;
+  }
+}
+
+/* Glassmorphism utility helpers */
+.glass-panel {
+  background: rgba(27, 32, 41, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(70, 69, 84, 0.35);
+}
+
+.glass-panel-subtle {
+  background: rgba(23, 28, 37, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(70, 69, 84, 0.25);
+}
+
+.glass-panel-active {
+  background: rgba(38, 42, 52, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(76, 215, 246, 0.4);
+  box-shadow: 0 0 25px rgba(76, 215, 246, 0.15);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(10, 14, 23, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(70, 69, 84, 0.6);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(144, 143, 160, 0.8);
+}

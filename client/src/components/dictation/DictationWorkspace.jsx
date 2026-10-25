@@ -1,0 +1,404 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { Play, RotateCcw, CheckCircle2, ChevronRight, HelpCircle, Eye, Sparkles, Tag, AlertTriangle, BookOpen } from 'lucide-react';
+import { GERMAN_SPECIAL_CHARS, insertCharToInput } from '../../utils/germanUtils';
+import { compareSentence } from '../../utils/textDiff';
+import { extractProperNouns } from '../../utils/properNouns';
+import GrammarAnalysisModal from '../grammar/GrammarAnalysisModal';
+
+export default function DictationWorkspace({
+  activeSegment,
+  segmentIndex,
+  totalSegments,
+  onNextSegment,
+  onPrevSegment,
+  onReplaySegment,
+  onReplaySlow,
+  isLooping,
+  onToggleLoop,
+  language = 'de',
+  onCompleteSentence
+}) {
+  const [userInput, setUserInput] = useState('');
+  const [diffResult, setDiffResult] = useState(null);
+  const [showHint, setShowHint] = useState(false);
+  const [showSolution, setShowSolution] = useState(false);
+  const [strictGerman, setStrictGerman] = useState(true);
+  const [showGrammarModal, setShowGrammarModal] = useState(false);
+  const inputRef = useRef(null);
+
+  // Reset input and diff result when segment changes
+  useEffect(() => {
+    setUserInput('');
+    setDiffResult(null);
+    setShowHint(false);
+    setShowSolution(false);
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [activeSegment?.id]);
+
+  // Global Tab hotkey listener to replay segment
+  useEffect(() => {
+    const handleGlobalTab = (e) => {
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        onReplaySegment();
+      }
+    };
+    window.addEventListener('keydown', handleGlobalTab);
+    return () => window.removeEventListener('keydown', handleGlobalTab);
+  }, [onReplaySegment]);
+
+  // Extract proper nouns for hint bar
+  const properNouns = activeSegment ? extractProperNouns(activeSegment.text, language) : [];
+
+  // Handle German special character insertion
+  const handleInsertChar = (char) => {
+    insertCharToInput(inputRef.current, char, userInput, setUserInput);
+  };
+
+  // Handle proper noun insertion
+  const handleInsertProperNoun = (noun) => {
+    insertCharToInput(inputRef.current, noun + ' ', userInput, setUserInput);
+  };
+
+  // Check answer
+  const handleCheckAnswer = (e) => {
+    if (e) e.preventDefault();
+    if (!activeSegment || !userInput.trim()) return;
+
+    const result = compareSentence(userInput, activeSegment.text, {
+      strictCase: language === 'de' && strictGerman,
+      strictGermanUmlauts: strictGerman
+    });
+
+    setDiffResult(result);
+
+    if (result.isPerfect && onCompleteSentence) {
+      onCompleteSentence(activeSegment.id, result.score);
+    }
+  };
+
+  // Keyboard shortcut listener in textarea
+  const handleKeyDown = (e) => {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      onReplaySegment();
+      return;
+    }
+
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      if (!diffResult) {
+        handleCheckAnswer();
+      } else if (diffResult.score >= 80) {
+        onNextSegment();
+      } else {
+        handleCheckAnswer();
+      }
+    }
+  };
+
+  if (!activeSegment) {
+    return (
+      <div className="flex flex-col items-center justify-center p-10 bg-surface-container/70 border border-outline-variant/30 rounded-2xl text-center text-outline">
+        <Sparkles className="w-8 h-8 text-secondary mb-2 animate-pulse" />
+        <h3 className="text-base font-headline font-semibold text-on-surface">Chưa chọn câu học</h3>
+        <p className="text-xs mt-1">Chọn một câu từ danh sách phụ đề hoặc phát video để bắt đầu nghe chép chính tả.</p>
+      </div>
+    );
+  }
+
+  // Generate masked hint (e.g. "H____! I__ b__ N___.")
+  const getHintText = () => {
+    return activeSegment.text
+      .split(' ')
+      .map((word) => {
+        if (word.length <= 1) return word;
+        return word[0] + '_'.repeat(word.length - 1);
+      })
+      .join(' ');
+  };
+
+  return (
+    <div className="flex flex-col rounded-2xl bg-surface-container/80 backdrop-blur-xl border border-outline-variant/30 p-4 sm:p-5 shadow-xl transition-all gap-3.5">
+      
+      {/* Top Header: Progress & Audio Replay Actions */}
+      <div className="flex flex-wrap items-center justify-between gap-2.5 border-b border-outline-variant/30 pb-3">
+        <div className="flex items-center gap-2">
+          <span className="px-3 py-1 rounded-full bg-primary-container text-on-primary-container font-headline font-bold text-xs shadow-xs">
+            Câu {segmentIndex + 1} / {totalSegments}
+          </span>
+          <span className="text-xs text-outline font-mono">
+            {activeSegment.start.toFixed(1)}s - {activeSegment.end.toFixed(1)}s
+          </span>
+        </div>
+
+        {/* Action Controls */}
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <button
+            type="button"
+            onClick={onReplaySegment}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary-container text-on-primary-container hover:brightness-110 active:scale-95 text-xs font-bold transition-all shadow-xs cursor-pointer"
+            title="Nhấn phím Tab hoặc click để nghe lại câu"
+          >
+            <Play className="w-3.5 h-3.5 fill-current" />
+            <span>Nghe lại</span>
+            <kbd className="px-1.5 py-0.2 rounded bg-black/20 text-[10px] font-mono">Tab</kbd>
+          </button>
+
+          <button
+            type="button"
+            onClick={onReplaySlow}
+            className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-bright text-xs font-semibold transition-all cursor-pointer border border-outline-variant/30"
+            title="Nghe chậm 0.75x"
+          >
+            <RotateCcw className="w-3 h-3 text-secondary" />
+            <span>0.75x</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setShowHint(!showHint)}
+            className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-bright text-xs font-medium transition-all cursor-pointer border border-outline-variant/30"
+            title="Gợi ý chữ cái đầu"
+          >
+            <HelpCircle className="w-3 h-3 text-secondary" />
+            <span>{showHint ? 'Ẩn gợi ý' : 'Gợi ý'}</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setShowSolution(!showSolution)}
+            className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-surface-container text-outline hover:text-on-surface hover:bg-surface-bright text-xs font-medium transition-all cursor-pointer border border-outline-variant/30"
+            title="Xem đáp án câu gốc"
+          >
+            <Eye className="w-3 h-3 text-tertiary" />
+            <span>{showSolution ? 'Ẩn đáp án' : 'Đáp án'}</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Hint Banner if toggled */}
+      {showHint && (
+        <div className="p-3 bg-secondary-container/15 border border-secondary/30 rounded-xl text-secondary text-xs font-mono tracking-wider shadow-xs">
+          💡 Gợi ý chữ cái đầu: {getHintText()}
+        </div>
+      )}
+
+      {/* Solution Banner if toggled */}
+      {showSolution && (
+        <div className="p-3 bg-tertiary-container/20 border border-tertiary/40 rounded-xl text-tertiary-fixed text-xs font-medium shadow-xs">
+          📖 Đáp án gốc: <strong className="text-on-surface font-semibold">{activeSegment.text}</strong>
+        </div>
+      )}
+
+      {/* Proper Nouns Hint Bar */}
+      {properNouns.length > 0 && (
+        <div className="flex flex-wrap items-center gap-2 px-3 py-1.5 rounded-xl bg-surface-container-high/60 border border-outline-variant/30 text-xs">
+          <span className="font-semibold text-secondary flex items-center gap-1 shrink-0">
+            <Tag className="w-3.5 h-3.5 text-secondary" />
+            <span>Tên riêng:</span>
+          </span>
+          <div className="flex flex-wrap gap-1.5">
+            {properNouns.map((name) => (
+              <button
+                key={name}
+                type="button"
+                onClick={() => handleInsertProperNoun(name)}
+                className="px-2 py-0.5 rounded-md bg-surface-container text-on-surface text-xs font-semibold hover:bg-primary-container hover:text-on-primary-container transition-all shadow-xs flex items-center gap-1 cursor-pointer border border-outline-variant/30"
+                title={`Nhấn để chèn "${name}"`}
+              >
+                <span>{name}</span>
+                <span className="text-[10px] text-secondary font-bold">+</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* German Special Characters Virtual Keyboard */}
+      {language === 'de' && (
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <span className="text-outline text-xs mr-0.5">Ký tự Đức:</span>
+          {GERMAN_SPECIAL_CHARS.map(({ char, label }) => (
+            <button
+              key={char}
+              type="button"
+              onClick={() => handleInsertChar(char)}
+              className="w-7 h-7 rounded-lg bg-surface-container hover:bg-primary-container hover:text-on-primary-container text-on-surface font-headline font-bold text-xs flex items-center justify-center transition-all shadow-xs cursor-pointer border border-outline-variant/30 active:scale-95"
+              title={`Chèn ký tự ${char}`}
+            >
+              {label}
+            </button>
+          ))}
+          <span className="text-outline-variant mx-1">|</span>
+          <label className="ml-auto flex items-center gap-1.5 text-xs text-outline cursor-pointer select-none">
+            <input
+              type="checkbox"
+              checked={strictGerman}
+              onChange={(e) => setStrictGerman(e.target.checked)}
+              className="rounded bg-surface-container border-outline-variant text-secondary focus:ring-0 w-3.5 h-3.5"
+            />
+            <span>Bắt buộc viết hoa danh từ</span>
+          </label>
+        </div>
+      )}
+
+      {/* Transcription Textarea Card */}
+      <div className="rounded-xl bg-surface-container p-3.5 shadow-sm border border-outline-variant/40 focus-within:border-secondary transition-all flex flex-col gap-2.5">
+        <div className="flex items-center justify-between text-outline text-xs">
+          <span className="text-secondary font-medium">
+            Khung chép chính tả (Nghe và gõ tiếng {language === 'de' ? 'Đức' : 'Anh'})
+          </span>
+          <span className="font-mono">{userInput.length} ký tự</span>
+        </div>
+
+        <textarea
+          ref={inputRef}
+          rows={3}
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder={
+            language === 'de'
+              ? "Nghe và gõ lại câu bạn nghe được... (Tab: nghe lại, Enter: nộp bài)"
+              : "Type the exact English sentence you heard... (Tab: replay, Enter: submit)"
+          }
+          className="w-full min-h-[85px] bg-surface-container-lowest/80 rounded-lg p-3 text-on-surface font-transcription text-sm sm:text-base leading-relaxed outline-none border border-outline-variant/20 focus:border-secondary/40 transition-all resize-none shadow-inner"
+        />
+
+        {/* Input Bar Control Actions */}
+        <div className="flex justify-end pt-0.5">
+          <button
+            type="button"
+            onClick={handleCheckAnswer}
+            disabled={!userInput.trim()}
+            className="px-4 py-2 rounded-full bg-gradient-to-r from-inverse-primary to-secondary-container text-on-primary font-headline font-bold text-xs shadow-xs hover:brightness-110 active:scale-95 disabled:opacity-40 transition-all flex items-center gap-1.5 cursor-pointer"
+          >
+            <CheckCircle2 className="w-4 h-4" />
+            <span>Nộp bài kiểm tra</span>
+            <kbd className="px-1.5 py-0.2 rounded bg-black/20 text-[10px] font-mono">Enter ↵</kbd>
+          </button>
+        </div>
+      </div>
+
+      {/* Diff Result Breakdown Card */}
+      {diffResult && (
+        <div className="p-4 rounded-xl bg-surface-container-high/90 border border-outline-variant/40 shadow-lg flex flex-col gap-3 animate-fade-in">
+          
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className={`w-9 h-9 rounded-full flex items-center justify-center font-headline font-bold text-xs shadow-xs ${
+                diffResult.score >= 90
+                  ? 'bg-secondary/20 text-secondary border border-secondary/40'
+                  : diffResult.score >= 70
+                  ? 'bg-tertiary-container/30 text-tertiary border border-tertiary/40'
+                  : 'bg-error/20 text-error border border-error/40'
+              }`}>
+                {diffResult.score}%
+              </div>
+              <div>
+                <h4 className="font-headline font-bold text-xs sm:text-sm text-on-surface">
+                  {diffResult.isPerfect ? 'Hoàn hảo 100%!' : diffResult.score >= 80 ? 'Xuất sắc! Gần đúng tuyệt đối.' : 'Cần chú ý một số từ bên dưới!'}
+                </h4>
+                <p className="text-[11px] text-outline">
+                  Đúng {diffResult.correctCount} / {diffResult.totalCount} từ • {diffResult.score >= 80 ? 'Đạt điểm chuẩn' : 'Hãy nghe lại và thử lại'}
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setShowGrammarModal(true)}
+                className="flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-surface-container text-primary border border-outline-variant/30 hover:bg-surface-bright transition-all cursor-pointer"
+                title="Xem phân tích ngữ pháp câu này"
+              >
+                <BookOpen className="w-3.5 h-3.5 text-primary" />
+                <span>Ngữ pháp</span>
+              </button>
+
+              {diffResult.score >= 70 && segmentIndex < totalSegments - 1 && (
+                <button
+                  type="button"
+                  onClick={onNextSegment}
+                  className="flex items-center gap-1 px-3.5 py-1.5 rounded-full bg-primary-container text-on-primary-container font-headline font-bold text-xs shadow-xs hover:brightness-110 active:scale-95 transition-all cursor-pointer"
+                >
+                  <span>Câu kế</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Token-by-Token Match Visualizer (Color-Coded Feedback) */}
+          <div className="p-3 rounded-lg bg-surface-container-lowest flex flex-wrap items-center gap-1.5 font-transcription text-xs sm:text-sm border border-outline-variant/20">
+            {diffResult.tokens.map((token, idx) => {
+              if (token.status === 'correct') {
+                return (
+                  <span
+                    key={idx}
+                    className="px-2 py-0.5 rounded-md bg-secondary/15 text-secondary font-semibold border border-secondary/30"
+                    title="Chính xác"
+                  >
+                    {token.word}
+                  </span>
+                );
+              }
+              if (token.status === 'typo') {
+                return (
+                  <span
+                    key={idx}
+                    className="relative group/tooltip px-2 py-0.5 rounded-md bg-tertiary-container/30 text-tertiary font-bold border border-tertiary/40 flex items-center gap-1 cursor-help"
+                  >
+                    <span className="line-through opacity-70">{token.userInput}</span>
+                    <span>➔ {token.word}</span>
+                    <AlertTriangle className="w-3 h-3 text-tertiary" />
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 hidden group-hover/tooltip:block px-2 py-1 rounded-md bg-surface-container-highest text-on-surface text-[11px] whitespace-nowrap shadow-xl border border-outline-variant/40 z-20">
+                      {token.note || 'Lưu ý chính tả hoặc quy tắc viết hoa danh từ!'}
+                    </span>
+                  </span>
+                );
+              }
+              if (token.status === 'missing') {
+                return (
+                  <span
+                    key={idx}
+                    className="px-2 py-0.5 rounded-md bg-error/20 text-error font-medium border border-error/30"
+                    title="Từ bị bỏ sót"
+                  >
+                    [{token.word}]
+                  </span>
+                );
+              }
+              if (token.status === 'extra') {
+                return (
+                  <span
+                    key={idx}
+                    className="px-2 py-0.5 rounded-md bg-surface-container text-outline line-through border border-outline-variant/30"
+                    title="Từ gõ thừa"
+                  >
+                    {token.userInput}
+                  </span>
+                );
+              }
+              return null;
+            })}
+          </div>
+
+        </div>
+      )}
+
+      {/* Grammar Analysis Modal */}
+      {showGrammarModal && activeSegment && (
+        <GrammarAnalysisModal
+          sentenceText={activeSegment.text}
+          language={language}
+          onClose={() => setShowGrammarModal(false)}
+        />
+      )}
+
+    </div>
+  );
+}

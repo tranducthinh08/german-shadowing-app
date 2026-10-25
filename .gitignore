@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Production builds
+client/dist/
+dist/
+
+# Logs & temp
+*.log
+tmp/
+.DS_Store
+
+# Environment variables
+.env
+.env.local
+
+# Vercel
+.vercel
