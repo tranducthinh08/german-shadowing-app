@@ -94,3 +94,4 @@ german_shadowing/
 ├── server/                         # Backend Express API (Port 5001)
 └── client/                         # Frontend React + Vite + Tailwind (Port 3000)
 ```
+# german-shadowing-app
