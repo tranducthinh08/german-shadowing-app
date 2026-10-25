@@ -9,6 +9,7 @@ import VocabNotebookModal from './components/vocab/VocabNotebookModal';
 import ShortcutsModal from './components/common/ShortcutsModal';
 import CustomTranscriptModal from './components/common/CustomTranscriptModal';
 import StudyHistoryTab from './components/history/StudyHistoryTab';
+import LessonsTab from './components/lessons/LessonsTab';
 import PlaylistView from './components/playlist/PlaylistView';
 import EpisodeNavBar from './components/playlist/EpisodeNavBar';
 import GamificationModal from './components/gamification/GamificationModal';
@@ -559,10 +560,14 @@ export default function App() {
           />
         )}
 
-        {/* TAB 2: DEDICATED A1 PLAYLIST / CURRICULUM TAB */}
-        {mainTab === 'playlist' && (
-          <PlaylistView
+        {/* TAB 2: DEDICATED LESSONS & CURRICULUM TAB (A1, A2, B1, EN) */}
+        {(mainTab === 'lessons' || mainTab === 'playlist') && (
+          <LessonsTab
             onSelectEpisode={handleSelectEpisode}
+            onSelectLesson={(lesson) => {
+              handleLoadVideo(lesson.videoId, lesson.language);
+              setMainTab('studio');
+            }}
             completedVideoIds={studyHistory.filter(h => h.completedCount >= (h.sentenceCount || 1)).map(h => h.videoId)}
             currentVideoId={currentVideo?.videoId}
             onBackToStudio={() => setMainTab('studio')}
@@ -734,11 +739,11 @@ export default function App() {
                       </div>
                       <button
                         type="button"
-                        onClick={() => setMainTab('playlist')}
+                        onClick={() => setMainTab('lessons')}
                         className="shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-secondary to-primary hover:opacity-95 text-on-primary font-bold text-xs shadow-md shadow-secondary/20 hover:scale-105 transition-all cursor-pointer"
                       >
                         <BookOpen className="w-3.5 h-3.5" />
-                        <span>Mở danh sách tập</span>
+                        <span>Mở kho bài học (A1 • A2)</span>
                       </button>
                     </div>
 

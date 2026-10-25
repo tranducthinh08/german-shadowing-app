@@ -47,10 +47,10 @@ export default function EpisodeNavBar({
           type="button"
           onClick={onOpenPlaylistView}
           className="shrink-0 flex items-center gap-1 text-[11px] font-bold text-secondary hover:text-primary transition-colors underline cursor-pointer ml-1"
-          title="Xem trọn bộ 80 tập Nicos Weg"
+          title="Xem kho bài học Nicos Weg A1, A2"
         >
           <BookOpen className="w-3 h-3" />
-          <span className="hidden md:inline">Danh sách tập</span>
+          <span className="hidden md:inline">Kho bài học</span>
         </button>
       </div>
 
