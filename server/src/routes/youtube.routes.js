@@ -23,6 +23,34 @@ router.get('/samples', (req, res) => {
 });
 
 /**
+ * GET /api/youtube/load
+ * Allows browser GET testing or ?url=... query parameter
+ */
+router.get('/load', async (req, res) => {
+  try {
+    const { url, lang = 'de' } = req.query;
+    if (!url) {
+      return res.json({
+        success: true,
+        status: 'online',
+        message: 'Endpoint /api/youtube/load đang hoạt động bình thường. Hãy mở trang chủ ứng dụng để học, hoặc truyền tham số ?url=<link_youtube>&lang=de để xem dữ liệu.'
+      });
+    }
+
+    const data = await getVideoData(url, lang);
+    return res.json({
+      success: true,
+      data
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.message || 'Lỗi khi tải thông tin và phụ đề video'
+    });
+  }
+});
+
+/**
  * POST /api/youtube/load
  * Body: { url: string, lang: 'de' | 'en' }
  */
