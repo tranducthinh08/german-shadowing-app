@@ -7,6 +7,7 @@ import TranscriptList from './components/transcript/TranscriptList';
 import WordPopover from './components/vocab/WordPopover';
 import VocabNotebookModal from './components/vocab/VocabNotebookModal';
 import ShortcutsModal from './components/common/ShortcutsModal';
+import CustomTranscriptModal from './components/common/CustomTranscriptModal';
 import StudyHistoryTab from './components/history/StudyHistoryTab';
 import GamificationModal from './components/gamification/GamificationModal';
 import RewardToast from './components/gamification/RewardToast';
@@ -56,6 +57,7 @@ export default function App() {
   const [selectedWord, setSelectedWord] = useState(null);
   const [isVocabOpen, setIsVocabOpen] = useState(false);
   const [isShortcutsOpen, setIsShortcutsOpen] = useState(false);
+  const [isCustomTranscriptOpen, setIsCustomTranscriptOpen] = useState(false);
   const [isGamificationOpen, setIsGamificationOpen] = useState(false);
   const [activeReward, setActiveReward] = useState(null);
 
@@ -226,6 +228,18 @@ export default function App() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  // Load custom transcript lesson created manually
+  const handleApplyCustomLesson = (lessonData) => {
+    setCurrentVideo(lessonData);
+    setCurrentLanguage(lessonData.language || currentLanguage);
+    setActiveSegmentIndex(0);
+    setIsLooping(false);
+    setResetTrigger((prev) => prev + 1);
+    setCompletedSentenceIds(new Set());
+    updateStudyHistory(lessonData, 0);
+    setErrorMessage(null);
   };
 
   // Reset current lesson from beginning
@@ -446,17 +460,26 @@ export default function App() {
         
         {/* Error Notification */}
         {errorMessage && (
-          <div className="mb-4 p-3.5 rounded-xl bg-error-container/30 border border-error/50 flex items-center justify-between gap-3 text-error text-xs animate-shake">
-            <div className="flex items-center gap-2">
+          <div className="mb-4 p-3.5 rounded-xl bg-error-container/30 border border-error/50 flex flex-wrap items-center justify-between gap-3 text-error text-xs animate-shake">
+            <div className="flex items-center gap-2 flex-1 min-w-0">
               <AlertCircle className="w-4 h-4 text-error shrink-0" />
               <span>{errorMessage}</span>
             </div>
-            <button
-              onClick={() => setErrorMessage(null)}
-              className="text-xs text-outline hover:text-on-surface cursor-pointer"
-            >
-              Đóng
-            </button>
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                type="button"
+                onClick={() => setIsCustomTranscriptOpen(true)}
+                className="px-2.5 py-1 rounded-lg bg-surface-container text-on-surface hover:bg-surface-bright text-[11px] font-semibold border border-outline-variant/40 transition-all cursor-pointer"
+              >
+                Nhập phụ đề thủ công
+              </button>
+              <button
+                onClick={() => setErrorMessage(null)}
+                className="text-xs text-outline hover:text-on-surface cursor-pointer px-1"
+              >
+                Đóng
+              </button>
+            </div>
           </div>
         )}
 
@@ -616,7 +639,7 @@ export default function App() {
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-xl mx-auto pt-1">
                       <button
                         type="button"
-                        onClick={() => handleLoadVideo('4-eDoThe6qo', 'de')}
+                        onClick={() => handleLoadVideo('dC6ZGLzdaTs', 'de')}
                         disabled={isLoading}
                         className="p-3 rounded-xl bg-surface-container-high/80 hover:bg-surface-bright border border-outline-variant/30 hover:border-secondary/40 text-left transition-all cursor-pointer group shadow-xs hover:scale-[1.02]"
                       >
@@ -627,7 +650,7 @@ export default function App() {
                         <p className="text-xs font-semibold text-on-surface group-hover:text-primary transition-colors line-clamp-1">
                           Folge 1: Hallo!
                         </p>
-                        <span className="text-[10px] text-outline mt-1 block">DW Deutsch • 8 câu</span>
+                        <span className="text-[10px] text-outline mt-1 block">DW Deutsch • 19 câu</span>
                       </button>
 
                       <button
@@ -737,6 +760,14 @@ export default function App() {
       <ShortcutsModal
         isOpen={isShortcutsOpen}
         onClose={() => setIsShortcutsOpen(false)}
+      />
+
+      {/* Custom Transcript Modal */}
+      <CustomTranscriptModal
+        isOpen={isCustomTranscriptOpen}
+        onClose={() => setIsCustomTranscriptOpen(false)}
+        onApplyCustomLesson={handleApplyCustomLesson}
+        currentLanguage={currentLanguage}
       />
 
       {/* Gamification Dashboard Modal */}

@@ -1,8 +1,60 @@
 import express from 'express';
+import axios from 'axios';
 import { getVideoData, extractVideoId } from '../services/youtube.service.js';
 import { SAMPLE_VIDEOS } from '../data/mockData.js';
 
 const router = express.Router();
+
+/**
+ * GET /api/youtube/debug
+ * Diagnoses YouTube InnerTube connectivity on Vercel
+ */
+router.get('/debug', async (req, res) => {
+  try {
+    const { videoId = 'dC6ZGLzdaTs' } = req.query;
+    const postUrl = 'https://www.youtube.com/youtubei/v1/player?prettyPrint=false';
+    const ytRes = await axios.post(
+      postUrl,
+      {
+        context: {
+          client: {
+            clientName: 'ANDROID',
+            clientVersion: '20.10.38'
+          }
+        },
+        videoId
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'User-Agent': 'com.google.android.youtube/20.10.38 (Linux; U; Android 14)'
+        },
+        timeout: 9000
+      }
+    );
+    const playability = ytRes.data?.playabilityStatus;
+    const tracks = ytRes.data?.captions?.playerCaptionsTracklistRenderer?.captionTracks || [];
+    let subData = null;
+    let subError = null;
+    if (tracks.length > 0) {
+      try {
+        const subRes = await axios.get(tracks[0].baseUrl, { timeout: 9000 });
+        subData = { length: subRes.data?.length, preview: String(subRes.data).slice(0, 200) };
+      } catch (err) {
+        subError = err.message;
+      }
+    }
+    return res.json({
+      playability,
+      tracksCount: tracks.length,
+      tracks: tracks.map(t => ({ lang: t.languageCode, url: t.baseUrl?.slice(0, 80) + '...' })),
+      subData,
+      subError
+    });
+  } catch (err) {
+    return res.json({ error: err.message, response: err.response?.data });
+  }
+});
 
 /**
  * GET /api/youtube/samples
