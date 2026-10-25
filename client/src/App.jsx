@@ -550,6 +550,7 @@ export default function App() {
               handleLoadVideo(lesson.videoId, lesson.language);
               setMainTab('studio');
             }}
+            onSelectEpisode={handleSelectEpisode}
             onResetLesson={handleResetLessonFromHistory}
             onRemoveLesson={(id) => setStudyHistory((prev) => prev.filter((h) => h.videoId !== id))}
             onClearHistory={() => setStudyHistory([])}
