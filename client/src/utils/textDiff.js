@@ -4,7 +4,7 @@ import { normalizeGerman } from './germanUtils.js';
  * Remove standard punctuation from a word for relaxed matching
  */
 export function cleanPunctuation(str = '') {
-  return str.replace(/^[.,/#!$%^&*;:{}=\-_`~()?"'„“”»«]+|[.,/#!$%^&*;:{}=\-_`~()?"'„“”»«]+$/g, '');
+  return str.replace(/^[.,/#!$%^&*;:{}=\-_`~()?"'„“”»«–—…]+|[.,/#!$%^&*;:{}=\-_`~()?"'„“”»«–—…]+$/g, '');
 }
 
 /**

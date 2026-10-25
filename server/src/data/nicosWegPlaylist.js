@@ -12,7 +12,7 @@ export const NICOS_WEG_PLAYLIST = {
   level: 'A1',
   description: 'Toàn bộ 76 bài học tiếng Đức A1 chuẩn quốc tế từ Deutsche Welle. Đồng hành cùng Nico từ khi đặt chân tới Đức!',
   totalEpisodes: 80,
-  totalSentences: 2443,
+  totalSentences: 2428,
   episodes: [
   {
     "id": "nicos-weg-00",
@@ -115,7 +115,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 34.64,
         "end": 37.4,
         "duration": 2.76,
-        "text": "Schritt für Schritt entdeckst du dein neues Leben -"
+        "text": "Schritt für Schritt entdeckst du dein neues Leben"
       },
       {
         "id": 14,
@@ -346,7 +346,7 @@ export const NICOS_WEG_PLAYLIST = {
     "language": "de",
     "author": "DW Deutsch lernen",
     "thumbnail": "https://img.youtube.com/vi/k2yMdNbopgs/hqdefault.jpg",
-    "sentenceCount": 129,
+    "sentenceCount": 117,
     "sentences": [
       {
         "id": 1,
@@ -742,514 +742,430 @@ export const NICOS_WEG_PLAYLIST = {
       },
       {
         "id": 57,
-        "start": 86.44,
-        "end": 93.72,
-        "duration": 7.28,
-        "text": "[Musik]"
-      },
-      {
-        "id": 58,
         "start": 93.72,
-        "end": 95.6,
-        "duration": 1.88,
-        "text": "[Musik] dieses projekt führen wir durch mit"
-      },
-      {
-        "id": 59,
-        "start": 95.6,
         "end": 95.61,
-        "duration": 0.01,
+        "duration": 1.89,
         "text": "dieses projekt führen wir durch mit"
       },
       {
-        "id": 60,
+        "id": 58,
         "start": 95.61,
         "end": 97.28,
         "duration": 1.67,
         "text": "dieses projekt führen wir durch mit unterstützung der bundesagentur für"
       },
       {
-        "id": 61,
+        "id": 59,
         "start": 97.28,
         "end": 97.29,
         "duration": 0.01,
         "text": "unterstützung der bundesagentur für"
       },
       {
-        "id": 62,
+        "id": 60,
         "start": 97.29,
         "end": 100.49,
         "duration": 3.2,
         "text": "unterstützung der bundesagentur für arbeit und so ist es uns gelungen in"
       },
       {
-        "id": 63,
+        "id": 61,
         "start": 100.49,
         "end": 100.5,
         "duration": 0.01,
         "text": "arbeit und so ist es uns gelungen in"
       },
       {
-        "id": 64,
+        "id": 62,
         "start": 100.5,
         "end": 102.92,
         "duration": 2.42,
         "text": "arbeit und so ist es uns gelungen in einem jahr mit einem sehr innovativen"
       },
       {
-        "id": 65,
+        "id": 63,
         "start": 102.92,
         "end": 102.93,
         "duration": 0.01,
         "text": "einem jahr mit einem sehr innovativen"
       },
       {
-        "id": 66,
+        "id": 64,
         "start": 102.93,
         "end": 107.65,
         "duration": 4.72,
         "text": "einem jahr mit einem sehr innovativen produkt auf dem markt zu sein"
       },
       {
-        "id": 67,
+        "id": 65,
         "start": 107.66,
         "end": 115.12,
         "duration": 7.46,
         "text": "guten tag guten abend auf wiedersehen"
       },
       {
-        "id": 68,
+        "id": 66,
         "start": 115.13,
         "end": 120.45,
         "duration": 5.32,
         "text": "guten abend also bei einem normalen film"
       },
       {
-        "id": 69,
+        "id": 67,
         "start": 120.45,
         "end": 121.64,
         "duration": 1.19,
         "text": "guten abend also bei einem normalen film dreh ist es ja so dass die schauspieler"
       },
       {
-        "id": 70,
+        "id": 68,
         "start": 121.64,
         "end": 121.65,
         "duration": 0.01,
         "text": "dreh ist es ja so dass die schauspieler"
       },
       {
-        "id": 71,
+        "id": 69,
         "start": 121.65,
         "end": 123.53,
         "duration": 1.88,
         "text": "dreh ist es ja so dass die schauspieler sich den text manchmal auch so zurecht"
       },
       {
-        "id": 72,
+        "id": 70,
         "start": 123.53,
         "end": 123.54,
         "duration": 0.01,
         "text": "sich den text manchmal auch so zurecht"
       },
       {
-        "id": 73,
+        "id": 71,
         "start": 123.54,
         "end": 126.26,
         "duration": 2.72,
         "text": "sich den text manchmal auch so zurecht legen wie es ihnen gut passt und gut"
       },
       {
-        "id": 74,
+        "id": 72,
         "start": 126.26,
         "end": 126.27,
         "duration": 0.01,
         "text": "legen wie es ihnen gut passt und gut"
       },
       {
-        "id": 75,
+        "id": 73,
         "start": 126.27,
         "end": 128.33,
         "duration": 2.06,
         "text": "legen wie es ihnen gut passt und gut über die lippen kommt und da gibt es"
       },
       {
-        "id": 76,
+        "id": 74,
         "start": 128.33,
         "end": 128.34,
         "duration": 0.01,
         "text": "über die lippen kommt und da gibt es"
       },
       {
-        "id": 77,
+        "id": 75,
         "start": 128.34,
         "end": 130.73,
         "duration": 2.39,
         "text": "über die lippen kommt und da gibt es eben bestimmte grammatische phänomene"
       },
       {
-        "id": 78,
+        "id": 76,
         "start": 130.73,
         "end": 130.74,
         "duration": 0.01,
         "text": "eben bestimmte grammatische phänomene"
       },
       {
-        "id": 79,
+        "id": 77,
         "start": 130.74,
         "end": 132.56,
         "duration": 1.82,
         "text": "eben bestimmte grammatische phänomene die in das drehbuch hinein geschrieben"
       },
       {
-        "id": 80,
+        "id": 78,
         "start": 132.56,
         "end": 132.57,
         "duration": 0.01,
         "text": "die in das drehbuch hinein geschrieben"
       },
       {
-        "id": 81,
+        "id": 79,
         "start": 132.57,
         "end": 133.34,
         "duration": 0.77,
         "text": "die in das drehbuch hinein geschrieben worden sind"
       },
       {
-        "id": 82,
+        "id": 80,
         "start": 133.34,
         "end": 133.35,
         "duration": 0.01,
         "text": "worden sind"
       },
       {
-        "id": 83,
+        "id": 81,
         "start": 133.35,
         "end": 135.26,
         "duration": 1.91,
         "text": "worden sind die wir behalten müssen damit wir dann"
       },
       {
-        "id": 84,
+        "id": 82,
         "start": 135.26,
         "end": 135.27,
         "duration": 0.01,
         "text": "die wir behalten müssen damit wir dann"
       },
       {
-        "id": 85,
+        "id": 83,
         "start": 135.27,
         "end": 137.09,
         "duration": 1.82,
         "text": "die wir behalten müssen damit wir dann später übungen dazu machen kann"
       },
       {
-        "id": 86,
+        "id": 84,
         "start": 137.09,
         "end": 137.1,
         "duration": 0.01,
         "text": "später übungen dazu machen kann"
       },
       {
-        "id": 87,
+        "id": 85,
         "start": 137.1,
         "end": 139.73,
         "duration": 2.63,
         "text": "später übungen dazu machen kann der inhalt der kommenden folge ist"
       },
       {
-        "id": 88,
+        "id": 86,
         "start": 139.73,
         "end": 139.74,
         "duration": 0.01,
         "text": "der inhalt der kommenden folge ist"
       },
       {
-        "id": 89,
+        "id": 87,
         "start": 139.74,
         "end": 143.24,
         "duration": 3.5,
         "text": "der inhalt der kommenden folge ist obwohl so setzte mit obwohl und hier"
       },
       {
-        "id": 90,
+        "id": 88,
         "start": 143.24,
         "end": 143.25,
         "duration": 0.01,
         "text": "obwohl so setzte mit obwohl und hier"
       },
       {
-        "id": 91,
+        "id": 89,
         "start": 143.25,
         "end": 146.45,
         "duration": 3.2,
         "text": "obwohl so setzte mit obwohl und hier gibt es eben zwei oder drei stellen wo"
       },
       {
-        "id": 92,
+        "id": 90,
         "start": 146.45,
         "end": 146.46,
         "duration": 0.01,
         "text": "gibt es eben zwei oder drei stellen wo"
       },
       {
-        "id": 93,
+        "id": 91,
         "start": 146.46,
         "end": 148.28,
         "duration": 1.82,
         "text": "gibt es eben zwei oder drei stellen wo diese satzkonstruktionen vorkommt und"
       },
       {
-        "id": 94,
+        "id": 92,
         "start": 148.28,
         "end": 148.29,
         "duration": 0.01,
         "text": "diese satzkonstruktionen vorkommt und"
       },
       {
-        "id": 95,
+        "id": 93,
         "start": 148.29,
         "end": 150.05,
         "duration": 1.76,
         "text": "diese satzkonstruktionen vorkommt und dachte ich ganz besonders mit den"
       },
       {
-        "id": 96,
+        "id": 94,
         "start": 150.05,
         "end": 150.06,
         "duration": 0.01,
         "text": "dachte ich ganz besonders mit den"
       },
       {
-        "id": 97,
+        "id": 95,
         "start": 150.06,
         "end": 151.79,
         "duration": 1.73,
         "text": "dachte ich ganz besonders mit den schauspielern dass sie diese stellen"
       },
       {
-        "id": 98,
+        "id": 96,
         "start": 151.79,
         "end": 151.8,
         "duration": 0.01,
         "text": "schauspielern dass sie diese stellen"
       },
       {
-        "id": 99,
+        "id": 97,
         "start": 151.8,
         "end": 152.51,
         "duration": 0.71,
         "text": "schauspielern dass sie diese stellen nicht ändern"
       },
       {
-        "id": 100,
+        "id": 98,
         "start": 152.51,
         "end": 152.52,
         "duration": 0.01,
         "text": "nicht ändern"
       },
       {
-        "id": 101,
+        "id": 99,
         "start": 152.52,
         "end": 154.34,
         "duration": 1.82,
         "text": "nicht ändern dafür haben sie ihr in den anderen"
       },
       {
-        "id": 102,
+        "id": 100,
         "start": 154.34,
         "end": 154.35,
         "duration": 0.01,
         "text": "dafür haben sie ihr in den anderen"
       },
       {
-        "id": 103,
+        "id": 101,
         "start": 154.35,
         "end": 156.08,
         "duration": 1.73,
         "text": "dafür haben sie ihr in den anderen stellen ein bisschen mehr freiheiten"
       },
       {
-        "id": 104,
+        "id": 102,
         "start": 156.08,
         "end": 156.09,
         "duration": 0.01,
         "text": "stellen ein bisschen mehr freiheiten"
       },
       {
-        "id": 105,
+        "id": 103,
         "start": 156.09,
         "end": 158.93,
         "duration": 2.84,
         "text": "stellen ein bisschen mehr freiheiten vielleicht das selber sauer obwohl für"
       },
       {
-        "id": 106,
+        "id": 104,
         "start": 158.93,
         "end": 158.94,
         "duration": 0.01,
         "text": "vielleicht das selber sauer obwohl für"
       },
       {
-        "id": 107,
+        "id": 105,
         "start": 158.94,
         "end": 162.11,
         "duration": 3.17,
         "text": "vielleicht das selber sauer obwohl für dich alles okay ist oder jetzt irgendwas"
       },
       {
-        "id": 108,
+        "id": 106,
         "start": 162.11,
         "end": 162.12,
         "duration": 0.01,
         "text": "dich alles okay ist oder jetzt irgendwas"
       },
       {
-        "id": 109,
+        "id": 107,
         "start": 162.12,
         "end": 164.84,
         "duration": 2.72,
         "text": "dich alles okay ist oder jetzt irgendwas passiert das kann natürlich auch sein"
       },
       {
-        "id": 110,
+        "id": 108,
         "start": 164.84,
-        "end": 164.85,
-        "duration": 0.01,
+        "end": 166.08,
+        "duration": 1.24,
         "text": "passiert das kann natürlich auch sein"
       },
       {
-        "id": 111,
-        "start": 164.85,
-        "end": 166.08,
-        "duration": 1.23,
-        "text": "passiert das kann natürlich auch sein [Musik]"
-      },
-      {
-        "id": 112,
-        "start": 166.08,
-        "end": 166.09,
-        "duration": 0.01,
-        "text": "[Musik]"
-      },
-      {
-        "id": 113,
-        "start": 166.09,
-        "end": 166.53,
-        "duration": 0.44,
-        "text": "[Musik] [Applaus]"
-      },
-      {
-        "id": 114,
-        "start": 166.53,
-        "end": 166.54,
-        "duration": 0.01,
-        "text": "[Applaus]"
-      },
-      {
-        "id": 115,
-        "start": 166.54,
-        "end": 168.8,
-        "duration": 2.26,
-        "text": "[Applaus] [Musik]"
-      },
-      {
-        "id": 116,
-        "start": 168.8,
-        "end": 168.81,
-        "duration": 0.01,
-        "text": "[Musik]"
-      },
-      {
-        "id": 117,
-        "start": 168.81,
-        "end": 172.43,
-        "duration": 3.62,
-        "text": "[Musik] [Applaus]"
-      },
-      {
-        "id": 118,
-        "start": 172.43,
-        "end": 172.44,
-        "duration": 0.01,
-        "text": "[Applaus]"
-      },
-      {
-        "id": 119,
-        "start": 172.44,
-        "end": 184.05,
-        "duration": 11.61,
-        "text": "[Applaus] [Musik]"
-      },
-      {
-        "id": 120,
+        "id": 109,
         "start": 184.06,
         "end": 187.3,
         "duration": 3.24,
         "text": "dieser onlinekurs ist definitiv"
       },
       {
-        "id": 121,
+        "id": 110,
         "start": 187.3,
         "end": 189.75,
         "duration": 2.45,
         "text": "dieser onlinekurs ist definitiv unterhaltsam als jedes schulbuch und"
       },
       {
-        "id": 122,
+        "id": 111,
         "start": 189.75,
         "end": 189.76,
         "duration": 0.01,
         "text": "unterhaltsam als jedes schulbuch und"
       },
       {
-        "id": 123,
+        "id": 112,
         "start": 189.76,
         "end": 191.73,
         "duration": 1.97,
         "text": "unterhaltsam als jedes schulbuch und auch vielleicht als über klassische"
       },
       {
-        "id": 124,
+        "id": 113,
         "start": 191.73,
         "end": 191.74,
         "duration": 0.01,
         "text": "auch vielleicht als über klassische"
       },
       {
-        "id": 125,
+        "id": 114,
         "start": 191.74,
         "end": 195.68,
         "duration": 3.94,
         "text": "auch vielleicht als über klassische ihnen oder onlinekurs den handel sind"
       },
       {
-        "id": 126,
+        "id": 115,
         "start": 195.68,
         "end": 195.69,
         "duration": 0.01,
         "text": "ihnen oder onlinekurs den handel sind"
       },
       {
-        "id": 127,
+        "id": 116,
         "start": 195.69,
         "end": 200.71,
         "duration": 5.02,
         "text": "ihnen oder onlinekurs den handel sind gegenwärtig gematik"
       },
       {
-        "id": 128,
+        "id": 117,
         "start": 200.71,
-        "end": 200.72,
-        "duration": 0.01,
-        "text": "gegenwärtig gematik"
-      },
-      {
-        "id": 129,
-        "start": 200.72,
         "end": 205.93,
-        "duration": 5.21,
-        "text": "gegenwärtig gematik [Musik]"
+        "duration": 5.22,
+        "text": "gegenwärtig gematik"
       }
     ]
   },
@@ -1270,77 +1186,77 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 10.48,
         "end": 13.04,
         "duration": 2.56,
-        "text": "- Guten Morgen, Herr Müller, wie geht es Ihnen?"
+        "text": "Guten Morgen, Herr Müller, wie geht es Ihnen?"
       },
       {
         "id": 2,
         "start": 13.12,
         "end": 17.76,
         "duration": 4.64,
-        "text": "- Guten Morgen, Frau Schneider. Danke, gut! Und Ihnen?"
+        "text": "Guten Morgen, Frau Schneider. Danke, gut! Und Ihnen?"
       },
       {
         "id": 3,
         "start": 17.84,
         "end": 20.48,
         "duration": 2.64,
-        "text": "- Guten Morgen, Herr Müller, wie geht es Ihnen?"
+        "text": "Guten Morgen, Herr Müller, wie geht es Ihnen?"
       },
       {
         "id": 4,
         "start": 20.56,
         "end": 24.4,
         "duration": 3.84,
-        "text": "- Guten Morgen, Frau Schneider. Danke, gut! Und Ihnen?"
+        "text": "Guten Morgen, Frau Schneider. Danke, gut! Und Ihnen?"
       },
       {
         "id": 5,
         "start": 26.52,
         "end": 27.76,
         "duration": 1.24,
-        "text": "- Guten Tag, Frau Kamp."
+        "text": "Guten Tag, Frau Kamp."
       },
       {
         "id": 6,
         "start": 27.84,
         "end": 29.84,
         "duration": 2.0,
-        "text": "- Guten Tag! Wie geht es Ihnen?"
+        "text": "Guten Tag! Wie geht es Ihnen?"
       },
       {
         "id": 7,
         "start": 29.88,
         "end": 32.4,
         "duration": 2.52,
-        "text": "- Sehr gut, danke. Und Ihnen?"
+        "text": "Sehr gut, danke. Und Ihnen?"
       },
       {
         "id": 8,
         "start": 34.24,
         "end": 36.68,
         "duration": 2.44,
-        "text": "- Hey, Lena! Na, wie geht’s?"
+        "text": "Hey, Lena! Na, wie geht’s?"
       },
       {
         "id": 9,
         "start": 36.76,
         "end": 37.96,
         "duration": 1.2,
-        "text": "- Hallo, Opa!"
+        "text": "Hallo, Opa!"
       },
       {
         "id": 10,
         "start": 39.52,
         "end": 41.76,
         "duration": 2.24,
-        "text": "- Hallo, Sarah. Wie geht’s dir?"
+        "text": "Hallo, Sarah. Wie geht’s dir?"
       },
       {
         "id": 11,
         "start": 41.8,
         "end": 43.96,
         "duration": 2.16,
-        "text": "- Hi, Tom! Super, danke."
+        "text": "Hi, Tom! Super, danke."
       },
       {
         "id": 12,
@@ -1354,49 +1270,49 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 47.96,
         "end": 49.48,
         "duration": 1.52,
-        "text": "- Oh, schön!"
+        "text": "Oh, schön!"
       },
       {
         "id": 14,
         "start": 50.76,
         "end": 51.4,
         "duration": 0.64,
-        "text": "- Hm?"
+        "text": "Hm?"
       },
       {
         "id": 15,
         "start": 51.56,
         "end": 52.96,
         "duration": 1.4,
-        "text": "- Die Tasche ist schön!"
+        "text": "Die Tasche ist schön!"
       },
       {
         "id": 16,
         "start": 53.4,
         "end": 55.96,
         "duration": 2.56,
-        "text": "- Entschuldigung? Schön?"
+        "text": "Entschuldigung? Schön?"
       },
       {
         "id": 17,
         "start": 56.32,
         "end": 57.56,
         "duration": 1.24,
-        "text": "- Ja, die Tasche!"
+        "text": "Ja, die Tasche!"
       },
       {
         "id": 18,
         "start": 63.0,
         "end": 65.84,
         "duration": 2.84,
-        "text": "- Emma, komm jetzt! Entschuldigung!"
+        "text": "Emma, komm jetzt! Entschuldigung!"
       },
       {
         "id": 19,
         "start": 73.68,
         "end": 76.68,
         "duration": 3.0,
-        "text": "- Adalbert-Stifter-Straße …"
+        "text": "Adalbert-Stifter-Straße"
       }
     ]
   },
@@ -1417,7 +1333,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 37.76,
         "end": 39.04,
         "duration": 1.28,
-        "text": "- Hallo!"
+        "text": "Hallo!"
       },
       {
         "id": 2,
@@ -1431,7 +1347,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 47.44,
         "end": 49.08,
         "duration": 1.64,
-        "text": "- Ja, ich bin gut angekommen."
+        "text": "Ja, ich bin gut angekommen."
       },
       {
         "id": 4,
@@ -1445,21 +1361,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 58.96,
         "end": 60.92,
         "duration": 1.96,
-        "text": "- Cool! Noch mal!"
+        "text": "Cool! Noch mal!"
       },
       {
         "id": 6,
         "start": 67.44,
         "end": 69.72,
         "duration": 2.28,
-        "text": "- Ins Zentrum bitte. Zum Königshof."
+        "text": "Ins Zentrum bitte. Zum Königshof."
       },
       {
         "id": 7,
         "start": 69.8,
         "end": 72.4,
         "duration": 2.6,
-        "text": "- Ins Zentrum. Zum Königshof."
+        "text": "Ins Zentrum. Zum Königshof."
       },
       {
         "id": 8,
@@ -1473,21 +1389,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 75.44,
         "end": 76.56,
         "duration": 1.12,
-        "text": "- Hotel Königshof."
+        "text": "Hotel Königshof."
       },
       {
         "id": 10,
         "start": 76.68,
         "end": 78.24,
         "duration": 1.56,
-        "text": "- Okay, kein Problem."
+        "text": "Okay, kein Problem."
       },
       {
         "id": 11,
         "start": 84.2,
         "end": 86.28,
         "duration": 2.08,
-        "text": "- Hey, stopp!"
+        "text": "Hey, stopp!"
       }
     ]
   },
@@ -1508,28 +1424,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 6.84,
         "end": 9.32,
         "duration": 2.48,
-        "text": "- Tschüss, Martina. Gute Reise!"
+        "text": "Tschüss, Martina. Gute Reise!"
       },
       {
         "id": 2,
         "start": 9.36,
         "end": 11.88,
         "duration": 2.52,
-        "text": "- Mach’s gut, Herbert. Bis bald!"
+        "text": "Mach’s gut, Herbert. Bis bald!"
       },
       {
         "id": 3,
         "start": 11.92,
         "end": 13.0,
         "duration": 1.08,
-        "text": "- Tschüss!"
+        "text": "Tschüss!"
       },
       {
         "id": 4,
         "start": 17.0,
         "end": 18.96,
         "duration": 1.96,
-        "text": "- Auf Wiedersehen, Herr Tillmanns. Gute Reise!"
+        "text": "Auf Wiedersehen, Herr Tillmanns. Gute Reise!"
       },
       {
         "id": 5,
@@ -1543,7 +1459,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 32.12,
         "end": 33.6,
         "duration": 1.48,
-        "text": "- Alles okay?"
+        "text": "Alles okay?"
       },
       {
         "id": 7,
@@ -1564,28 +1480,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 42.52,
         "end": 43.88,
         "duration": 1.36,
-        "text": "- Ja! Hilfe!"
+        "text": "Ja! Hilfe!"
       },
       {
         "id": 10,
         "start": 44.16,
         "end": 45.24,
         "duration": 1.08,
-        "text": "- Wo ist die Tasche?"
+        "text": "Wo ist die Tasche?"
       },
       {
         "id": 11,
         "start": 46.0,
         "end": 51.68,
         "duration": 5.68,
-        "text": "- Die Tasche ist … gone … in the ... Taxi!"
+        "text": "Die Tasche ist gone in the Taxi!"
       },
       {
         "id": 12,
         "start": 51.8,
         "end": 53.28,
         "duration": 1.48,
-        "text": "- Die Tasche ist weg in dem Taxi?"
+        "text": "Die Tasche ist weg in dem Taxi?"
       },
       {
         "id": 13,
@@ -1606,7 +1522,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 64.12,
         "end": 65.8,
         "duration": 1.68,
-        "text": "- Zentrum, ja!"
+        "text": "Zentrum, ja!"
       }
     ]
   },
@@ -1627,35 +1543,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.28,
         "end": 8.36,
         "duration": 1.08,
-        "text": "- Yara."
+        "text": "Yara."
       },
       {
         "id": 2,
         "start": 9.88,
         "end": 11.56,
         "duration": 1.68,
-        "text": "- Wer ist Yara?"
+        "text": "Wer ist Yara?"
       },
       {
         "id": 3,
         "start": 11.6,
         "end": 15.16,
         "duration": 3.56,
-        "text": "- Meine ... aunt?"
+        "text": "Meine aunt?"
       },
       {
         "id": 4,
         "start": 15.4,
         "end": 16.6,
         "duration": 1.2,
-        "text": "- Deine Tante?"
+        "text": "Deine Tante?"
       },
       {
         "id": 5,
         "start": 16.64,
         "end": 21.0,
         "duration": 4.36,
-        "text": "- Nicht schlecht! Du willst zu deiner Tante? Zu Yara?"
+        "text": "Nicht schlecht! Du willst zu deiner Tante? Zu Yara?"
       },
       {
         "id": 6,
@@ -1669,14 +1585,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 26.04,
         "end": 30.56,
         "duration": 4.52,
-        "text": "- Andel … Adelschiffstraße?"
+        "text": "Andel Adelschiffstraße?"
       },
       {
         "id": 8,
         "start": 31.0,
         "end": 32.36,
         "duration": 1.36,
-        "text": "- Die kenn ich nicht ..."
+        "text": "Die kenn ich nicht"
       },
       {
         "id": 9,
@@ -1690,21 +1606,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 40.24,
         "end": 41.32,
         "duration": 1.08,
-        "text": "- Yippie!"
+        "text": "Yippie!"
       },
       {
         "id": 11,
         "start": 52.76,
         "end": 53.76,
         "duration": 1.0,
-        "text": "- Emma!"
+        "text": "Emma!"
       },
       {
         "id": 12,
         "start": 53.88,
         "end": 55.76,
         "duration": 1.88,
-        "text": "- Mein Name ist Emma!"
+        "text": "Mein Name ist Emma!"
       },
       {
         "id": 13,
@@ -1718,28 +1634,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 57.56,
         "end": 58.76,
         "duration": 1.2,
-        "text": "- Deine Mama?"
+        "text": "Deine Mama?"
       },
       {
         "id": 15,
         "start": 58.84,
         "end": 62.08,
         "duration": 3.24,
-        "text": "- Nein, Lisa ist nicht meine Mama. Sie ist meine Tante."
+        "text": "Nein, Lisa ist nicht meine Mama. Sie ist meine Tante."
       },
       {
         "id": 16,
         "start": 62.52,
         "end": 63.64,
         "duration": 1.12,
-        "text": "Meine Mama ..."
+        "text": "Meine Mama"
       },
       {
         "id": 17,
         "start": 65.8,
         "end": 68.36,
         "duration": 2.56,
-        "text": "... fliegt nach Amerika. Sie arbeitet da."
+        "text": "fliegt nach Amerika. Sie arbeitet da."
       },
       {
         "id": 18,
@@ -1753,35 +1669,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 71.6,
         "end": 72.84,
         "duration": 1.24,
-        "text": "- Danke."
+        "text": "Danke."
       },
       {
         "id": 20,
         "start": 79.24,
         "end": 80.4,
         "duration": 1.16,
-        "text": "- Nico."
+        "text": "Nico."
       },
       {
         "id": 21,
         "start": 80.44,
         "end": 83.12,
         "duration": 2.68,
-        "text": "- Mein Name ist Nico."
+        "text": "Mein Name ist Nico."
       },
       {
         "id": 22,
         "start": 83.16,
         "end": 84.28,
         "duration": 1.12,
-        "text": "- Hallo, Nico."
+        "text": "Hallo, Nico."
       },
       {
         "id": 23,
         "start": 84.56,
         "end": 85.96,
         "duration": 1.4,
-        "text": "- Hallo, Emma."
+        "text": "Hallo, Emma."
       }
     ]
   },
@@ -1802,21 +1718,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 13.08,
         "end": 15.36,
         "duration": 2.28,
-        "text": "- Ich heiße Nico."
+        "text": "Ich heiße Nico."
       },
       {
         "id": 2,
         "start": 16.08,
         "end": 17.6,
         "duration": 1.52,
-        "text": "- Hallo, Nico."
+        "text": "Hallo, Nico."
       },
       {
         "id": 3,
         "start": 17.76,
         "end": 23.08,
         "duration": 5.32,
-        "text": "- Hallo. Also: Hallo, wie heißt du?"
+        "text": "Hallo. Also: Hallo, wie heißt du?"
       },
       {
         "id": 4,
@@ -1830,28 +1746,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 28.76,
         "end": 31.0,
         "duration": 2.24,
-        "text": "- Ich heiße Lisa."
+        "text": "Ich heiße Lisa."
       },
       {
         "id": 6,
         "start": 31.28,
         "end": 33.0,
         "duration": 1.72,
-        "text": "- Nein, du heißt Nico."
+        "text": "Nein, du heißt Nico."
       },
       {
         "id": 7,
         "start": 33.36,
         "end": 36.6,
         "duration": 3.24,
-        "text": "- Das ist Emma. Emma spinnt gerade."
+        "text": "Das ist Emma. Emma spinnt gerade."
       },
       {
         "id": 8,
         "start": 38.0,
         "end": 40.24,
         "duration": 2.24,
-        "text": "- Ich … heiße …"
+        "text": "Ich heiße"
       },
       {
         "id": 9,
@@ -1865,35 +1781,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 43.36,
         "end": 44.4,
         "duration": 1.04,
-        "text": "- Emma!"
+        "text": "Emma!"
       },
       {
         "id": 11,
         "start": 44.56,
         "end": 48.04,
         "duration": 3.48,
-        "text": "- Aber jetzt ist das „N“ weg! Das war Nico!"
+        "text": "Aber jetzt ist das „N“ weg! Das war Nico!"
       },
       {
         "id": 12,
         "start": 48.72,
         "end": 49.72,
         "duration": 1.0,
-        "text": "- Ich?"
+        "text": "Ich?"
       },
       {
         "id": 13,
         "start": 51.6,
         "end": 54.24,
         "duration": 2.64,
-        "text": "- Moment bitte. Ich muss noch kurz tanken."
+        "text": "Moment bitte. Ich muss noch kurz tanken."
       },
       {
         "id": 14,
         "start": 64.4,
         "end": 67.52,
         "duration": 3.12,
-        "text": "- Taxi! Stopp!"
+        "text": "Taxi! Stopp!"
       }
     ]
   },
@@ -1914,91 +1830,91 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.08,
         "end": 7.84,
         "duration": 0.76,
-        "text": "- Nico!"
+        "text": "Nico!"
       },
       {
         "id": 2,
         "start": 8.08,
         "end": 9.04,
         "duration": 0.96,
-        "text": "- Stopp!"
+        "text": "Stopp!"
       },
       {
         "id": 3,
         "start": 9.32,
         "end": 11.72,
         "duration": 2.4,
-        "text": "- Sag mal, spinnst du? Was ist denn?"
+        "text": "Sag mal, spinnst du? Was ist denn?"
       },
       {
         "id": 4,
         "start": 11.88,
         "end": 12.8,
         "duration": 0.92,
-        "text": "- Die Tasche!"
+        "text": "Die Tasche!"
       },
       {
         "id": 5,
         "start": 12.88,
         "end": 14.16,
         "duration": 1.28,
-        "text": "- Oh, oh … - Die Tasche? Welche Tasche?"
+        "text": "Oh, oh Die Tasche? Welche Tasche?"
       },
       {
         "id": 6,
         "start": 14.24,
         "end": 15.12,
         "duration": 0.88,
-        "text": "- Warte, Emma!"
+        "text": "Warte, Emma!"
       },
       {
         "id": 7,
         "start": 15.16,
         "end": 17.28,
         "duration": 2.12,
-        "text": "- Die … die Tasche in there!"
+        "text": "Die die Tasche in there!"
       },
       {
         "id": 8,
         "start": 17.32,
         "end": 18.72,
         "duration": 1.4,
-        "text": "- Da ist keine Tasche."
+        "text": "Da ist keine Tasche."
       },
       {
         "id": 9,
         "start": 20.32,
         "end": 24.84,
         "duration": 4.52,
-        "text": "- Hallo, ich bin Lisa Brunner. Das ist Nico. Nico sucht seine Tasche."
+        "text": "Hallo, ich bin Lisa Brunner. Das ist Nico. Nico sucht seine Tasche."
       },
       {
         "id": 10,
         "start": 24.88,
         "end": 25.76,
         "duration": 0.88,
-        "text": "- Und?"
+        "text": "Und?"
       },
       {
         "id": 11,
         "start": 26.52,
         "end": 28.4,
         "duration": 1.88,
-        "text": "- Ist Nicos Tasche in Ihrem Taxi?"
+        "text": "Ist Nicos Tasche in Ihrem Taxi?"
       },
       {
         "id": 12,
         "start": 28.44,
         "end": 31.48,
         "duration": 3.04,
-        "text": "- Nicos Tasche? Nein. Die Tasche ist nicht im Taxi."
+        "text": "Nicos Tasche? Nein. Die Tasche ist nicht im Taxi."
       },
       {
         "id": 13,
         "start": 31.72,
         "end": 32.96,
         "duration": 1.24,
-        "text": "- Nein."
+        "text": "Nein."
       },
       {
         "id": 14,
@@ -2012,14 +1928,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 35.32,
         "end": 37.48,
         "duration": 2.16,
-        "text": "- Keine Ahnung, wo deine Tasche ist. Hier ist die Tasche nicht."
+        "text": "Keine Ahnung, wo deine Tasche ist. Hier ist die Tasche nicht."
       },
       {
         "id": 16,
         "start": 37.64,
         "end": 39.76,
         "duration": 2.12,
-        "text": "- Komm, wir suchen die Tasche!"
+        "text": "Komm, wir suchen die Tasche!"
       },
       {
         "id": 17,
@@ -2047,77 +1963,77 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 9.76,
         "end": 11.2,
         "duration": 1.44,
-        "text": "- Hallo, Lisa!"
+        "text": "Hallo, Lisa!"
       },
       {
         "id": 2,
         "start": 11.84,
         "end": 14.16,
         "duration": 2.32,
-        "text": "- Hallo, Max, wie geht es dir?"
+        "text": "Hallo, Max, wie geht es dir?"
       },
       {
         "id": 3,
         "start": 14.2,
         "end": 15.2,
         "duration": 1.0,
-        "text": "- Super. Und dir?"
+        "text": "Super. Und dir?"
       },
       {
         "id": 4,
         "start": 15.24,
         "end": 16.64,
         "duration": 1.4,
-        "text": "- Auch gut, danke."
+        "text": "Auch gut, danke."
       },
       {
         "id": 5,
         "start": 16.68,
         "end": 17.4,
         "duration": 0.72,
-        "text": "- Hi, Emma."
+        "text": "Hi, Emma."
       },
       {
         "id": 6,
         "start": 17.44,
         "end": 18.56,
         "duration": 1.12,
-        "text": "- Hallo, Max."
+        "text": "Hallo, Max."
       },
       {
         "id": 7,
         "start": 18.72,
         "end": 19.64,
         "duration": 0.92,
-        "text": "- Und du? Wer bist du?"
+        "text": "Und du? Wer bist du?"
       },
       {
         "id": 8,
         "start": 20.04,
         "end": 21.32,
         "duration": 1.28,
-        "text": "- Ich bin Nico."
+        "text": "Ich bin Nico."
       },
       {
         "id": 9,
         "start": 21.56,
         "end": 24.92,
         "duration": 3.36,
-        "text": "- Hallo, Nico. Du kommst nicht aus Deutschland, oder?"
+        "text": "Hallo, Nico. Du kommst nicht aus Deutschland, oder?"
       },
       {
         "id": 10,
         "start": 25.44,
         "end": 26.64,
         "duration": 1.2,
-        "text": "- Entschuldigung?"
+        "text": "Entschuldigung?"
       },
       {
         "id": 11,
         "start": 28.64,
         "end": 31.36,
         "duration": 2.72,
-        "text": "- Woher kommst du?"
+        "text": "Woher kommst du?"
       },
       {
         "id": 12,
@@ -2131,154 +2047,154 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 34.6,
         "end": 36.88,
         "duration": 2.28,
-        "text": "- Und ich bin Emma und ich komme auch aus Deutschland."
+        "text": "Und ich bin Emma und ich komme auch aus Deutschland."
       },
       {
         "id": 14,
         "start": 37.76,
         "end": 42.12,
         "duration": 4.36,
-        "text": "- Ich bin Nico. Ich komme aus ... Spain?"
+        "text": "Ich bin Nico. Ich komme aus Spain?"
       },
       {
         "id": 15,
         "start": 42.56,
         "end": 43.56,
         "duration": 1.0,
-        "text": "- Spanien?"
+        "text": "Spanien?"
       },
       {
         "id": 16,
         "start": 43.6,
         "end": 46.52,
         "duration": 2.92,
-        "text": "- Spanien, ja! Ich komme aus Spanien."
+        "text": "Spanien, ja! Ich komme aus Spanien."
       },
       {
         "id": 17,
         "start": 46.72,
         "end": 49.16,
         "duration": 2.44,
-        "text": "- Und woher kommst du genau?"
+        "text": "Und woher kommst du genau?"
       },
       {
         "id": 18,
         "start": 49.76,
         "end": 50.92,
         "duration": 1.16,
-        "text": "- Woher?"
+        "text": "Woher?"
       },
       {
         "id": 19,
         "start": 51.44,
         "end": 55.64,
         "duration": 4.2,
-        "text": "- Wo wohnst du in Spanien? Wohnst du in Barcelona oder in Madrid?"
+        "text": "Wo wohnst du in Spanien? Wohnst du in Barcelona oder in Madrid?"
       },
       {
         "id": 20,
         "start": 55.72,
         "end": 57.0,
         "duration": 1.28,
-        "text": "- Sevilla!"
+        "text": "Sevilla!"
       },
       {
         "id": 21,
         "start": 57.44,
         "end": 58.8,
         "duration": 1.36,
-        "text": "- Du wohnst in Sevilla?"
+        "text": "Du wohnst in Sevilla?"
       },
       {
         "id": 22,
         "start": 58.88,
         "end": 60.2,
         "duration": 1.32,
-        "text": "- Ich wohne in Sevilla."
+        "text": "Ich wohne in Sevilla."
       },
       {
         "id": 23,
         "start": 60.28,
         "end": 63.92,
         "duration": 3.64,
-        "text": "- Nico war auch am Flughafen. Er hat ein Problem: Seine Tasche ist weg."
+        "text": "Nico war auch am Flughafen. Er hat ein Problem: Seine Tasche ist weg."
       },
       {
         "id": 24,
         "start": 64.6,
         "end": 66.36,
         "duration": 1.76,
-        "text": "- Oh. Und was machst du jetzt?"
+        "text": "Oh. Und was machst du jetzt?"
       },
       {
         "id": 25,
         "start": 66.4,
         "end": 68.16,
         "duration": 1.76,
-        "text": "- Ich suche meine Tante."
+        "text": "Ich suche meine Tante."
       },
       {
         "id": 26,
         "start": 68.36,
         "end": 71.64,
         "duration": 3.28,
-        "text": "- Nicos Tante wohnt hier in Deutschland. Aber er hat die Adresse nicht."
+        "text": "Nicos Tante wohnt hier in Deutschland. Aber er hat die Adresse nicht."
       },
       {
         "id": 27,
         "start": 72.72,
         "end": 74.6,
         "duration": 1.88,
-        "text": "- Kannst du deine Tante anrufen?"
+        "text": "Kannst du deine Tante anrufen?"
       },
       {
         "id": 28,
         "start": 75.04,
         "end": 79.36,
         "duration": 4.32,
-        "text": "- Meine Tasche ist weg. Mein Telefon ist weg. Und die Nummer ist weg."
+        "text": "Meine Tasche ist weg. Mein Telefon ist weg. Und die Nummer ist weg."
       },
       {
         "id": 29,
         "start": 79.4,
         "end": 81.76,
         "duration": 2.36,
-        "text": "- Und deine Familie? Kannst du deine Familie anrufen?"
+        "text": "Und deine Familie? Kannst du deine Familie anrufen?"
       },
       {
         "id": 30,
         "start": 81.8,
         "end": 82.84,
         "duration": 1.04,
-        "text": "- Nein."
+        "text": "Nein."
       },
       {
         "id": 31,
         "start": 83.08,
         "end": 85.92,
         "duration": 2.84,
-        "text": "- Kann dein Vater nicht helfen? Er ist doch bei der Polizei."
+        "text": "Kann dein Vater nicht helfen? Er ist doch bei der Polizei."
       },
       {
         "id": 32,
         "start": 86.68,
         "end": 87.52,
         "duration": 0.84,
-        "text": "- Gute Idee!"
+        "text": "Gute Idee!"
       },
       {
         "id": 33,
         "start": 87.6,
         "end": 88.6,
         "duration": 1.0,
-        "text": "- Vater?"
+        "text": "Vater?"
       },
       {
         "id": 34,
         "start": 88.68,
         "end": 94.68,
         "duration": 6.0,
-        "text": "- Mein Vater ist Polizist. Police. Vielleicht hilft er uns. Moment!"
+        "text": "Mein Vater ist Polizist. Police. Vielleicht hilft er uns. Moment!"
       }
     ]
   },
@@ -2299,7 +2215,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 10.44,
         "end": 13.04,
         "duration": 2.6,
-        "text": "- Polizeirevier Ost, Brunner hier."
+        "text": "Polizeirevier Ost, Brunner hier."
       },
       {
         "id": 2,
@@ -2313,7 +2229,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 18.36,
         "end": 22.2,
         "duration": 3.84,
-        "text": "- Doch, keine Sorge! Emma geht es gut. Aber Nico hat ein Problem."
+        "text": "Doch, keine Sorge! Emma geht es gut. Aber Nico hat ein Problem."
       },
       {
         "id": 4,
@@ -2341,14 +2257,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 33.68,
         "end": 36.96,
         "duration": 3.28,
-        "text": "- Hat er Papiere? Einen Ausweis oder einen Pass?"
+        "text": "Hat er Papiere? Einen Ausweis oder einen Pass?"
       },
       {
         "id": 8,
         "start": 37.04,
         "end": 40.44,
         "duration": 3.4,
-        "text": "- Hast du einen Pass? Passport?"
+        "text": "Hast du einen Pass? Passport?"
       },
       {
         "id": 9,
@@ -2376,21 +2292,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 50.92,
         "end": 54.04,
         "duration": 3.12,
-        "text": "- Meine Tante … She has a bicycle shop."
+        "text": "Meine Tante She has a bicycle shop."
       },
       {
         "id": 13,
         "start": 54.6,
         "end": 57.88,
         "duration": 3.28,
-        "text": "- Seine Tante hat ein Geschäft, ein Fahrradgeschäft."
+        "text": "Seine Tante hat ein Geschäft, ein Fahrradgeschäft."
       },
       {
         "id": 14,
         "start": 57.92,
         "end": 62.88,
         "duration": 4.96,
-        "text": "- Wir suchen also eine Adresse. Die Frau hat ein Fahrradgeschäft. Richtig?"
+        "text": "Wir suchen also eine Adresse. Die Frau hat ein Fahrradgeschäft. Richtig?"
       },
       {
         "id": 15,
@@ -2404,28 +2320,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 66.04,
         "end": 67.16,
         "duration": 1.12,
-        "text": "- Danke, Papa!"
+        "text": "Danke, Papa!"
       },
       {
         "id": 17,
         "start": 67.2,
         "end": 68.36,
         "duration": 1.16,
-        "text": "- Gerne. Bis später."
+        "text": "Gerne. Bis später."
       },
       {
         "id": 18,
         "start": 68.4,
         "end": 69.76,
         "duration": 1.36,
-        "text": "- Bis später!"
+        "text": "Bis später!"
       },
       {
         "id": 19,
         "start": 70.68,
         "end": 71.28,
         "duration": 0.6,
-        "text": "- Und?"
+        "text": "Und?"
       },
       {
         "id": 20,
@@ -2446,28 +2362,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 77.6,
         "end": 78.88,
         "duration": 1.28,
-        "text": "- Super! - Danke!"
+        "text": "Super! Danke!"
       },
       {
         "id": 23,
         "start": 80.28,
         "end": 82.28,
         "duration": 2.0,
-        "text": "- Mach’s gut, Lisa. Ciao, Emma."
+        "text": "Mach’s gut, Lisa. Ciao, Emma."
       },
       {
         "id": 24,
         "start": 82.32,
         "end": 83.0,
         "duration": 0.68,
-        "text": "- Tschüss, Max!"
+        "text": "Tschüss, Max!"
       },
       {
         "id": 25,
         "start": 83.04,
         "end": 85.12,
         "duration": 2.08,
-        "text": "- Ciao, Nico. Viel Erfolg!"
+        "text": "Ciao, Nico. Viel Erfolg!"
       }
     ]
   },
@@ -2488,77 +2404,77 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 11.8,
         "end": 15.04,
         "duration": 3.24,
-        "text": "- Wie ist die Hausnummer, Emma? 38 oder 83?"
+        "text": "Wie ist die Hausnummer, Emma? 38 oder 83?"
       },
       {
         "id": 2,
         "start": 15.08,
         "end": 17.04,
         "duration": 1.96,
-        "text": "- Moment … elf."
+        "text": "Moment elf."
       },
       {
         "id": 3,
         "start": 18.0,
         "end": 20.08,
         "duration": 2.08,
-        "text": "- Ah, ja. Dann sind wir richtig hier."
+        "text": "Ah, ja. Dann sind wir richtig hier."
       },
       {
         "id": 4,
         "start": 21.16,
         "end": 22.12,
         "duration": 0.96,
-        "text": "- Da."
+        "text": "Da."
       },
       {
         "id": 5,
         "start": 22.44,
         "end": 24.44,
         "duration": 2.0,
-        "text": "- Wie viele Zahlen sind das?"
+        "text": "Wie viele Zahlen sind das?"
       },
       {
         "id": 6,
         "start": 25.16,
         "end": 26.28,
         "duration": 1.12,
-        "text": "- Wie viele?"
+        "text": "Wie viele?"
       },
       {
         "id": 7,
         "start": 26.68,
         "end": 30.28,
         "duration": 3.6,
-        "text": "- Das sind 31 Zahlen. - 31 …"
+        "text": "Das sind 31 Zahlen. 31"
       },
       {
         "id": 8,
         "start": 30.56,
         "end": 38.76,
         "duration": 8.2,
-        "text": "- Eins, zwei, drei, vier, fünf …"
+        "text": "Eins, zwei, drei, vier, fünf"
       },
       {
         "id": 9,
         "start": 39.32,
         "end": 44.12,
         "duration": 4.8,
-        "text": "- Eins, zwei, drei, vier, fünf."
+        "text": "Eins, zwei, drei, vier, fünf."
       },
       {
         "id": 10,
         "start": 44.84,
         "end": 54.04,
         "duration": 9.2,
-        "text": "- ... sechs, sieben, acht, neun, zehn, elf, zwölf."
+        "text": "sechs, sieben, acht, neun, zehn, elf, zwölf."
       },
       {
         "id": 11,
         "start": 54.16,
         "end": 61.56,
         "duration": 7.4,
-        "text": "- Sechs, sieben, acht, neun, zehn, elf, zwölf."
+        "text": "Sechs, sieben, acht, neun, zehn, elf, zwölf."
       },
       {
         "id": 12,
@@ -2572,49 +2488,49 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 65.6,
         "end": 68.6,
         "duration": 3.0,
-        "text": "- Eine Einladung zum Geburtstag von Charlotte."
+        "text": "Eine Einladung zum Geburtstag von Charlotte."
       },
       {
         "id": 14,
         "start": 69.36,
         "end": 70.12,
         "duration": 0.76,
-        "text": "- Geburtstag?"
+        "text": "Geburtstag?"
       },
       {
         "id": 15,
         "start": 70.48,
         "end": 72.84,
         "duration": 2.36,
-        "text": "- Happy birthday to you …"
+        "text": "Happy birthday to you"
       },
       {
         "id": 16,
         "start": 72.88,
         "end": 74.28,
         "duration": 1.4,
-        "text": "- Ah, Geburtstag!"
+        "text": "Ah, Geburtstag!"
       },
       {
         "id": 17,
         "start": 74.32,
         "end": 78.08,
         "duration": 3.76,
-        "text": "- Ja, und das hier ist ein Geschenk."
+        "text": "Ja, und das hier ist ein Geschenk."
       },
       {
         "id": 18,
         "start": 86.4,
         "end": 88.08,
         "duration": 1.68,
-        "text": "- Tschüss, Nico! Bis morgen!"
+        "text": "Tschüss, Nico! Bis morgen!"
       },
       {
         "id": 19,
         "start": 90.8,
         "end": 92.44,
         "duration": 1.64,
-        "text": "- Tschüss, Emma!"
+        "text": "Tschüss, Emma!"
       }
     ]
   },
@@ -2635,56 +2551,56 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 16.16,
         "end": 18.24,
         "duration": 2.08,
-        "text": "- Lisa! Hallo! Und Emma!"
+        "text": "Lisa! Hallo! Und Emma!"
       },
       {
         "id": 2,
         "start": 18.28,
         "end": 19.12,
         "duration": 0.84,
-        "text": "- Hallo!"
+        "text": "Hallo!"
       },
       {
         "id": 3,
         "start": 19.16,
         "end": 20.04,
         "duration": 0.88,
-        "text": "- Emma?!"
+        "text": "Emma?!"
       },
       {
         "id": 4,
         "start": 20.16,
         "end": 21.96,
         "duration": 1.8,
-        "text": "- Lotte! Tschüss, Lisa."
+        "text": "Lotte! Tschüss, Lisa."
       },
       {
         "id": 5,
         "start": 22.0,
         "end": 24.52,
         "duration": 2.52,
-        "text": "- Tschüss, meine Süße. Hab viel Spaß, ja!"
+        "text": "Tschüss, meine Süße. Hab viel Spaß, ja!"
       },
       {
         "id": 6,
         "start": 24.96,
         "end": 28.04,
         "duration": 3.08,
-        "text": "- Herzlichen Glückwunsch, Lotte! Wie alt ist Lotte jetzt?"
+        "text": "Herzlichen Glückwunsch, Lotte! Wie alt ist Lotte jetzt?"
       },
       {
         "id": 7,
         "start": 28.12,
         "end": 29.16,
         "duration": 1.04,
-        "text": "- Sie ist acht."
+        "text": "Sie ist acht."
       },
       {
         "id": 8,
         "start": 29.24,
         "end": 33.6,
         "duration": 4.36,
-        "text": "- Ah, Emma ist auch acht Jahre alt. Ich hab hier Emmas Schlafsack"
+        "text": "Ah, Emma ist auch acht Jahre alt. Ich hab hier Emmas Schlafsack"
       },
       {
         "id": 9,
@@ -2698,35 +2614,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 35.2,
         "end": 36.32,
         "duration": 1.12,
-        "text": "- Super, danke!"
+        "text": "Super, danke!"
       },
       {
         "id": 11,
         "start": 36.36,
         "end": 38.08,
         "duration": 1.72,
-        "text": "- Wo hast du deine Traumfrau kennengelernt?"
+        "text": "Wo hast du deine Traumfrau kennengelernt?"
       },
       {
         "id": 12,
         "start": 38.64,
         "end": 39.6,
         "duration": 0.96,
-        "text": "- Im Fundbüro."
+        "text": "Im Fundbüro."
       },
       {
         "id": 13,
         "start": 39.68,
         "end": 43.52,
         "duration": 3.84,
-        "text": "- Im Fundbüro? Hat sie jemand abgegeben?"
+        "text": "Im Fundbüro? Hat sie jemand abgegeben?"
       },
       {
         "id": 14,
         "start": 44.2,
         "end": 46.04,
         "duration": 1.84,
-        "text": "- Nein, auf gar keinen Fall."
+        "text": "Nein, auf gar keinen Fall."
       },
       {
         "id": 15,
@@ -2747,28 +2663,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 54.48,
         "end": 57.12,
         "duration": 2.64,
-        "text": "- Und den Finder der Tasche willst du suchen?"
+        "text": "Und den Finder der Tasche willst du suchen?"
       },
       {
         "id": 18,
         "start": 57.16,
         "end": 57.8,
         "duration": 0.64,
-        "text": "- Tasche verloren?"
+        "text": "Tasche verloren?"
       },
       {
         "id": 19,
         "start": 57.96,
         "end": 62.16,
         "duration": 4.2,
-        "text": "- Ganz genau. Er hat mein Leben verändert und ich würde mich gerne bedanken."
+        "text": "Ganz genau. Er hat mein Leben verändert und ich würde mich gerne bedanken."
       },
       {
         "id": 20,
         "start": 62.2,
         "end": 67.8,
         "duration": 5.6,
-        "text": "- Also, wenn du das hörst, edler Finder, dann greif zum Telefon und ruf an."
+        "text": "Also, wenn du das hörst, edler Finder, dann greif zum Telefon und ruf an."
       },
       {
         "id": 21,
@@ -2817,91 +2733,91 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 9.32,
         "end": 12.32,
         "duration": 3.0,
-        "text": "- So, hier ist noch meine Handynummer."
+        "text": "So, hier ist noch meine Handynummer."
       },
       {
         "id": 2,
         "start": 12.48,
         "end": 14.56,
         "duration": 2.08,
-        "text": "- Ist das eine Zwei oder eine Sieben?"
+        "text": "Ist das eine Zwei oder eine Sieben?"
       },
       {
         "id": 3,
         "start": 14.6,
         "end": 23.04,
         "duration": 8.44,
-        "text": "- Das ist eine Sieben … 0173 90 76 34 29 58."
+        "text": "Das ist eine Sieben 0173 90 76 34 29 58."
       },
       {
         "id": 4,
         "start": 23.36,
         "end": 30.16,
         "duration": 6.8,
-        "text": "- 0173 90 76 34 29 58."
+        "text": "0173 90 76 34 29 58."
       },
       {
         "id": 5,
         "start": 30.68,
         "end": 31.84,
         "duration": 1.16,
-        "text": "- Alles klar, danke."
+        "text": "Alles klar, danke."
       },
       {
         "id": 6,
         "start": 32.0,
         "end": 33.48,
         "duration": 1.48,
-        "text": "- Ja, hallo! Wie heißt du?"
+        "text": "Ja, hallo! Wie heißt du?"
       },
       {
         "id": 7,
         "start": 33.52,
         "end": 35.16,
         "duration": 1.64,
-        "text": "- Nico, wie geht’s?"
+        "text": "Nico, wie geht’s?"
       },
       {
         "id": 8,
         "start": 35.2,
         "end": 36.56,
         "duration": 1.36,
-        "text": "- Danke, danke, mir geht’s gut."
+        "text": "Danke, danke, mir geht’s gut."
       },
       {
         "id": 9,
         "start": 36.6,
         "end": 38.28,
         "duration": 1.68,
-        "text": "- Oh mein Gott … - Wie geht’s dir?"
+        "text": "Oh mein Gott Wie geht’s dir?"
       },
       {
         "id": 10,
         "start": 38.32,
         "end": 39.96,
         "duration": 1.64,
-        "text": "- Hmm. Nicht so gut."
+        "text": "Hmm. Nicht so gut."
       },
       {
         "id": 11,
         "start": 40.0,
         "end": 42.12,
         "duration": 2.12,
-        "text": "- Nicht so gut? Warum nicht so gut?"
+        "text": "Nicht so gut? Warum nicht so gut?"
       },
       {
         "id": 12,
         "start": 42.16,
         "end": 46.24,
         "duration": 4.08,
-        "text": "- Meine Tasche. Meine Tasche ... Tasche verloren ..."
+        "text": "Meine Tasche. Meine Tasche Tasche verloren"
       },
       {
         "id": 13,
         "start": 46.28,
         "end": 48.84,
         "duration": 2.56,
-        "text": "- Oh, okay, Moment ..."
+        "text": "Oh, okay, Moment"
       },
       {
         "id": 14,
@@ -2915,21 +2831,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 53.12,
         "end": 53.84,
         "duration": 0.72,
-        "text": "- Hallo?"
+        "text": "Hallo?"
       },
       {
         "id": 16,
         "start": 53.88,
         "end": 55.76,
         "duration": 1.88,
-        "text": "- Oh, hallo ... Wer bist du denn?"
+        "text": "Oh, hallo Wer bist du denn?"
       },
       {
         "id": 17,
         "start": 56.08,
         "end": 59.36,
         "duration": 3.28,
-        "text": "- Entschuldigung. Ich bin nicht Nico. Mein Name ist Lisa."
+        "text": "Entschuldigung. Ich bin nicht Nico. Mein Name ist Lisa."
       },
       {
         "id": 18,
@@ -2943,28 +2859,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 63.16,
         "end": 65.8,
         "duration": 2.64,
-        "text": "Seine Tasche ist schwarz und ..."
+        "text": "Seine Tasche ist schwarz und"
       },
       {
         "id": 20,
         "start": 69.96,
         "end": 72.64,
         "duration": 2.68,
-        "text": "... sie hat einen Aufnäher mit einem Fahrrad."
+        "text": "sie hat einen Aufnäher mit einem Fahrrad."
       },
       {
         "id": 21,
         "start": 72.72,
         "end": 73.56,
         "duration": 0.84,
-        "text": "- Okay."
+        "text": "Okay."
       },
       {
         "id": 22,
         "start": 73.6,
         "end": 74.96,
         "duration": 1.36,
-        "text": "- Nicos Pass ist in der Tasche."
+        "text": "Nicos Pass ist in der Tasche."
       },
       {
         "id": 23,
@@ -2985,14 +2901,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 83.56,
         "end": 85.56,
         "duration": 2.0,
-        "text": "- Scheinerstraße 144?"
+        "text": "Scheinerstraße 144?"
       },
       {
         "id": 26,
         "start": 85.6,
         "end": 92.72,
         "duration": 7.12,
-        "text": "- Nein, Schreinerstraße, mit „R“, S-C-H-R-E-I-N-E-R."
+        "text": "Nein, Schreinerstraße, mit „R“, S-C-H-R-E-I-N-E-R."
       },
       {
         "id": 27,
@@ -3006,21 +2922,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 95.08,
         "end": 97.24,
         "duration": 2.16,
-        "text": "- Danke euch! Viel Glück!"
+        "text": "Danke euch! Viel Glück!"
       },
       {
         "id": 29,
         "start": 98.68,
         "end": 99.6,
         "duration": 0.92,
-        "text": "- Was soll das denn?"
+        "text": "Was soll das denn?"
       },
       {
         "id": 30,
         "start": 99.64,
         "end": 100.52,
         "duration": 0.88,
-        "text": "- Entschuldigung ..."
+        "text": "Entschuldigung"
       }
     ]
   },
@@ -3041,14 +2957,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 8.2,
         "end": 9.28,
         "duration": 1.08,
-        "text": "- Hallo, Papa!"
+        "text": "Hallo, Papa!"
       },
       {
         "id": 2,
         "start": 9.32,
         "end": 11.92,
         "duration": 2.6,
-        "text": "- Ah! Hallo, Lisa!"
+        "text": "Ah! Hallo, Lisa!"
       },
       {
         "id": 3,
@@ -3062,14 +2978,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 18.24,
         "end": 20.12,
         "duration": 1.88,
-        "text": "- Ja. Ich heiße Nicolás González."
+        "text": "Ja. Ich heiße Nicolás González."
       },
       {
         "id": 5,
         "start": 20.16,
         "end": 22.52,
         "duration": 2.36,
-        "text": "- Herr González, freut mich sehr. Setzen Sie sich doch bitte."
+        "text": "Herr González, freut mich sehr. Setzen Sie sich doch bitte."
       },
       {
         "id": 6,
@@ -3104,14 +3020,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 34.24,
         "end": 35.76,
         "duration": 1.52,
-        "text": "- Geburtstag."
+        "text": "Geburtstag."
       },
       {
         "id": 11,
         "start": 35.84,
         "end": 36.92,
         "duration": 1.08,
-        "text": "- Mhm."
+        "text": "Mhm."
       },
       {
         "id": 12,
@@ -3125,7 +3041,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 41.32,
         "end": 42.8,
         "duration": 1.48,
-        "text": "- Wir nehmen meine Adresse."
+        "text": "Wir nehmen meine Adresse."
       },
       {
         "id": 14,
@@ -3139,7 +3055,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 51.92,
         "end": 53.8,
         "duration": 1.88,
-        "text": "- Ihre Passnummer!"
+        "text": "Ihre Passnummer!"
       },
       {
         "id": 16,
@@ -3153,63 +3069,63 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 55.52,
         "end": 57.0,
         "duration": 1.48,
-        "text": "- Mein Pass ist weg."
+        "text": "Mein Pass ist weg."
       },
       {
         "id": 18,
         "start": 57.04,
         "end": 59.52,
         "duration": 2.48,
-        "text": "- Oh, das ist nicht gut."
+        "text": "Oh, das ist nicht gut."
       },
       {
         "id": 19,
         "start": 68.6,
         "end": 70.2,
         "duration": 1.6,
-        "text": "- Das ist Yara."
+        "text": "Das ist Yara."
       },
       {
         "id": 20,
         "start": 70.6,
         "end": 72.04,
         "duration": 1.44,
-        "text": "- Und wer ist Yara?"
+        "text": "Und wer ist Yara?"
       },
       {
         "id": 21,
         "start": 72.24,
         "end": 73.24,
         "duration": 1.0,
-        "text": "- My aunt."
+        "text": "My aunt."
       },
       {
         "id": 22,
         "start": 73.28,
         "end": 74.16,
         "duration": 0.88,
-        "text": "- Seine Tante!"
+        "text": "Seine Tante!"
       },
       {
         "id": 23,
         "start": 74.4,
         "end": 75.88,
         "duration": 1.48,
-        "text": "- Yara ist Ihre Tante."
+        "text": "Yara ist Ihre Tante."
       },
       {
         "id": 24,
         "start": 75.96,
         "end": 77.72,
         "duration": 1.76,
-        "text": "- Ja, meine Tante."
+        "text": "Ja, meine Tante."
       },
       {
         "id": 25,
         "start": 77.76,
         "end": 80.12,
         "duration": 2.36,
-        "text": "- Wo wohnt Yara? Haben Sie eine Adresse?"
+        "text": "Wo wohnt Yara? Haben Sie eine Adresse?"
       },
       {
         "id": 26,
@@ -3223,56 +3139,56 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 84.76,
         "end": 87.6,
         "duration": 2.84,
-        "text": "- Does Yara know you are here? Is she waiting for you?"
+        "text": "Does Yara know you are here? Is she waiting for you?"
       },
       {
         "id": 28,
         "start": 96.6,
         "end": 99.8,
         "duration": 3.2,
-        "text": "- Seine Tante weiß nicht, warum er hier ist?"
+        "text": "Seine Tante weiß nicht, warum er hier ist?"
       },
       {
         "id": 29,
         "start": 99.92,
         "end": 101.24,
         "duration": 1.32,
-        "text": "- Nein."
+        "text": "Nein."
       },
       {
         "id": 30,
         "start": 101.64,
         "end": 103.0,
         "duration": 1.36,
-        "text": "- Warum ist er denn hier in Deutschland?"
+        "text": "Warum ist er denn hier in Deutschland?"
       },
       {
         "id": 31,
         "start": 103.04,
         "end": 105.64,
         "duration": 2.6,
-        "text": "- Ich weiß es nicht. Aber ich werd’s rausfinden."
+        "text": "Ich weiß es nicht. Aber ich werd’s rausfinden."
       },
       {
         "id": 32,
         "start": 106.2,
         "end": 107.56,
         "duration": 1.36,
-        "text": "- Ich helfe Nico."
+        "text": "Ich helfe Nico."
       },
       {
         "id": 33,
         "start": 108.0,
         "end": 109.88,
         "duration": 1.88,
-        "text": "- Danke, Papa."
+        "text": "Danke, Papa."
       },
       {
         "id": 34,
         "start": 110.32,
         "end": 111.72,
         "duration": 1.4,
-        "text": "- Gerne."
+        "text": "Gerne."
       },
       {
         "id": 35,
@@ -3286,14 +3202,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 116.08,
         "end": 116.84,
         "duration": 0.76,
-        "text": "- Komm!"
+        "text": "Komm!"
       },
       {
         "id": 37,
         "start": 116.88,
         "end": 118.28,
         "duration": 1.4,
-        "text": "- Party?"
+        "text": "Party?"
       }
     ]
   },
@@ -3314,42 +3230,42 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.36,
         "end": 9.2,
         "duration": 1.84,
-        "text": "- Hi."
+        "text": "Hi."
       },
       {
         "id": 2,
         "start": 9.24,
         "end": 12.16,
         "duration": 2.92,
-        "text": "- Hi, Lisa! Wer ist denn das?"
+        "text": "Hi, Lisa! Wer ist denn das?"
       },
       {
         "id": 3,
         "start": 12.2,
         "end": 13.56,
         "duration": 1.36,
-        "text": "- Das ist Nico."
+        "text": "Das ist Nico."
       },
       {
         "id": 4,
         "start": 13.6,
         "end": 15.44,
         "duration": 1.84,
-        "text": "- Hallo, ich bin Nico."
+        "text": "Hallo, ich bin Nico."
       },
       {
         "id": 5,
         "start": 15.72,
         "end": 20.08,
         "duration": 4.36,
-        "text": "- Hallo, Nico. Ich bin Sebastian. Was machst du hier?"
+        "text": "Hallo, Nico. Ich bin Sebastian. Was machst du hier?"
       },
       {
         "id": 6,
         "start": 20.96,
         "end": 22.24,
         "duration": 1.28,
-        "text": "- Ich habe ein Problem:"
+        "text": "Ich habe ein Problem:"
       },
       {
         "id": 7,
@@ -3370,28 +3286,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 30.72,
         "end": 35.8,
         "duration": 5.08,
-        "text": "- Okay, das ist nicht so gut. Und woher kommst du?"
+        "text": "Okay, das ist nicht so gut. Und woher kommst du?"
       },
       {
         "id": 10,
         "start": 36.96,
         "end": 39.76,
         "duration": 2.8,
-        "text": "- Ich komme aus Spanien. Ich wohne in Sevilla."
+        "text": "Ich komme aus Spanien. Ich wohne in Sevilla."
       },
       {
         "id": 11,
         "start": 40.64,
         "end": 44.32,
         "duration": 3.68,
-        "text": "- Schön. Und wer ist Yara?"
+        "text": "Schön. Und wer ist Yara?"
       },
       {
         "id": 12,
         "start": 44.56,
         "end": 47.44,
         "duration": 2.88,
-        "text": "- Yara ist Nicos Tante. Er hat gesagt, sie hat hier"
+        "text": "Yara ist Nicos Tante. Er hat gesagt, sie hat hier"
       },
       {
         "id": 13,
@@ -3405,28 +3321,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 50.6,
         "end": 54.24,
         "duration": 3.64,
-        "text": "- Auch nicht so gut. Und wie alt bist du?"
+        "text": "Auch nicht so gut. Und wie alt bist du?"
       },
       {
         "id": 15,
         "start": 54.32,
         "end": 58.64,
         "duration": 4.32,
-        "text": "- Ich bin 22 Jahre alt. Und du? Kommst du aus Deutschland?"
+        "text": "Ich bin 22 Jahre alt. Und du? Kommst du aus Deutschland?"
       },
       {
         "id": 16,
         "start": 59.04,
         "end": 63.28,
         "duration": 4.24,
-        "text": "- Ich bin 25 Jahre. Und ja, ich komme aus Deutschland."
+        "text": "Ich bin 25 Jahre. Und ja, ich komme aus Deutschland."
       },
       {
         "id": 17,
         "start": 64.4,
         "end": 66.72,
         "duration": 2.32,
-        "text": "- Und ich heiße Nina. Ich komme auch aus Deutschland"
+        "text": "Und ich heiße Nina. Ich komme auch aus Deutschland"
       },
       {
         "id": 18,
@@ -3440,112 +3356,112 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 70.28,
         "end": 72.48,
         "duration": 2.2,
-        "text": "- Kann Nico zwei Tage hier wohnen?"
+        "text": "Kann Nico zwei Tage hier wohnen?"
       },
       {
         "id": 20,
         "start": 73.44,
         "end": 75.04,
         "duration": 1.6,
-        "text": "- Klar. - Kein Problem!"
+        "text": "Klar. Kein Problem!"
       },
       {
         "id": 21,
         "start": 75.08,
         "end": 76.44,
         "duration": 1.36,
-        "text": "- Willkommen in der Wagnergasse!"
+        "text": "Willkommen in der Wagnergasse!"
       },
       {
         "id": 22,
         "start": 76.48,
         "end": 78.44,
         "duration": 1.96,
-        "text": "- Danke schön! - Herzlich willkommen!"
+        "text": "Danke schön! Herzlich willkommen!"
       },
       {
         "id": 23,
         "start": 79.4,
         "end": 81.8,
         "duration": 2.4,
-        "text": "- Und es gibt eine Party?"
+        "text": "Und es gibt eine Party?"
       },
       {
         "id": 24,
         "start": 81.84,
         "end": 85.04,
         "duration": 3.2,
-        "text": "- Ja, aber wir haben ein kleines Problem."
+        "text": "Ja, aber wir haben ein kleines Problem."
       },
       {
         "id": 25,
         "start": 85.08,
         "end": 86.72,
         "duration": 1.64,
-        "text": "- Die Lampe ist kaputt."
+        "text": "Die Lampe ist kaputt."
       },
       {
         "id": 26,
         "start": 86.76,
         "end": 88.0,
         "duration": 1.24,
-        "text": "- Kann ich?"
+        "text": "Kann ich?"
       },
       {
         "id": 27,
         "start": 88.04,
         "end": 93.44,
         "duration": 5.4,
-        "text": "- Klar. Hat am Flughafen alles geklappt? Geht’s Emma gut?"
+        "text": "Klar. Hat am Flughafen alles geklappt? Geht’s Emma gut?"
       },
       {
         "id": 28,
         "start": 93.48,
         "end": 97.56,
         "duration": 4.08,
-        "text": "- Ja. Emmas Mutter sitzt im Flugzeug und Emma geht es gut, die ist bei Lotte."
+        "text": "Ja. Emmas Mutter sitzt im Flugzeug und Emma geht es gut, die ist bei Lotte."
       },
       {
         "id": 29,
         "start": 98.84,
         "end": 102.32,
         "duration": 3.48,
-        "text": "- Ey ... Wow, die Lampe funktioniert wieder."
+        "text": "Ey Wow, die Lampe funktioniert wieder."
       },
       {
         "id": 30,
         "start": 102.36,
         "end": 106.4,
         "duration": 4.04,
-        "text": "- Super, Nico! Danke! Möchtest du etwas trinken?"
+        "text": "Super, Nico! Danke! Möchtest du etwas trinken?"
       },
       {
         "id": 31,
         "start": 106.44,
         "end": 107.44,
         "duration": 1.0,
-        "text": "- Trinken?"
+        "text": "Trinken?"
       },
       {
         "id": 32,
         "start": 107.48,
         "end": 109.84,
         "duration": 2.36,
-        "text": "- Ja, trinken, ein Getränk!"
+        "text": "Ja, trinken, ein Getränk!"
       },
       {
         "id": 33,
         "start": 110.88,
         "end": 111.96,
         "duration": 1.08,
-        "text": "- Oder zwei."
+        "text": "Oder zwei."
       },
       {
         "id": 34,
         "start": 112.96,
         "end": 114.4,
         "duration": 1.44,
-        "text": "- Oder drei."
+        "text": "Oder drei."
       }
     ]
   },
@@ -3559,14 +3475,14 @@ export const NICOS_WEG_PLAYLIST = {
     "language": "de",
     "author": "DW Deutsch lernen",
     "thumbnail": "https://img.youtube.com/vi/J71RxF7qU2o/hqdefault.jpg",
-    "sentenceCount": 32,
+    "sentenceCount": 31,
     "sentences": [
       {
         "id": 1,
         "start": 8.04,
         "end": 10.2,
         "duration": 2.16,
-        "text": "- Das ist Yara."
+        "text": "Das ist Yara."
       },
       {
         "id": 2,
@@ -3580,210 +3496,203 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 14.44,
         "end": 16.4,
         "duration": 1.96,
-        "text": "- Sie lebt in Deutschland."
+        "text": "Sie lebt in Deutschland."
       },
       {
         "id": 4,
         "start": 17.0,
         "end": 19.6,
         "duration": 2.6,
-        "text": "- Wohnt sie hier in der Stadt?"
+        "text": "Wohnt sie hier in der Stadt?"
       },
       {
         "id": 5,
         "start": 21.72,
         "end": 24.24,
         "duration": 2.52,
-        "text": "- Aber wo ist das? Kennt ihr Yaras Fahrradladen?"
+        "text": "Aber wo ist das? Kennt ihr Yaras Fahrradladen?"
       },
       {
         "id": 6,
-        "start": 24.28,
-        "end": 25.52,
-        "duration": 1.24,
-        "text": "- [Nein.]"
-      },
-      {
-        "id": 7,
         "start": 25.96,
         "end": 28.0,
         "duration": 2.04,
-        "text": "- So. Was möchtet ihr trinken?"
+        "text": "So. Was möchtet ihr trinken?"
       },
       {
-        "id": 8,
+        "id": 7,
         "start": 28.28,
         "end": 29.84,
         "duration": 1.56,
-        "text": "- Was gibt es denn?"
+        "text": "Was gibt es denn?"
       },
       {
-        "id": 9,
+        "id": 8,
         "start": 30.96,
         "end": 37.12,
         "duration": 6.16,
-        "text": "- Wir haben … Apfelsaft, Wasser, Bier, Wein, Cola und Limonade."
+        "text": "Wir haben Apfelsaft, Wasser, Bier, Wein, Cola und Limonade."
       },
       {
-        "id": 10,
+        "id": 9,
         "start": 37.2,
         "end": 38.68,
         "duration": 1.48,
-        "text": "- Also, ich nehm ein Bier."
+        "text": "Also, ich nehm ein Bier."
       },
       {
-        "id": 11,
+        "id": 10,
         "start": 38.72,
         "end": 40.44,
         "duration": 1.72,
-        "text": "- Wir haben auch Kaffee und Tee im Angebot …"
+        "text": "Wir haben auch Kaffee und Tee im Angebot"
       },
       {
-        "id": 12,
+        "id": 11,
         "start": 40.68,
         "end": 41.68,
         "duration": 1.0,
-        "text": "- Bier, danke."
+        "text": "Bier, danke."
       },
       {
-        "id": 13,
+        "id": 12,
         "start": 42.56,
         "end": 43.36,
         "duration": 0.8,
-        "text": "- Alles klar."
+        "text": "Alles klar."
       },
       {
-        "id": 14,
+        "id": 13,
         "start": 43.4,
         "end": 44.92,
         "duration": 1.52,
-        "text": "- Für mich bitte einen Kaffee."
+        "text": "Für mich bitte einen Kaffee."
       },
       {
-        "id": 15,
+        "id": 14,
         "start": 45.16,
         "end": 46.76,
         "duration": 1.6,
-        "text": "- Mit Milch und Zucker?"
+        "text": "Mit Milch und Zucker?"
       },
       {
-        "id": 16,
+        "id": 15,
         "start": 46.8,
         "end": 52.44,
         "duration": 5.64,
-        "text": "- Ja, mit viel Milch, aber wenig Zucker. Ah warte, ich mach das."
+        "text": "Ja, mit viel Milch, aber wenig Zucker. Ah warte, ich mach das."
       },
       {
-        "id": 17,
+        "id": 16,
         "start": 52.64,
         "end": 58.24,
         "duration": 5.6,
-        "text": "- Was ist mit dir, Nico? Hast du auch Durst? Was möchtest du trinken?"
+        "text": "Was ist mit dir, Nico? Hast du auch Durst? Was möchtest du trinken?"
       },
       {
-        "id": 18,
+        "id": 17,
         "start": 58.28,
         "end": 59.52,
         "duration": 1.24,
-        "text": "- Cola bitte."
+        "text": "Cola bitte."
       },
       {
-        "id": 19,
+        "id": 18,
         "start": 60.12,
         "end": 62.36,
         "duration": 2.24,
-        "text": "- Alles klar. Dann nehme ich Limonade."
+        "text": "Alles klar. Dann nehme ich Limonade."
       },
       {
-        "id": 20,
+        "id": 19,
         "start": 62.4,
         "end": 64.68,
         "duration": 2.28,
-        "text": "- Also, Freunde, ich hab ’ne Idee! Wir …"
+        "text": "Also, Freunde, ich hab ’ne Idee! Wir"
       },
       {
-        "id": 21,
+        "id": 20,
         "start": 65.52,
         "end": 67.96,
         "duration": 2.44,
         "text": "wir posten das Foto von Yara bei Book"
       },
       {
-        "id": 22,
+        "id": 21,
         "start": 68.04,
         "end": 71.64,
         "duration": 3.6,
         "text": "und fragen: Wer kennt diesen Fahrradladen?"
       },
       {
-        "id": 23,
+        "id": 22,
         "start": 71.68,
         "end": 73.36,
         "duration": 1.68,
         "text": "Und so finden wir die Adresse raus."
       },
       {
-        "id": 24,
+        "id": 23,
         "start": 73.4,
         "end": 74.8,
         "duration": 1.4,
-        "text": "- Ja, vielleicht."
+        "text": "Ja, vielleicht."
       },
       {
-        "id": 25,
+        "id": 24,
         "start": 77.84,
         "end": 79.72,
         "duration": 1.88,
-        "text": "- Habt ihr Hunger?"
+        "text": "Habt ihr Hunger?"
       },
       {
-        "id": 26,
+        "id": 25,
         "start": 80.56,
         "end": 82.12,
         "duration": 1.56,
-        "text": "- Hunger? Hungry?"
+        "text": "Hunger? Hungry?"
       },
       {
-        "id": 27,
+        "id": 26,
         "start": 83.28,
         "end": 84.48,
         "duration": 1.2,
-        "text": "- Ja!"
+        "text": "Ja!"
       },
       {
-        "id": 28,
+        "id": 27,
         "start": 86.8,
         "end": 87.8,
         "duration": 1.0,
-        "text": "- Hier."
+        "text": "Hier."
       },
       {
-        "id": 29,
+        "id": 28,
         "start": 89.08,
         "end": 91.56,
         "duration": 2.48,
         "text": "Hier sind die Speisekarten!"
       },
       {
-        "id": 30,
+        "id": 29,
         "start": 94.48,
         "end": 98.12,
         "duration": 3.64,
-        "text": "- So, also dann prost!"
+        "text": "So, also dann prost!"
       },
       {
-        "id": 31,
+        "id": 30,
         "start": 98.24,
         "end": 101.8,
         "duration": 3.56,
-        "text": "- Prost!"
+        "text": "Prost!"
       },
       {
-        "id": 32,
+        "id": 31,
         "start": 104.72,
         "end": 107.12,
         "duration": 2.4,
-        "text": "- Wo ist denn Nawin? Ist er nicht hier?"
+        "text": "Wo ist denn Nawin? Ist er nicht hier?"
       }
     ]
   },
@@ -3804,63 +3713,63 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 25.04,
         "end": 28.32,
         "duration": 3.28,
-        "text": "- Hey, Nawin. Möchtest du etwas essen?"
+        "text": "Hey, Nawin. Möchtest du etwas essen?"
       },
       {
         "id": 2,
         "start": 28.6,
         "end": 29.76,
         "duration": 1.16,
-        "text": "- Was gibt es denn?"
+        "text": "Was gibt es denn?"
       },
       {
         "id": 3,
         "start": 29.8,
         "end": 32.4,
         "duration": 2.6,
-        "text": "- Sushi, Pizza, Salat."
+        "text": "Sushi, Pizza, Salat."
       },
       {
         "id": 4,
         "start": 32.8,
         "end": 34.0,
         "duration": 1.2,
-        "text": "- Okay."
+        "text": "Okay."
       },
       {
         "id": 5,
         "start": 35.2,
         "end": 37.12,
         "duration": 1.92,
-        "text": "- Nico, was möchtest du essen?"
+        "text": "Nico, was möchtest du essen?"
       },
       {
         "id": 6,
         "start": 37.16,
         "end": 39.68,
         "duration": 2.52,
-        "text": "- Ich möchte eine Pizza bitte."
+        "text": "Ich möchte eine Pizza bitte."
       },
       {
         "id": 7,
         "start": 39.88,
         "end": 42.92,
         "duration": 3.04,
-        "text": "- Hier, das ist die Speisekarte von unserem Lieblingsitaliener."
+        "text": "Hier, das ist die Speisekarte von unserem Lieblingsitaliener."
       },
       {
         "id": 8,
         "start": 42.96,
         "end": 44.12,
         "duration": 1.16,
-        "text": "- Danke."
+        "text": "Danke."
       },
       {
         "id": 9,
         "start": 46.0,
         "end": 47.84,
         "duration": 1.84,
-        "text": "- So ... Nico,"
+        "text": "So Nico,"
       },
       {
         "id": 10,
@@ -3874,56 +3783,56 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 50.96,
         "end": 52.4,
         "duration": 1.44,
-        "text": "- Hallo! Ich bin Nico."
+        "text": "Hallo! Ich bin Nico."
       },
       {
         "id": 12,
         "start": 52.68,
         "end": 55.44,
         "duration": 2.76,
-        "text": "- Nico? Bist du der Nico aus dem Radio?"
+        "text": "Nico? Bist du der Nico aus dem Radio?"
       },
       {
         "id": 13,
         "start": 55.48,
         "end": 57.8,
         "duration": 2.32,
-        "text": "- Ja, Nico war im Radio."
+        "text": "Ja, Nico war im Radio."
       },
       {
         "id": 14,
         "start": 58.04,
         "end": 59.08,
         "duration": 1.04,
-        "text": "- Du suchst deine Tasche!"
+        "text": "Du suchst deine Tasche!"
       },
       {
         "id": 15,
         "start": 59.12,
         "end": 60.04,
         "duration": 0.92,
-        "text": "- Ja."
+        "text": "Ja."
       },
       {
         "id": 16,
         "start": 60.72,
         "end": 63.32,
         "duration": 2.6,
-        "text": "- Leute, die Speisekarte. Was nehmt ihr?"
+        "text": "Leute, die Speisekarte. Was nehmt ihr?"
       },
       {
         "id": 17,
         "start": 63.36,
         "end": 65.88,
         "duration": 2.52,
-        "text": "- Ich möchte eine Pizza mit Thunfisch."
+        "text": "Ich möchte eine Pizza mit Thunfisch."
       },
       {
         "id": 18,
         "start": 66.04,
         "end": 69.2,
         "duration": 3.16,
-        "text": "- Sehr gut. Ich nehme auch eine Pizza mit Salami."
+        "text": "Sehr gut. Ich nehme auch eine Pizza mit Salami."
       },
       {
         "id": 19,
@@ -3944,35 +3853,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 76.88,
         "end": 79.6,
         "duration": 2.72,
-        "text": "- Ich nehme eine Pizza mit Salami bitte."
+        "text": "Ich nehme eine Pizza mit Salami bitte."
       },
       {
         "id": 22,
         "start": 79.64,
         "end": 83.36,
         "duration": 3.72,
-        "text": "- Gut. Und ich nehm wie immer meine Pizza Hawaii ohne Schinken."
+        "text": "Gut. Und ich nehm wie immer meine Pizza Hawaii ohne Schinken."
       },
       {
         "id": 23,
         "start": 83.68,
         "end": 84.72,
         "duration": 1.04,
-        "text": "- Pizza Hawaii?"
+        "text": "Pizza Hawaii?"
       },
       {
         "id": 24,
         "start": 84.76,
         "end": 85.76,
         "duration": 1.0,
-        "text": "- Mhm."
+        "text": "Mhm."
       },
       {
         "id": 25,
         "start": 85.84,
         "end": 89.0,
         "duration": 3.16,
-        "text": "- Das ist eine Pizza mit Ananas und Schinken."
+        "text": "Das ist eine Pizza mit Ananas und Schinken."
       },
       {
         "id": 26,
@@ -3993,7 +3902,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 95.36,
         "end": 97.6,
         "duration": 2.24,
-        "text": "- So ... und ich bestelle."
+        "text": "So und ich bestelle."
       },
       {
         "id": 29,
@@ -4021,14 +3930,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 109.84,
         "end": 110.8,
         "duration": 0.96,
-        "text": "- Das Foto?"
+        "text": "Das Foto?"
       },
       {
         "id": 33,
         "start": 111.68,
         "end": 113.04,
         "duration": 1.36,
-        "text": "- Mhm."
+        "text": "Mhm."
       }
     ]
   },
@@ -4049,28 +3958,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 9.52,
         "end": 10.68,
         "duration": 1.16,
-        "text": "- Hallo."
+        "text": "Hallo."
       },
       {
         "id": 2,
         "start": 11.12,
         "end": 14.96,
         "duration": 3.84,
-        "text": "- Guten Tag, Ihre Bestellung. Zahlen Sie zusammen oder getrennt?"
+        "text": "Guten Tag, Ihre Bestellung. Zahlen Sie zusammen oder getrennt?"
       },
       {
         "id": 3,
         "start": 15.0,
         "end": 17.0,
         "duration": 2.0,
-        "text": "- Zusammen. Was kostet das?"
+        "text": "Zusammen. Was kostet das?"
       },
       {
         "id": 4,
         "start": 17.12,
         "end": 23.6,
         "duration": 6.48,
-        "text": "- Gut, Moment. Die drei Pizzen mit Salami sind 22,50."
+        "text": "Gut, Moment. Die drei Pizzen mit Salami sind 22,50."
       },
       {
         "id": 5,
@@ -4091,140 +4000,140 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 32.36,
         "end": 35.8,
         "duration": 3.44,
-        "text": "- Ich zahle bar. Hier sind 45 Euro. Das stimmt so."
+        "text": "Ich zahle bar. Hier sind 45 Euro. Das stimmt so."
       },
       {
         "id": 8,
         "start": 35.84,
         "end": 39.2,
         "duration": 3.36,
-        "text": "- Danke! Hier ist die Rechnung. Tschüss."
+        "text": "Danke! Hier ist die Rechnung. Tschüss."
       },
       {
         "id": 9,
         "start": 39.24,
         "end": 40.04,
         "duration": 0.8,
-        "text": "- Danke."
+        "text": "Danke."
       },
       {
         "id": 10,
         "start": 40.08,
         "end": 43.64,
         "duration": 3.56,
-        "text": "- So … Wer bekommt die Hawaii ohne Schinken?"
+        "text": "So Wer bekommt die Hawaii ohne Schinken?"
       },
       {
         "id": 11,
         "start": 43.68,
         "end": 44.8,
         "duration": 1.12,
-        "text": "- Ich!"
+        "text": "Ich!"
       },
       {
         "id": 12,
         "start": 46.24,
         "end": 47.04,
         "duration": 0.8,
-        "text": "- Tonno?"
+        "text": "Tonno?"
       },
       {
         "id": 13,
         "start": 47.08,
         "end": 48.04,
         "duration": 0.96,
-        "text": "- Ja!"
+        "text": "Ja!"
       },
       {
         "id": 14,
         "start": 48.6,
         "end": 49.52,
         "duration": 0.92,
-        "text": "- Salami?"
+        "text": "Salami?"
       },
       {
         "id": 15,
         "start": 49.56,
         "end": 50.72,
         "duration": 1.16,
-        "text": "- Salami, ich!"
+        "text": "Salami, ich!"
       },
       {
         "id": 16,
         "start": 50.76,
         "end": 55.24,
         "duration": 4.48,
-        "text": "- Salami! Und noch eine Salami."
+        "text": "Salami! Und noch eine Salami."
       },
       {
         "id": 17,
         "start": 55.28,
         "end": 56.76,
         "duration": 1.48,
-        "text": "- Wie viel kostet die Pizza?"
+        "text": "Wie viel kostet die Pizza?"
       },
       {
         "id": 18,
         "start": 56.8,
         "end": 61.2,
         "duration": 4.4,
-        "text": "- Zehn Euro plus Trinkgeld. Und du bist eingeladen!"
+        "text": "Zehn Euro plus Trinkgeld. Und du bist eingeladen!"
       },
       {
         "id": 19,
         "start": 61.44,
         "end": 63.08,
         "duration": 1.64,
-        "text": "- Danke schön!"
+        "text": "Danke schön!"
       },
       {
         "id": 20,
         "start": 65.92,
         "end": 68.32,
         "duration": 2.4,
-        "text": "- Das ist vielleicht die letzte Pizza, die ich hier essen werde."
+        "text": "Das ist vielleicht die letzte Pizza, die ich hier essen werde."
       },
       {
         "id": 21,
         "start": 68.36,
         "end": 69.76,
         "duration": 1.4,
-        "text": "- Stimmt."
+        "text": "Stimmt."
       },
       {
         "id": 22,
         "start": 69.88,
         "end": 72.0,
         "duration": 2.12,
-        "text": "- Nawin geht weg."
+        "text": "Nawin geht weg."
       },
       {
         "id": 23,
         "start": 74.32,
         "end": 77.12,
         "duration": 2.8,
-        "text": "- Das ist eine Bye-bye-Party?"
+        "text": "Das ist eine Bye-bye-Party?"
       },
       {
         "id": 24,
         "start": 77.16,
         "end": 79.68,
         "duration": 2.52,
-        "text": "- Eine Abschiedsparty."
+        "text": "Eine Abschiedsparty."
       },
       {
         "id": 25,
         "start": 79.76,
         "end": 81.96,
         "duration": 2.2,
-        "text": "- Abschiedsparty."
+        "text": "Abschiedsparty."
       },
       {
         "id": 26,
         "start": 82.6,
         "end": 84.12,
         "duration": 1.52,
-        "text": "- Guten Appetit jetzt!"
+        "text": "Guten Appetit jetzt!"
       }
     ]
   },
@@ -4245,42 +4154,42 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.2,
         "end": 8.96,
         "duration": 1.76,
-        "text": "- Hey! Schön, dass ihr da seid!"
+        "text": "Hey! Schön, dass ihr da seid!"
       },
       {
         "id": 2,
         "start": 9.0,
         "end": 12.8,
         "duration": 3.8,
-        "text": "- Hallo, Nawin, schön, dich zu sehen! Vielen Dank für die Einladung!"
+        "text": "Hallo, Nawin, schön, dich zu sehen! Vielen Dank für die Einladung!"
       },
       {
         "id": 3,
         "start": 13.12,
         "end": 14.96,
         "duration": 1.84,
-        "text": "- Cool, danke schön!"
+        "text": "Cool, danke schön!"
       },
       {
         "id": 4,
         "start": 17.56,
         "end": 19.4,
         "duration": 1.84,
-        "text": "- Prost!"
+        "text": "Prost!"
       },
       {
         "id": 5,
         "start": 26.12,
         "end": 27.16,
         "duration": 1.04,
-        "text": "- Was ist das?"
+        "text": "Was ist das?"
       },
       {
         "id": 6,
         "start": 27.64,
         "end": 32.48,
         "duration": 4.84,
-        "text": "- Das? Das ist eine Sehenswürdigkeit in Köln: der Kölner Dom."
+        "text": "Das? Das ist eine Sehenswürdigkeit in Köln: der Kölner Dom."
       },
       {
         "id": 7,
@@ -4294,35 +4203,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 36.72,
         "end": 38.04,
         "duration": 1.32,
-        "text": "- Nein."
+        "text": "Nein."
       },
       {
         "id": 9,
         "start": 38.52,
         "end": 45.6,
         "duration": 7.08,
-        "text": "- Warst du noch nie in Deutschland? Oder in Österreich oder in der Schweiz?"
+        "text": "Warst du noch nie in Deutschland? Oder in Österreich oder in der Schweiz?"
       },
       {
         "id": 10,
         "start": 47.6,
         "end": 53.0,
         "duration": 5.4,
-        "text": "- Jetzt habe ich Geschenke aus Köln, Hamburg, Düsseldorf, Heidelberg und Berlin."
+        "text": "Jetzt habe ich Geschenke aus Köln, Hamburg, Düsseldorf, Heidelberg und Berlin."
       },
       {
         "id": 11,
         "start": 53.04,
         "end": 55.0,
         "duration": 1.96,
-        "text": "- Und welche Städte kennst du schon?"
+        "text": "Und welche Städte kennst du schon?"
       },
       {
         "id": 12,
         "start": 55.16,
         "end": 60.24,
         "duration": 5.08,
-        "text": "- Ich war schon mal in Hamburg und in Köln. In Heidelberg war ich noch nie."
+        "text": "Ich war schon mal in Hamburg und in Köln. In Heidelberg war ich noch nie."
       },
       {
         "id": 13,
@@ -4336,28 +4245,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 67.04,
         "end": 68.48,
         "duration": 1.44,
-        "text": "- Was ist das?"
+        "text": "Was ist das?"
       },
       {
         "id": 15,
         "start": 68.76,
         "end": 72.96,
         "duration": 4.2,
-        "text": "- Das ist das Brandenburger Tor. Eine Sehenswürdigkeit in Berlin."
+        "text": "Das ist das Brandenburger Tor. Eine Sehenswürdigkeit in Berlin."
       },
       {
         "id": 16,
         "start": 74.32,
         "end": 75.76,
         "duration": 1.44,
-        "text": "- Kennst du Berlin?"
+        "text": "Kennst du Berlin?"
       },
       {
         "id": 17,
         "start": 75.84,
         "end": 79.72,
         "duration": 3.88,
-        "text": "- Nein. Aber Nina war schon mal in Berlin. Und Sebastian."
+        "text": "Nein. Aber Nina war schon mal in Berlin. Und Sebastian."
       },
       {
         "id": 18,
@@ -4378,21 +4287,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 96.48,
         "end": 97.32,
         "duration": 0.84,
-        "text": "- Nico?"
+        "text": "Nico?"
       },
       {
         "id": 21,
         "start": 97.36,
         "end": 98.52,
         "duration": 1.16,
-        "text": "- Hm …"
+        "text": "Hm"
       },
       {
         "id": 22,
         "start": 100.2,
         "end": 102.16,
         "duration": 1.96,
-        "text": "- Alles gut?"
+        "text": "Alles gut?"
       },
       {
         "id": 23,
@@ -4427,14 +4336,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.32,
         "end": 10.56,
         "duration": 3.24,
-        "text": "- Nico! Komm und spiel mit!"
+        "text": "Nico! Komm und spiel mit!"
       },
       {
         "id": 2,
         "start": 12.04,
         "end": 13.56,
         "duration": 1.52,
-        "text": "- So."
+        "text": "So."
       },
       {
         "id": 3,
@@ -4455,42 +4364,42 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 21.56,
         "end": 23.2,
         "duration": 1.64,
-        "text": "- Team Süden!"
+        "text": "Team Süden!"
       },
       {
         "id": 6,
         "start": 24.56,
         "end": 25.44,
         "duration": 0.88,
-        "text": "- Süden?"
+        "text": "Süden?"
       },
       {
         "id": 7,
         "start": 25.48,
         "end": 30.92,
         "duration": 5.44,
-        "text": "- Hier! Das ist Süden, das ist Norden, das ist Osten und das ist Westen."
+        "text": "Hier! Das ist Süden, das ist Norden, das ist Osten und das ist Westen."
       },
       {
         "id": 8,
         "start": 37.96,
         "end": 39.92,
         "duration": 1.96,
-        "text": "- Hi, ich bin Nico."
+        "text": "Hi, ich bin Nico."
       },
       {
         "id": 9,
         "start": 40.0,
         "end": 42.04,
         "duration": 2.04,
-        "text": "Ich komme aus Spanien … aus Sevilla."
+        "text": "Ich komme aus Spanien aus Sevilla."
       },
       {
         "id": 10,
         "start": 42.24,
         "end": 44.4,
         "duration": 2.16,
-        "text": "- Spanien - das ist im Süden, oder?"
+        "text": "Spanien das ist im Süden, oder?"
       },
       {
         "id": 11,
@@ -4504,7 +4413,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 45.8,
         "end": 49.28,
         "duration": 3.48,
-        "text": "- Ja. Und Sevilla ist im Süden von Spanien."
+        "text": "Ja. Und Sevilla ist im Süden von Spanien."
       },
       {
         "id": 13,
@@ -4518,21 +4427,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 50.28,
         "end": 53.44,
         "duration": 3.16,
-        "text": "- Ich bin Selma. Ich komme aus Syrien … aus Damaskus."
+        "text": "Ich bin Selma. Ich komme aus Syrien aus Damaskus."
       },
       {
         "id": 15,
         "start": 53.56,
         "end": 55.08,
         "duration": 1.52,
-        "text": "- Damaskus, das ist …"
+        "text": "Damaskus, das ist"
       },
       {
         "id": 16,
         "start": 55.12,
         "end": 58.2,
         "duration": 3.08,
-        "text": "- Damaskus ist auch im Süden. Im Süden von Syrien."
+        "text": "Damaskus ist auch im Süden. Im Süden von Syrien."
       },
       {
         "id": 17,
@@ -4546,28 +4455,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 61.2,
         "end": 62.32,
         "duration": 1.12,
-        "text": "- Gewinnen?"
+        "text": "Gewinnen?"
       },
       {
         "id": 19,
         "start": 62.36,
         "end": 64.36,
         "duration": 2.0,
-        "text": "- Nico spricht noch nicht so gut Deutsch."
+        "text": "Nico spricht noch nicht so gut Deutsch."
       },
       {
         "id": 20,
         "start": 64.4,
         "end": 66.64,
         "duration": 2.24,
-        "text": "- Wir gewinnen!"
+        "text": "Wir gewinnen!"
       },
       {
         "id": 21,
         "start": 67.08,
         "end": 67.72,
         "duration": 0.64,
-        "text": "- Gewinnen."
+        "text": "Gewinnen."
       },
       {
         "id": 22,
@@ -4581,28 +4490,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 71.2,
         "end": 73.68,
         "duration": 2.48,
-        "text": "- Ja gut, dann fangt ihr an."
+        "text": "Ja gut, dann fangt ihr an."
       },
       {
         "id": 24,
         "start": 93.68,
         "end": 94.68,
         "duration": 1.0,
-        "text": "- Wir waren gut!"
+        "text": "Wir waren gut!"
       },
       {
         "id": 25,
         "start": 94.8,
         "end": 96.84,
         "duration": 2.04,
-        "text": "- Kommt, gehen wir tanzen!"
+        "text": "Kommt, gehen wir tanzen!"
       },
       {
         "id": 26,
         "start": 104.2,
         "end": 105.68,
         "duration": 1.48,
-        "text": "- Mama?"
+        "text": "Mama?"
       },
       {
         "id": 27,
@@ -4637,21 +4546,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.08,
         "end": 8.72,
         "duration": 1.64,
-        "text": "- Tada!"
+        "text": "Tada!"
       },
       {
         "id": 2,
         "start": 9.76,
         "end": 10.88,
         "duration": 1.12,
-        "text": "- Wow, was ist das denn?"
+        "text": "Wow, was ist das denn?"
       },
       {
         "id": 3,
         "start": 10.92,
         "end": 12.72,
         "duration": 1.8,
-        "text": "- Spezialitäten aus verschiedenen Ländern."
+        "text": "Spezialitäten aus verschiedenen Ländern."
       },
       {
         "id": 4,
@@ -4665,63 +4574,63 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 14.44,
         "end": 15.92,
         "duration": 1.48,
-        "text": "- Das ist ja einfach!"
+        "text": "Das ist ja einfach!"
       },
       {
         "id": 6,
         "start": 16.0,
         "end": 20.32,
         "duration": 4.32,
-        "text": "Also, Köttbullar … isst man in Schweden! So."
+        "text": "Also, Köttbullar isst man in Schweden! So."
       },
       {
         "id": 7,
         "start": 20.96,
         "end": 22.2,
         "duration": 1.24,
-        "text": "- Warst du schon mal in Schweden?"
+        "text": "Warst du schon mal in Schweden?"
       },
       {
         "id": 8,
         "start": 22.24,
         "end": 24.2,
         "duration": 1.96,
-        "text": "- Nee, aber ich fahr nächstes Jahr nach Norwegen!"
+        "text": "Nee, aber ich fahr nächstes Jahr nach Norwegen!"
       },
       {
         "id": 9,
         "start": 24.24,
         "end": 25.56,
         "duration": 1.32,
-        "text": "- Nimmst du mich mit?"
+        "text": "Nimmst du mich mit?"
       },
       {
         "id": 10,
         "start": 25.6,
         "end": 26.28,
         "duration": 0.68,
-        "text": "- Klar!"
+        "text": "Klar!"
       },
       {
         "id": 11,
         "start": 26.32,
         "end": 29.08,
         "duration": 2.76,
-        "text": "- Nawin? Du gehst nach Frankreich."
+        "text": "Nawin? Du gehst nach Frankreich."
       },
       {
         "id": 12,
         "start": 30.0,
         "end": 34.04,
         "duration": 4.04,
-        "text": "- In Frankreich isst man gern Käse."
+        "text": "In Frankreich isst man gern Käse."
       },
       {
         "id": 13,
         "start": 34.16,
         "end": 36.2,
         "duration": 2.04,
-        "text": "- Ja, gar nicht so schlecht!"
+        "text": "Ja, gar nicht so schlecht!"
       },
       {
         "id": 14,
@@ -4735,7 +4644,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 37.48,
         "end": 39.0,
         "duration": 1.52,
-        "text": "- Hier, gib her."
+        "text": "Hier, gib her."
       },
       {
         "id": 16,
@@ -4763,7 +4672,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 55.92,
         "end": 57.4,
         "duration": 1.48,
-        "text": "- Super!"
+        "text": "Super!"
       },
       {
         "id": 20,
@@ -4777,42 +4686,42 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 62.84,
         "end": 68.12,
         "duration": 5.28,
-        "text": "- In Spanien isst man Gazpacho!"
+        "text": "In Spanien isst man Gazpacho!"
       },
       {
         "id": 22,
         "start": 69.2,
         "end": 70.2,
         "duration": 1.0,
-        "text": "- Perfekt."
+        "text": "Perfekt."
       },
       {
         "id": 23,
         "start": 75.32,
         "end": 76.92,
         "duration": 1.6,
-        "text": "- Und du wohnst in Frankreich?"
+        "text": "Und du wohnst in Frankreich?"
       },
       {
         "id": 24,
         "start": 76.96,
         "end": 79.72,
         "duration": 2.76,
-        "text": "- Bald, ja. Ich habe da einen Job."
+        "text": "Bald, ja. Ich habe da einen Job."
       },
       {
         "id": 25,
         "start": 79.8,
         "end": 81.12,
         "duration": 1.32,
-        "text": "- Cool …"
+        "text": "Cool"
       },
       {
         "id": 26,
         "start": 81.96,
         "end": 83.52,
         "duration": 1.56,
-        "text": "- Na ja."
+        "text": "Na ja."
       },
       {
         "id": 27,
@@ -4826,7 +4735,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 90.0,
         "end": 91.56,
         "duration": 1.56,
-        "text": "- Ich auch."
+        "text": "Ich auch."
       }
     ]
   },
@@ -4847,21 +4756,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 12.4,
         "end": 13.72,
         "duration": 1.32,
-        "text": "- War die Party gut?"
+        "text": "War die Party gut?"
       },
       {
         "id": 2,
         "start": 13.76,
         "end": 16.44,
         "duration": 2.68,
-        "text": "- Sehr gut! Die Party war super!"
+        "text": "Sehr gut! Die Party war super!"
       },
       {
         "id": 3,
         "start": 16.6,
         "end": 18.44,
         "duration": 1.84,
-        "text": "- International, oder?"
+        "text": "International, oder?"
       },
       {
         "id": 4,
@@ -4875,49 +4784,49 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 24.24,
         "end": 28.76,
         "duration": 4.52,
-        "text": "- Selma - ist sie … refugee?"
+        "text": "Selma ist sie refugee?"
       },
       {
         "id": 6,
         "start": 29.0,
         "end": 30.56,
         "duration": 1.56,
-        "text": "- Ja, sie ist ein Flüchtling."
+        "text": "Ja, sie ist ein Flüchtling."
       },
       {
         "id": 7,
         "start": 30.6,
         "end": 32.08,
         "duration": 1.48,
-        "text": "- Flüchtling."
+        "text": "Flüchtling."
       },
       {
         "id": 8,
         "start": 32.36,
         "end": 34.4,
         "duration": 2.04,
-        "text": "- Darf Selma in Deutschland bleiben?"
+        "text": "Darf Selma in Deutschland bleiben?"
       },
       {
         "id": 9,
         "start": 34.44,
         "end": 37.44,
         "duration": 3.0,
-        "text": "- Keine Ahnung. Sie hat noch keine Aufenthaltserlaubnis."
+        "text": "Keine Ahnung. Sie hat noch keine Aufenthaltserlaubnis."
       },
       {
         "id": 10,
         "start": 37.48,
         "end": 39.36,
         "duration": 1.88,
-        "text": "- Sie spricht sehr gut Deutsch!"
+        "text": "Sie spricht sehr gut Deutsch!"
       },
       {
         "id": 11,
         "start": 39.4,
         "end": 43.88,
         "duration": 4.48,
-        "text": "- Stimmt. Sie macht einen Deutschkurs und lernt sehr schnell."
+        "text": "Stimmt. Sie macht einen Deutschkurs und lernt sehr schnell."
       },
       {
         "id": 12,
@@ -4931,21 +4840,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 48.84,
         "end": 51.96,
         "duration": 3.12,
-        "text": "- Englisch. Na ja ... ein bisschen."
+        "text": "Englisch. Na ja ein bisschen."
       },
       {
         "id": 14,
         "start": 52.0,
         "end": 55.48,
         "duration": 3.48,
-        "text": "- Und Spanisch und ein bisschen Deutsch."
+        "text": "Und Spanisch und ein bisschen Deutsch."
       },
       {
         "id": 15,
         "start": 55.6,
         "end": 62.12,
         "duration": 6.52,
-        "text": "- Ja, ich spreche Spanisch, ein bisschen Englisch und ein bisschen Deutsch."
+        "text": "Ja, ich spreche Spanisch, ein bisschen Englisch und ein bisschen Deutsch."
       },
       {
         "id": 16,
@@ -4959,21 +4868,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 65.12,
         "end": 70.2,
         "duration": 5.08,
-        "text": "- Ich spreche Deutsch, Englisch und Italienisch, aber sehr schlecht."
+        "text": "Ich spreche Deutsch, Englisch und Italienisch, aber sehr schlecht."
       },
       {
         "id": 18,
         "start": 71.8,
         "end": 74.28,
         "duration": 2.48,
-        "text": "- Woher kommst du? Welche Sprachen sprichst du?"
+        "text": "Woher kommst du? Welche Sprachen sprichst du?"
       },
       {
         "id": 19,
         "start": 74.32,
         "end": 75.56,
         "duration": 1.24,
-        "text": "- Ich komme aus Thailand."
+        "text": "Ich komme aus Thailand."
       },
       {
         "id": 20,
@@ -4987,14 +4896,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 81.04,
         "end": 82.24,
         "duration": 1.2,
-        "text": "- Wow."
+        "text": "Wow."
       },
       {
         "id": 22,
         "start": 83.24,
         "end": 84.72,
         "duration": 1.48,
-        "text": "- Freunde!"
+        "text": "Freunde!"
       },
       {
         "id": 23,
@@ -5022,28 +4931,28 @@ export const NICOS_WEG_PLAYLIST = {
     "language": "de",
     "author": "DW Deutsch lernen",
     "thumbnail": "https://img.youtube.com/vi/9obS6QT10To/hqdefault.jpg",
-    "sentenceCount": 24,
+    "sentenceCount": 23,
     "sentences": [
       {
         "id": 1,
         "start": 15.8,
         "end": 17.32,
         "duration": 1.52,
-        "text": "- Wo ist meine Brille?"
+        "text": "Wo ist meine Brille?"
       },
       {
         "id": 2,
         "start": 17.36,
         "end": 19.12,
         "duration": 1.76,
-        "text": "- Was suchst du?"
+        "text": "Was suchst du?"
       },
       {
         "id": 3,
         "start": 19.16,
         "end": 20.4,
         "duration": 1.24,
-        "text": "- Meine Brille."
+        "text": "Meine Brille."
       },
       {
         "id": 4,
@@ -5057,21 +4966,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 22.96,
         "end": 27.64,
         "duration": 4.68,
-        "text": "- Sie sucht die Brille, die Stifte und das Buch."
+        "text": "Sie sucht die Brille, die Stifte und das Buch."
       },
       {
         "id": 6,
         "start": 28.24,
         "end": 29.72,
         "duration": 1.48,
-        "text": "- Ich muss zum Unterricht!"
+        "text": "Ich muss zum Unterricht!"
       },
       {
         "id": 7,
         "start": 29.76,
         "end": 32.4,
         "duration": 2.64,
-        "text": "- Lisa gibt Deutschkurse in einer Sprachschule."
+        "text": "Lisa gibt Deutschkurse in einer Sprachschule."
       },
       {
         "id": 8,
@@ -5085,112 +4994,105 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 35.28,
         "end": 36.6,
         "duration": 1.32,
-        "text": "- Du bist eine Lehrerin?"
+        "text": "Du bist eine Lehrerin?"
       },
       {
         "id": 10,
-        "start": 36.64,
-        "end": 38.12,
-        "duration": 1.48,
-        "text": "- [Ja.]"
-      },
-      {
-        "id": 11,
         "start": 40.72,
         "end": 42.36,
         "duration": 1.64,
-        "text": "- Die Stifte …"
+        "text": "Die Stifte"
       },
       {
-        "id": 12,
+        "id": 11,
         "start": 44.92,
         "end": 46.76,
         "duration": 1.84,
-        "text": "die Brille und …"
+        "text": "die Brille und"
       },
       {
-        "id": 13,
+        "id": 12,
         "start": 49.04,
         "end": 50.6,
         "duration": 1.56,
         "text": "Und wie heißt das hier auf Deutsch?"
       },
       {
-        "id": 14,
+        "id": 13,
         "start": 50.68,
         "end": 52.72,
         "duration": 2.04,
-        "text": "- Das Buch! Danke, Nico!"
+        "text": "Das Buch! Danke, Nico!"
       },
       {
-        "id": 15,
+        "id": 14,
         "start": 55.8,
         "end": 58.08,
         "duration": 2.28,
         "text": "Emma wartet auch schon!"
       },
       {
-        "id": 16,
+        "id": 15,
         "start": 58.12,
         "end": 59.8,
         "duration": 1.68,
-        "text": "- Kein Problem, Lisa. Ich hol Emma."
+        "text": "Kein Problem, Lisa. Ich hol Emma."
       },
       {
-        "id": 17,
+        "id": 16,
         "start": 59.84,
         "end": 63.28,
         "duration": 3.44,
-        "text": "- Echt? Danke, du bist echt die Beste!"
+        "text": "Echt? Danke, du bist echt die Beste!"
       },
       {
-        "id": 18,
+        "id": 17,
         "start": 64.44,
         "end": 67.16,
         "duration": 2.72,
         "text": "Und nach dem Unterricht fahren wir zu Yara, okay?"
       },
       {
-        "id": 19,
+        "id": 18,
         "start": 68.04,
         "end": 71.44,
         "duration": 3.4,
-        "text": "- Yara. August-Straußberg-Gasse 23."
+        "text": "Yara. August-Straußberg-Gasse 23."
       },
       {
-        "id": 20,
+        "id": 19,
         "start": 71.48,
         "end": 72.8,
         "duration": 1.32,
-        "text": "- Ja. Ja, genau."
+        "text": "Ja. Ja, genau."
       },
       {
-        "id": 21,
+        "id": 20,
         "start": 72.84,
         "end": 73.68,
         "duration": 0.84,
-        "text": "- Lisa!"
+        "text": "Lisa!"
       },
       {
-        "id": 22,
+        "id": 21,
         "start": 73.72,
         "end": 74.56,
         "duration": 0.84,
-        "text": "- Mhm …"
+        "text": "Mhm"
       },
       {
-        "id": 23,
+        "id": 22,
         "start": 74.6,
         "end": 75.76,
         "duration": 1.16,
-        "text": "- Der Schlüssel!"
+        "text": "Der Schlüssel!"
       },
       {
-        "id": 24,
+        "id": 23,
         "start": 75.8,
         "end": 77.28,
         "duration": 1.48,
-        "text": "- Danke!"
+        "text": "Danke!"
       }
     ]
   },
@@ -5211,63 +5113,63 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.0,
         "end": 9.08,
         "duration": 2.08,
-        "text": "- Also, was ist das?"
+        "text": "Also, was ist das?"
       },
       {
         "id": 2,
         "start": 9.24,
         "end": 10.84,
         "duration": 1.6,
-        "text": "- Das ist eine Tafel."
+        "text": "Das ist eine Tafel."
       },
       {
         "id": 3,
         "start": 10.88,
         "end": 13.6,
         "duration": 2.72,
-        "text": "- Sehr gut. Kannst du das bitte buchstabieren?"
+        "text": "Sehr gut. Kannst du das bitte buchstabieren?"
       },
       {
         "id": 4,
         "start": 14.12,
         "end": 17.16,
         "duration": 3.04,
-        "text": "- T-A-F-E-L."
+        "text": "T-A-F-E-L."
       },
       {
         "id": 5,
         "start": 17.4,
         "end": 18.96,
         "duration": 1.56,
-        "text": "- Super, Rana."
+        "text": "Super, Rana."
       },
       {
         "id": 6,
         "start": 19.04,
         "end": 20.08,
         "duration": 1.04,
-        "text": "- Der Tafel."
+        "text": "Der Tafel."
       },
       {
         "id": 7,
         "start": 20.24,
         "end": 22.52,
         "duration": 2.28,
-        "text": "- Entschuldigung, kannst du das noch mal wiederholen?"
+        "text": "Entschuldigung, kannst du das noch mal wiederholen?"
       },
       {
         "id": 8,
         "start": 22.56,
         "end": 23.92,
         "duration": 1.36,
-        "text": "- Das Tafel?"
+        "text": "Das Tafel?"
       },
       {
         "id": 9,
         "start": 24.16,
         "end": 25.6,
         "duration": 1.44,
-        "text": "- Die Tafel."
+        "text": "Die Tafel."
       },
       {
         "id": 10,
@@ -5295,14 +5197,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 36.16,
         "end": 37.76,
         "duration": 1.6,
-        "text": "- Die Tasche!"
+        "text": "Die Tasche!"
       },
       {
         "id": 14,
         "start": 37.8,
         "end": 39.52,
         "duration": 1.72,
-        "text": "- Richtig. Die Tasche."
+        "text": "Richtig. Die Tasche."
       },
       {
         "id": 15,
@@ -5358,42 +5260,42 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 6.84,
         "end": 7.68,
         "duration": 0.84,
-        "text": "- Auf Wiedersehen!"
+        "text": "Auf Wiedersehen!"
       },
       {
         "id": 2,
         "start": 7.72,
         "end": 9.08,
         "duration": 1.36,
-        "text": "- Auf Wiedersehen! Mach’s gut!"
+        "text": "Auf Wiedersehen! Mach’s gut!"
       },
       {
         "id": 3,
         "start": 9.12,
         "end": 10.32,
         "duration": 1.2,
-        "text": "- Ciao! - Tschüss!"
+        "text": "Ciao! Tschüss!"
       },
       {
         "id": 4,
         "start": 10.36,
         "end": 11.96,
         "duration": 1.6,
-        "text": "- Bis bald! Tschüss!"
+        "text": "Bis bald! Tschüss!"
       },
       {
         "id": 5,
         "start": 12.0,
         "end": 13.28,
         "duration": 1.28,
-        "text": "- Wiedersehen!"
+        "text": "Wiedersehen!"
       },
       {
         "id": 6,
         "start": 18.32,
         "end": 20.36,
         "duration": 2.04,
-        "text": "- Oh, entschuldige!"
+        "text": "Oh, entschuldige!"
       },
       {
         "id": 7,
@@ -5442,7 +5344,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 51.88,
         "end": 53.88,
         "duration": 2.0,
-        "text": "Ein Stift …"
+        "text": "Ein Stift"
       },
       {
         "id": 14,
@@ -5456,28 +5358,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 59.12,
         "end": 60.84,
         "duration": 1.72,
-        "text": "- Nein, ich hab keinen Stift."
+        "text": "Nein, ich hab keinen Stift."
       },
       {
         "id": 16,
         "start": 62.96,
         "end": 66.88,
         "duration": 3.92,
-        "text": "- Ah. Einen Zettel, ich brauche einen Zettel."
+        "text": "Ah. Einen Zettel, ich brauche einen Zettel."
       },
       {
         "id": 17,
         "start": 66.92,
         "end": 69.44,
         "duration": 2.52,
-        "text": "- Hier, ein Zettel."
+        "text": "Hier, ein Zettel."
       },
       {
         "id": 18,
         "start": 69.48,
         "end": 74.24,
         "duration": 4.76,
-        "text": "- Danke! Okay, also: halb vier."
+        "text": "Danke! Okay, also: halb vier."
       },
       {
         "id": 19,
@@ -5505,14 +5407,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 85.72,
         "end": 86.84,
         "duration": 1.12,
-        "text": "- Bewerber?"
+        "text": "Bewerber?"
       },
       {
         "id": 23,
         "start": 87.08,
         "end": 89.36,
         "duration": 2.28,
-        "text": "- Ja, Nawin geht doch nach Frankreich."
+        "text": "Ja, Nawin geht doch nach Frankreich."
       },
       {
         "id": 24,
@@ -5533,14 +5435,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 101.92,
         "end": 103.12,
         "duration": 1.2,
-        "text": "- Die Tür."
+        "text": "Die Tür."
       },
       {
         "id": 27,
         "start": 103.2,
         "end": 105.28,
         "duration": 2.08,
-        "text": "- Die Tür. Richtig!"
+        "text": "Die Tür. Richtig!"
       }
     ]
   },
@@ -5561,77 +5463,77 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.84,
         "end": 15.8,
         "duration": 7.96,
-        "text": "- Also … ich sehe was, was du nicht siehst, und das ist … groß und rot."
+        "text": "Also ich sehe was, was du nicht siehst, und das ist groß und rot."
       },
       {
         "id": 2,
         "start": 19.88,
         "end": 21.44,
         "duration": 1.56,
-        "text": "- Das Auto."
+        "text": "Das Auto."
       },
       {
         "id": 3,
         "start": 22.08,
         "end": 26.32,
         "duration": 4.24,
-        "text": "- Das Auto ist rot, aber es ist nicht groß, es ist klein."
+        "text": "Das Auto ist rot, aber es ist nicht groß, es ist klein."
       },
       {
         "id": 4,
         "start": 30.36,
         "end": 31.48,
         "duration": 1.12,
-        "text": "- Das Haus."
+        "text": "Das Haus."
       },
       {
         "id": 5,
         "start": 31.52,
         "end": 33.92,
         "duration": 2.4,
-        "text": "- Ja, richtig! Du bist dran."
+        "text": "Ja, richtig! Du bist dran."
       },
       {
         "id": 6,
         "start": 34.48,
         "end": 41.56,
         "duration": 7.08,
-        "text": "- Ich sehe was, was du nicht siehst, und das ist ... groß und klein."
+        "text": "Ich sehe was, was du nicht siehst, und das ist groß und klein."
       },
       {
         "id": 7,
         "start": 42.6,
         "end": 44.72,
         "duration": 2.12,
-        "text": "- Ich glaube nicht …"
+        "text": "Ich glaube nicht"
       },
       {
         "id": 8,
         "start": 45.12,
         "end": 52.96,
         "duration": 7.84,
-        "text": "- Ah! Ich sehe was, was du nicht siehst, und das ist ... groß und gelb."
+        "text": "Ah! Ich sehe was, was du nicht siehst, und das ist groß und gelb."
       },
       {
         "id": 9,
         "start": 54.36,
         "end": 55.36,
         "duration": 1.0,
-        "text": "- Das Haus."
+        "text": "Das Haus."
       },
       {
         "id": 10,
         "start": 55.4,
         "end": 56.48,
         "duration": 1.08,
-        "text": "- Ja."
+        "text": "Ja."
       },
       {
         "id": 11,
         "start": 61.92,
         "end": 65.92,
         "duration": 4.0,
-        "text": "- Das hier ist die August-Straußberg-Gasse 23."
+        "text": "Das hier ist die August-Straußberg-Gasse 23."
       },
       {
         "id": 12,
@@ -5645,35 +5547,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 70.08,
         "end": 71.52,
         "duration": 1.44,
-        "text": "- Hier ist kein Fahrradladen."
+        "text": "Hier ist kein Fahrradladen."
       },
       {
         "id": 14,
         "start": 71.56,
         "end": 73.68,
         "duration": 2.12,
-        "text": "- Ja, aber wir sind richtig."
+        "text": "Ja, aber wir sind richtig."
       },
       {
         "id": 15,
         "start": 74.36,
         "end": 80.04,
         "duration": 5.68,
-        "text": "- Ich sehe was, was du nicht siehst, … und das ist nicht da."
+        "text": "Ich sehe was, was du nicht siehst, und das ist nicht da."
       },
       {
         "id": 16,
         "start": 82.92,
         "end": 85.8,
         "duration": 2.88,
-        "text": "- Die Adresse ist falsch. Es gibt hier wirklich keinen Fahrradladen."
+        "text": "Die Adresse ist falsch. Es gibt hier wirklich keinen Fahrradladen."
       },
       {
         "id": 17,
         "start": 85.84,
         "end": 89.16,
         "duration": 3.32,
-        "text": "Es tut mir leid, Nico … Komm!"
+        "text": "Es tut mir leid, Nico Komm!"
       }
     ]
   },
@@ -5694,35 +5596,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 10.84,
         "end": 11.48,
         "duration": 0.64,
-        "text": "- Nico?"
+        "text": "Nico?"
       },
       {
         "id": 2,
         "start": 11.52,
         "end": 12.68,
         "duration": 1.16,
-        "text": "- Hmm?"
+        "text": "Hmm?"
       },
       {
         "id": 3,
         "start": 13.6,
         "end": 15.28,
         "duration": 1.68,
-        "text": "- Wir haben ein Problem."
+        "text": "Wir haben ein Problem."
       },
       {
         "id": 4,
         "start": 16.4,
         "end": 17.6,
         "duration": 1.2,
-        "text": "- Ein Problem?"
+        "text": "Ein Problem?"
       },
       {
         "id": 5,
         "start": 17.68,
         "end": 19.64,
         "duration": 1.96,
-        "text": "- Ja, ein Problem."
+        "text": "Ja, ein Problem."
       },
       {
         "id": 6,
@@ -5743,14 +5645,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 25.8,
         "end": 28.04,
         "duration": 2.24,
-        "text": "- Okay. Kein Problem."
+        "text": "Okay. Kein Problem."
       },
       {
         "id": 9,
         "start": 28.84,
         "end": 31.12,
         "duration": 2.28,
-        "text": "- Unsere Heizung ist kaputt."
+        "text": "Unsere Heizung ist kaputt."
       },
       {
         "id": 10,
@@ -5764,7 +5666,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 36.92,
         "end": 38.48,
         "duration": 1.56,
-        "text": "- Du bist nicht da?"
+        "text": "Du bist nicht da?"
       },
       {
         "id": 12,
@@ -5778,7 +5680,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 43.0,
         "end": 44.72,
         "duration": 1.72,
-        "text": "- Nein. Das ist sehr teuer."
+        "text": "Nein. Das ist sehr teuer."
       },
       {
         "id": 14,
@@ -5792,14 +5694,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 47.24,
         "end": 48.6,
         "duration": 1.36,
-        "text": "- Jugendherberge?"
+        "text": "Jugendherberge?"
       },
       {
         "id": 16,
         "start": 48.64,
         "end": 52.24,
         "duration": 3.6,
-        "text": "- Ja. Eine Jugendherberge oder ein Hostel."
+        "text": "Ja. Eine Jugendherberge oder ein Hostel."
       },
       {
         "id": 17,
@@ -5834,7 +5736,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 66.8,
         "end": 69.48,
         "duration": 2.68,
-        "text": "- Okay, danke."
+        "text": "Okay, danke."
       }
     ]
   },
@@ -5855,133 +5757,133 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 9.16,
         "end": 11.28,
         "duration": 2.12,
-        "text": "- Du willst dir das Zimmer anschauen?"
+        "text": "Du willst dir das Zimmer anschauen?"
       },
       {
         "id": 2,
         "start": 11.32,
         "end": 13.56,
         "duration": 2.24,
-        "text": "- Ja. Ich suche eine neue WG."
+        "text": "Ja. Ich suche eine neue WG."
       },
       {
         "id": 3,
         "start": 13.6,
         "end": 15.48,
         "duration": 1.88,
-        "text": "- Wir haben telefoniert. Ich bin Lisa Brunner."
+        "text": "Wir haben telefoniert. Ich bin Lisa Brunner."
       },
       {
         "id": 4,
         "start": 15.52,
         "end": 17.04,
         "duration": 1.52,
-        "text": "- Cool."
+        "text": "Cool."
       },
       {
         "id": 5,
         "start": 22.0,
         "end": 24.8,
         "duration": 2.8,
-        "text": "- So, das ist die Wohnung."
+        "text": "So, das ist die Wohnung."
       },
       {
         "id": 6,
         "start": 26.96,
         "end": 28.12,
         "duration": 1.16,
-        "text": "- Hi, Lisa."
+        "text": "Hi, Lisa."
       },
       {
         "id": 7,
         "start": 28.76,
         "end": 30.08,
         "duration": 1.32,
-        "text": "- Das ist …"
+        "text": "Das ist"
       },
       {
         "id": 8,
         "start": 30.12,
         "end": 31.04,
         "duration": 0.92,
-        "text": "- Marvin, hi."
+        "text": "Marvin, hi."
       },
       {
         "id": 9,
         "start": 32.0,
         "end": 34.16,
         "duration": 2.16,
-        "text": "- Marvin möchte dein Zimmer sehen."
+        "text": "Marvin möchte dein Zimmer sehen."
       },
       {
         "id": 10,
         "start": 34.2,
         "end": 37.0,
         "duration": 2.8,
-        "text": "- Ah, hi! Ich bin Nawin. Freut mich."
+        "text": "Ah, hi! Ich bin Nawin. Freut mich."
       },
       {
         "id": 11,
         "start": 37.04,
         "end": 37.64,
         "duration": 0.6,
-        "text": "- Hi."
+        "text": "Hi."
       },
       {
         "id": 12,
         "start": 38.32,
         "end": 39.64,
         "duration": 1.32,
-        "text": "- Schon okay …"
+        "text": "Schon okay"
       },
       {
         "id": 13,
         "start": 40.56,
         "end": 41.68,
         "duration": 1.12,
-        "text": "- Wo ist Emma?"
+        "text": "Wo ist Emma?"
       },
       {
         "id": 14,
         "start": 41.72,
         "end": 43.04,
         "duration": 1.32,
-        "text": "- Draußen mit Nina."
+        "text": "Draußen mit Nina."
       },
       {
         "id": 15,
         "start": 43.08,
         "end": 43.6,
         "duration": 0.52,
-        "text": "- Okay."
+        "text": "Okay."
       },
       {
         "id": 16,
         "start": 43.64,
         "end": 45.4,
         "duration": 1.76,
-        "text": "- Okay, dann fangen wir an!"
+        "text": "Okay, dann fangen wir an!"
       },
       {
         "id": 17,
         "start": 46.16,
         "end": 48.12,
         "duration": 1.96,
-        "text": "- Das ist das Wohnzimmer."
+        "text": "Das ist das Wohnzimmer."
       },
       {
         "id": 18,
         "start": 48.6,
         "end": 51.44,
         "duration": 2.84,
-        "text": "- Die Fenster sind groß und das Zimmer ist hell."
+        "text": "Die Fenster sind groß und das Zimmer ist hell."
       },
       {
         "id": 19,
         "start": 51.48,
         "end": 52.44,
         "duration": 0.96,
-        "text": "- Cool."
+        "text": "Cool."
       },
       {
         "id": 20,
@@ -5995,7 +5897,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 54.12,
         "end": 57.08,
         "duration": 2.96,
-        "text": "- Es gibt fünf Zimmer, eine Küche und ein Bad."
+        "text": "Es gibt fünf Zimmer, eine Küche und ein Bad."
       },
       {
         "id": 22,
@@ -6009,21 +5911,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 63.24,
         "end": 64.48,
         "duration": 1.24,
-        "text": "- Los, los, los, los, komm!"
+        "text": "Los, los, los, los, komm!"
       },
       {
         "id": 24,
         "start": 64.76,
         "end": 67.0,
         "duration": 2.24,
-        "text": "- Das Zimmer ist bald frei."
+        "text": "Das Zimmer ist bald frei."
       },
       {
         "id": 25,
         "start": 67.48,
         "end": 68.88,
         "duration": 1.4,
-        "text": "- Ganz schön groß."
+        "text": "Ganz schön groß."
       },
       {
         "id": 26,
@@ -6037,35 +5939,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 72.08,
         "end": 75.48,
         "duration": 3.4,
-        "text": "- Ich glaube, es hat zehn Quadratmeter, oder?"
+        "text": "Ich glaube, es hat zehn Quadratmeter, oder?"
       },
       {
         "id": 28,
         "start": 75.52,
         "end": 78.24,
         "duration": 2.72,
-        "text": "- Das Zimmer hat elf Quadratmeter."
+        "text": "Das Zimmer hat elf Quadratmeter."
       },
       {
         "id": 29,
         "start": 78.28,
         "end": 79.36,
         "duration": 1.08,
-        "text": "- Ah."
+        "text": "Ah."
       },
       {
         "id": 30,
         "start": 82.4,
         "end": 84.8,
         "duration": 2.4,
-        "text": "- Ja, und es ist sehr ruhig. Keine Autos."
+        "text": "Ja, und es ist sehr ruhig. Keine Autos."
       },
       {
         "id": 31,
         "start": 85.72,
         "end": 89.04,
         "duration": 3.32,
-        "text": "- So, das ist die Küche."
+        "text": "So, das ist die Küche."
       },
       {
         "id": 32,
@@ -6079,21 +5981,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 94.04,
         "end": 95.8,
         "duration": 1.76,
-        "text": "- Wie teuer ist das Zimmer?"
+        "text": "Wie teuer ist das Zimmer?"
       },
       {
         "id": 34,
         "start": 96.72,
         "end": 100.24,
         "duration": 3.52,
-        "text": "- Die Miete kostet mit Nebenkosten 400 Euro im Monat."
+        "text": "Die Miete kostet mit Nebenkosten 400 Euro im Monat."
       },
       {
         "id": 35,
         "start": 100.36,
         "end": 100.88,
         "duration": 0.52,
-        "text": "- Okay."
+        "text": "Okay."
       },
       {
         "id": 36,
@@ -6107,7 +6009,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 104.52,
         "end": 105.72,
         "duration": 1.2,
-        "text": "- Super!"
+        "text": "Super!"
       },
       {
         "id": 38,
@@ -6128,7 +6030,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 109.72,
         "end": 113.8,
         "duration": 4.08,
-        "text": "- Ja, cool. Na dann! Tschüss!"
+        "text": "Ja, cool. Na dann! Tschüss!"
       }
     ]
   },
@@ -6149,49 +6051,49 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 12.68,
         "end": 14.16,
         "duration": 1.48,
-        "text": "- Hi, Mädels."
+        "text": "Hi, Mädels."
       },
       {
         "id": 2,
         "start": 14.28,
         "end": 16.2,
         "duration": 1.92,
-        "text": "- Du bist Wolfgang, oder?"
+        "text": "Du bist Wolfgang, oder?"
       },
       {
         "id": 3,
         "start": 16.24,
         "end": 17.92,
         "duration": 1.68,
-        "text": "- Ja, aber alle sagen nur Wolf."
+        "text": "Ja, aber alle sagen nur Wolf."
       },
       {
         "id": 4,
         "start": 17.96,
         "end": 19.36,
         "duration": 1.4,
-        "text": "- Hi, Wolf."
+        "text": "Hi, Wolf."
       },
       {
         "id": 5,
         "start": 20.48,
         "end": 22.76,
         "duration": 2.28,
-        "text": "- Nice. Das ist das Wohnzimmer, hm?"
+        "text": "Nice. Das ist das Wohnzimmer, hm?"
       },
       {
         "id": 6,
         "start": 23.0,
         "end": 24.68,
         "duration": 1.68,
-        "text": "- Ja, genau."
+        "text": "Ja, genau."
       },
       {
         "id": 7,
         "start": 25.68,
         "end": 27.84,
         "duration": 2.16,
-        "text": "- Der Tisch, der ist nicht schön."
+        "text": "Der Tisch, der ist nicht schön."
       },
       {
         "id": 8,
@@ -6226,35 +6128,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 44.64,
         "end": 45.68,
         "duration": 1.04,
-        "text": "Und da in die Ecke …"
+        "text": "Und da in die Ecke"
       },
       {
         "id": 13,
         "start": 45.72,
         "end": 50.04,
         "duration": 4.32,
-        "text": "Teppiche, wir brauchen viele Teppiche, Lampen und Kissen - zum Chillen."
+        "text": "Teppiche, wir brauchen viele Teppiche, Lampen und Kissen zum Chillen."
       },
       {
         "id": 14,
         "start": 55.36,
         "end": 56.76,
         "duration": 1.4,
-        "text": "- Wir melden uns bei dir, ja?"
+        "text": "Wir melden uns bei dir, ja?"
       },
       {
         "id": 15,
         "start": 56.84,
         "end": 58.08,
         "duration": 1.24,
-        "text": "- Ja ..."
+        "text": "Ja"
       },
       {
         "id": 16,
         "start": 63.92,
         "end": 65.2,
         "duration": 1.28,
-        "text": "- Wow."
+        "text": "Wow."
       }
     ]
   },
@@ -6275,7 +6177,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.24,
         "end": 9.28,
         "duration": 2.04,
-        "text": "- Das ist mein Zimmer."
+        "text": "Das ist mein Zimmer."
       },
       {
         "id": 2,
@@ -6289,7 +6191,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 14.0,
         "end": 16.96,
         "duration": 2.96,
-        "text": "- Ist das auch deine? - Oh."
+        "text": "Ist das auch deine? Oh."
       },
       {
         "id": 4,
@@ -6310,14 +6212,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 24.08,
         "end": 26.2,
         "duration": 2.12,
-        "text": "- Ist das mein Bad?"
+        "text": "Ist das mein Bad?"
       },
       {
         "id": 7,
         "start": 27.4,
         "end": 29.84,
         "duration": 2.44,
-        "text": "- Nein, wir haben nur ein Bad."
+        "text": "Nein, wir haben nur ein Bad."
       },
       {
         "id": 8,
@@ -6331,7 +6233,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 32.8,
         "end": 34.04,
         "duration": 1.24,
-        "text": "- Alle?"
+        "text": "Alle?"
       },
       {
         "id": 10,
@@ -6352,7 +6254,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 41.92,
         "end": 43.8,
         "duration": 1.88,
-        "text": "- Na ja, das kommt drauf an."
+        "text": "Na ja, das kommt drauf an."
       },
       {
         "id": 13,
@@ -6366,7 +6268,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 49.16,
         "end": 51.16,
         "duration": 2.0,
-        "text": "- Und wie sind die Nachbarn?"
+        "text": "Und wie sind die Nachbarn?"
       },
       {
         "id": 15,
@@ -6380,28 +6282,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 55.4,
         "end": 59.24,
         "duration": 3.84,
-        "text": "- Doch! Die sind superlaut und nicht nett!"
+        "text": "Doch! Die sind superlaut und nicht nett!"
       },
       {
         "id": 17,
         "start": 62.8,
         "end": 63.72,
         "duration": 0.92,
-        "text": "- Na dann …"
+        "text": "Na dann"
       },
       {
         "id": 18,
         "start": 63.76,
         "end": 66.16,
         "duration": 2.4,
-        "text": "- Na dann. Wir rufen dich an."
+        "text": "Na dann. Wir rufen dich an."
       },
       {
         "id": 19,
         "start": 66.2,
         "end": 67.44,
         "duration": 1.24,
-        "text": "- Okay."
+        "text": "Okay."
       },
       {
         "id": 20,
@@ -6415,21 +6317,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 75.04,
         "end": 77.8,
         "duration": 2.76,
-        "text": "- Was für eine Katastrophe!"
+        "text": "Was für eine Katastrophe!"
       },
       {
         "id": 22,
         "start": 79.36,
         "end": 82.92,
         "duration": 3.56,
-        "text": "- Ich glaube, wir finden nie einen Mieter für Nawins Zimmer!"
+        "text": "Ich glaube, wir finden nie einen Mieter für Nawins Zimmer!"
       },
       {
         "id": 23,
         "start": 84.68,
         "end": 86.36,
         "duration": 1.68,
-        "text": "- Die Sprachschule …"
+        "text": "Die Sprachschule"
       },
       {
         "id": 24,
@@ -6443,7 +6345,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 91.88,
         "end": 93.4,
         "duration": 1.52,
-        "text": "- Was ist denn?"
+        "text": "Was ist denn?"
       }
     ]
   },
@@ -6464,42 +6366,42 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.12,
         "end": 8.52,
         "duration": 1.4,
-        "text": "- Was ist?"
+        "text": "Was ist?"
       },
       {
         "id": 2,
         "start": 9.52,
         "end": 13.04,
         "duration": 3.52,
-        "text": "- Meine Kollegin Manja ist krank. Ich mache morgen Manjas Unterricht."
+        "text": "Meine Kollegin Manja ist krank. Ich mache morgen Manjas Unterricht."
       },
       {
         "id": 3,
         "start": 13.08,
         "end": 14.24,
         "duration": 1.16,
-        "text": "- Das ist doch super."
+        "text": "Das ist doch super."
       },
       {
         "id": 4,
         "start": 14.28,
         "end": 16.36,
         "duration": 2.08,
-        "text": "- Ja und was mache ich mit Emma?"
+        "text": "Ja und was mache ich mit Emma?"
       },
       {
         "id": 5,
         "start": 17.2,
         "end": 18.28,
         "duration": 1.08,
-        "text": "- Wann beginnt der Kurs?"
+        "text": "Wann beginnt der Kurs?"
       },
       {
         "id": 6,
         "start": 18.32,
         "end": 19.64,
         "duration": 1.32,
-        "text": "- Um neun."
+        "text": "Um neun."
       },
       {
         "id": 7,
@@ -6513,14 +6415,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 23.16,
         "end": 24.68,
         "duration": 1.52,
-        "text": "- Wann arbeitest du morgen?"
+        "text": "Wann arbeitest du morgen?"
       },
       {
         "id": 9,
         "start": 24.72,
         "end": 28.76,
         "duration": 4.04,
-        "text": "- Ich arbeite morgen von acht bis zwölf."
+        "text": "Ich arbeite morgen von acht bis zwölf."
       },
       {
         "id": 10,
@@ -6541,14 +6443,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 37.24,
         "end": 39.4,
         "duration": 2.16,
-        "text": "- Und du, Nawin? Wann hast du morgen Uni?"
+        "text": "Und du, Nawin? Wann hast du morgen Uni?"
       },
       {
         "id": 13,
         "start": 39.44,
         "end": 42.52,
         "duration": 3.08,
-        "text": "- Ich bin von neun bis fünf in der Uni."
+        "text": "Ich bin von neun bis fünf in der Uni."
       },
       {
         "id": 14,
@@ -6562,77 +6464,77 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 45.08,
         "end": 46.6,
         "duration": 1.52,
-        "text": "- Was macht Nina morgen?"
+        "text": "Was macht Nina morgen?"
       },
       {
         "id": 16,
         "start": 46.68,
         "end": 51.32,
         "duration": 4.64,
-        "text": "- Nina hat morgen um acht einen Termin beim Arzt."
+        "text": "Nina hat morgen um acht einen Termin beim Arzt."
       },
       {
         "id": 17,
         "start": 52.24,
         "end": 56.2,
         "duration": 3.96,
-        "text": "- Und danach ist sie von zehn bis drei in der Schule."
+        "text": "Und danach ist sie von zehn bis drei in der Schule."
       },
       {
         "id": 18,
         "start": 58.56,
         "end": 59.76,
         "duration": 1.2,
-        "text": "- Hm …"
+        "text": "Hm"
       },
       {
         "id": 19,
         "start": 61.08,
         "end": 64.72,
         "duration": 3.64,
-        "text": "- Es gibt keine Lösung. Ich rufe Manja an. Wir sagen den Unterricht ab."
+        "text": "Es gibt keine Lösung. Ich rufe Manja an. Wir sagen den Unterricht ab."
       },
       {
         "id": 20,
         "start": 65.0,
         "end": 66.48,
         "duration": 1.48,
-        "text": "- Nico ist doch da."
+        "text": "Nico ist doch da."
       },
       {
         "id": 21,
         "start": 71.48,
         "end": 72.6,
         "duration": 1.12,
-        "text": "- Wie bitte?"
+        "text": "Wie bitte?"
       },
       {
         "id": 22,
         "start": 72.64,
         "end": 75.52,
         "duration": 2.88,
-        "text": "- Nico, passt du morgen auf Emma auf?"
+        "text": "Nico, passt du morgen auf Emma auf?"
       },
       {
         "id": 23,
         "start": 75.56,
         "end": 76.64,
         "duration": 1.08,
-        "text": "- Emma?"
+        "text": "Emma?"
       },
       {
         "id": 24,
         "start": 76.76,
         "end": 78.0,
         "duration": 1.24,
-        "text": "- Babysitting."
+        "text": "Babysitting."
       },
       {
         "id": 25,
         "start": 78.16,
         "end": 80.52,
         "duration": 2.36,
-        "text": "- Ja! Gerne!"
+        "text": "Ja! Gerne!"
       }
     ]
   },
@@ -6653,7 +6555,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.08,
         "end": 10.36,
         "duration": 3.28,
-        "text": "- Emma steht um halb sieben auf. Danach putzt sie Zähne."
+        "text": "Emma steht um halb sieben auf. Danach putzt sie Zähne."
       },
       {
         "id": 2,
@@ -6667,28 +6569,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 11.8,
         "end": 13.24,
         "duration": 1.44,
-        "text": "- Ich putze immer meine Zähne!"
+        "text": "Ich putze immer meine Zähne!"
       },
       {
         "id": 4,
         "start": 13.28,
         "end": 14.44,
         "duration": 1.16,
-        "text": "- Immer oder manchmal?"
+        "text": "Immer oder manchmal?"
       },
       {
         "id": 5,
         "start": 14.48,
         "end": 15.36,
         "duration": 0.88,
-        "text": "- Fast immer."
+        "text": "Fast immer."
       },
       {
         "id": 6,
         "start": 15.56,
         "end": 16.64,
         "duration": 1.08,
-        "text": "- Okay …"
+        "text": "Okay"
       },
       {
         "id": 7,
@@ -6716,14 +6618,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 26.84,
         "end": 28.08,
         "duration": 1.24,
-        "text": "- Gemüse?"
+        "text": "Gemüse?"
       },
       {
         "id": 11,
         "start": 28.44,
         "end": 29.84,
         "duration": 1.4,
-        "text": "- Ja, Gemüse ..."
+        "text": "Ja, Gemüse"
       },
       {
         "id": 12,
@@ -6765,14 +6667,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 48.08,
         "end": 48.92,
         "duration": 0.84,
-        "text": "- Ja, ja …"
+        "text": "Ja, ja"
       },
       {
         "id": 18,
         "start": 48.96,
         "end": 51.76,
         "duration": 2.8,
-        "text": "- Und du siehst nicht fern. Und nach dem Spielen räumst du auf."
+        "text": "Und du siehst nicht fern. Und nach dem Spielen räumst du auf."
       },
       {
         "id": 19,
@@ -6786,28 +6688,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 54.12,
         "end": 55.48,
         "duration": 1.36,
-        "text": "- Kein Problem."
+        "text": "Kein Problem."
       },
       {
         "id": 21,
         "start": 55.72,
         "end": 56.56,
         "duration": 0.84,
-        "text": "- Ich weiß."
+        "text": "Ich weiß."
       },
       {
         "id": 22,
         "start": 56.6,
         "end": 58.52,
         "duration": 1.92,
-        "text": "- Morgen ist ein super Tag!"
+        "text": "Morgen ist ein super Tag!"
       },
       {
         "id": 23,
         "start": 60.44,
         "end": 61.64,
         "duration": 1.2,
-        "text": "- Danke, Nico!"
+        "text": "Danke, Nico!"
       },
       {
         "id": 24,
@@ -6835,63 +6737,63 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 10.8,
         "end": 14.88,
         "duration": 4.08,
-        "text": "- Hallo!"
+        "text": "Hallo!"
       },
       {
         "id": 2,
         "start": 16.32,
         "end": 18.36,
         "duration": 2.04,
-        "text": "- Was ist das denn?"
+        "text": "Was ist das denn?"
       },
       {
         "id": 3,
         "start": 18.44,
         "end": 19.6,
         "duration": 1.16,
-        "text": "- Abendessen."
+        "text": "Abendessen."
       },
       {
         "id": 4,
         "start": 19.64,
         "end": 21.16,
         "duration": 1.52,
-        "text": "- Das sehe ich."
+        "text": "Das sehe ich."
       },
       {
         "id": 5,
         "start": 21.96,
         "end": 24.0,
         "duration": 2.04,
-        "text": "- Wie war dein Tag, Tante Lisa?"
+        "text": "Wie war dein Tag, Tante Lisa?"
       },
       {
         "id": 6,
         "start": 24.64,
         "end": 26.96,
         "duration": 2.32,
-        "text": "- Gut, und wie war euer Tag?"
+        "text": "Gut, und wie war euer Tag?"
       },
       {
         "id": 7,
         "start": 28.88,
         "end": 29.76,
         "duration": 0.88,
-        "text": "- Super."
+        "text": "Super."
       },
       {
         "id": 8,
         "start": 30.92,
         "end": 33.08,
         "duration": 2.16,
-        "text": "- Ich koche total gerne Gemüse."
+        "text": "Ich koche total gerne Gemüse."
       },
       {
         "id": 9,
         "start": 33.12,
         "end": 35.52,
         "duration": 2.4,
-        "text": "- Ja, ich auch."
+        "text": "Ja, ich auch."
       },
       {
         "id": 10,
@@ -6905,7 +6807,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 45.64,
         "end": 47.0,
         "duration": 1.36,
-        "text": "- Meine Ferienwoche:"
+        "text": "Meine Ferienwoche:"
       },
       {
         "id": 12,
@@ -6926,14 +6828,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 52.4,
         "end": 53.92,
         "duration": 1.52,
-        "text": "- Du gehst zum Musikkurs?"
+        "text": "Du gehst zum Musikkurs?"
       },
       {
         "id": 15,
         "start": 53.96,
         "end": 55.32,
         "duration": 1.36,
-        "text": "- Ja, manchmal …"
+        "text": "Ja, manchmal"
       },
       {
         "id": 16,
@@ -6954,14 +6856,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 60.44,
         "end": 62.52,
         "duration": 2.08,
-        "text": "- Das glaube ich nicht!"
+        "text": "Das glaube ich nicht!"
       },
       {
         "id": 19,
         "start": 62.64,
         "end": 64.16,
         "duration": 1.52,
-        "text": "- Am Freitag sehe ich fern."
+        "text": "Am Freitag sehe ich fern."
       },
       {
         "id": 20,
@@ -6975,56 +6877,56 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 66.76,
         "end": 67.96,
         "duration": 1.2,
-        "text": "Am Sonntag …"
+        "text": "Am Sonntag"
       },
       {
         "id": 22,
         "start": 68.0,
         "end": 70.52,
         "duration": 2.52,
-        "text": "- Am Sonntag koche ich mit Nico Paella."
+        "text": "Am Sonntag koche ich mit Nico Paella."
       },
       {
         "id": 23,
         "start": 70.56,
         "end": 71.8,
         "duration": 1.24,
-        "text": "- Au ja!"
+        "text": "Au ja!"
       },
       {
         "id": 24,
         "start": 72.16,
         "end": 73.2,
         "duration": 1.04,
-        "text": "- Bist du fertig?"
+        "text": "Bist du fertig?"
       },
       {
         "id": 25,
         "start": 73.24,
         "end": 74.08,
         "duration": 0.84,
-        "text": "- Ja."
+        "text": "Ja."
       },
       {
         "id": 26,
         "start": 74.12,
         "end": 75.44,
         "duration": 1.32,
-        "text": "- Cool!"
+        "text": "Cool!"
       },
       {
         "id": 27,
         "start": 76.88,
         "end": 80.36,
         "duration": 3.48,
-        "text": "- Ich lese gleich noch ein Buch für die Schule und dann gehe ich ins Bett."
+        "text": "Ich lese gleich noch ein Buch für die Schule und dann gehe ich ins Bett."
       },
       {
         "id": 28,
         "start": 80.84,
         "end": 81.88,
         "duration": 1.04,
-        "text": "- Ah."
+        "text": "Ah."
       }
     ]
   },
@@ -7045,7 +6947,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 13.32,
         "end": 16.12,
         "duration": 2.8,
-        "text": "- Was machen wir am Wochenende, Tante Lisa?"
+        "text": "Was machen wir am Wochenende, Tante Lisa?"
       },
       {
         "id": 2,
@@ -7066,21 +6968,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 20.84,
         "end": 21.8,
         "duration": 0.96,
-        "text": "- Vielleicht."
+        "text": "Vielleicht."
       },
       {
         "id": 5,
         "start": 23.68,
         "end": 26.04,
         "duration": 2.36,
-        "text": "- Und dann mache ich noch meine Hausaufgaben."
+        "text": "Und dann mache ich noch meine Hausaufgaben."
       },
       {
         "id": 6,
         "start": 30.2,
         "end": 32.0,
         "duration": 1.8,
-        "text": "- Ähem."
+        "text": "Ähem."
       },
       {
         "id": 7,
@@ -7094,28 +6996,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 39.76,
         "end": 42.32,
         "duration": 2.56,
-        "text": "- „Emma frühstückt Müsli!“"
+        "text": "„Emma frühstückt Müsli!“"
       },
       {
         "id": 9,
         "start": 42.36,
         "end": 44.6,
         "duration": 2.24,
-        "text": "- Pf. Müsli!"
+        "text": "Pf. Müsli!"
       },
       {
         "id": 10,
         "start": 46.56,
         "end": 50.24,
         "duration": 3.68,
-        "text": "- Emma, machst du jetzt bitte die Hausaufgaben?"
+        "text": "Emma, machst du jetzt bitte die Hausaufgaben?"
       },
       {
         "id": 11,
         "start": 50.28,
         "end": 52.76,
         "duration": 2.48,
-        "text": "- Keine Lust. Es sind Ferien!"
+        "text": "Keine Lust. Es sind Ferien!"
       },
       {
         "id": 12,
@@ -7129,7 +7031,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 57.48,
         "end": 58.68,
         "duration": 1.2,
-        "text": "- Nein."
+        "text": "Nein."
       },
       {
         "id": 14,
@@ -7143,7 +7045,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 72.8,
         "end": 75.16,
         "duration": 2.36,
-        "text": "- So, ich hab Lust auf Eis!"
+        "text": "So, ich hab Lust auf Eis!"
       },
       {
         "id": 16,
@@ -7157,7 +7059,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 88.64,
         "end": 89.76,
         "duration": 1.12,
-        "text": "- Was ist das?"
+        "text": "Was ist das?"
       }
     ]
   },
@@ -7178,7 +7080,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 9.52,
         "end": 11.12,
         "duration": 1.6,
-        "text": "- Unsere Öffnungszeiten?"
+        "text": "Unsere Öffnungszeiten?"
       },
       {
         "id": 2,
@@ -7220,21 +7122,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 23.08,
         "end": 25.16,
         "duration": 2.08,
-        "text": "- Magst du noch eine Limonade, Nico?"
+        "text": "Magst du noch eine Limonade, Nico?"
       },
       {
         "id": 8,
         "start": 25.44,
         "end": 27.68,
         "duration": 2.24,
-        "text": "- Ja, ich nehme noch eine Limonade."
+        "text": "Ja, ich nehme noch eine Limonade."
       },
       {
         "id": 9,
         "start": 28.6,
         "end": 31.36,
         "duration": 2.76,
-        "text": "- So! Es ist zwölf Uhr."
+        "text": "So! Es ist zwölf Uhr."
       },
       {
         "id": 10,
@@ -7248,21 +7150,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 34.68,
         "end": 35.2,
         "duration": 0.52,
-        "text": "- Ja!"
+        "text": "Ja!"
       },
       {
         "id": 12,
         "start": 35.44,
         "end": 36.96,
         "duration": 1.52,
-        "text": "- Was gibt’s denn heute?"
+        "text": "Was gibt’s denn heute?"
       },
       {
         "id": 13,
         "start": 37.0,
         "end": 41.52,
         "duration": 4.52,
-        "text": "- Heute gibt es Rouladen mit Rotkraut und Kartoffeln"
+        "text": "Heute gibt es Rouladen mit Rotkraut und Kartoffeln"
       },
       {
         "id": 14,
@@ -7283,14 +7185,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 47.16,
         "end": 50.12,
         "duration": 2.96,
-        "text": "- Vielleicht nehme ich die … den Fisch ..."
+        "text": "Vielleicht nehme ich die den Fisch"
       },
       {
         "id": 17,
         "start": 50.4,
         "end": 51.92,
         "duration": 1.52,
-        "text": "Nein, die Suppe …"
+        "text": "Nein, die Suppe"
       },
       {
         "id": 18,
@@ -7311,28 +7213,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 56.8,
         "end": 57.72,
         "duration": 0.92,
-        "text": "- Sicher?"
+        "text": "Sicher?"
       },
       {
         "id": 21,
         "start": 58.28,
         "end": 59.32,
         "duration": 1.04,
-        "text": "- Bitte schön."
+        "text": "Bitte schön."
       },
       {
         "id": 22,
         "start": 59.56,
         "end": 63.04,
         "duration": 3.48,
-        "text": "- Danke schön. Entschuldigung, wie viel Uhr ist es?"
+        "text": "Danke schön. Entschuldigung, wie viel Uhr ist es?"
       },
       {
         "id": 23,
         "start": 63.08,
         "end": 64.72,
         "duration": 1.64,
-        "text": "- Es ist zwölf Uhr."
+        "text": "Es ist zwölf Uhr."
       },
       {
         "id": 24,
@@ -7346,35 +7248,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 66.32,
         "end": 66.88,
         "duration": 0.56,
-        "text": "- Mhm."
+        "text": "Mhm."
       },
       {
         "id": 26,
         "start": 66.92,
         "end": 69.24,
         "duration": 2.32,
-        "text": "- Kommt sie um Viertel nach zwölf oder um halb eins?"
+        "text": "Kommt sie um Viertel nach zwölf oder um halb eins?"
       },
       {
         "id": 27,
         "start": 69.28,
         "end": 70.64,
         "duration": 1.36,
-        "text": "- Um halb zwölf."
+        "text": "Um halb zwölf."
       },
       {
         "id": 28,
         "start": 70.68,
         "end": 74.04,
         "duration": 3.36,
-        "text": "- Oh, normalerweise ist sie pünktlich."
+        "text": "Oh, normalerweise ist sie pünktlich."
       },
       {
         "id": 29,
         "start": 74.64,
         "end": 76.92,
         "duration": 2.28,
-        "text": "- „Das Marek“. Hier ist Tarek."
+        "text": "„Das Marek“. Hier ist Tarek."
       },
       {
         "id": 30,
@@ -7409,14 +7311,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 89.6,
         "end": 90.52,
         "duration": 0.92,
-        "text": "- War das Lisa?"
+        "text": "War das Lisa?"
       },
       {
         "id": 35,
         "start": 90.56,
         "end": 96.08,
         "duration": 5.52,
-        "text": "- Ja. Sie kommt um Viertel vor eins, also um 12:45 Uhr."
+        "text": "Ja. Sie kommt um Viertel vor eins, also um 12:45 Uhr."
       },
       {
         "id": 36,
@@ -7430,35 +7332,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 102.8,
         "end": 104.64,
         "duration": 1.84,
-        "text": "- Okay, ich verstehe."
+        "text": "Okay, ich verstehe."
       },
       {
         "id": 38,
         "start": 104.68,
         "end": 105.92,
         "duration": 1.24,
-        "text": "- Ich bin übrigens Tarek."
+        "text": "Ich bin übrigens Tarek."
       },
       {
         "id": 39,
         "start": 106.0,
         "end": 107.76,
         "duration": 1.76,
-        "text": "- Hallo, ich bin Nico!"
+        "text": "Hallo, ich bin Nico!"
       },
       {
         "id": 40,
         "start": 109.68,
         "end": 112.4,
         "duration": 2.72,
-        "text": "- Oh, Nico, kannst du mir helfen?"
+        "text": "Oh, Nico, kannst du mir helfen?"
       },
       {
         "id": 41,
         "start": 112.44,
         "end": 114.08,
         "duration": 1.64,
-        "text": "- Ja, gerne."
+        "text": "Ja, gerne."
       }
     ]
   },
@@ -7479,14 +7381,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 8.12,
         "end": 9.28,
         "duration": 1.16,
-        "text": "- Max? - Ja?"
+        "text": "Max? Ja?"
       },
       {
         "id": 2,
         "start": 9.32,
         "end": 11.52,
         "duration": 2.2,
-        "text": "- Kannst du morgen vielleicht etwas früher kommen?"
+        "text": "Kannst du morgen vielleicht etwas früher kommen?"
       },
       {
         "id": 3,
@@ -7500,7 +7402,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 15.76,
         "end": 17.76,
         "duration": 2.0,
-        "text": "- Ja, kein Problem."
+        "text": "Ja, kein Problem."
       },
       {
         "id": 5,
@@ -7514,7 +7416,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 19.8,
         "end": 20.8,
         "duration": 1.0,
-        "text": "- Übermorgen?"
+        "text": "Übermorgen?"
       },
       {
         "id": 7,
@@ -7528,21 +7430,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 25.28,
         "end": 27.24,
         "duration": 1.96,
-        "text": "- Kleiner Tipp: Morgen ist der Zweiundzwanzigste,"
+        "text": "Kleiner Tipp: Morgen ist der Zweiundzwanzigste,"
       },
       {
         "id": 9,
         "start": 27.28,
         "end": 30.12,
         "duration": 2.84,
-        "text": "dann ist übermorgen der … Dreiundzwanzigste."
+        "text": "dann ist übermorgen der Dreiundzwanzigste."
       },
       {
         "id": 10,
         "start": 30.16,
         "end": 31.4,
         "duration": 1.24,
-        "text": "- Sehr witzig."
+        "text": "Sehr witzig."
       },
       {
         "id": 11,
@@ -7556,7 +7458,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 36.08,
         "end": 38.76,
         "duration": 2.68,
-        "text": "- Okay. Aber denkst du dran:"
+        "text": "Okay. Aber denkst du dran:"
       },
       {
         "id": 13,
@@ -7570,7 +7472,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 41.72,
         "end": 43.92,
         "duration": 2.2,
-        "text": "- Vom ersten bis zum siebten November."
+        "text": "Vom ersten bis zum siebten November."
       },
       {
         "id": 15,
@@ -7584,14 +7486,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 46.24,
         "end": 47.8,
         "duration": 1.56,
-        "text": "- Gut, okay!"
+        "text": "Gut, okay!"
       },
       {
         "id": 17,
         "start": 51.68,
         "end": 53.92,
         "duration": 2.24,
-        "text": "- „Das Marek“, hier ist Tarek!"
+        "text": "„Das Marek“, hier ist Tarek!"
       },
       {
         "id": 18,
@@ -7640,7 +7542,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 68.08,
         "end": 70.88,
         "duration": 2.8,
-        "text": "Um Viertel vor sieben …"
+        "text": "Um Viertel vor sieben"
       },
       {
         "id": 25,
@@ -7682,7 +7584,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 84.4,
         "end": 86.6,
         "duration": 2.2,
-        "text": "- Das mache ich gern."
+        "text": "Das mache ich gern."
       }
     ]
   },
@@ -7703,21 +7605,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 8.96,
         "end": 11.2,
         "duration": 2.24,
-        "text": "- Max, Tarek. Wie geht’s?"
+        "text": "Max, Tarek. Wie geht’s?"
       },
       {
         "id": 2,
         "start": 11.24,
         "end": 13.56,
         "duration": 2.32,
-        "text": "- Hallo, Yanis! Uns geht’s gut, danke. Wie geht’s euch?"
+        "text": "Hallo, Yanis! Uns geht’s gut, danke. Wie geht’s euch?"
       },
       {
         "id": 3,
         "start": 13.6,
         "end": 14.56,
         "duration": 0.96,
-        "text": "- Sehr gut, danke."
+        "text": "Sehr gut, danke."
       },
       {
         "id": 4,
@@ -7731,49 +7633,49 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 17.76,
         "end": 19.24,
         "duration": 1.48,
-        "text": "- Sehr gerne. Setzt euch!"
+        "text": "Sehr gerne. Setzt euch!"
       },
       {
         "id": 6,
         "start": 19.28,
         "end": 20.28,
         "duration": 1.0,
-        "text": "- Getränke wie immer?"
+        "text": "Getränke wie immer?"
       },
       {
         "id": 7,
         "start": 20.32,
         "end": 22.4,
         "duration": 2.08,
-        "text": "- Wie immer, Tarek!"
+        "text": "Wie immer, Tarek!"
       },
       {
         "id": 8,
         "start": 23.2,
         "end": 24.64,
         "duration": 1.44,
-        "text": "- Sind das deine Freunde?"
+        "text": "Sind das deine Freunde?"
       },
       {
         "id": 9,
         "start": 24.68,
         "end": 28.4,
         "duration": 3.72,
-        "text": "- Ja, wir spielen oft zusammen Fußball."
+        "text": "Ja, wir spielen oft zusammen Fußball."
       },
       {
         "id": 10,
         "start": 28.44,
         "end": 32.32,
         "duration": 3.88,
-        "text": "- Apropos, Max. Wann spielen wir mal wieder zusammen Fußball? Diese Woche?"
+        "text": "Apropos, Max. Wann spielen wir mal wieder zusammen Fußball? Diese Woche?"
       },
       {
         "id": 11,
         "start": 32.36,
         "end": 37.52,
         "duration": 5.16,
-        "text": "- Nein, diese Woche kann ich nicht. Aber nächste Woche geht’s."
+        "text": "Nein, diese Woche kann ich nicht. Aber nächste Woche geht’s."
       },
       {
         "id": 12,
@@ -7787,7 +7689,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 38.96,
         "end": 39.84,
         "duration": 0.88,
-        "text": "- Samstag kann ich nicht."
+        "text": "Samstag kann ich nicht."
       },
       {
         "id": 14,
@@ -7801,14 +7703,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 42.16,
         "end": 43.96,
         "duration": 1.8,
-        "text": "- Dann treffen wir uns am Freitag. Geht das?"
+        "text": "Dann treffen wir uns am Freitag. Geht das?"
       },
       {
         "id": 16,
         "start": 44.0,
         "end": 46.68,
         "duration": 2.68,
-        "text": "- Ja, das geht. Ah nee, Moment! Das geht doch nicht."
+        "text": "Ja, das geht. Ah nee, Moment! Das geht doch nicht."
       },
       {
         "id": 17,
@@ -7822,14 +7724,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 48.08,
         "end": 48.6,
         "duration": 0.52,
-        "text": "- Ah!"
+        "text": "Ah!"
       },
       {
         "id": 19,
         "start": 48.68,
         "end": 56.92,
         "duration": 8.24,
-        "text": "- Dann sind wir nur sieben, oder? Max, Julius, Linus, Daniel, Yanis, Lasse und ich."
+        "text": "Dann sind wir nur sieben, oder? Max, Julius, Linus, Daniel, Yanis, Lasse und ich."
       },
       {
         "id": 20,
@@ -7843,70 +7745,70 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 62.04,
         "end": 64.24,
         "duration": 2.2,
-        "text": "- Spielst du mit uns Fußball? Hast du Lust?"
+        "text": "Spielst du mit uns Fußball? Hast du Lust?"
       },
       {
         "id": 22,
         "start": 66.4,
         "end": 68.76,
         "duration": 2.36,
-        "text": "- Fußball? Ja, wann?"
+        "text": "Fußball? Ja, wann?"
       },
       {
         "id": 23,
         "start": 68.8,
         "end": 72.52,
         "duration": 3.72,
-        "text": "- Wir treffen uns nächste Woche am Freitag. Um wie viel Uhr, Max? Um eins?"
+        "text": "Wir treffen uns nächste Woche am Freitag. Um wie viel Uhr, Max? Um eins?"
       },
       {
         "id": 24,
         "start": 72.56,
         "end": 74.4,
         "duration": 1.84,
-        "text": "- Das ist zu früh. Ich kann erst um zwei."
+        "text": "Das ist zu früh. Ich kann erst um zwei."
       },
       {
         "id": 25,
         "start": 74.44,
         "end": 77.52,
         "duration": 3.08,
-        "text": "- Also nächste Woche Freitag um zwei Uhr!"
+        "text": "Also nächste Woche Freitag um zwei Uhr!"
       },
       {
         "id": 26,
         "start": 77.56,
         "end": 78.64,
         "duration": 1.08,
-        "text": "- Und wo?"
+        "text": "Und wo?"
       },
       {
         "id": 27,
         "start": 78.68,
         "end": 81.08,
         "duration": 2.4,
-        "text": "- Wir treffen uns hier im Restaurant."
+        "text": "Wir treffen uns hier im Restaurant."
       },
       {
         "id": 28,
         "start": 81.24,
         "end": 84.6,
         "duration": 3.36,
-        "text": "- Okay! Ich spiele gerne Fußball!"
+        "text": "Okay! Ich spiele gerne Fußball!"
       },
       {
         "id": 29,
         "start": 84.64,
         "end": 85.32,
         "duration": 0.68,
-        "text": "- Super!"
+        "text": "Super!"
       },
       {
         "id": 30,
         "start": 85.56,
         "end": 88.36,
         "duration": 2.8,
-        "text": "- Oh, Nico! Entschuldigung, ich bin viel zu spät!"
+        "text": "Oh, Nico! Entschuldigung, ich bin viel zu spät!"
       }
     ]
   },
@@ -7927,7 +7829,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.0,
         "end": 7.96,
         "duration": 0.96,
-        "text": "- Ich bin viel zu spät!"
+        "text": "Ich bin viel zu spät!"
       },
       {
         "id": 2,
@@ -7941,49 +7843,49 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 9.68,
         "end": 10.72,
         "duration": 1.04,
-        "text": "- Hallo, Lisa!"
+        "text": "Hallo, Lisa!"
       },
       {
         "id": 4,
         "start": 10.96,
         "end": 11.76,
         "duration": 0.8,
-        "text": "- Hallo!"
+        "text": "Hallo!"
       },
       {
         "id": 5,
         "start": 11.8,
         "end": 12.8,
         "duration": 1.0,
-        "text": "- Na, wie geht’s?"
+        "text": "Na, wie geht’s?"
       },
       {
         "id": 6,
         "start": 12.84,
         "end": 17.24,
         "duration": 4.4,
-        "text": "- Geht so. Der Verkehr ist eine Katastrophe. Und ich war eine halbe Stunde im Stau."
+        "text": "Geht so. Der Verkehr ist eine Katastrophe. Und ich war eine halbe Stunde im Stau."
       },
       {
         "id": 7,
         "start": 17.36,
         "end": 17.92,
         "duration": 0.56,
-        "text": "- Stau?"
+        "text": "Stau?"
       },
       {
         "id": 8,
         "start": 17.96,
         "end": 21.92,
         "duration": 3.96,
-        "text": "- Ja, Stau. Das heißt, es sind zu viele Autos auf den Straßen."
+        "text": "Ja, Stau. Das heißt, es sind zu viele Autos auf den Straßen."
       },
       {
         "id": 9,
         "start": 21.96,
         "end": 23.44,
         "duration": 1.48,
-        "text": "Es geht alles sehr langsam ..."
+        "text": "Es geht alles sehr langsam"
       },
       {
         "id": 10,
@@ -7997,14 +7899,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 28.32,
         "end": 31.08,
         "duration": 2.76,
-        "text": "- Ach ja, eure Wohnung wird renoviert."
+        "text": "Ach ja, eure Wohnung wird renoviert."
       },
       {
         "id": 12,
         "start": 31.12,
         "end": 32.92,
         "duration": 1.8,
-        "text": "- Ja, unsere Heizung ist kaputt."
+        "text": "Ja, unsere Heizung ist kaputt."
       },
       {
         "id": 13,
@@ -8018,63 +7920,63 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 37.08,
         "end": 38.72,
         "duration": 1.64,
-        "text": "- Das Hostel."
+        "text": "Das Hostel."
       },
       {
         "id": 15,
         "start": 39.28,
         "end": 41.12,
         "duration": 1.84,
-        "text": "- Es sind keine Zimmer mehr frei."
+        "text": "Es sind keine Zimmer mehr frei."
       },
       {
         "id": 16,
         "start": 42.44,
         "end": 43.4,
         "duration": 0.96,
-        "text": "- Keine Zimmer?"
+        "text": "Keine Zimmer?"
       },
       {
         "id": 17,
         "start": 43.48,
         "end": 46.32,
         "duration": 2.84,
-        "text": "- Nein, alle Zimmer sind reserviert. Keine Chance."
+        "text": "Nein, alle Zimmer sind reserviert. Keine Chance."
       },
       {
         "id": 18,
         "start": 46.52,
         "end": 48.6,
         "duration": 2.08,
-        "text": "- Oh, nein!"
+        "text": "Oh, nein!"
       },
       {
         "id": 19,
         "start": 49.0,
         "end": 50.68,
         "duration": 1.68,
-        "text": "- Wie lange bleibst du denn in Deutschland?"
+        "text": "Wie lange bleibst du denn in Deutschland?"
       },
       {
         "id": 20,
         "start": 51.0,
         "end": 53.84,
         "duration": 2.84,
-        "text": "- Nicos Tasche und sein Pass sind immer noch weg."
+        "text": "Nicos Tasche und sein Pass sind immer noch weg."
       },
       {
         "id": 21,
         "start": 53.96,
         "end": 56.2,
         "duration": 2.24,
-        "text": "- Das ist wirklich ein Problem."
+        "text": "Das ist wirklich ein Problem."
       },
       {
         "id": 22,
         "start": 56.6,
         "end": 59.56,
         "duration": 2.96,
-        "text": "- Hostel, Papperlapapp!"
+        "text": "Hostel, Papperlapapp!"
       },
       {
         "id": 23,
@@ -8095,42 +7997,42 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 64.08,
         "end": 64.96,
         "duration": 0.88,
-        "text": "- Inge!"
+        "text": "Inge!"
       },
       {
         "id": 26,
         "start": 65.0,
         "end": 67.84,
         "duration": 2.84,
-        "text": "- Komm einfach vorbei. Hier ist meine Adresse."
+        "text": "Komm einfach vorbei. Hier ist meine Adresse."
       },
       {
         "id": 27,
         "start": 67.88,
         "end": 69.28,
         "duration": 1.4,
-        "text": "- Danke, Frau …"
+        "text": "Danke, Frau"
       },
       {
         "id": 28,
         "start": 69.32,
         "end": 72.36,
         "duration": 3.04,
-        "text": "- Inge, mein Lieber! Also, bis morgen dann!"
+        "text": "Inge, mein Lieber! Also, bis morgen dann!"
       },
       {
         "id": 29,
         "start": 72.4,
         "end": 73.88,
         "duration": 1.48,
-        "text": "- Bis morgen! - Tschüss!"
+        "text": "Bis morgen! Tschüss!"
       },
       {
         "id": 30,
         "start": 74.8,
         "end": 76.92,
         "duration": 2.12,
-        "text": "- Danke, Frau Inge, mein Lieber!"
+        "text": "Danke, Frau Inge, mein Lieber!"
       }
     ]
   },
@@ -8151,49 +8053,49 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.2,
         "end": 10.12,
         "duration": 2.92,
-        "text": "- Das ist die Adresse und die Telefonnummer."
+        "text": "Das ist die Adresse und die Telefonnummer."
       },
       {
         "id": 2,
         "start": 10.2,
         "end": 12.76,
         "duration": 2.56,
-        "text": "- Ich kenne die Adresse. Ich komme morgen mit."
+        "text": "Ich kenne die Adresse. Ich komme morgen mit."
       },
       {
         "id": 3,
         "start": 13.12,
         "end": 14.92,
         "duration": 1.8,
-        "text": "- Das ist super!"
+        "text": "Das ist super!"
       },
       {
         "id": 4,
         "start": 15.84,
         "end": 16.68,
         "duration": 0.84,
-        "text": "- Wohin gehst du?"
+        "text": "Wohin gehst du?"
       },
       {
         "id": 5,
         "start": 16.88,
         "end": 19.84,
         "duration": 2.96,
-        "text": "- Ich habe gleich ein Bewerbungsgespräch."
+        "text": "Ich habe gleich ein Bewerbungsgespräch."
       },
       {
         "id": 6,
         "start": 21.2,
         "end": 24.24,
         "duration": 3.04,
-        "text": "- Was ist dein Beruf? Arbeitest du nicht als Lehrerin?"
+        "text": "Was ist dein Beruf? Arbeitest du nicht als Lehrerin?"
       },
       {
         "id": 7,
         "start": 24.28,
         "end": 26.72,
         "duration": 2.44,
-        "text": "- Doch. Ich bin Lehrerin für Deutsch und Englisch."
+        "text": "Doch. Ich bin Lehrerin für Deutsch und Englisch."
       },
       {
         "id": 8,
@@ -8207,49 +8109,49 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 29.56,
         "end": 31.64,
         "duration": 2.08,
-        "text": "- Und die Sprachkurse?"
+        "text": "Und die Sprachkurse?"
       },
       {
         "id": 10,
         "start": 32.12,
         "end": 35.56,
         "duration": 3.44,
-        "text": "- Die Sprachkurse sind nur ein Nebenjob. Jetzt brauch ich eine richtige Arbeit."
+        "text": "Die Sprachkurse sind nur ein Nebenjob. Jetzt brauch ich eine richtige Arbeit."
       },
       {
         "id": 11,
         "start": 36.48,
         "end": 37.24,
         "duration": 0.76,
-        "text": "- Viel Erfolg!"
+        "text": "Viel Erfolg!"
       },
       {
         "id": 12,
         "start": 37.28,
         "end": 37.92,
         "duration": 0.64,
-        "text": "- Viel Glück!"
+        "text": "Viel Glück!"
       },
       {
         "id": 13,
         "start": 37.96,
         "end": 38.92,
         "duration": 0.96,
-        "text": "- Danke. Tschüss!"
+        "text": "Danke. Tschüss!"
       },
       {
         "id": 14,
         "start": 38.96,
         "end": 40.4,
         "duration": 1.44,
-        "text": "- Ciao, Lisa!"
+        "text": "Ciao, Lisa!"
       },
       {
         "id": 15,
         "start": 40.48,
         "end": 41.76,
         "duration": 1.28,
-        "text": "- Arbeitest du schon?"
+        "text": "Arbeitest du schon?"
       },
       {
         "id": 16,
@@ -8270,14 +8172,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 48.68,
         "end": 51.0,
         "duration": 2.32,
-        "text": "- Meine Eltern sagen, Ingenieur ist gut."
+        "text": "Meine Eltern sagen, Ingenieur ist gut."
       },
       {
         "id": 19,
         "start": 52.16,
         "end": 53.4,
         "duration": 1.24,
-        "text": "- Und du?"
+        "text": "Und du?"
       },
       {
         "id": 20,
@@ -8291,14 +8193,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 57.4,
         "end": 60.08,
         "duration": 2.68,
-        "text": "- Das verstehe ich nicht. Du hast doch ein Restaurant."
+        "text": "Das verstehe ich nicht. Du hast doch ein Restaurant."
       },
       {
         "id": 22,
         "start": 60.12,
         "end": 62.24,
         "duration": 2.12,
-        "text": "- Stimmt. Zusammen mit Tarek."
+        "text": "Stimmt. Zusammen mit Tarek."
       },
       {
         "id": 23,
@@ -8312,14 +8214,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 65.6,
         "end": 66.92,
         "duration": 1.32,
-        "text": "- Warum?"
+        "text": "Warum?"
       },
       {
         "id": 25,
         "start": 67.88,
         "end": 72.68,
         "duration": 4.8,
-        "text": "- Na ja, wir finden die Arbeit im Restaurant interessant. Es macht Spaß."
+        "text": "Na ja, wir finden die Arbeit im Restaurant interessant. Es macht Spaß."
       },
       {
         "id": 26,
@@ -8333,14 +8235,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 76.4,
         "end": 78.16,
         "duration": 1.76,
-        "text": "- Du arbeitest also gerne im Restaurant."
+        "text": "Du arbeitest also gerne im Restaurant."
       },
       {
         "id": 28,
         "start": 78.28,
         "end": 80.56,
         "duration": 2.28,
-        "text": "- Ja. Ich mag meine Arbeit."
+        "text": "Ja. Ich mag meine Arbeit."
       },
       {
         "id": 29,
@@ -8354,7 +8256,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 83.76,
         "end": 85.48,
         "duration": 1.72,
-        "text": "- Klar mag ich meinen Job."
+        "text": "Klar mag ich meinen Job."
       },
       {
         "id": 31,
@@ -8382,70 +8284,70 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 9.24,
         "end": 11.4,
         "duration": 2.16,
-        "text": "- Tschüss, ihr Lieben! Der Fisch war sehr lecker."
+        "text": "Tschüss, ihr Lieben! Der Fisch war sehr lecker."
       },
       {
         "id": 2,
         "start": 11.44,
         "end": 13.68,
         "duration": 2.24,
-        "text": "- Das freut uns. Wir sehen uns nächste Woche beim Fußball."
+        "text": "Das freut uns. Wir sehen uns nächste Woche beim Fußball."
       },
       {
         "id": 3,
         "start": 13.72,
         "end": 15.36,
         "duration": 1.64,
-        "text": "- Ja, bis dann! Am Freitag um eins."
+        "text": "Ja, bis dann! Am Freitag um eins."
       },
       {
         "id": 4,
         "start": 15.44,
         "end": 17.56,
         "duration": 2.12,
-        "text": "- Nein, Yanis, wir sehen uns am Freitag um zwei."
+        "text": "Nein, Yanis, wir sehen uns am Freitag um zwei."
       },
       {
         "id": 5,
         "start": 24.04,
         "end": 24.72,
         "duration": 0.68,
-        "text": "- Max?"
+        "text": "Max?"
       },
       {
         "id": 6,
         "start": 24.76,
         "end": 25.6,
         "duration": 0.84,
-        "text": "- Ja?"
+        "text": "Ja?"
       },
       {
         "id": 7,
         "start": 26.28,
         "end": 28.4,
         "duration": 2.12,
-        "text": "- Was muss ein Bankkaufmann machen?"
+        "text": "Was muss ein Bankkaufmann machen?"
       },
       {
         "id": 8,
         "start": 28.44,
         "end": 30.08,
         "duration": 1.64,
-        "text": "- Ein Bankkaufmann?"
+        "text": "Ein Bankkaufmann?"
       },
       {
         "id": 9,
         "start": 32.28,
         "end": 33.52,
         "duration": 1.24,
-        "text": "- Geld zählen?"
+        "text": "Geld zählen?"
       },
       {
         "id": 10,
         "start": 33.56,
         "end": 36.2,
         "duration": 2.64,
-        "text": "- Ja, manchmal muss ein Bankkaufmann auch Geld zählen."
+        "text": "Ja, manchmal muss ein Bankkaufmann auch Geld zählen."
       },
       {
         "id": 11,
@@ -8466,35 +8368,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 42.64,
         "end": 43.92,
         "duration": 1.28,
-        "text": "- Ah, okay."
+        "text": "Ah, okay."
       },
       {
         "id": 14,
         "start": 43.96,
         "end": 46.12,
         "duration": 2.16,
-        "text": "- Es ist viel Büroarbeit."
+        "text": "Es ist viel Büroarbeit."
       },
       {
         "id": 15,
         "start": 47.68,
         "end": 49.08,
         "duration": 1.4,
-        "text": "- Büroarbeit?"
+        "text": "Büroarbeit?"
       },
       {
         "id": 16,
         "start": 49.12,
         "end": 50.96,
         "duration": 1.84,
-        "text": "- Ja, Büroarbeit."
+        "text": "Ja, Büroarbeit."
       },
       {
         "id": 17,
         "start": 51.44,
         "end": 53.4,
         "duration": 1.96,
-        "text": "Du musst zum Beispiel …"
+        "text": "Du musst zum Beispiel"
       },
       {
         "id": 18,
@@ -8515,42 +8417,42 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 60.72,
         "end": 62.32,
         "duration": 1.6,
-        "text": "- Das müssen wir im Restaurant auch."
+        "text": "Das müssen wir im Restaurant auch."
       },
       {
         "id": 21,
         "start": 62.36,
         "end": 64.2,
         "duration": 1.84,
-        "text": "- Ja, aber nicht immer."
+        "text": "Ja, aber nicht immer."
       },
       {
         "id": 22,
         "start": 64.8,
         "end": 65.72,
         "duration": 0.92,
-        "text": "- Und ein Elektriker?"
+        "text": "Und ein Elektriker?"
       },
       {
         "id": 23,
         "start": 66.2,
         "end": 71.24,
         "duration": 5.04,
-        "text": "- Ein Elektriker muss Geräte installieren oder er repariert etwas."
+        "text": "Ein Elektriker muss Geräte installieren oder er repariert etwas."
       },
       {
         "id": 24,
         "start": 71.96,
         "end": 73.04,
         "duration": 1.08,
-        "text": "- Das klingt cool!"
+        "text": "Das klingt cool!"
       },
       {
         "id": 25,
         "start": 73.08,
         "end": 74.48,
         "duration": 1.4,
-        "text": "- Das ist es auch."
+        "text": "Das ist es auch."
       },
       {
         "id": 26,
@@ -8564,21 +8466,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 79.56,
         "end": 83.76,
         "duration": 4.2,
-        "text": "- Ja. Wir müssen viel arbeiten. Aber die Arbeit ist super."
+        "text": "Ja. Wir müssen viel arbeiten. Aber die Arbeit ist super."
       },
       {
         "id": 28,
         "start": 84.16,
         "end": 84.8,
         "duration": 0.64,
-        "text": "- Cool."
+        "text": "Cool."
       },
       {
         "id": 29,
         "start": 85.2,
         "end": 86.76,
         "duration": 1.56,
-        "text": "- Was ist das denn?"
+        "text": "Was ist das denn?"
       },
       {
         "id": 30,
@@ -8592,14 +8494,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 92.72,
         "end": 95.48,
         "duration": 2.76,
-        "text": "- Ja, na los! Bringt Lisa die Mappe!"
+        "text": "Ja, na los! Bringt Lisa die Mappe!"
       },
       {
         "id": 32,
         "start": 95.68,
         "end": 96.6,
         "duration": 0.92,
-        "text": "- Komm!"
+        "text": "Komm!"
       }
     ]
   },
@@ -8620,28 +8522,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 10.28,
         "end": 13.6,
         "duration": 3.32,
-        "text": "- Hallo, guten Tag. Ich suche Lisa Brunner."
+        "text": "Hallo, guten Tag. Ich suche Lisa Brunner."
       },
       {
         "id": 2,
         "start": 14.0,
         "end": 15.6,
         "duration": 1.6,
-        "text": "- Entschuldigung, wen suchen Sie?"
+        "text": "Entschuldigung, wen suchen Sie?"
       },
       {
         "id": 3,
         "start": 15.64,
         "end": 16.52,
         "duration": 0.88,
-        "text": "- Lisa Brunner."
+        "text": "Lisa Brunner."
       },
       {
         "id": 4,
         "start": 16.56,
         "end": 19.68,
         "duration": 3.12,
-        "text": "- Hallo, Max Stöpel mein Name. Wir suchen eine Lisa Brunner."
+        "text": "Hallo, Max Stöpel mein Name. Wir suchen eine Lisa Brunner."
       },
       {
         "id": 5,
@@ -8655,21 +8557,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 21.68,
         "end": 26.04,
         "duration": 4.36,
-        "text": "- Also, die Bewerbungsgespräche finden normalerweise im Besprechungsraum statt."
+        "text": "Also, die Bewerbungsgespräche finden normalerweise im Besprechungsraum statt."
       },
       {
         "id": 7,
         "start": 26.08,
         "end": 28.0,
         "duration": 1.92,
-        "text": "- Wo finden wir den Besprechungsraum?"
+        "text": "Wo finden wir den Besprechungsraum?"
       },
       {
         "id": 8,
         "start": 28.04,
         "end": 29.4,
         "duration": 1.36,
-        "text": "- In der dritten Etage."
+        "text": "In der dritten Etage."
       },
       {
         "id": 9,
@@ -8697,14 +8599,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 36.28,
         "end": 37.36,
         "duration": 1.08,
-        "text": "- Aha."
+        "text": "Aha."
       },
       {
         "id": 13,
         "start": 37.6,
         "end": 40.8,
         "duration": 3.2,
-        "text": "- Sie nehmen den Aufzug, fahren in die vierte Etage."
+        "text": "Sie nehmen den Aufzug, fahren in die vierte Etage."
       },
       {
         "id": 14,
@@ -8732,21 +8634,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 49.96,
         "end": 52.64,
         "duration": 2.68,
-        "text": "- 431. Vielen Dank!"
+        "text": "431. Vielen Dank!"
       },
       {
         "id": 18,
         "start": 54.4,
         "end": 58.56,
         "duration": 4.16,
-        "text": "- 431, 431, wo ist die 431?"
+        "text": "431, 431, wo ist die 431?"
       },
       {
         "id": 19,
         "start": 58.84,
         "end": 60.44,
         "duration": 1.6,
-        "text": "- Da, ein Lageplan!"
+        "text": "Da, ein Lageplan!"
       },
       {
         "id": 20,
@@ -8760,21 +8662,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 65.52,
         "end": 67.08,
         "duration": 1.56,
-        "text": "- Da. Zwischen den …"
+        "text": "Da. Zwischen den"
       },
       {
         "id": 22,
         "start": 67.12,
         "end": 71.52,
         "duration": 4.4,
-        "text": "- … Konferenzräumen. Da lang!"
+        "text": "Konferenzräumen. Da lang!"
       },
       {
         "id": 23,
         "start": 73.92,
         "end": 75.68,
         "duration": 1.76,
-        "text": "- Nein, da lang!"
+        "text": "Nein, da lang!"
       },
       {
         "id": 24,
@@ -8788,14 +8690,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 79.64,
         "end": 81.48,
         "duration": 1.84,
-        "text": "- Du hast deine Bewerbungsunterlagen vergessen."
+        "text": "Du hast deine Bewerbungsunterlagen vergessen."
       },
       {
         "id": 26,
         "start": 81.52,
         "end": 84.96,
         "duration": 3.44,
-        "text": "- Oh mein Gott! Ihr seid meine Retter! Danke, danke, danke, danke!"
+        "text": "Oh mein Gott! Ihr seid meine Retter! Danke, danke, danke, danke!"
       }
     ]
   },
@@ -8816,7 +8718,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 35.52,
         "end": 37.08,
         "duration": 1.56,
-        "text": "- Du bist so still."
+        "text": "Du bist so still."
       },
       {
         "id": 2,
@@ -8830,7 +8732,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 50.36,
         "end": 53.16,
         "duration": 2.8,
-        "text": "- Ich will nicht mehr studieren. Nie wieder."
+        "text": "Ich will nicht mehr studieren. Nie wieder."
       },
       {
         "id": 4,
@@ -8844,14 +8746,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 56.4,
         "end": 57.56,
         "duration": 1.16,
-        "text": "- Aber?"
+        "text": "Aber?"
       },
       {
         "id": 6,
         "start": 59.16,
         "end": 60.88,
         "duration": 1.72,
-        "text": "- Aber meine Eltern wollen das."
+        "text": "Aber meine Eltern wollen das."
       },
       {
         "id": 7,
@@ -8865,14 +8767,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 63.88,
         "end": 65.72,
         "duration": 1.84,
-        "text": "- Bist du deshalb in Deutschland?"
+        "text": "Bist du deshalb in Deutschland?"
       },
       {
         "id": 9,
         "start": 68.0,
         "end": 69.76,
         "duration": 1.76,
-        "text": "- Ich will weg von zu Hause."
+        "text": "Ich will weg von zu Hause."
       },
       {
         "id": 10,
@@ -8886,28 +8788,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 72.72,
         "end": 74.64,
         "duration": 1.92,
-        "text": "- Und was willst du hier machen?"
+        "text": "Und was willst du hier machen?"
       },
       {
         "id": 12,
         "start": 83.16,
         "end": 84.48,
         "duration": 1.32,
-        "text": "- Und?"
+        "text": "Und?"
       },
       {
         "id": 13,
         "start": 85.56,
         "end": 86.44,
         "duration": 0.88,
-        "text": "- Ich hab den Job!"
+        "text": "Ich hab den Job!"
       },
       {
         "id": 14,
         "start": 86.48,
         "end": 87.76,
         "duration": 1.28,
-        "text": "- Ja!"
+        "text": "Ja!"
       }
     ]
   },
@@ -8928,14 +8830,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 8.68,
         "end": 11.04,
         "duration": 2.36,
-        "text": "- Vielen Dank für die Sachen. Ich gebe sie dir bald zurück, ja?"
+        "text": "Vielen Dank für die Sachen. Ich gebe sie dir bald zurück, ja?"
       },
       {
         "id": 2,
         "start": 11.08,
         "end": 11.88,
         "duration": 0.8,
-        "text": "- Gerne, Nico."
+        "text": "Gerne, Nico."
       },
       {
         "id": 3,
@@ -8956,7 +8858,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 17.04,
         "end": 18.96,
         "duration": 1.92,
-        "text": "- Auf jeden Fall. Danke! - Ja!"
+        "text": "Auf jeden Fall. Danke! Ja!"
       },
       {
         "id": 6,
@@ -8970,91 +8872,91 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 23.08,
         "end": 26.92,
         "duration": 3.84,
-        "text": "Lisa, was brauchen wir? Sonnencreme, Saft …"
+        "text": "Lisa, was brauchen wir? Sonnencreme, Saft"
       },
       {
         "id": 8,
         "start": 26.96,
         "end": 28.56,
         "duration": 1.6,
-        "text": "- Wo kaufst du ein?"
+        "text": "Wo kaufst du ein?"
       },
       {
         "id": 9,
         "start": 28.76,
         "end": 31.2,
         "duration": 2.44,
-        "text": "- Ich kaufe im Supermarkt um die Ecke ein."
+        "text": "Ich kaufe im Supermarkt um die Ecke ein."
       },
       {
         "id": 10,
         "start": 31.24,
         "end": 33.08,
         "duration": 1.84,
-        "text": "- Ja, dann bring doch bitte noch Wasser mit."
+        "text": "Ja, dann bring doch bitte noch Wasser mit."
       },
       {
         "id": 11,
         "start": 33.12,
         "end": 34.4,
         "duration": 1.28,
-        "text": "- Okay!"
+        "text": "Okay!"
       },
       {
         "id": 12,
         "start": 49.24,
         "end": 50.32,
         "duration": 1.08,
-        "text": "- Emma?"
+        "text": "Emma?"
       },
       {
         "id": 13,
         "start": 50.36,
         "end": 51.68,
         "duration": 1.32,
-        "text": "- Ja?"
+        "text": "Ja?"
       },
       {
         "id": 14,
         "start": 52.6,
         "end": 54.32,
         "duration": 1.72,
-        "text": "- Ich habe ein Geschenk für dich!"
+        "text": "Ich habe ein Geschenk für dich!"
       },
       {
         "id": 15,
         "start": 54.36,
         "end": 54.76,
         "duration": 0.4,
-        "text": "- Echt?"
+        "text": "Echt?"
       },
       {
         "id": 16,
         "start": 54.8,
         "end": 56.0,
         "duration": 1.2,
-        "text": "- Mhm! - Cool!"
+        "text": "Mhm! Cool!"
       },
       {
         "id": 17,
         "start": 60.28,
         "end": 61.24,
         "duration": 0.96,
-        "text": "- Dein Bild!"
+        "text": "Dein Bild!"
       },
       {
         "id": 18,
         "start": 61.32,
         "end": 63.24,
         "duration": 1.92,
-        "text": "- Ja, für dich!"
+        "text": "Ja, für dich!"
       },
       {
         "id": 19,
         "start": 63.8,
         "end": 66.32,
         "duration": 2.52,
-        "text": "- Ich habe auch ein Geschenk für dich."
+        "text": "Ich habe auch ein Geschenk für dich."
       },
       {
         "id": 20,
@@ -9075,21 +8977,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 77.28,
         "end": 78.44,
         "duration": 1.16,
-        "text": "- Danke, Emma!"
+        "text": "Danke, Emma!"
       },
       {
         "id": 23,
         "start": 78.48,
         "end": 80.36,
         "duration": 1.88,
-        "text": "- Wo wohnst du jetzt?"
+        "text": "Wo wohnst du jetzt?"
       },
       {
         "id": 24,
         "start": 80.4,
         "end": 82.28,
         "duration": 1.88,
-        "text": "- Ich wohne bei Frau Kohlhaas."
+        "text": "Ich wohne bei Frau Kohlhaas."
       },
       {
         "id": 25,
@@ -9103,21 +9005,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 84.56,
         "end": 86.84,
         "duration": 2.28,
-        "text": "- Kälberstraße? Wo ist das?"
+        "text": "Kälberstraße? Wo ist das?"
       },
       {
         "id": 27,
         "start": 93.52,
         "end": 95.04,
         "duration": 1.52,
-        "text": "- Hier, da!"
+        "text": "Hier, da!"
       },
       {
         "id": 28,
         "start": 96.48,
         "end": 98.68,
         "duration": 2.2,
-        "text": "- Da ist der Friedensplatz."
+        "text": "Da ist der Friedensplatz."
       },
       {
         "id": 29,
@@ -9145,7 +9047,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 107.48,
         "end": 110.56,
         "duration": 3.08,
-        "text": "- Und hier ist die Polizeistation. Hier arbeitet Opa."
+        "text": "Und hier ist die Polizeistation. Hier arbeitet Opa."
       },
       {
         "id": 33,
@@ -9173,21 +9075,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 10.84,
         "end": 13.36,
         "duration": 2.52,
-        "text": "- Oh, Emma, Vorsicht!"
+        "text": "Oh, Emma, Vorsicht!"
       },
       {
         "id": 2,
         "start": 13.56,
         "end": 14.64,
         "duration": 1.08,
-        "text": "- Hallo, Papa!"
+        "text": "Hallo, Papa!"
       },
       {
         "id": 3,
         "start": 14.68,
         "end": 16.44,
         "duration": 1.76,
-        "text": "- Hallo, Lisa!"
+        "text": "Hallo, Lisa!"
       },
       {
         "id": 4,
@@ -9201,70 +9103,70 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 19.2,
         "end": 20.72,
         "duration": 1.52,
-        "text": "- Ja! Das machen wir jetzt öfter."
+        "text": "Ja! Das machen wir jetzt öfter."
       },
       {
         "id": 6,
         "start": 20.76,
         "end": 22.4,
         "duration": 1.64,
-        "text": "- Ja klar!"
+        "text": "Ja klar!"
       },
       {
         "id": 7,
         "start": 23.24,
         "end": 25.2,
         "duration": 1.96,
-        "text": "- Herr González. Wie geht es Ihnen?"
+        "text": "Herr González. Wie geht es Ihnen?"
       },
       {
         "id": 8,
         "start": 25.24,
         "end": 26.96,
         "duration": 1.72,
-        "text": "- Es geht mir gut, danke!"
+        "text": "Es geht mir gut, danke!"
       },
       {
         "id": 9,
         "start": 27.0,
         "end": 29.2,
         "duration": 2.2,
-        "text": "- Hallo, haben Sie Nicos Tasche gefunden?"
+        "text": "Hallo, haben Sie Nicos Tasche gefunden?"
       },
       {
         "id": 10,
         "start": 29.24,
         "end": 32.2,
         "duration": 2.96,
-        "text": "- Leider nicht. Aber ich hab den Fahrradladen gefunden."
+        "text": "Leider nicht. Aber ich hab den Fahrradladen gefunden."
       },
       {
         "id": 11,
         "start": 32.24,
         "end": 33.0,
         "duration": 0.76,
-        "text": "- Was?"
+        "text": "Was?"
       },
       {
         "id": 12,
         "start": 33.04,
         "end": 36.8,
         "duration": 3.76,
-        "text": "- Ja. Es gibt zumindest eine Yara González, die einen Fahrradladen hat."
+        "text": "Ja. Es gibt zumindest eine Yara González, die einen Fahrradladen hat."
       },
       {
         "id": 13,
         "start": 36.92,
         "end": 38.72,
         "duration": 1.8,
-        "text": "- Ja, das ist sie!"
+        "text": "Ja, das ist sie!"
       },
       {
         "id": 14,
         "start": 38.76,
         "end": 42.28,
         "duration": 3.52,
-        "text": "- Der Fahrradladen ist in der Adalbert-Stifter-Straße 43."
+        "text": "Der Fahrradladen ist in der Adalbert-Stifter-Straße 43."
       },
       {
         "id": 15,
@@ -9278,14 +9180,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 45.24,
         "end": 45.8,
         "duration": 0.56,
-        "text": "- Und?"
+        "text": "Und?"
       },
       {
         "id": 17,
         "start": 45.88,
         "end": 47.32,
         "duration": 1.44,
-        "text": "- Ich war da."
+        "text": "Ich war da."
       },
       {
         "id": 18,
@@ -9299,28 +9201,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 49.64,
         "end": 50.52,
         "duration": 0.88,
-        "text": "- Ja!"
+        "text": "Ja!"
       },
       {
         "id": 20,
         "start": 51.76,
         "end": 53.72,
         "duration": 1.96,
-        "text": "- Und wie kommen wir da hin?"
+        "text": "Und wie kommen wir da hin?"
       },
       {
         "id": 21,
         "start": 53.76,
         "end": 56.4,
         "duration": 2.64,
-        "text": "- Zuerst fahrt ihr mit dem Bus bis zum Grafenplatz."
+        "text": "Zuerst fahrt ihr mit dem Bus bis zum Grafenplatz."
       },
       {
         "id": 22,
         "start": 56.44,
         "end": 58.56,
         "duration": 2.12,
-        "text": "- Mit dem Bus zum Grafenplatz."
+        "text": "Mit dem Bus zum Grafenplatz."
       },
       {
         "id": 23,
@@ -9334,21 +9236,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 60.0,
         "end": 63.04,
         "duration": 3.04,
-        "text": "- Dann geht ihr über den Grafenplatz und kommt in die Krugstraße."
+        "text": "Dann geht ihr über den Grafenplatz und kommt in die Krugstraße."
       },
       {
         "id": 25,
         "start": 63.48,
         "end": 64.72,
         "duration": 1.24,
-        "text": "- In die Krugstraße?"
+        "text": "In die Krugstraße?"
       },
       {
         "id": 26,
         "start": 64.76,
         "end": 65.72,
         "duration": 0.96,
-        "text": "- Ja, genau."
+        "text": "Ja, genau."
       },
       {
         "id": 27,
@@ -9376,28 +9278,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 76.36,
         "end": 77.6,
         "duration": 1.24,
-        "text": "- Ja, ja. Das ist nicht weit."
+        "text": "Ja, ja. Das ist nicht weit."
       },
       {
         "id": 31,
         "start": 77.64,
         "end": 81.44,
         "duration": 3.8,
-        "text": "Am Theater vorbei und dann die zweite Ampel rechts …"
+        "text": "Am Theater vorbei und dann die zweite Ampel rechts"
       },
       {
         "id": 32,
         "start": 81.48,
         "end": 82.88,
         "duration": 1.4,
-        "text": "- [Nein], noch mal …"
+        "text": "noch mal"
       },
       {
         "id": 33,
         "start": 82.92,
         "end": 85.4,
         "duration": 2.48,
-        "text": "- Nein, Papa, schon okay. Ich schau im Handy nach."
+        "text": "Nein, Papa, schon okay. Ich schau im Handy nach."
       },
       {
         "id": 34,
@@ -9432,14 +9334,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 97.92,
         "end": 98.64,
         "duration": 0.72,
-        "text": "- Okay!"
+        "text": "Okay!"
       },
       {
         "id": 39,
         "start": 99.36,
         "end": 101.08,
         "duration": 1.72,
-        "text": "- Alles klar! Los geht’s!"
+        "text": "Alles klar! Los geht’s!"
       }
     ]
   },
@@ -9460,28 +9362,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 6.88,
         "end": 8.96,
         "duration": 2.08,
-        "text": "- So, hier. Hier ist Yaras Fahrradladen."
+        "text": "So, hier. Hier ist Yaras Fahrradladen."
       },
       {
         "id": 2,
         "start": 9.0,
         "end": 9.92,
         "duration": 0.92,
-        "text": "- Also dann …"
+        "text": "Also dann"
       },
       {
         "id": 3,
         "start": 11.0,
         "end": 13.68,
         "duration": 2.68,
-        "text": "- Und wie kommt ihr jetzt nach Hause? Fahrt ihr nicht mit dem Bus?"
+        "text": "Und wie kommt ihr jetzt nach Hause? Fahrt ihr nicht mit dem Bus?"
       },
       {
         "id": 4,
         "start": 13.72,
         "end": 17.0,
         "duration": 3.28,
-        "text": "- Wir fahren mit der U-Bahn bis zur Uni. Den Rest gehen wir dann zu Fuß."
+        "text": "Wir fahren mit der U-Bahn bis zur Uni. Den Rest gehen wir dann zu Fuß."
       },
       {
         "id": 5,
@@ -9495,91 +9397,91 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 18.76,
         "end": 19.8,
         "duration": 1.04,
-        "text": "- Straßenbahn!"
+        "text": "Straßenbahn!"
       },
       {
         "id": 7,
         "start": 19.84,
         "end": 23.52,
         "duration": 3.68,
-        "text": "- Okay, also, die nächste Haltestelle ist direkt hinter der Kreuzung."
+        "text": "Okay, also, die nächste Haltestelle ist direkt hinter der Kreuzung."
       },
       {
         "id": 8,
         "start": 23.56,
         "end": 25.4,
         "duration": 1.84,
-        "text": "- Ja, das weiß ich doch, das weiß ich doch. - Die nächste Straße links und ..."
+        "text": "Ja, das weiß ich doch, das weiß ich doch. Die nächste Straße links und"
       },
       {
         "id": 9,
         "start": 25.44,
         "end": 27.0,
         "duration": 1.56,
-        "text": "- Emma, du musst dich jetzt verabschieden."
+        "text": "Emma, du musst dich jetzt verabschieden."
       },
       {
         "id": 10,
         "start": 27.04,
         "end": 28.56,
         "duration": 1.52,
-        "text": "- Muss ich?"
+        "text": "Muss ich?"
       },
       {
         "id": 11,
         "start": 30.4,
         "end": 33.32,
         "duration": 2.92,
-        "text": "- Tschüss, Emma. Es war hoffentlich schön bei mir. Kommst du bald wieder?"
+        "text": "Tschüss, Emma. Es war hoffentlich schön bei mir. Kommst du bald wieder?"
       },
       {
         "id": 12,
         "start": 33.36,
         "end": 35.48,
         "duration": 2.12,
-        "text": "- Ja! Bei dir ist es immer cool."
+        "text": "Ja! Bei dir ist es immer cool."
       },
       {
         "id": 13,
         "start": 35.56,
         "end": 37.16,
         "duration": 1.6,
-        "text": "- Okay. Tschüss."
+        "text": "Okay. Tschüss."
       },
       {
         "id": 14,
         "start": 39.16,
         "end": 41.08,
         "duration": 1.92,
-        "text": "- Sehen wir uns wieder?"
+        "text": "Sehen wir uns wieder?"
       },
       {
         "id": 15,
         "start": 41.64,
         "end": 43.12,
         "duration": 1.48,
-        "text": "- Ich weiß es nicht."
+        "text": "Ich weiß es nicht."
       },
       {
         "id": 16,
         "start": 49.2,
         "end": 50.96,
         "duration": 1.76,
-        "text": "- Viel Glück!"
+        "text": "Viel Glück!"
       },
       {
         "id": 17,
         "start": 51.04,
         "end": 52.4,
         "duration": 1.36,
-        "text": "- Danke!"
+        "text": "Danke!"
       },
       {
         "id": 18,
         "start": 53.16,
         "end": 55.08,
         "duration": 1.92,
-        "text": "- Ciao! - Tschüss!"
+        "text": "Ciao! Tschüss!"
       }
     ]
   },
@@ -9600,49 +9502,49 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 11.76,
         "end": 13.28,
         "duration": 1.52,
-        "text": "- Hast du schon im Schrank geschaut?"
+        "text": "Hast du schon im Schrank geschaut?"
       },
       {
         "id": 2,
         "start": 13.32,
         "end": 14.44,
         "duration": 1.12,
-        "text": "- Ja."
+        "text": "Ja."
       },
       {
         "id": 3,
         "start": 14.64,
         "end": 19.0,
         "duration": 4.36,
-        "text": "- Vielleicht unter der Tastatur oder hinter dem Drucker?"
+        "text": "Vielleicht unter der Tastatur oder hinter dem Drucker?"
       },
       {
         "id": 4,
         "start": 24.04,
         "end": 25.4,
         "duration": 1.36,
-        "text": "- Nichts!"
+        "text": "Nichts!"
       },
       {
         "id": 5,
         "start": 26.24,
         "end": 29.72,
         "duration": 3.48,
-        "text": "- Hier im Regal sehe ich auch nichts."
+        "text": "Hier im Regal sehe ich auch nichts."
       },
       {
         "id": 6,
         "start": 29.84,
         "end": 31.76,
         "duration": 1.92,
-        "text": "- Dann ist es wohl nicht da."
+        "text": "Dann ist es wohl nicht da."
       },
       {
         "id": 7,
         "start": 31.8,
         "end": 34.04,
         "duration": 2.24,
-        "text": "- Doch, es muss da sein, ganz sicher."
+        "text": "Doch, es muss da sein, ganz sicher."
       },
       {
         "id": 8,
@@ -9663,56 +9565,56 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 54.2,
         "end": 56.24,
         "duration": 2.04,
-        "text": "- Das ist der Fahrradladen!"
+        "text": "Das ist der Fahrradladen!"
       },
       {
         "id": 11,
         "start": 59.44,
         "end": 62.32,
         "duration": 2.88,
-        "text": "- Ja, stimmt. Aber vorübergehend geschlossen …"
+        "text": "Ja, stimmt. Aber vorübergehend geschlossen"
       },
       {
         "id": 12,
         "start": 62.36,
         "end": 63.6,
         "duration": 1.24,
-        "text": "- Geschlossen?"
+        "text": "Geschlossen?"
       },
       {
         "id": 13,
         "start": 63.92,
         "end": 66.48,
         "duration": 2.56,
-        "text": "- Ja, zu. Geschlossen. Yara ist nicht da."
+        "text": "Ja, zu. Geschlossen. Yara ist nicht da."
       },
       {
         "id": 14,
         "start": 68.04,
         "end": 69.76,
         "duration": 1.72,
-        "text": "- Aber das kann nicht sein. Wo ist Yara?"
+        "text": "Aber das kann nicht sein. Wo ist Yara?"
       },
       {
         "id": 15,
         "start": 71.88,
         "end": 73.24,
         "duration": 1.36,
-        "text": "- Endlich!"
+        "text": "Endlich!"
       },
       {
         "id": 16,
         "start": 73.28,
         "end": 74.96,
         "duration": 1.68,
-        "text": "- Und die Quittung bitte."
+        "text": "Und die Quittung bitte."
       },
       {
         "id": 17,
         "start": 77.08,
         "end": 78.96,
         "duration": 1.88,
-        "text": "- Schönen Tag noch."
+        "text": "Schönen Tag noch."
       }
     ]
   },
@@ -9733,7 +9635,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 10.12,
         "end": 11.0,
         "duration": 0.88,
-        "text": "- So!"
+        "text": "So!"
       },
       {
         "id": 2,
@@ -9768,14 +9670,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 33.96,
         "end": 39.52,
         "duration": 5.56,
-        "text": "So! Jetzt ... das hier ist das Obst."
+        "text": "So! Jetzt das hier ist das Obst."
       },
       {
         "id": 7,
         "start": 39.56,
         "end": 48.28,
         "duration": 8.72,
-        "text": "Die Äpfel … Die Orangen und die Birnen kommen auf den Teller."
+        "text": "Die Äpfel Die Orangen und die Birnen kommen auf den Teller."
       },
       {
         "id": 8,
@@ -9866,56 +9768,56 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 15.64,
         "end": 17.96,
         "duration": 2.32,
-        "text": "- Hallo, ihr Lieben. Kommt rein!"
+        "text": "Hallo, ihr Lieben. Kommt rein!"
       },
       {
         "id": 2,
         "start": 18.0,
         "end": 18.52,
         "duration": 0.52,
-        "text": "- Hallo!"
+        "text": "Hallo!"
       },
       {
         "id": 3,
         "start": 18.56,
         "end": 19.32,
         "duration": 0.76,
-        "text": "- Danke schön!"
+        "text": "Danke schön!"
       },
       {
         "id": 4,
         "start": 19.36,
         "end": 21.72,
         "duration": 2.36,
-        "text": "- Wo sind deine Sachen? Ist das alles?"
+        "text": "Wo sind deine Sachen? Ist das alles?"
       },
       {
         "id": 5,
         "start": 21.76,
         "end": 22.28,
         "duration": 0.52,
-        "text": "- Ja."
+        "text": "Ja."
       },
       {
         "id": 6,
         "start": 22.32,
         "end": 24.0,
         "duration": 1.68,
-        "text": "- Ach herrje!"
+        "text": "Ach herrje!"
       },
       {
         "id": 7,
         "start": 24.04,
         "end": 26.76,
         "duration": 2.72,
-        "text": "- Danke noch mal, dass Nico ein paar Tage bei Ihnen wohnen kann."
+        "text": "Danke noch mal, dass Nico ein paar Tage bei Ihnen wohnen kann."
       },
       {
         "id": 8,
         "start": 26.8,
         "end": 28.76,
         "duration": 1.96,
-        "text": "- Ja, ja. Das ist doch kein Problem."
+        "text": "Ja, ja. Das ist doch kein Problem."
       },
       {
         "id": 9,
@@ -9929,7 +9831,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 30.96,
         "end": 35.48,
         "duration": 4.52,
-        "text": "- Ich muss leider sofort wieder gehen. Ich fahre heute noch in Urlaub."
+        "text": "Ich muss leider sofort wieder gehen. Ich fahre heute noch in Urlaub."
       },
       {
         "id": 11,
@@ -9943,21 +9845,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 38.8,
         "end": 41.8,
         "duration": 3.0,
-        "text": "- Okay. Danke, Lisa, für alles."
+        "text": "Okay. Danke, Lisa, für alles."
       },
       {
         "id": 13,
         "start": 42.32,
         "end": 43.12,
         "duration": 0.8,
-        "text": "- Tschüss!"
+        "text": "Tschüss!"
       },
       {
         "id": 14,
         "start": 43.16,
         "end": 44.92,
         "duration": 1.76,
-        "text": "- Wiedersehen."
+        "text": "Wiedersehen."
       },
       {
         "id": 15,
@@ -9978,112 +9880,112 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 53.8,
         "end": 56.08,
         "duration": 2.28,
-        "text": "- Schorle? Was ist das?"
+        "text": "Schorle? Was ist das?"
       },
       {
         "id": 18,
         "start": 56.44,
         "end": 60.0,
         "duration": 3.56,
-        "text": "- Das ist Saft mit Mineralwasser."
+        "text": "Das ist Saft mit Mineralwasser."
       },
       {
         "id": 19,
         "start": 61.36,
         "end": 63.0,
         "duration": 1.64,
-        "text": "- Dann nehme ich eine Schorle bitte."
+        "text": "Dann nehme ich eine Schorle bitte."
       },
       {
         "id": 20,
         "start": 63.04,
         "end": 64.12,
         "duration": 1.08,
-        "text": "- Gut."
+        "text": "Gut."
       },
       {
         "id": 21,
         "start": 64.24,
         "end": 66.88,
         "duration": 2.64,
-        "text": "- Möchtest du auch etwas essen?"
+        "text": "Möchtest du auch etwas essen?"
       },
       {
         "id": 22,
         "start": 67.56,
         "end": 68.24,
         "duration": 0.68,
-        "text": "- Jetzt?"
+        "text": "Jetzt?"
       },
       {
         "id": 23,
         "start": 68.28,
         "end": 70.44,
         "duration": 2.16,
-        "text": "- Ja, was magst du denn?"
+        "text": "Ja, was magst du denn?"
       },
       {
         "id": 24,
         "start": 70.48,
         "end": 71.44,
         "duration": 0.96,
-        "text": "- Was gibt es denn?"
+        "text": "Was gibt es denn?"
       },
       {
         "id": 25,
         "start": 71.48,
         "end": 77.68,
         "duration": 6.2,
-        "text": "- Es gibt Fleisch, Fisch und Gemüse. Magst du Karotten?"
+        "text": "Es gibt Fleisch, Fisch und Gemüse. Magst du Karotten?"
       },
       {
         "id": 26,
         "start": 77.76,
         "end": 78.84,
         "duration": 1.08,
-        "text": "- Karotten …"
+        "text": "Karotten"
       },
       {
         "id": 27,
         "start": 78.88,
         "end": 81.36,
         "duration": 2.48,
-        "text": "- Ich esse gerne Karotten. Und du?"
+        "text": "Ich esse gerne Karotten. Und du?"
       },
       {
         "id": 28,
         "start": 81.4,
         "end": 84.64,
         "duration": 3.24,
-        "text": "- Ich esse auch gern Karotten, aber Tomaten …"
+        "text": "Ich esse auch gern Karotten, aber Tomaten"
       },
       {
         "id": 29,
         "start": 84.96,
         "end": 88.12,
         "duration": 3.16,
-        "text": "- Du isst lieber Tomaten."
+        "text": "Du isst lieber Tomaten."
       },
       {
         "id": 30,
         "start": 88.56,
         "end": 90.92,
         "duration": 2.36,
-        "text": "- Ja, ich esse lieber Tomaten."
+        "text": "Ja, ich esse lieber Tomaten."
       },
       {
         "id": 31,
         "start": 90.96,
         "end": 94.6,
         "duration": 3.64,
-        "text": "- Und Kohlrabi? Isst du Kohlrabi am liebsten?"
+        "text": "Und Kohlrabi? Isst du Kohlrabi am liebsten?"
       },
       {
         "id": 32,
         "start": 94.64,
         "end": 98.8,
         "duration": 4.16,
-        "text": "- Nein, ich finde Kohlrabi nicht so lecker."
+        "text": "Nein, ich finde Kohlrabi nicht so lecker."
       }
     ]
   },
@@ -10104,21 +10006,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.28,
         "end": 8.68,
         "duration": 1.4,
-        "text": "- Danke für deine Hilfe!"
+        "text": "Danke für deine Hilfe!"
       },
       {
         "id": 2,
         "start": 8.72,
         "end": 9.72,
         "duration": 1.0,
-        "text": "- Mhm."
+        "text": "Mhm."
       },
       {
         "id": 3,
         "start": 10.12,
         "end": 11.68,
         "duration": 1.56,
-        "text": "- Nico?"
+        "text": "Nico?"
       },
       {
         "id": 4,
@@ -10132,42 +10034,42 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 15.36,
         "end": 16.44,
         "duration": 1.08,
-        "text": "- Abwaschen?"
+        "text": "Abwaschen?"
       },
       {
         "id": 6,
         "start": 16.48,
         "end": 19.92,
         "duration": 3.44,
-        "text": "- Spülen, das Geschirr spülen."
+        "text": "Spülen, das Geschirr spülen."
       },
       {
         "id": 7,
         "start": 19.96,
         "end": 21.88,
         "duration": 1.92,
-        "text": "- Ja, ich möchte lieber abwaschen."
+        "text": "Ja, ich möchte lieber abwaschen."
       },
       {
         "id": 8,
         "start": 21.92,
         "end": 23.76,
         "duration": 1.84,
-        "text": "- Charmant, der junge Mann."
+        "text": "Charmant, der junge Mann."
       },
       {
         "id": 9,
         "start": 23.8,
         "end": 24.24,
         "duration": 0.44,
-        "text": "- Hä?"
+        "text": "Hä?"
       },
       {
         "id": 10,
         "start": 24.28,
         "end": 25.8,
         "duration": 1.52,
-        "text": "- Ach, nichts."
+        "text": "Ach, nichts."
       },
       {
         "id": 11,
@@ -10195,14 +10097,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 35.56,
         "end": 36.88,
         "duration": 1.32,
-        "text": "- Entschuldigung!"
+        "text": "Entschuldigung!"
       },
       {
         "id": 15,
         "start": 36.96,
         "end": 38.92,
         "duration": 1.96,
-        "text": "- Kein Problem."
+        "text": "Kein Problem."
       },
       {
         "id": 16,
@@ -10237,14 +10139,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 58.6,
         "end": 60.96,
         "duration": 2.36,
-        "text": "- Ich mag Hausarbeit auch nicht."
+        "text": "Ich mag Hausarbeit auch nicht."
       },
       {
         "id": 21,
         "start": 61.6,
         "end": 64.48,
         "duration": 2.88,
-        "text": "- Ach, ich hab keine Beutel mehr."
+        "text": "Ach, ich hab keine Beutel mehr."
       },
       {
         "id": 22,
@@ -10286,70 +10188,70 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 10.92,
         "end": 14.52,
         "duration": 3.6,
-        "text": "- So! Zwei Schnitzel à la Tarek."
+        "text": "So! Zwei Schnitzel à la Tarek."
       },
       {
         "id": 2,
         "start": 14.56,
         "end": 16.36,
         "duration": 1.8,
-        "text": "- Danke schön, Max. Sehr nett."
+        "text": "Danke schön, Max. Sehr nett."
       },
       {
         "id": 3,
         "start": 16.4,
         "end": 18.0,
         "duration": 1.6,
-        "text": "- Lasst es euch schmecken."
+        "text": "Lasst es euch schmecken."
       },
       {
         "id": 4,
         "start": 18.24,
         "end": 19.6,
         "duration": 1.36,
-        "text": "- Guten Appetit, Nico."
+        "text": "Guten Appetit, Nico."
       },
       {
         "id": 5,
         "start": 19.64,
         "end": 21.28,
         "duration": 1.64,
-        "text": "- Guten Appetit, Inge."
+        "text": "Guten Appetit, Inge."
       },
       {
         "id": 6,
         "start": 21.32,
         "end": 23.04,
         "duration": 1.72,
-        "text": "- Ich hab gehört, du spielst Fußball?"
+        "text": "Ich hab gehört, du spielst Fußball?"
       },
       {
         "id": 7,
         "start": 23.56,
         "end": 24.44,
         "duration": 0.88,
-        "text": "- Ja, stimmt."
+        "text": "Ja, stimmt."
       },
       {
         "id": 8,
         "start": 25.72,
         "end": 28.68,
         "duration": 2.96,
-        "text": "- Bald spielst du mit uns zusammen Fußball. Nächste Woche!"
+        "text": "Bald spielst du mit uns zusammen Fußball. Nächste Woche!"
       },
       {
         "id": 9,
         "start": 28.92,
         "end": 31.96,
         "duration": 3.04,
-        "text": "- Was machst du denn noch in deiner Freizeit? Joggst du gerne?"
+        "text": "Was machst du denn noch in deiner Freizeit? Joggst du gerne?"
       },
       {
         "id": 10,
         "start": 32.0,
         "end": 33.8,
         "duration": 1.8,
-        "text": "- Nein, ich jogge nicht gern."
+        "text": "Nein, ich jogge nicht gern."
       },
       {
         "id": 11,
@@ -10363,42 +10265,42 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 38.24,
         "end": 41.84,
         "duration": 3.6,
-        "text": "Aber am liebsten mache ich …"
+        "text": "Aber am liebsten mache ich"
       },
       {
         "id": 13,
         "start": 42.76,
         "end": 44.0,
         "duration": 1.24,
-        "text": "das da ..."
+        "text": "das da"
       },
       {
         "id": 14,
         "start": 45.04,
         "end": 47.16,
         "duration": 2.12,
-        "text": "- Angeln? Du angelst gern?"
+        "text": "Angeln? Du angelst gern?"
       },
       {
         "id": 15,
         "start": 47.2,
         "end": 49.64,
         "duration": 2.44,
-        "text": "- Angeln, ja. Ich gehe gern angeln."
+        "text": "Angeln, ja. Ich gehe gern angeln."
       },
       {
         "id": 16,
         "start": 49.68,
         "end": 52.4,
         "duration": 2.72,
-        "text": "- Na, das ist ja was! Ihr beiden angelt doch auch!"
+        "text": "Na, das ist ja was! Ihr beiden angelt doch auch!"
       },
       {
         "id": 17,
         "start": 52.44,
         "end": 53.8,
         "duration": 1.36,
-        "text": "- Wenn wir Zeit haben."
+        "text": "Wenn wir Zeit haben."
       },
       {
         "id": 18,
@@ -10426,7 +10328,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 65.88,
         "end": 66.96,
         "duration": 1.08,
-        "text": "Das war …"
+        "text": "Das war"
       },
       {
         "id": 22,
@@ -10461,42 +10363,42 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 79.96,
         "end": 81.88,
         "duration": 1.92,
-        "text": "Irgendwo müssen die Fotos sein …"
+        "text": "Irgendwo müssen die Fotos sein"
       },
       {
         "id": 27,
         "start": 81.92,
         "end": 83.44,
         "duration": 1.52,
-        "text": "- Das ist Yara!"
+        "text": "Das ist Yara!"
       },
       {
         "id": 28,
         "start": 85.92,
         "end": 87.04,
         "duration": 1.12,
-        "text": "- Du kennst Yara?"
+        "text": "Du kennst Yara?"
       },
       {
         "id": 29,
         "start": 87.08,
         "end": 89.0,
         "duration": 1.92,
-        "text": "- Das ist meine Tante!"
+        "text": "Das ist meine Tante!"
       },
       {
         "id": 30,
         "start": 89.64,
         "end": 91.36,
         "duration": 1.72,
-        "text": "- Yara ist deine Tante?"
+        "text": "Yara ist deine Tante?"
       },
       {
         "id": 31,
         "start": 91.4,
         "end": 93.72,
         "duration": 2.32,
-        "text": "- Ja, meine Tante."
+        "text": "Ja, meine Tante."
       }
     ]
   },
@@ -10517,7 +10419,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 8.44,
         "end": 10.96,
         "duration": 2.52,
-        "text": "- Wir wissen nicht, wo Yara ist."
+        "text": "Wir wissen nicht, wo Yara ist."
       },
       {
         "id": 2,
@@ -10531,14 +10433,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 15.36,
         "end": 17.64,
         "duration": 2.28,
-        "text": "- Du und Tarek, ihr habt den Schlüssel?"
+        "text": "Du und Tarek, ihr habt den Schlüssel?"
       },
       {
         "id": 4,
         "start": 17.68,
         "end": 18.6,
         "duration": 0.92,
-        "text": "- Ja."
+        "text": "Ja."
       },
       {
         "id": 5,
@@ -10559,28 +10461,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 23.64,
         "end": 24.56,
         "duration": 0.92,
-        "text": "- Das ist ja toll!"
+        "text": "Das ist ja toll!"
       },
       {
         "id": 8,
         "start": 24.6,
         "end": 25.4,
         "duration": 0.8,
-        "text": "- Inge!"
+        "text": "Inge!"
       },
       {
         "id": 9,
         "start": 25.44,
         "end": 29.24,
         "duration": 3.8,
-        "text": "- Ich möchte noch ein paar Brötchen kaufen. Kommst du mit, Nico?"
+        "text": "Ich möchte noch ein paar Brötchen kaufen. Kommst du mit, Nico?"
       },
       {
         "id": 10,
         "start": 29.32,
         "end": 31.08,
         "duration": 1.76,
-        "text": "- Könnt ihr mir einen Gefallen tun?"
+        "text": "Könnt ihr mir einen Gefallen tun?"
       },
       {
         "id": 11,
@@ -10601,14 +10503,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 36.2,
         "end": 39.0,
         "duration": 2.8,
-        "text": "- Wir können doch für euch einkaufen gehen, oder, Nico?"
+        "text": "Wir können doch für euch einkaufen gehen, oder, Nico?"
       },
       {
         "id": 14,
         "start": 39.04,
         "end": 40.04,
         "duration": 1.0,
-        "text": "- Vielen Dank!"
+        "text": "Vielen Dank!"
       },
       {
         "id": 15,
@@ -10622,7 +10524,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 43.04,
         "end": 45.24,
         "duration": 2.2,
-        "text": "Oh, und könnt ihr mir noch …"
+        "text": "Oh, und könnt ihr mir noch"
       },
       {
         "id": 17,
@@ -10636,7 +10538,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 49.96,
         "end": 51.56,
         "duration": 1.6,
-        "text": "- Ein Pfund Tomaten?"
+        "text": "Ein Pfund Tomaten?"
       },
       {
         "id": 19,
@@ -10650,98 +10552,98 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 55.52,
         "end": 57.68,
         "duration": 2.16,
-        "text": "- Das ist für mein Abendbrot."
+        "text": "Das ist für mein Abendbrot."
       },
       {
         "id": 21,
         "start": 60.48,
         "end": 62.8,
         "duration": 2.32,
-        "text": "- Kannst du das bitte noch einmal wiederholen?"
+        "text": "Kannst du das bitte noch einmal wiederholen?"
       },
       {
         "id": 22,
         "start": 64.72,
         "end": 66.48,
         "duration": 1.76,
-        "text": "- Ein Hähnchen."
+        "text": "Ein Hähnchen."
       },
       {
         "id": 23,
         "start": 67.52,
         "end": 68.96,
         "duration": 1.44,
-        "text": "- Hähn-chen!"
+        "text": "Hähn-chen!"
       },
       {
         "id": 24,
         "start": 71.08,
         "end": 72.44,
         "duration": 1.36,
-        "text": "- Drei Gurken."
+        "text": "Drei Gurken."
       },
       {
         "id": 25,
         "start": 73.44,
         "end": 76.32,
         "duration": 2.88,
-        "text": "- Gur-ken!"
+        "text": "Gur-ken!"
       },
       {
         "id": 26,
         "start": 78.32,
         "end": 80.48,
         "duration": 2.16,
-        "text": "- Und ein Pfund Tomaten."
+        "text": "Und ein Pfund Tomaten."
       },
       {
         "id": 27,
         "start": 80.56,
         "end": 81.68,
         "duration": 1.12,
-        "text": "- Ein Pf…?"
+        "text": "Ein Pf?"
       },
       {
         "id": 28,
         "start": 81.96,
         "end": 83.08,
         "duration": 1.12,
-        "text": "- Pfund!"
+        "text": "Pfund!"
       },
       {
         "id": 29,
         "start": 83.12,
         "end": 84.32,
         "duration": 1.2,
-        "text": "- Ja. - Tomaten."
+        "text": "Ja. Tomaten."
       },
       {
         "id": 30,
         "start": 84.36,
         "end": 85.12,
         "duration": 0.76,
-        "text": "- Ein Pfund?"
+        "text": "Ein Pfund?"
       },
       {
         "id": 31,
         "start": 85.16,
         "end": 90.32,
         "duration": 5.16,
-        "text": "- Pfund. Das sind 500 Gramm, also ein halbes Kilo."
+        "text": "Pfund. Das sind 500 Gramm, also ein halbes Kilo."
       },
       {
         "id": 32,
         "start": 92.36,
         "end": 93.16,
         "duration": 0.8,
-        "text": "- Ja."
+        "text": "Ja."
       },
       {
         "id": 33,
         "start": 93.28,
         "end": 94.64,
         "duration": 1.36,
-        "text": "- Vielen Dank!"
+        "text": "Vielen Dank!"
       },
       {
         "id": 34,
@@ -10755,21 +10657,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 97.32,
         "end": 98.16,
         "duration": 0.84,
-        "text": "- Tschüss!"
+        "text": "Tschüss!"
       },
       {
         "id": 36,
         "start": 98.2,
         "end": 100.12,
         "duration": 1.92,
-        "text": "- Dann reden wir über deine Tante, okay?"
+        "text": "Dann reden wir über deine Tante, okay?"
       },
       {
         "id": 37,
         "start": 100.16,
         "end": 101.24,
         "duration": 1.08,
-        "text": "- Ja."
+        "text": "Ja."
       }
     ]
   },
@@ -10790,7 +10692,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 6.96,
         "end": 8.88,
         "duration": 1.92,
-        "text": "- Ich hätte gerne ein Brot."
+        "text": "Ich hätte gerne ein Brot."
       },
       {
         "id": 2,
@@ -10804,28 +10706,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 11.48,
         "end": 12.8,
         "duration": 1.32,
-        "text": "- 3,20 Euro."
+        "text": "3,20 Euro."
       },
       {
         "id": 4,
         "start": 13.0,
         "end": 14.76,
         "duration": 1.76,
-        "text": "- Hm. Und ein halbes?"
+        "text": "Hm. Und ein halbes?"
       },
       {
         "id": 5,
         "start": 14.8,
         "end": 18.84,
         "duration": 4.04,
-        "text": "- Die Hälfte. Ein halbes Roggenbrot kostet 1,60 Euro."
+        "text": "Die Hälfte. Ein halbes Roggenbrot kostet 1,60 Euro."
       },
       {
         "id": 6,
         "start": 19.0,
         "end": 20.36,
         "duration": 1.36,
-        "text": "- Hm … Ja …"
+        "text": "Hm Ja"
       },
       {
         "id": 7,
@@ -10839,14 +10741,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 28.08,
         "end": 29.2,
         "duration": 1.12,
-        "text": "- Das."
+        "text": "Das."
       },
       {
         "id": 9,
         "start": 29.48,
         "end": 30.32,
         "duration": 0.84,
-        "text": "- Hm."
+        "text": "Hm."
       },
       {
         "id": 10,
@@ -10867,14 +10769,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 37.76,
         "end": 39.64,
         "duration": 1.88,
-        "text": "- Sind Sie sich da auch sicher?"
+        "text": "Sind Sie sich da auch sicher?"
       },
       {
         "id": 13,
         "start": 41.04,
         "end": 41.92,
         "duration": 0.88,
-        "text": "- Ja."
+        "text": "Ja."
       },
       {
         "id": 14,
@@ -10888,14 +10790,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 49.4,
         "end": 51.4,
         "duration": 2.0,
-        "text": "- Darf es sonst noch was sein?"
+        "text": "Darf es sonst noch was sein?"
       },
       {
         "id": 16,
         "start": 51.44,
         "end": 53.08,
         "duration": 1.64,
-        "text": "- Och ja,"
+        "text": "Och ja,"
       },
       {
         "id": 17,
@@ -10909,21 +10811,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 57.84,
         "end": 58.72,
         "duration": 0.88,
-        "text": "- Ja."
+        "text": "Ja."
       },
       {
         "id": 19,
         "start": 59.8,
         "end": 61.16,
         "duration": 1.36,
-        "text": "- Alles klar."
+        "text": "Alles klar."
       },
       {
         "id": 20,
         "start": 63.32,
         "end": 66.0,
         "duration": 2.68,
-        "text": "Zwei Stück Apfelkuchen …"
+        "text": "Zwei Stück Apfelkuchen"
       },
       {
         "id": 21,
@@ -10937,21 +10839,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 73.88,
         "end": 75.52,
         "duration": 1.64,
-        "text": "- Nein, danke."
+        "text": "Nein, danke."
       },
       {
         "id": 23,
         "start": 76.28,
         "end": 79.0,
         "duration": 2.72,
-        "text": "- Das macht dann … 8,60 Euro."
+        "text": "Das macht dann 8,60 Euro."
       },
       {
         "id": 24,
         "start": 82.36,
         "end": 83.96,
         "duration": 1.6,
-        "text": "- So. - Danke schön."
+        "text": "So. Danke schön."
       },
       {
         "id": 25,
@@ -10972,7 +10874,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 96.28,
         "end": 97.36,
         "duration": 1.08,
-        "text": "- Danke schön."
+        "text": "Danke schön."
       },
       {
         "id": 28,
@@ -10986,7 +10888,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 100.0,
         "end": 100.72,
         "duration": 0.72,
-        "text": "- Ja."
+        "text": "Ja."
       }
     ]
   },
@@ -11007,14 +10909,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 10.24,
         "end": 11.72,
         "duration": 1.48,
-        "text": "- Ich hätte gerne diese Datteln."
+        "text": "Ich hätte gerne diese Datteln."
       },
       {
         "id": 2,
         "start": 11.76,
         "end": 13.12,
         "duration": 1.36,
-        "text": "- Gern!"
+        "text": "Gern!"
       },
       {
         "id": 3,
@@ -11063,7 +10965,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 27.32,
         "end": 30.16,
         "duration": 2.84,
-        "text": "- Ich hätte gern ein Pfund Tomaten und drei Gurken."
+        "text": "Ich hätte gern ein Pfund Tomaten und drei Gurken."
       },
       {
         "id": 10,
@@ -11077,7 +10979,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 31.84,
         "end": 34.16,
         "duration": 2.32,
-        "text": "- Die Gurken kosten heute nur 90 Cent das Stück."
+        "text": "Die Gurken kosten heute nur 90 Cent das Stück."
       },
       {
         "id": 12,
@@ -11091,70 +10993,70 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 36.6,
         "end": 37.96,
         "duration": 1.36,
-        "text": "- Ich nehme fünf Gurken!"
+        "text": "Ich nehme fünf Gurken!"
       },
       {
         "id": 14,
         "start": 38.92,
         "end": 41.56,
         "duration": 2.64,
-        "text": "- Sehr gute Wahl! Die sind ganz frisch."
+        "text": "Sehr gute Wahl! Die sind ganz frisch."
       },
       {
         "id": 15,
         "start": 41.64,
         "end": 43.16,
         "duration": 1.52,
-        "text": "- Was kosten die Tomaten?"
+        "text": "Was kosten die Tomaten?"
       },
       {
         "id": 16,
         "start": 43.2,
         "end": 46.76,
         "duration": 3.56,
-        "text": "- Ein Pfund Tomaten kostet 2 Euro. Oder drei Pfund für 5 Euro."
+        "text": "Ein Pfund Tomaten kostet 2 Euro. Oder drei Pfund für 5 Euro."
       },
       {
         "id": 17,
         "start": 47.08,
         "end": 48.68,
         "duration": 1.6,
-        "text": "- Nein, nein. Ein Pfund!"
+        "text": "Nein, nein. Ein Pfund!"
       },
       {
         "id": 18,
         "start": 49.2,
         "end": 52.72,
         "duration": 3.52,
-        "text": "- So! Nico, ich glaub, wir haben dann alles, oder?"
+        "text": "So! Nico, ich glaub, wir haben dann alles, oder?"
       },
       {
         "id": 19,
         "start": 52.76,
         "end": 53.88,
         "duration": 1.12,
-        "text": "- Ich muss noch bezahlen!"
+        "text": "Ich muss noch bezahlen!"
       },
       {
         "id": 20,
         "start": 53.92,
         "end": 54.16,
         "duration": 0.24,
-        "text": "- Ah."
+        "text": "Ah."
       },
       {
         "id": 21,
         "start": 54.2,
         "end": 55.6,
         "duration": 1.4,
-        "text": "- Wie viel kostet alles zusammen?"
+        "text": "Wie viel kostet alles zusammen?"
       },
       {
         "id": 22,
         "start": 55.64,
         "end": 60.44,
         "duration": 4.8,
-        "text": "- 300 Gramm Datteln, fünf Gurken und ein Pfund Tomaten, das macht ..."
+        "text": "300 Gramm Datteln, fünf Gurken und ein Pfund Tomaten, das macht"
       },
       {
         "id": 23,
@@ -11182,35 +11084,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 75.72,
         "end": 76.88,
         "duration": 1.16,
-        "text": "- Danke schön."
+        "text": "Danke schön."
       },
       {
         "id": 27,
         "start": 76.92,
         "end": 79.52,
         "duration": 2.6,
-        "text": "- Hier, die beiden Orangen schenke ich Ihnen."
+        "text": "Hier, die beiden Orangen schenke ich Ihnen."
       },
       {
         "id": 28,
         "start": 79.64,
         "end": 80.36,
         "duration": 0.72,
-        "text": "- Danke!"
+        "text": "Danke!"
       },
       {
         "id": 29,
         "start": 80.4,
         "end": 81.28,
         "duration": 0.88,
-        "text": "- Danke! - Gern."
+        "text": "Danke! Gern."
       },
       {
         "id": 30,
         "start": 81.32,
         "end": 83.04,
         "duration": 1.72,
-        "text": "- Tschüss."
+        "text": "Tschüss."
       }
     ]
   },
@@ -11231,7 +11133,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.52,
         "end": 9.92,
         "duration": 2.4,
-        "text": "- Ja! Das sieht gut aus."
+        "text": "Ja! Das sieht gut aus."
       },
       {
         "id": 2,
@@ -11252,7 +11154,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 15.4,
         "end": 17.56,
         "duration": 2.16,
-        "text": "Zwiebeln schneiden … Das mache ich."
+        "text": "Zwiebeln schneiden Das mache ich."
       },
       {
         "id": 5,
@@ -11266,14 +11168,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 21.8,
         "end": 22.48,
         "duration": 0.68,
-        "text": "- Alles?"
+        "text": "Alles?"
       },
       {
         "id": 7,
         "start": 22.52,
         "end": 25.44,
         "duration": 2.92,
-        "text": "- Ja, wir brauchen 250 Gramm."
+        "text": "Ja, wir brauchen 250 Gramm."
       },
       {
         "id": 8,
@@ -11329,14 +11231,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 51.8,
         "end": 52.52,
         "duration": 0.72,
-        "text": "- Okay."
+        "text": "Okay."
       },
       {
         "id": 16,
         "start": 53.04,
         "end": 56.36,
         "duration": 3.32,
-        "text": "- Meine Schwester kann sehr gut kochen und backen."
+        "text": "Meine Schwester kann sehr gut kochen und backen."
       },
       {
         "id": 17,
@@ -11350,7 +11252,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 58.2,
         "end": 59.04,
         "duration": 0.84,
-        "text": "- Ich auch nicht."
+        "text": "Ich auch nicht."
       },
       {
         "id": 19,
@@ -11364,14 +11266,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 61.56,
         "end": 62.52,
         "duration": 0.96,
-        "text": "- Ja."
+        "text": "Ja."
       },
       {
         "id": 21,
         "start": 77.16,
         "end": 78.88,
         "duration": 1.72,
-        "text": "- Guten Appetit."
+        "text": "Guten Appetit."
       }
     ]
   },
@@ -11392,7 +11294,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 17.04,
         "end": 20.72,
         "duration": 3.68,
-        "text": "- Auf jeden Fall. Ich freue mich auch, dass ich wieder da bin."
+        "text": "Auf jeden Fall. Ich freue mich auch, dass ich wieder da bin."
       },
       {
         "id": 2,
@@ -11420,7 +11322,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 27.52,
         "end": 30.48,
         "duration": 2.96,
-        "text": "Ja, es waren nur zwei Wochen. Kaum zu glauben …"
+        "text": "Ja, es waren nur zwei Wochen. Kaum zu glauben"
       },
       {
         "id": 6,
@@ -11455,14 +11357,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 44.32,
         "end": 48.48,
         "duration": 4.16,
-        "text": "Oh, ich habe viele Fotos gemacht: von den Bergen, vom Strand …"
+        "text": "Oh, ich habe viele Fotos gemacht: von den Bergen, vom Strand"
       },
       {
         "id": 11,
         "start": 48.72,
         "end": 51.8,
         "duration": 3.08,
-        "text": "Was? … Ja, natürlich hab ich auch Fotos vom Hotel gemacht."
+        "text": "Was? Ja, natürlich hab ich auch Fotos vom Hotel gemacht."
       },
       {
         "id": 12,
@@ -11504,42 +11406,42 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 38.12,
         "end": 43.32,
         "duration": 5.2,
-        "text": "- Aber wir können die Tasche nicht mitnehmen. Das ist nicht unsere Tasche!"
+        "text": "Aber wir können die Tasche nicht mitnehmen. Das ist nicht unsere Tasche!"
       },
       {
         "id": 2,
         "start": 46.08,
         "end": 48.0,
         "duration": 1.92,
-        "text": "- Doch. Wir haben sie gefunden."
+        "text": "Doch. Wir haben sie gefunden."
       },
       {
         "id": 3,
         "start": 48.04,
         "end": 50.52,
         "duration": 2.48,
-        "text": "- Aber sie gehört uns nicht."
+        "text": "Aber sie gehört uns nicht."
       },
       {
         "id": 4,
         "start": 50.68,
         "end": 53.12,
         "duration": 2.44,
-        "text": "- Wir nehmen nur das, was wir brauchen."
+        "text": "Wir nehmen nur das, was wir brauchen."
       },
       {
         "id": 5,
         "start": 53.16,
         "end": 55.4,
         "duration": 2.24,
-        "text": "- Nur, was wir brauchen!"
+        "text": "Nur, was wir brauchen!"
       },
       {
         "id": 6,
         "start": 55.44,
         "end": 60.56,
         "duration": 5.12,
-        "text": "- Im Oktober ist es schon kalt und im November wird es immer kälter"
+        "text": "Im Oktober ist es schon kalt und im November wird es immer kälter"
       },
       {
         "id": 7,
@@ -11553,7 +11455,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 61.92,
         "end": 66.0,
         "duration": 4.08,
-        "text": "- Im letzten Jahr war es wirklich schlimm mit der Kälte."
+        "text": "Im letzten Jahr war es wirklich schlimm mit der Kälte."
       },
       {
         "id": 9,
@@ -11567,28 +11469,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 69.12,
         "end": 73.12,
         "duration": 4.0,
-        "text": "- Im Dezember und Januar ist es immer am kältesten!"
+        "text": "Im Dezember und Januar ist es immer am kältesten!"
       },
       {
         "id": 11,
         "start": 79.92,
         "end": 82.68,
         "duration": 2.76,
-        "text": "- Das ist schöner als mein Hemd."
+        "text": "Das ist schöner als mein Hemd."
       },
       {
         "id": 12,
         "start": 82.72,
         "end": 84.8,
         "duration": 2.08,
-        "text": "- Dein Hemd ist ja auch schon alt."
+        "text": "Dein Hemd ist ja auch schon alt."
       },
       {
         "id": 13,
         "start": 84.88,
         "end": 86.28,
         "duration": 1.4,
-        "text": "- Deswegen!"
+        "text": "Deswegen!"
       },
       {
         "id": 14,
@@ -11602,14 +11504,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 90.16,
         "end": 91.92,
         "duration": 1.76,
-        "text": "- Nimm es mit! Nimm es mit!"
+        "text": "Nimm es mit! Nimm es mit!"
       },
       {
         "id": 16,
         "start": 92.36,
         "end": 94.32,
         "duration": 1.96,
-        "text": "- Aber nur, was wir brauchen."
+        "text": "Aber nur, was wir brauchen."
       }
     ]
   },
@@ -11630,14 +11532,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.6,
         "end": 9.44,
         "duration": 1.84,
-        "text": "- Nawins Party war super!"
+        "text": "Nawins Party war super!"
       },
       {
         "id": 2,
         "start": 9.48,
         "end": 11.68,
         "duration": 2.2,
-        "text": "- Ja. Jetzt freue ich mich aber auf den Urlaub."
+        "text": "Ja. Jetzt freue ich mich aber auf den Urlaub."
       },
       {
         "id": 3,
@@ -11651,21 +11553,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 14.32,
         "end": 16.6,
         "duration": 2.28,
-        "text": "- Ich will auch wegfahren."
+        "text": "Ich will auch wegfahren."
       },
       {
         "id": 5,
         "start": 16.72,
         "end": 18.08,
         "duration": 1.36,
-        "text": "- Wann war dein letzter Urlaub?"
+        "text": "Wann war dein letzter Urlaub?"
       },
       {
         "id": 6,
         "start": 18.12,
         "end": 22.04,
         "duration": 3.92,
-        "text": "- Im Mai. Aber es war kein Urlaub. Das war nur ein Ausflug."
+        "text": "Im Mai. Aber es war kein Urlaub. Das war nur ein Ausflug."
       },
       {
         "id": 7,
@@ -11679,14 +11581,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 24.2,
         "end": 24.96,
         "duration": 0.76,
-        "text": "- Cool."
+        "text": "Cool."
       },
       {
         "id": 9,
         "start": 25.0,
         "end": 28.84,
         "duration": 3.84,
-        "text": "- Ja! Und wir haben toll gegessen und gesungen und getanzt."
+        "text": "Ja! Und wir haben toll gegessen und gesungen und getanzt."
       },
       {
         "id": 10,
@@ -11714,7 +11616,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 34.84,
         "end": 36.64,
         "duration": 1.8,
-        "text": "- Das klingt schön."
+        "text": "Das klingt schön."
       },
       {
         "id": 14,
@@ -11728,7 +11630,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 38.6,
         "end": 42.4,
         "duration": 3.8,
-        "text": "- In der Nähe von Hamburg. Wir haben bei meiner Cousine übernachtet."
+        "text": "In der Nähe von Hamburg. Wir haben bei meiner Cousine übernachtet."
       },
       {
         "id": 16,
@@ -11742,21 +11644,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 46.24,
         "end": 49.08,
         "duration": 2.84,
-        "text": "Aber der letzte richtige Urlaub ist sehr lange her …"
+        "text": "Aber der letzte richtige Urlaub ist sehr lange her"
       },
       {
         "id": 18,
         "start": 54.2,
         "end": 56.28,
         "duration": 2.08,
-        "text": "- Wir sehen uns, wenn ich wiederkomme, okay?"
+        "text": "Wir sehen uns, wenn ich wiederkomme, okay?"
       },
       {
         "id": 19,
         "start": 56.32,
         "end": 57.32,
         "duration": 1.0,
-        "text": "- Okay!"
+        "text": "Okay!"
       }
     ]
   },
@@ -11777,7 +11679,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 13.88,
         "end": 15.48,
         "duration": 1.6,
-        "text": "- Lisa!"
+        "text": "Lisa!"
       },
       {
         "id": 2,
@@ -11868,7 +11770,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 53.76,
         "end": 56.92,
         "duration": 3.16,
-        "text": "Nico von der Party, der bei euch gewohnt hat …"
+        "text": "Nico von der Party, der bei euch gewohnt hat"
       },
       {
         "id": 15,
@@ -11924,14 +11826,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.48,
         "end": 8.8,
         "duration": 1.32,
-        "text": "- Guten Morgen, Inge."
+        "text": "Guten Morgen, Inge."
       },
       {
         "id": 2,
         "start": 9.2,
         "end": 11.24,
         "duration": 2.04,
-        "text": "- Guten Morgen, Nico!"
+        "text": "Guten Morgen, Nico!"
       },
       {
         "id": 3,
@@ -11945,14 +11847,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 15.16,
         "end": 16.16,
         "duration": 1.0,
-        "text": "- Wie bitte?"
+        "text": "Wie bitte?"
       },
       {
         "id": 5,
         "start": 16.52,
         "end": 19.76,
         "duration": 3.24,
-        "text": "- Ich meine … Hast du den Pullover gekauft?"
+        "text": "Ich meine Hast du den Pullover gekauft?"
       },
       {
         "id": 6,
@@ -11966,21 +11868,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 20.88,
         "end": 23.04,
         "duration": 2.16,
-        "text": "- Nein, das ist kein neuer Pullover."
+        "text": "Nein, das ist kein neuer Pullover."
       },
       {
         "id": 8,
         "start": 23.12,
         "end": 25.84,
         "duration": 2.72,
-        "text": "Der Pullover ist von Sebastian. Meine Sachen sind …"
+        "text": "Der Pullover ist von Sebastian. Meine Sachen sind"
       },
       {
         "id": 9,
         "start": 25.88,
         "end": 28.24,
         "duration": 2.36,
-        "text": "- ... in deiner Tasche, ja, ja."
+        "text": "in deiner Tasche, ja, ja."
       },
       {
         "id": 10,
@@ -12001,14 +11903,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 34.84,
         "end": 36.12,
         "duration": 1.28,
-        "text": "- Das weiß ich nicht."
+        "text": "Das weiß ich nicht."
       },
       {
         "id": 13,
         "start": 36.36,
         "end": 39.4,
         "duration": 3.04,
-        "text": "- Ich finde den Pullover nicht so schön."
+        "text": "Ich finde den Pullover nicht so schön."
       },
       {
         "id": 14,
@@ -12036,14 +11938,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 55.96,
         "end": 57.32,
         "duration": 1.36,
-        "text": "- Ja, gerne!"
+        "text": "Ja, gerne!"
       },
       {
         "id": 18,
         "start": 57.36,
         "end": 61.12,
         "duration": 3.76,
-        "text": "- Das ist lieb von dir! Kauf bitte dunkle Brötchen."
+        "text": "Das ist lieb von dir! Kauf bitte dunkle Brötchen."
       },
       {
         "id": 19,
@@ -12057,28 +11959,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 63.04,
         "end": 64.08,
         "duration": 1.04,
-        "text": "- Mhm."
+        "text": "Mhm."
       },
       {
         "id": 21,
         "start": 83.88,
         "end": 85.28,
         "duration": 1.4,
-        "text": "- Nico!"
+        "text": "Nico!"
       },
       {
         "id": 22,
         "start": 86.0,
         "end": 90.88,
         "duration": 4.88,
-        "text": "- Selma! Ist das …?"
+        "text": "Selma! Ist das ?"
       },
       {
         "id": 23,
         "start": 90.92,
         "end": 92.56,
         "duration": 1.64,
-        "text": "- ... deine Tasche?"
+        "text": "deine Tasche?"
       }
     ]
   },
@@ -12099,7 +12001,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.88,
         "end": 9.44,
         "duration": 1.56,
-        "text": "- Du hast sie gefunden?"
+        "text": "Du hast sie gefunden?"
       },
       {
         "id": 2,
@@ -12113,7 +12015,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 12.04,
         "end": 15.76,
         "duration": 3.72,
-        "text": "- Die Tasche stand einfach so auf der Straße vor einem großen Haus."
+        "text": "Die Tasche stand einfach so auf der Straße vor einem großen Haus."
       },
       {
         "id": 4,
@@ -12134,42 +12036,42 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 24.72,
         "end": 26.4,
         "duration": 1.68,
-        "text": "- Danke!"
+        "text": "Danke!"
       },
       {
         "id": 7,
         "start": 26.56,
         "end": 28.52,
         "duration": 1.96,
-        "text": "- Du trägst gerne Mützen, hm?"
+        "text": "Du trägst gerne Mützen, hm?"
       },
       {
         "id": 8,
         "start": 28.56,
         "end": 30.28,
         "duration": 1.72,
-        "text": "- Ja, sehr gern."
+        "text": "Ja, sehr gern."
       },
       {
         "id": 9,
         "start": 30.56,
         "end": 33.8,
         "duration": 3.24,
-        "text": "- Und welche Farbe magst du am liebsten? Blau? Grün?"
+        "text": "Und welche Farbe magst du am liebsten? Blau? Grün?"
       },
       {
         "id": 10,
         "start": 33.84,
         "end": 36.24,
         "duration": 2.4,
-        "text": "- Grün, das ist meine Lieblingsfarbe."
+        "text": "Grün, das ist meine Lieblingsfarbe."
       },
       {
         "id": 11,
         "start": 36.28,
         "end": 38.24,
         "duration": 1.96,
-        "text": "- Ja, stimmt. Du hast ziemlich viele grüne Sachen:"
+        "text": "Ja, stimmt. Du hast ziemlich viele grüne Sachen:"
       },
       {
         "id": 12,
@@ -12183,28 +12085,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 43.4,
         "end": 45.76,
         "duration": 2.36,
-        "text": "- Mein warmer Pullover ist nicht in der Tasche."
+        "text": "Mein warmer Pullover ist nicht in der Tasche."
       },
       {
         "id": 14,
         "start": 45.92,
         "end": 46.72,
         "duration": 0.8,
-        "text": "- Pullover?"
+        "text": "Pullover?"
       },
       {
         "id": 15,
         "start": 46.76,
         "end": 48.32,
         "duration": 1.56,
-        "text": "- Ja. Er ist weg."
+        "text": "Ja. Er ist weg."
       },
       {
         "id": 16,
         "start": 48.36,
         "end": 50.32,
         "duration": 1.96,
-        "text": "- Welchen Pullover meinst du?"
+        "text": "Welchen Pullover meinst du?"
       },
       {
         "id": 17,
@@ -12218,21 +12120,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 53.16,
         "end": 55.56,
         "duration": 2.4,
-        "text": "- Nein, das ist nicht mein warmer Pullover."
+        "text": "Nein, das ist nicht mein warmer Pullover."
       },
       {
         "id": 19,
         "start": 55.6,
         "end": 57.64,
         "duration": 2.04,
-        "text": "- Ist denn sonst alles da?"
+        "text": "Ist denn sonst alles da?"
       },
       {
         "id": 20,
         "start": 64.16,
         "end": 65.36,
         "duration": 1.2,
-        "text": "- Pass und Handy …"
+        "text": "Pass und Handy"
       },
       {
         "id": 21,
@@ -12253,7 +12155,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 71.92,
         "end": 75.16,
         "duration": 3.24,
-        "text": "- Ich habe eine Idee: Wir gehen in die Stadt und du kaufst dir ein neues Hemd"
+        "text": "Ich habe eine Idee: Wir gehen in die Stadt und du kaufst dir ein neues Hemd"
       },
       {
         "id": 24,
@@ -12274,14 +12176,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 81.8,
         "end": 83.64,
         "duration": 1.84,
-        "text": "- Ja, sehr gerne!"
+        "text": "Ja, sehr gerne!"
       },
       {
         "id": 27,
         "start": 83.68,
         "end": 84.76,
         "duration": 1.08,
-        "text": "- Cool!"
+        "text": "Cool!"
       }
     ]
   },
@@ -12302,7 +12204,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 9.68,
         "end": 11.08,
         "duration": 1.4,
-        "text": "- So …"
+        "text": "So"
       },
       {
         "id": 2,
@@ -12316,28 +12218,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 20.32,
         "end": 22.08,
         "duration": 1.76,
-        "text": "- Ja, das gefällt mir."
+        "text": "Ja, das gefällt mir."
       },
       {
         "id": 4,
         "start": 24.24,
         "end": 25.96,
         "duration": 1.72,
-        "text": "- Die Jacke auch?"
+        "text": "Die Jacke auch?"
       },
       {
         "id": 5,
         "start": 26.0,
         "end": 27.04,
         "duration": 1.04,
-        "text": "- Super."
+        "text": "Super."
       },
       {
         "id": 6,
         "start": 28.2,
         "end": 29.8,
         "duration": 1.6,
-        "text": "- Nein, die ist besser."
+        "text": "Nein, die ist besser."
       },
       {
         "id": 7,
@@ -12372,14 +12274,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 44.4,
         "end": 46.24,
         "duration": 1.84,
-        "text": "- Wie viel kostet das?"
+        "text": "Wie viel kostet das?"
       },
       {
         "id": 12,
         "start": 48.32,
         "end": 49.64,
         "duration": 1.32,
-        "text": "- 25 Euro."
+        "text": "25 Euro."
       },
       {
         "id": 13,
@@ -12393,14 +12295,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 50.84,
         "end": 52.44,
         "duration": 1.6,
-        "text": "- Ja, das ist okay."
+        "text": "Ja, das ist okay."
       },
       {
         "id": 15,
         "start": 52.48,
         "end": 53.64,
         "duration": 1.16,
-        "text": "- Super!"
+        "text": "Super!"
       },
       {
         "id": 16,
@@ -12414,7 +12316,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 64.76,
         "end": 66.52,
         "duration": 1.76,
-        "text": "- Ja, das passt auch."
+        "text": "Ja, das passt auch."
       },
       {
         "id": 18,
@@ -12428,7 +12330,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 70.84,
         "end": 71.84,
         "duration": 1.0,
-        "text": "- Schön."
+        "text": "Schön."
       },
       {
         "id": 20,
@@ -12449,14 +12351,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 77.6,
         "end": 78.68,
         "duration": 1.08,
-        "text": "- Ich weiß nicht."
+        "text": "Ich weiß nicht."
       },
       {
         "id": 23,
         "start": 81.36,
         "end": 82.48,
         "duration": 1.12,
-        "text": "- L."
+        "text": "L."
       },
       {
         "id": 24,
@@ -12491,21 +12393,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 99.92,
         "end": 101.2,
         "duration": 1.28,
-        "text": "- Vielen Dank."
+        "text": "Vielen Dank."
       },
       {
         "id": 29,
         "start": 101.96,
         "end": 104.24,
         "duration": 2.28,
-        "text": "- Eigentlich wollte ich gar nichts kaufen."
+        "text": "Eigentlich wollte ich gar nichts kaufen."
       },
       {
         "id": 30,
         "start": 104.8,
         "end": 106.6,
         "duration": 1.8,
-        "text": "- Aber die Jacke …"
+        "text": "Aber die Jacke"
       },
       {
         "id": 31,
@@ -12519,7 +12421,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 110.4,
         "end": 112.04,
         "duration": 1.64,
-        "text": "- Das hat Spaß gemacht."
+        "text": "Das hat Spaß gemacht."
       },
       {
         "id": 33,
@@ -12533,7 +12435,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 119.48,
         "end": 120.8,
         "duration": 1.32,
-        "text": "Nein …"
+        "text": "Nein"
       },
       {
         "id": 35,
@@ -12547,14 +12449,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 133.36,
         "end": 135.04,
         "duration": 1.68,
-        "text": "- Wo ist meine Tasche?"
+        "text": "Wo ist meine Tasche?"
       },
       {
         "id": 37,
         "start": 135.24,
         "end": 136.48,
         "duration": 1.24,
-        "text": "- Da vorne!"
+        "text": "Da vorne!"
       }
     ]
   },
@@ -12575,7 +12477,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 8.8,
         "end": 10.24,
         "duration": 1.44,
-        "text": "- Hallo, junger Mann."
+        "text": "Hallo, junger Mann."
       },
       {
         "id": 2,
@@ -12589,56 +12491,56 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 12.08,
         "end": 14.56,
         "duration": 2.48,
-        "text": "- Ich war draußen. Ich hab meine Tasche gefunden."
+        "text": "Ich war draußen. Ich hab meine Tasche gefunden."
       },
       {
         "id": 4,
         "start": 14.64,
         "end": 17.28,
         "duration": 2.64,
-        "text": "- Hat die Polizei deine Tasche gefunden?"
+        "text": "Hat die Polizei deine Tasche gefunden?"
       },
       {
         "id": 5,
         "start": 17.32,
         "end": 19.0,
         "duration": 1.68,
-        "text": "- Nein, Selma."
+        "text": "Nein, Selma."
       },
       {
         "id": 6,
         "start": 20.56,
         "end": 22.52,
         "duration": 1.96,
-        "text": "- Oho, wer ist denn Selma?"
+        "text": "Oho, wer ist denn Selma?"
       },
       {
         "id": 7,
         "start": 22.84,
         "end": 24.24,
         "duration": 1.4,
-        "text": "- Niemand …"
+        "text": "Niemand"
       },
       {
         "id": 8,
         "start": 24.6,
         "end": 27.72,
         "duration": 3.12,
-        "text": "- Komm mal mit. Ich hab eine tolle Überraschung für dich."
+        "text": "Komm mal mit. Ich hab eine tolle Überraschung für dich."
       },
       {
         "id": 9,
         "start": 28.12,
         "end": 29.96,
         "duration": 1.84,
-        "text": "- Eine Überraschung? Was?"
+        "text": "Eine Überraschung? Was?"
       },
       {
         "id": 10,
         "start": 31.24,
         "end": 33.04,
         "duration": 1.8,
-        "text": "- Das sind Sachen von Günther."
+        "text": "Das sind Sachen von Günther."
       },
       {
         "id": 11,
@@ -12680,14 +12582,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 49.64,
         "end": 50.84,
         "duration": 1.2,
-        "text": "- Sieht bequem aus."
+        "text": "Sieht bequem aus."
       },
       {
         "id": 17,
         "start": 50.88,
         "end": 52.92,
         "duration": 2.04,
-        "text": "- Na los, probier die Sachen an!"
+        "text": "Na los, probier die Sachen an!"
       },
       {
         "id": 18,
@@ -12722,14 +12624,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 71.32,
         "end": 73.16,
         "duration": 1.84,
-        "text": "- Na ja, ich weiß nicht."
+        "text": "Na ja, ich weiß nicht."
       },
       {
         "id": 23,
         "start": 74.2,
         "end": 75.64,
         "duration": 1.44,
-        "text": "- Wer ist das denn?"
+        "text": "Wer ist das denn?"
       },
       {
         "id": 24,
@@ -12743,7 +12645,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 81.04,
         "end": 83.64,
         "duration": 2.6,
-        "text": "- Hallo, ich bin die Selma. Ist Nico da?"
+        "text": "Hallo, ich bin die Selma. Ist Nico da?"
       }
     ]
   },
@@ -12764,35 +12666,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.28,
         "end": 11.88,
         "duration": 4.6,
-        "text": "- Du musst die Schuhe nicht ausziehen. Komm rein! Der Flur ist so kalt."
+        "text": "Du musst die Schuhe nicht ausziehen. Komm rein! Der Flur ist so kalt."
       },
       {
         "id": 2,
         "start": 14.44,
         "end": 15.44,
         "duration": 1.0,
-        "text": "- Danke."
+        "text": "Danke."
       },
       {
         "id": 3,
         "start": 15.48,
         "end": 16.84,
         "duration": 1.36,
-        "text": "- Was kann ich für dich tun?"
+        "text": "Was kann ich für dich tun?"
       },
       {
         "id": 4,
         "start": 16.88,
         "end": 18.12,
         "duration": 1.24,
-        "text": "- Ist Nico da?"
+        "text": "Ist Nico da?"
       },
       {
         "id": 5,
         "start": 18.16,
         "end": 19.96,
         "duration": 1.8,
-        "text": "- Ja, sicher. Nico?"
+        "text": "Ja, sicher. Nico?"
       },
       {
         "id": 6,
@@ -12806,7 +12708,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 23.76,
         "end": 25.88,
         "duration": 2.12,
-        "text": "- Vielen Dank, aber ich suche nur mein Portemonnaie."
+        "text": "Vielen Dank, aber ich suche nur mein Portemonnaie."
       },
       {
         "id": 8,
@@ -12820,7 +12722,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 28.76,
         "end": 30.28,
         "duration": 1.52,
-        "text": "- Wir werden es sicher finden."
+        "text": "Wir werden es sicher finden."
       },
       {
         "id": 10,
@@ -12841,7 +12743,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 34.72,
         "end": 38.04,
         "duration": 3.32,
-        "text": "- Nein, ich komme aus Syrien und lebe seit fast einem Jahr in Deutschland."
+        "text": "Nein, ich komme aus Syrien und lebe seit fast einem Jahr in Deutschland."
       },
       {
         "id": 13,
@@ -12855,49 +12757,49 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 39.72,
         "end": 41.64,
         "duration": 1.92,
-        "text": "- Nein, ich bin mit meinen Eltern hier."
+        "text": "Nein, ich bin mit meinen Eltern hier."
       },
       {
         "id": 15,
         "start": 42.24,
         "end": 43.6,
         "duration": 1.36,
-        "text": "- Und hast du Geschwister?"
+        "text": "Und hast du Geschwister?"
       },
       {
         "id": 16,
         "start": 43.68,
         "end": 46.8,
         "duration": 3.12,
-        "text": "- Ja, ich habe zwei ältere Brüder. Die leben in Hamburg."
+        "text": "Ja, ich habe zwei ältere Brüder. Die leben in Hamburg."
       },
       {
         "id": 17,
         "start": 47.08,
         "end": 48.64,
         "duration": 1.56,
-        "text": "- Und deine Großeltern?"
+        "text": "Und deine Großeltern?"
       },
       {
         "id": 18,
         "start": 48.76,
         "end": 51.16,
         "duration": 2.4,
-        "text": "- Meine Großeltern leben noch in Syrien."
+        "text": "Meine Großeltern leben noch in Syrien."
       },
       {
         "id": 19,
         "start": 52.48,
         "end": 54.64,
         "duration": 2.16,
-        "text": "- Das braune Portemonnaie gehört dir, oder?"
+        "text": "Das braune Portemonnaie gehört dir, oder?"
       },
       {
         "id": 20,
         "start": 56.36,
         "end": 58.8,
         "duration": 2.44,
-        "text": "- Ja. Danke!"
+        "text": "Ja. Danke!"
       }
     ]
   },
@@ -12918,21 +12820,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.08,
         "end": 9.84,
         "duration": 2.76,
-        "text": "- Wie lange haben Sie Frau González nicht mehr gesehen?"
+        "text": "Wie lange haben Sie Frau González nicht mehr gesehen?"
       },
       {
         "id": 2,
         "start": 11.04,
         "end": 13.88,
         "duration": 2.84,
-        "text": "- Ungefähr zwei Wochen."
+        "text": "Ungefähr zwei Wochen."
       },
       {
         "id": 3,
         "start": 14.76,
         "end": 16.12,
         "duration": 1.36,
-        "text": "- Und …"
+        "text": "Und"
       },
       {
         "id": 4,
@@ -12953,35 +12855,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 23.72,
         "end": 26.12,
         "duration": 2.4,
-        "text": "- Nein, sie hat uns nichts gesagt."
+        "text": "Nein, sie hat uns nichts gesagt."
       },
       {
         "id": 7,
         "start": 27.28,
         "end": 29.72,
         "duration": 2.44,
-        "text": "- Warum haben Sie die Polizei nicht früher informiert?"
+        "text": "Warum haben Sie die Polizei nicht früher informiert?"
       },
       {
         "id": 8,
         "start": 29.88,
         "end": 32.44,
         "duration": 2.56,
-        "text": "- Na ja. Jeder kann mal zwei Wochen weg sein, oder?"
+        "text": "Na ja. Jeder kann mal zwei Wochen weg sein, oder?"
       },
       {
         "id": 9,
         "start": 33.16,
         "end": 35.52,
         "duration": 2.36,
-        "text": "- Haben Sie ihre Handynummer? Haben Sie sie angerufen?"
+        "text": "Haben Sie ihre Handynummer? Haben Sie sie angerufen?"
       },
       {
         "id": 10,
         "start": 35.6,
         "end": 37.68,
         "duration": 2.08,
-        "text": "- Ja, aber ich erreiche sie nicht."
+        "text": "Ja, aber ich erreiche sie nicht."
       },
       {
         "id": 11,
@@ -12995,21 +12897,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 50.44,
         "end": 52.32,
         "duration": 1.88,
-        "text": "- Was machen denn Ihre Eltern?"
+        "text": "Was machen denn Ihre Eltern?"
       },
       {
         "id": 13,
         "start": 52.8,
         "end": 55.04,
         "duration": 2.24,
-        "text": "- Mein Vater ist Anwalt und meine Mutter Ingenieurin."
+        "text": "Mein Vater ist Anwalt und meine Mutter Ingenieurin."
       },
       {
         "id": 14,
         "start": 55.12,
         "end": 59.68,
         "duration": 4.56,
-        "text": "- Glauben Sie, dass Ihre Tante in Spanien ist und Ihre Eltern besucht?"
+        "text": "Glauben Sie, dass Ihre Tante in Spanien ist und Ihre Eltern besucht?"
       },
       {
         "id": 15,
@@ -13023,7 +12925,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 61.8,
         "end": 63.4,
         "duration": 1.6,
-        "text": "- Sie ist sicher nicht dort."
+        "text": "Sie ist sicher nicht dort."
       },
       {
         "id": 17,
@@ -13037,28 +12939,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 67.88,
         "end": 70.36,
         "duration": 2.48,
-        "text": "- Wo in Spanien wohnen Ihre Eltern?"
+        "text": "Wo in Spanien wohnen Ihre Eltern?"
       },
       {
         "id": 19,
         "start": 71.32,
         "end": 73.04,
         "duration": 1.72,
-        "text": "- Meine Eltern wohnen in Sevilla."
+        "text": "Meine Eltern wohnen in Sevilla."
       },
       {
         "id": 20,
         "start": 73.84,
         "end": 77.16,
         "duration": 3.32,
-        "text": "- Hm. Na dann schauen Sie mal hier."
+        "text": "Hm. Na dann schauen Sie mal hier."
       },
       {
         "id": 21,
         "start": 78.52,
         "end": 80.52,
         "duration": 2.0,
-        "text": "- Was macht Yara in der Schweiz?"
+        "text": "Was macht Yara in der Schweiz?"
       }
     ]
   },
@@ -13079,7 +12981,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 6.92,
         "end": 9.28,
         "duration": 2.36,
-        "text": "- Sie hat nur gesagt, sie muss für ein paar Tage weg"
+        "text": "Sie hat nur gesagt, sie muss für ein paar Tage weg"
       },
       {
         "id": 2,
@@ -13093,14 +12995,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 10.96,
         "end": 12.76,
         "duration": 1.8,
-        "text": "- Und dann? Das war’s?"
+        "text": "Und dann? Das war’s?"
       },
       {
         "id": 4,
         "start": 12.92,
         "end": 14.56,
         "duration": 1.64,
-        "text": "- Dann hat sie aufgelegt."
+        "text": "Dann hat sie aufgelegt."
       },
       {
         "id": 5,
@@ -13114,14 +13016,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 30.2,
         "end": 31.56,
         "duration": 1.36,
-        "text": "- Sarah!"
+        "text": "Sarah!"
       },
       {
         "id": 7,
         "start": 32.92,
         "end": 36.36,
         "duration": 3.44,
-        "text": "Oh nein … Ich komme sofort!"
+        "text": "Oh nein Ich komme sofort!"
       },
       {
         "id": 8,
@@ -13219,21 +13121,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 6.76,
         "end": 8.88,
         "duration": 2.12,
-        "text": "- Sie ist also nicht nach Spanien geflogen."
+        "text": "Sie ist also nicht nach Spanien geflogen."
       },
       {
         "id": 2,
         "start": 10.48,
         "end": 12.76,
         "duration": 2.28,
-        "text": "- Wohnt jemand aus deiner Familie in Zürich?"
+        "text": "Wohnt jemand aus deiner Familie in Zürich?"
       },
       {
         "id": 3,
         "start": 12.84,
         "end": 14.04,
         "duration": 1.2,
-        "text": "- Nein."
+        "text": "Nein."
       },
       {
         "id": 4,
@@ -13247,28 +13149,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 18.2,
         "end": 19.52,
         "duration": 1.32,
-        "text": "Nur mein Bruder …"
+        "text": "Nur mein Bruder"
       },
       {
         "id": 6,
         "start": 20.48,
         "end": 21.56,
         "duration": 1.08,
-        "text": "- Wo wohnt dein Bruder?"
+        "text": "Wo wohnt dein Bruder?"
       },
       {
         "id": 7,
         "start": 21.8,
         "end": 23.24,
         "duration": 1.44,
-        "text": "- In Deutschland."
+        "text": "In Deutschland."
       },
       {
         "id": 8,
         "start": 23.4,
         "end": 24.8,
         "duration": 1.4,
-        "text": "In …"
+        "text": "In"
       },
       {
         "id": 9,
@@ -13282,14 +13184,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 27.0,
         "end": 29.84,
         "duration": 2.84,
-        "text": "- Ah, witzig! Mein Bruder wohnt auch in München."
+        "text": "Ah, witzig! Mein Bruder wohnt auch in München."
       },
       {
         "id": 11,
         "start": 30.44,
         "end": 32.28,
         "duration": 1.84,
-        "text": "- Sie haben einen Bruder in Deutschland?"
+        "text": "Sie haben einen Bruder in Deutschland?"
       },
       {
         "id": 12,
@@ -13303,49 +13205,49 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 33.72,
         "end": 34.52,
         "duration": 0.8,
-        "text": "- Nein."
+        "text": "Nein."
       },
       {
         "id": 14,
         "start": 35.0,
         "end": 36.28,
         "duration": 1.28,
-        "text": "- Aber er kann dir sicher helfen!"
+        "text": "Aber er kann dir sicher helfen!"
       },
       {
         "id": 15,
         "start": 36.32,
         "end": 38.24,
         "duration": 1.92,
-        "text": "- Ich brauche keine Hilfe von meinem Bruder!"
+        "text": "Ich brauche keine Hilfe von meinem Bruder!"
       },
       {
         "id": 16,
         "start": 38.28,
         "end": 39.16,
         "duration": 0.88,
-        "text": "- Okay."
+        "text": "Okay."
       },
       {
         "id": 17,
         "start": 39.76,
         "end": 41.36,
         "duration": 1.6,
-        "text": "- Also, hier ist nichts."
+        "text": "Also, hier ist nichts."
       },
       {
         "id": 18,
         "start": 42.72,
         "end": 44.68,
         "duration": 1.96,
-        "text": "- Sollen wir weitersuchen?"
+        "text": "Sollen wir weitersuchen?"
       },
       {
         "id": 19,
         "start": 45.12,
         "end": 48.12,
         "duration": 3.0,
-        "text": "- Nein, ich glaube, wir finden nichts."
+        "text": "Nein, ich glaube, wir finden nichts."
       },
       {
         "id": 20,
@@ -13359,21 +13261,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 51.92,
         "end": 53.24,
         "duration": 1.32,
-        "text": "- Ganz sicher."
+        "text": "Ganz sicher."
       },
       {
         "id": 22,
         "start": 54.16,
         "end": 55.96,
         "duration": 1.8,
-        "text": "- Dann müssen wir warten."
+        "text": "Dann müssen wir warten."
       },
       {
         "id": 23,
         "start": 59.88,
         "end": 61.68,
         "duration": 1.8,
-        "text": "- Sie kommt wieder!"
+        "text": "Sie kommt wieder!"
       }
     ]
   },
@@ -13394,49 +13296,49 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.24,
         "end": 9.16,
         "duration": 1.92,
-        "text": "- Was brauchen wir noch?"
+        "text": "Was brauchen wir noch?"
       },
       {
         "id": 2,
         "start": 9.24,
         "end": 10.84,
         "duration": 1.6,
-        "text": "- Wir müssen die Ballpumpe noch mitnehmen!"
+        "text": "Wir müssen die Ballpumpe noch mitnehmen!"
       },
       {
         "id": 3,
         "start": 10.88,
         "end": 11.8,
         "duration": 0.92,
-        "text": "- Hab ich schon."
+        "text": "Hab ich schon."
       },
       {
         "id": 4,
         "start": 11.92,
         "end": 13.4,
         "duration": 1.48,
-        "text": "- Und die Fußbälle."
+        "text": "Und die Fußbälle."
       },
       {
         "id": 5,
         "start": 14.32,
         "end": 15.84,
         "duration": 1.52,
-        "text": "- Sie liegen hinter dir."
+        "text": "Sie liegen hinter dir."
       },
       {
         "id": 6,
         "start": 16.6,
         "end": 17.56,
         "duration": 0.96,
-        "text": "- Oh!"
+        "text": "Oh!"
       },
       {
         "id": 7,
         "start": 19.4,
         "end": 22.72,
         "duration": 3.32,
-        "text": "- Ich hab zwei neue gekauft und Würste zum Grillen,"
+        "text": "Ich hab zwei neue gekauft und Würste zum Grillen,"
       },
       {
         "id": 8,
@@ -13450,14 +13352,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 25.32,
         "end": 27.56,
         "duration": 2.24,
-        "text": "- Toll! Waren die Fußbälle teuer?"
+        "text": "Toll! Waren die Fußbälle teuer?"
       },
       {
         "id": 10,
         "start": 27.72,
         "end": 29.32,
         "duration": 1.6,
-        "text": "- Nein, die waren superbillig."
+        "text": "Nein, die waren superbillig."
       },
       {
         "id": 11,
@@ -13471,7 +13373,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 32.76,
         "end": 35.12,
         "duration": 2.36,
-        "text": "- Tja, Verpflegung ist immer am teuersten."
+        "text": "Tja, Verpflegung ist immer am teuersten."
       },
       {
         "id": 13,
@@ -13485,42 +13387,42 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 37.08,
         "end": 37.68,
         "duration": 0.6,
-        "text": "- Hey."
+        "text": "Hey."
       },
       {
         "id": 15,
         "start": 37.72,
         "end": 38.72,
         "duration": 1.0,
-        "text": "- Bist du bereit?"
+        "text": "Bist du bereit?"
       },
       {
         "id": 16,
         "start": 38.84,
         "end": 42.64,
         "duration": 3.8,
-        "text": "- Na ja, ich hab keine Fußballschuhe mit, aber es geht schon."
+        "text": "Na ja, ich hab keine Fußballschuhe mit, aber es geht schon."
       },
       {
         "id": 17,
         "start": 42.68,
         "end": 43.8,
         "duration": 1.12,
-        "text": "- Welche Schuhgröße hast du?"
+        "text": "Welche Schuhgröße hast du?"
       },
       {
         "id": 18,
         "start": 43.84,
         "end": 45.8,
         "duration": 1.96,
-        "text": "- Warte! Warte!"
+        "text": "Warte! Warte!"
       },
       {
         "id": 19,
         "start": 47.04,
         "end": 47.8,
         "duration": 0.76,
-        "text": "- Hepp!"
+        "text": "Hepp!"
       },
       {
         "id": 20,
@@ -13534,14 +13436,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 54.16,
         "end": 56.56,
         "duration": 2.4,
-        "text": "- Probier die mal. Eins, zwei …"
+        "text": "Probier die mal. Eins, zwei"
       },
       {
         "id": 22,
         "start": 58.32,
         "end": 61.84,
         "duration": 3.52,
-        "text": "- Pflaster und Verbände. Irgendeiner verletzt sich immer."
+        "text": "Pflaster und Verbände. Irgendeiner verletzt sich immer."
       },
       {
         "id": 23,
@@ -13555,21 +13457,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 64.0,
         "end": 65.44,
         "duration": 1.44,
-        "text": "- Ich konnte zwei Tage nicht laufen."
+        "text": "Ich konnte zwei Tage nicht laufen."
       },
       {
         "id": 25,
         "start": 66.0,
         "end": 67.4,
         "duration": 1.4,
-        "text": "- Die Schuhe passen. Vielen Dank!"
+        "text": "Die Schuhe passen. Vielen Dank!"
       },
       {
         "id": 26,
         "start": 67.52,
         "end": 68.52,
         "duration": 1.0,
-        "text": "- Perfekt!"
+        "text": "Perfekt!"
       },
       {
         "id": 27,
@@ -13583,7 +13485,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 73.6,
         "end": 75.0,
         "duration": 1.4,
-        "text": "- Es geht los!"
+        "text": "Es geht los!"
       }
     ]
   },
@@ -13604,28 +13506,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 20.32,
         "end": 21.92,
         "duration": 1.6,
-        "text": "- Spielt ihr gut?"
+        "text": "Spielt ihr gut?"
       },
       {
         "id": 2,
         "start": 22.0,
         "end": 24.44,
         "duration": 2.44,
-        "text": "- Na ja, wir können leider nicht so oft trainieren."
+        "text": "Na ja, wir können leider nicht so oft trainieren."
       },
       {
         "id": 3,
         "start": 24.52,
         "end": 25.92,
         "duration": 1.4,
-        "text": "- Wie oft trainiert ihr?"
+        "text": "Wie oft trainiert ihr?"
       },
       {
         "id": 4,
         "start": 26.08,
         "end": 28.04,
         "duration": 1.96,
-        "text": "- So zweimal im Monat?"
+        "text": "So zweimal im Monat?"
       },
       {
         "id": 5,
@@ -13660,28 +13562,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 40.92,
         "end": 43.44,
         "duration": 2.52,
-        "text": "- Aber wir sind nicht so schlecht, wie du denkst."
+        "text": "Aber wir sind nicht so schlecht, wie du denkst."
       },
       {
         "id": 10,
         "start": 44.36,
         "end": 45.88,
         "duration": 1.52,
-        "text": "- Wie lange spielt ihr schon zusammen?"
+        "text": "Wie lange spielt ihr schon zusammen?"
       },
       {
         "id": 11,
         "start": 46.0,
         "end": 48.44,
         "duration": 2.44,
-        "text": "- Seit fünf Jahren. Ungefähr."
+        "text": "Seit fünf Jahren. Ungefähr."
       },
       {
         "id": 12,
         "start": 48.48,
         "end": 50.04,
         "duration": 1.56,
-        "text": "- Hey. Helft mal mit!"
+        "text": "Hey. Helft mal mit!"
       },
       {
         "id": 13,
@@ -13709,7 +13611,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 24.12,
         "end": 29.28,
         "duration": 5.16,
-        "text": "- Okay. Wir müssen besser und schneller spielen."
+        "text": "Okay. Wir müssen besser und schneller spielen."
       },
       {
         "id": 2,
@@ -13723,105 +13625,105 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 32.32,
         "end": 33.16,
         "duration": 0.84,
-        "text": "Außerdem …"
+        "text": "Außerdem"
       },
       {
         "id": 4,
         "start": 33.24,
         "end": 35.72,
         "duration": 2.48,
-        "text": "- … höher springen und mehr Tore schießen!"
+        "text": "höher springen und mehr Tore schießen!"
       },
       {
         "id": 5,
         "start": 36.52,
         "end": 38.32,
         "duration": 1.8,
-        "text": "- Du lachst. Wir machen gleich weiter mit Sprints."
+        "text": "Du lachst. Wir machen gleich weiter mit Sprints."
       },
       {
         "id": 6,
         "start": 38.36,
         "end": 40.72,
         "duration": 2.36,
-        "text": "- Ja, Max, wir wissen Bescheid. Du bist der Schnellste."
+        "text": "Ja, Max, wir wissen Bescheid. Du bist der Schnellste."
       },
       {
         "id": 7,
         "start": 40.84,
         "end": 45.64,
         "duration": 4.8,
-        "text": "- Okay, Max ist vielleicht am schnellsten, aber ich kann am weitesten schießen."
+        "text": "Okay, Max ist vielleicht am schnellsten, aber ich kann am weitesten schießen."
       },
       {
         "id": 8,
         "start": 45.76,
         "end": 46.64,
         "duration": 0.88,
-        "text": "- Ah!"
+        "text": "Ah!"
       },
       {
         "id": 9,
         "start": 46.76,
         "end": 47.56,
         "duration": 0.8,
-        "text": "- Und Tarek …"
+        "text": "Und Tarek"
       },
       {
         "id": 10,
         "start": 47.6,
         "end": 52.92,
         "duration": 5.32,
-        "text": "… spielt am schlechtesten. Ja, ja, ich muss mich trotzdem erst mal ausruhen."
+        "text": "spielt am schlechtesten. Ja, ja, ich muss mich trotzdem erst mal ausruhen."
       },
       {
         "id": 11,
         "start": 53.0,
         "end": 54.16,
         "duration": 1.16,
-        "text": "- Ausruhen?"
+        "text": "Ausruhen?"
       },
       {
         "id": 12,
         "start": 54.16,
         "end": 54.4,
         "duration": 0.24,
-        "text": "- Ja."
+        "text": "Ja."
       },
       {
         "id": 13,
         "start": 54.52,
         "end": 56.4,
         "duration": 1.88,
-        "text": "- Gute Sportler machen dreimal pro Woche Training."
+        "text": "Gute Sportler machen dreimal pro Woche Training."
       },
       {
         "id": 14,
         "start": 56.52,
         "end": 58.52,
         "duration": 2.0,
-        "text": "- Ich mache Krafttraining!"
+        "text": "Ich mache Krafttraining!"
       },
       {
         "id": 15,
         "start": 60.68,
         "end": 66.0,
         "duration": 5.32,
-        "text": "- Das Wichtigste ist die Ernährung. Iss viel Obst, trink keinen Alkohol und rauch nicht!"
+        "text": "Das Wichtigste ist die Ernährung. Iss viel Obst, trink keinen Alkohol und rauch nicht!"
       },
       {
         "id": 16,
         "start": 66.6,
         "end": 68.0,
         "duration": 1.4,
-        "text": "- Und trink viel Wasser!"
+        "text": "Und trink viel Wasser!"
       },
       {
         "id": 17,
         "start": 68.52,
         "end": 72.0,
         "duration": 3.48,
-        "text": "- Gut, ihr Fitnessprofis. Dann zeigt mal, was ihr draufhabt!"
+        "text": "Gut, ihr Fitnessprofis. Dann zeigt mal, was ihr draufhabt!"
       }
     ]
   },
@@ -13842,35 +13744,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 11.04,
         "end": 15.0,
         "duration": 3.96,
-        "text": "- Yanis! Iss nicht so viele Süßigkeiten! Iss lieber mehr Obst!"
+        "text": "Yanis! Iss nicht so viele Süßigkeiten! Iss lieber mehr Obst!"
       },
       {
         "id": 2,
         "start": 15.8,
         "end": 17.16,
         "duration": 1.36,
-        "text": "- Es ist kein Obst da!"
+        "text": "Es ist kein Obst da!"
       },
       {
         "id": 3,
         "start": 18.6,
         "end": 20.32,
         "duration": 1.72,
-        "text": "- Wer sollte Obst kaufen?"
+        "text": "Wer sollte Obst kaufen?"
       },
       {
         "id": 4,
         "start": 21.0,
         "end": 22.08,
         "duration": 1.08,
-        "text": "- Yanis!"
+        "text": "Yanis!"
       },
       {
         "id": 5,
         "start": 22.52,
         "end": 24.08,
         "duration": 1.56,
-        "text": "- Oh, stimmt."
+        "text": "Oh, stimmt."
       },
       {
         "id": 6,
@@ -13891,42 +13793,42 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 33.08,
         "end": 35.24,
         "duration": 2.16,
-        "text": "Und dazu so ein leckerer Kartoffelsalat ..."
+        "text": "Und dazu so ein leckerer Kartoffelsalat"
       },
       {
         "id": 9,
         "start": 35.52,
         "end": 37.56,
         "duration": 2.04,
-        "text": "- Hm, ja. Kartoffelsalat macht auch gar nicht dick."
+        "text": "Hm, ja. Kartoffelsalat macht auch gar nicht dick."
       },
       {
         "id": 10,
         "start": 38.48,
         "end": 40.28,
         "duration": 1.8,
-        "text": "- Wir sind doch im Urlaub."
+        "text": "Wir sind doch im Urlaub."
       },
       {
         "id": 11,
         "start": 41.32,
         "end": 44.32,
         "duration": 3.0,
-        "text": "- Wir sind nicht im Urlaub. Wir spielen Fußball!"
+        "text": "Wir sind nicht im Urlaub. Wir spielen Fußball!"
       },
       {
         "id": 12,
         "start": 46.32,
         "end": 48.88,
         "duration": 2.56,
-        "text": "- Ab morgen essen wir gesund!"
+        "text": "Ab morgen essen wir gesund!"
       },
       {
         "id": 13,
         "start": 50.92,
         "end": 53.28,
         "duration": 2.36,
-        "text": "- Au! Ah!"
+        "text": "Au! Ah!"
       }
     ]
   },
@@ -13947,21 +13849,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 12.64,
         "end": 14.88,
         "duration": 2.24,
-        "text": "- Alles okay, Nico? Geht es dir gut?"
+        "text": "Alles okay, Nico? Geht es dir gut?"
       },
       {
         "id": 2,
         "start": 15.36,
         "end": 17.0,
         "duration": 1.64,
-        "text": "- Ich habe Schmerzen."
+        "text": "Ich habe Schmerzen."
       },
       {
         "id": 3,
         "start": 17.76,
         "end": 18.8,
         "duration": 1.04,
-        "text": "- Wir sehen uns das mal an."
+        "text": "Wir sehen uns das mal an."
       },
       {
         "id": 4,
@@ -13975,35 +13877,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 22.4,
         "end": 23.56,
         "duration": 1.16,
-        "text": "- Der Fuß."
+        "text": "Der Fuß."
       },
       {
         "id": 6,
         "start": 26.8,
         "end": 28.36,
         "duration": 1.56,
-        "text": "- Autsch."
+        "text": "Autsch."
       },
       {
         "id": 7,
         "start": 29.68,
         "end": 31.08,
         "duration": 1.4,
-        "text": "- Haben wir etwas zum Kühlen?"
+        "text": "Haben wir etwas zum Kühlen?"
       },
       {
         "id": 8,
         "start": 31.2,
         "end": 32.88,
         "duration": 1.68,
-        "text": "- Ja. Ich hole was."
+        "text": "Ja. Ich hole was."
       },
       {
         "id": 9,
         "start": 35.0,
         "end": 39.08,
         "duration": 4.08,
-        "text": "- Ich hab mich vor ein paar Wochen auch verletzt."
+        "text": "Ich hab mich vor ein paar Wochen auch verletzt."
       },
       {
         "id": 10,
@@ -14024,7 +13926,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 49.0,
         "end": 50.2,
         "duration": 1.2,
-        "text": "- Danke."
+        "text": "Danke."
       },
       {
         "id": 13,
@@ -14052,56 +13954,56 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 14.24,
         "end": 17.64,
         "duration": 3.4,
-        "text": "- Vorsicht, Nico. Du darfst nicht so stark auftreten."
+        "text": "Vorsicht, Nico. Du darfst nicht so stark auftreten."
       },
       {
         "id": 2,
         "start": 17.68,
         "end": 19.36,
         "duration": 1.68,
-        "text": "- Schon gut. Ich kann alleine laufen."
+        "text": "Schon gut. Ich kann alleine laufen."
       },
       {
         "id": 3,
         "start": 19.44,
         "end": 22.6,
         "duration": 3.16,
-        "text": "- Der Arzt schaut sich den Fuß jetzt erst mal an."
+        "text": "Der Arzt schaut sich den Fuß jetzt erst mal an."
       },
       {
         "id": 4,
         "start": 22.96,
         "end": 25.16,
         "duration": 2.2,
-        "text": "- Hoffentlich müssen wir nicht lange warten."
+        "text": "Hoffentlich müssen wir nicht lange warten."
       },
       {
         "id": 5,
         "start": 25.32,
         "end": 28.08,
         "duration": 2.76,
-        "text": "- Das glaube ich nicht. Wir haben ja einen Termin."
+        "text": "Das glaube ich nicht. Wir haben ja einen Termin."
       },
       {
         "id": 6,
         "start": 30.76,
         "end": 32.16,
         "duration": 1.4,
-        "text": "- Hallo! - Hallo!"
+        "text": "Hallo! Hallo!"
       },
       {
         "id": 7,
         "start": 32.28,
         "end": 34.2,
         "duration": 1.92,
-        "text": "- Hallo, guten Tag! Haben Sie einen Termin?"
+        "text": "Hallo, guten Tag! Haben Sie einen Termin?"
       },
       {
         "id": 8,
         "start": 34.24,
         "end": 35.4,
         "duration": 1.16,
-        "text": "- Ja, ich hab angerufen."
+        "text": "Ja, ich hab angerufen."
       },
       {
         "id": 9,
@@ -14115,28 +14017,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 40.04,
         "end": 41.76,
         "duration": 1.72,
-        "text": "- Der Fuß sieht nicht gut aus."
+        "text": "Der Fuß sieht nicht gut aus."
       },
       {
         "id": 11,
         "start": 41.88,
         "end": 43.4,
         "duration": 1.52,
-        "text": "- Haben Sie starke Schmerzen?"
+        "text": "Haben Sie starke Schmerzen?"
       },
       {
         "id": 12,
         "start": 43.72,
         "end": 44.84,
         "duration": 1.12,
-        "text": "- Es tut weh."
+        "text": "Es tut weh."
       },
       {
         "id": 13,
         "start": 44.88,
         "end": 46.64,
         "duration": 1.76,
-        "text": "- Der Arzt schaut sich das gleich an."
+        "text": "Der Arzt schaut sich das gleich an."
       },
       {
         "id": 14,
@@ -14150,28 +14052,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 50.08,
         "end": 51.68,
         "duration": 1.6,
-        "text": "- Gebrochen?"
+        "text": "Gebrochen?"
       },
       {
         "id": 16,
         "start": 52.8,
         "end": 54.56,
         "duration": 1.76,
-        "text": "- Was heißt „gebrochen“?"
+        "text": "Was heißt „gebrochen“?"
       },
       {
         "id": 17,
         "start": 55.64,
         "end": 56.44,
         "duration": 0.8,
-        "text": "- Egal."
+        "text": "Egal."
       },
       {
         "id": 18,
         "start": 56.52,
         "end": 58.92,
         "duration": 2.4,
-        "text": "- Keine Sorge. Das steht ja auch noch gar nicht fest."
+        "text": "Keine Sorge. Das steht ja auch noch gar nicht fest."
       },
       {
         "id": 19,
@@ -14199,28 +14101,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 69.16,
         "end": 70.64,
         "duration": 1.48,
-        "text": "- Nico?"
+        "text": "Nico?"
       },
       {
         "id": 23,
         "start": 70.8,
         "end": 71.68,
         "duration": 0.88,
-        "text": "- Hier."
+        "text": "Hier."
       },
       {
         "id": 24,
         "start": 71.84,
         "end": 73.0,
         "duration": 1.16,
-        "text": "- Ja."
+        "text": "Ja."
       },
       {
         "id": 25,
         "start": 74.72,
         "end": 75.88,
         "duration": 1.16,
-        "text": "- Danke!"
+        "text": "Danke!"
       },
       {
         "id": 26,
@@ -14241,21 +14143,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 79.6,
         "end": 80.48,
         "duration": 0.88,
-        "text": "- Okay. Danke!"
+        "text": "Okay. Danke!"
       },
       {
         "id": 29,
         "start": 80.6,
         "end": 82.84,
         "duration": 2.24,
-        "text": "- Bitte. Einmal hier lang. Die brauch ich noch. Die bring ich Ihnen."
+        "text": "Bitte. Einmal hier lang. Die brauch ich noch. Die bring ich Ihnen."
       },
       {
         "id": 30,
         "start": 83.28,
         "end": 84.88,
         "duration": 1.6,
-        "text": "- Komm!"
+        "text": "Komm!"
       }
     ]
   },
@@ -14276,7 +14178,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 7.0,
         "end": 9.28,
         "duration": 2.28,
-        "text": "- Wo ist Dr. Grube gerade?"
+        "text": "Wo ist Dr. Grube gerade?"
       },
       {
         "id": 2,
@@ -14290,7 +14192,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 12.4,
         "end": 13.36,
         "duration": 0.96,
-        "text": "- Guten Tag."
+        "text": "Guten Tag."
       },
       {
         "id": 4,
@@ -14304,49 +14206,49 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 15.0,
         "end": 18.16,
         "duration": 3.16,
-        "text": "- Ich suche einen Patienten - Nico González. Ist der hier?"
+        "text": "Ich suche einen Patienten Nico González. Ist der hier?"
       },
       {
         "id": 6,
         "start": 18.4,
         "end": 20.6,
         "duration": 2.2,
-        "text": "- Ja, im Behandlungszimmer 2."
+        "text": "Ja, im Behandlungszimmer 2."
       },
       {
         "id": 7,
         "start": 20.68,
         "end": 22.84,
         "duration": 2.16,
-        "text": "- Okay, wo ist Zimmer 2?"
+        "text": "Okay, wo ist Zimmer 2?"
       },
       {
         "id": 8,
         "start": 22.92,
         "end": 25.92,
         "duration": 3.0,
-        "text": "- Ach so … Einmal da den Flur lang und dann auf der rechten Seite."
+        "text": "Ach so Einmal da den Flur lang und dann auf der rechten Seite."
       },
       {
         "id": 9,
         "start": 25.96,
         "end": 26.84,
         "duration": 0.88,
-        "text": "- Okay, danke!"
+        "text": "Okay, danke!"
       },
       {
         "id": 10,
         "start": 26.88,
         "end": 28.28,
         "duration": 1.4,
-        "text": "- Gern geschehen."
+        "text": "Gern geschehen."
       },
       {
         "id": 11,
         "start": 33.6,
         "end": 35.44,
         "duration": 1.84,
-        "text": "- Ah, hier …"
+        "text": "Ah, hier"
       },
       {
         "id": 12,
@@ -14374,7 +14276,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 45.36,
         "end": 46.64,
         "duration": 1.28,
-        "text": "Oh …"
+        "text": "Oh"
       },
       {
         "id": 16,
@@ -14409,35 +14311,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 65.84,
         "end": 67.44,
         "duration": 1.6,
-        "text": "- Ja?"
+        "text": "Ja?"
       },
       {
         "id": 21,
         "start": 68.6,
         "end": 69.72,
         "duration": 1.12,
-        "text": "- Hey, Lisa!"
+        "text": "Hey, Lisa!"
       },
       {
         "id": 22,
         "start": 69.8,
         "end": 70.8,
         "duration": 1.0,
-        "text": "- Hi, Lisa!"
+        "text": "Hi, Lisa!"
       },
       {
         "id": 23,
         "start": 70.96,
         "end": 74.36,
         "duration": 3.4,
-        "text": "- Nico! Geht es dir gut?"
+        "text": "Nico! Geht es dir gut?"
       },
       {
         "id": 24,
         "start": 75.36,
         "end": 76.48,
         "duration": 1.12,
-        "text": "- Na ja ..."
+        "text": "Na ja"
       }
     ]
   },
@@ -14458,35 +14360,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 8.72,
         "end": 10.32,
         "duration": 1.6,
-        "text": "- Vorsicht."
+        "text": "Vorsicht."
       },
       {
         "id": 2,
         "start": 11.24,
         "end": 12.84,
         "duration": 1.6,
-        "text": "Ja … Gut."
+        "text": "Ja Gut."
       },
       {
         "id": 3,
         "start": 13.0,
         "end": 16.2,
         "duration": 3.2,
-        "text": "- Ach herrje … Was ist denn mit dir passiert?"
+        "text": "Ach herrje Was ist denn mit dir passiert?"
       },
       {
         "id": 4,
         "start": 16.24,
         "end": 18.44,
         "duration": 2.2,
-        "text": "- Es ist nichts, nur ein kleiner Unfall."
+        "text": "Es ist nichts, nur ein kleiner Unfall."
       },
       {
         "id": 5,
         "start": 18.64,
         "end": 21.32,
         "duration": 2.68,
-        "text": "- So sieht es aber nicht aus."
+        "text": "So sieht es aber nicht aus."
       },
       {
         "id": 6,
@@ -14500,28 +14402,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 22.6,
         "end": 23.64,
         "duration": 1.04,
-        "text": "- Hallo. Wie geht es Ihnen?"
+        "text": "Hallo. Wie geht es Ihnen?"
       },
       {
         "id": 8,
         "start": 23.72,
         "end": 26.08,
         "duration": 2.36,
-        "text": "- Mir geht es gut. Aber Nico …"
+        "text": "Mir geht es gut. Aber Nico"
       },
       {
         "id": 9,
         "start": 26.12,
         "end": 28.28,
         "duration": 2.16,
-        "text": "- Der Arzt sagt, es ist nicht gebrochen."
+        "text": "Der Arzt sagt, es ist nicht gebrochen."
       },
       {
         "id": 10,
         "start": 28.48,
         "end": 30.88,
         "duration": 2.4,
-        "text": "- Der Arzt sagt auch, du sollst dich ausruhen."
+        "text": "Der Arzt sagt auch, du sollst dich ausruhen."
       },
       {
         "id": 11,
@@ -14563,14 +14465,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 53.28,
         "end": 54.32,
         "duration": 1.04,
-        "text": "- Okay."
+        "text": "Okay."
       },
       {
         "id": 17,
         "start": 54.36,
         "end": 55.28,
         "duration": 0.92,
-        "text": "- Das machen wir."
+        "text": "Das machen wir."
       },
       {
         "id": 18,
@@ -14584,7 +14486,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 60.28,
         "end": 63.04,
         "duration": 2.76,
-        "text": "- Nach dem Essen. Danke für Ihre Hilfe."
+        "text": "Nach dem Essen. Danke für Ihre Hilfe."
       },
       {
         "id": 20,
@@ -14598,35 +14500,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 66.52,
         "end": 68.04,
         "duration": 1.52,
-        "text": "- Ja, gerne!"
+        "text": "Ja, gerne!"
       },
       {
         "id": 22,
         "start": 68.2,
         "end": 71.4,
         "duration": 3.2,
-        "text": "- Ich komme mit und besorge uns etwas zu essen."
+        "text": "Ich komme mit und besorge uns etwas zu essen."
       },
       {
         "id": 23,
         "start": 71.52,
         "end": 72.56,
         "duration": 1.04,
-        "text": "- Darf ich mitkommen?"
+        "text": "Darf ich mitkommen?"
       },
       {
         "id": 24,
         "start": 72.6,
         "end": 75.32,
         "duration": 2.72,
-        "text": "- Du musst dich ausruhen!"
+        "text": "Du musst dich ausruhen!"
       },
       {
         "id": 25,
         "start": 77.24,
         "end": 80.52,
         "duration": 3.28,
-        "text": "- Tschüss!"
+        "text": "Tschüss!"
       }
     ]
   },
@@ -14640,14 +14542,14 @@ export const NICOS_WEG_PLAYLIST = {
     "language": "de",
     "author": "DW Deutsch lernen",
     "thumbnail": "https://img.youtube.com/vi/mkXWqvL3-hA/hqdefault.jpg",
-    "sentenceCount": 18,
+    "sentenceCount": 17,
     "sentences": [
       {
         "id": 1,
         "start": 7.0,
         "end": 9.76,
         "duration": 2.76,
-        "text": "- Wir wohnen in Damaskus in einem großen Haus."
+        "text": "Wir wohnen in Damaskus in einem großen Haus."
       },
       {
         "id": 2,
@@ -14703,14 +14605,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 30.88,
         "end": 33.88,
         "duration": 3.0,
-        "text": "- Sind deine Großeltern noch in Syrien?"
+        "text": "Sind deine Großeltern noch in Syrien?"
       },
       {
         "id": 10,
         "start": 35.44,
         "end": 36.76,
         "duration": 1.32,
-        "text": "- Leli auch."
+        "text": "Leli auch."
       },
       {
         "id": 11,
@@ -14729,40 +14631,33 @@ export const NICOS_WEG_PLAYLIST = {
       {
         "id": 13,
         "start": 43.84,
-        "end": 44.72,
-        "duration": 0.88,
-        "text": "- Aya?!"
-      },
-      {
-        "id": 14,
-        "start": 45.76,
         "end": 47.08,
-        "duration": 1.32,
+        "duration": 3.24,
         "text": "Aya?!"
       },
       {
-        "id": 15,
+        "id": 14,
         "start": 49.0,
         "end": 51.76,
         "duration": 2.76,
-        "text": "- Ich finde, du sprichst schon sehr gut Deutsch, Selma!"
+        "text": "Ich finde, du sprichst schon sehr gut Deutsch, Selma!"
       },
       {
-        "id": 16,
+        "id": 15,
         "start": 51.8,
         "end": 53.48,
         "duration": 1.68,
         "text": "Wirklich klasse!"
       },
       {
-        "id": 17,
+        "id": 16,
         "start": 56.32,
         "end": 57.84,
         "duration": 1.52,
-        "text": "- Mama?"
+        "text": "Mama?"
       },
       {
-        "id": 18,
+        "id": 17,
         "start": 63.28,
         "end": 67.32,
         "duration": 4.04,
@@ -14787,28 +14682,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 10.32,
         "end": 13.2,
         "duration": 2.88,
-        "text": "- Wir wünschen guten Appetit!"
+        "text": "Wir wünschen guten Appetit!"
       },
       {
         "id": 2,
         "start": 13.24,
         "end": 14.8,
         "duration": 1.56,
-        "text": "- Augen auf!"
+        "text": "Augen auf!"
       },
       {
         "id": 3,
         "start": 17.68,
         "end": 18.6,
         "duration": 0.92,
-        "text": "- Paella!"
+        "text": "Paella!"
       },
       {
         "id": 4,
         "start": 18.72,
         "end": 20.08,
         "duration": 1.36,
-        "text": "- Wir hoffen, es schmeckt dir."
+        "text": "Wir hoffen, es schmeckt dir."
       },
       {
         "id": 5,
@@ -14822,7 +14717,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 22.92,
         "end": 26.72,
         "duration": 3.8,
-        "text": "- Ich finde deutsches Essen sehr lecker. Ich mag Wurst und Rouladen und Gulasch."
+        "text": "Ich finde deutsches Essen sehr lecker. Ich mag Wurst und Rouladen und Gulasch."
       },
       {
         "id": 7,
@@ -14836,70 +14731,70 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 29.32,
         "end": 31.76,
         "duration": 2.44,
-        "text": "- Du musst zuerst probieren!"
+        "text": "Du musst zuerst probieren!"
       },
       {
         "id": 9,
         "start": 36.32,
         "end": 37.76,
         "duration": 1.44,
-        "text": "- Schmeckt wie in Spanien!"
+        "text": "Schmeckt wie in Spanien!"
       },
       {
         "id": 10,
         "start": 37.84,
         "end": 38.48,
         "duration": 0.64,
-        "text": "- Ha!"
+        "text": "Ha!"
       },
       {
         "id": 11,
         "start": 38.52,
         "end": 40.72,
         "duration": 2.2,
-        "text": "- Das ist ein großes Kompliment!"
+        "text": "Das ist ein großes Kompliment!"
       },
       {
         "id": 12,
         "start": 45.16,
         "end": 47.72,
         "duration": 2.56,
-        "text": "- Spanisches Essen vermiss ich manchmal."
+        "text": "Spanisches Essen vermiss ich manchmal."
       },
       {
         "id": 13,
         "start": 48.28,
         "end": 49.48,
         "duration": 1.2,
-        "text": "- Das versteh ich …"
+        "text": "Das versteh ich"
       },
       {
         "id": 14,
         "start": 52.08,
         "end": 53.8,
         "duration": 1.72,
-        "text": "- Hast du ein bisschen Heimweh?"
+        "text": "Hast du ein bisschen Heimweh?"
       },
       {
         "id": 15,
         "start": 54.84,
         "end": 55.6,
         "duration": 0.76,
-        "text": "- Heimweh?"
+        "text": "Heimweh?"
       },
       {
         "id": 16,
         "start": 55.64,
         "end": 60.28,
         "duration": 4.64,
-        "text": "- Ja, Heimweh. Das ist, wenn man traurig ist und nach Hause möchte."
+        "text": "Ja, Heimweh. Das ist, wenn man traurig ist und nach Hause möchte."
       },
       {
         "id": 17,
         "start": 60.92,
         "end": 62.96,
         "duration": 2.04,
-        "text": "- Ach so! Nein, ich hab kein Heimweh."
+        "text": "Ach so! Nein, ich hab kein Heimweh."
       },
       {
         "id": 18,
@@ -14934,7 +14829,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 73.72,
         "end": 77.32,
         "duration": 3.6,
-        "text": "- Ich gehe gleich in Yaras Laden und gieße da die Blumen."
+        "text": "Ich gehe gleich in Yaras Laden und gieße da die Blumen."
       },
       {
         "id": 23,
@@ -14948,14 +14843,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 79.2,
         "end": 80.52,
         "duration": 1.32,
-        "text": "- Ja, gerne."
+        "text": "Ja, gerne."
       },
       {
         "id": 25,
         "start": 80.6,
         "end": 83.0,
         "duration": 2.4,
-        "text": "- Okay. Aber iss erst auf!"
+        "text": "Okay. Aber iss erst auf!"
       }
     ]
   },
@@ -14976,14 +14871,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 17.4,
         "end": 19.4,
         "duration": 2.0,
-        "text": "- Was denkst du, Selma?"
+        "text": "Was denkst du, Selma?"
       },
       {
         "id": 2,
         "start": 20.0,
         "end": 21.44,
         "duration": 1.44,
-        "text": "- Ich weiß es nicht."
+        "text": "Ich weiß es nicht."
       },
       {
         "id": 3,
@@ -14997,21 +14892,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 24.12,
         "end": 26.32,
         "duration": 2.2,
-        "text": "Wir können jetzt in Deutschland bleiben, aber …"
+        "text": "Wir können jetzt in Deutschland bleiben, aber"
       },
       {
         "id": 5,
         "start": 26.4,
         "end": 27.88,
         "duration": 1.48,
-        "text": "- Das ist nicht deine Heimat."
+        "text": "Das ist nicht deine Heimat."
       },
       {
         "id": 6,
         "start": 27.92,
         "end": 32.28,
         "duration": 4.36,
-        "text": "- Doch. Es ist eine andere … eine neue Heimat."
+        "text": "Doch. Es ist eine andere eine neue Heimat."
       },
       {
         "id": 7,
@@ -15025,14 +14920,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 34.76,
         "end": 38.52,
         "duration": 3.76,
-        "text": "- Aber Deutschland ist anders als die alte Heimat, als Syrien, oder?"
+        "text": "Aber Deutschland ist anders als die alte Heimat, als Syrien, oder?"
       },
       {
         "id": 9,
         "start": 38.56,
         "end": 43.68,
         "duration": 5.12,
-        "text": "- Ja. Das Essen ist anders, das Wetter, die Sprache."
+        "text": "Ja. Das Essen ist anders, das Wetter, die Sprache."
       },
       {
         "id": 10,
@@ -15053,7 +14948,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 48.44,
         "end": 51.16,
         "duration": 2.72,
-        "text": "- Habt ihr in Syrien denn auch Frühling, Sommer, Herbst und Winter"
+        "text": "Habt ihr in Syrien denn auch Frühling, Sommer, Herbst und Winter"
       },
       {
         "id": 13,
@@ -15067,7 +14962,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 52.44,
         "end": 54.04,
         "duration": 1.6,
-        "text": "- Ja, wir haben auch Jahreszeiten."
+        "text": "Ja, wir haben auch Jahreszeiten."
       },
       {
         "id": 15,
@@ -15081,14 +14976,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 57.8,
         "end": 58.96,
         "duration": 1.16,
-        "text": "- Und das Essen?"
+        "text": "Und das Essen?"
       },
       {
         "id": 17,
         "start": 59.44,
         "end": 61.4,
         "duration": 1.96,
-        "text": "- Wir essen viel Fleisch."
+        "text": "Wir essen viel Fleisch."
       },
       {
         "id": 18,
@@ -15165,28 +15060,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 9.64,
         "end": 11.52,
         "duration": 1.88,
-        "text": "- Das wünsche ich mir auch."
+        "text": "Das wünsche ich mir auch."
       },
       {
         "id": 2,
         "start": 11.88,
         "end": 14.52,
         "duration": 2.64,
-        "text": "- Was? So ein Fahrrad? Das ist meins."
+        "text": "Was? So ein Fahrrad? Das ist meins."
       },
       {
         "id": 3,
         "start": 14.64,
         "end": 18.76,
         "duration": 4.12,
-        "text": "- Nein. Ich wünsche mir so einen Laden. Ich hätte gern einen eigenen Laden."
+        "text": "Nein. Ich wünsche mir so einen Laden. Ich hätte gern einen eigenen Laden."
       },
       {
         "id": 4,
         "start": 18.8,
         "end": 21.16,
         "duration": 2.36,
-        "text": "- Ja, ich habe auch immer von meinem eigenen Laden geträumt,"
+        "text": "Ja, ich habe auch immer von meinem eigenen Laden geträumt,"
       },
       {
         "id": 5,
@@ -15214,28 +15109,28 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 30.52,
         "end": 32.04,
         "duration": 1.52,
-        "text": "- Warum ist dein Fahrrad hier?"
+        "text": "Warum ist dein Fahrrad hier?"
       },
       {
         "id": 9,
         "start": 32.64,
         "end": 34.92,
         "duration": 2.28,
-        "text": "- Es ist kaputt. Yara wollte es reparieren."
+        "text": "Es ist kaputt. Yara wollte es reparieren."
       },
       {
         "id": 10,
         "start": 36.2,
         "end": 37.32,
         "duration": 1.12,
-        "text": "- Kaputt?"
+        "text": "Kaputt?"
       },
       {
         "id": 11,
         "start": 37.36,
         "end": 39.8,
         "duration": 2.44,
-        "text": "- Ja, die Bremse hinten funktioniert nicht."
+        "text": "Ja, die Bremse hinten funktioniert nicht."
       },
       {
         "id": 12,
@@ -15249,7 +15144,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 44.04,
         "end": 46.32,
         "duration": 2.28,
-        "text": "- Mhm. Einen Moment!"
+        "text": "Mhm. Einen Moment!"
       },
       {
         "id": 14,
@@ -15263,14 +15158,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 67.08,
         "end": 70.44,
         "duration": 3.36,
-        "text": "- Nico! Krass!"
+        "text": "Nico! Krass!"
       },
       {
         "id": 16,
         "start": 70.88,
         "end": 72.52,
         "duration": 1.64,
-        "text": "- Wie fährst du denn?"
+        "text": "Wie fährst du denn?"
       },
       {
         "id": 17,
@@ -15284,21 +15179,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 83.32,
         "end": 84.16,
         "duration": 0.84,
-        "text": "Nico ..."
+        "text": "Nico"
       },
       {
         "id": 19,
         "start": 84.52,
         "end": 85.24,
         "duration": 0.72,
-        "text": "- Yara."
+        "text": "Yara."
       },
       {
         "id": 20,
         "start": 85.96,
         "end": 87.32,
         "duration": 1.36,
-        "text": "- Was machst du hier?"
+        "text": "Was machst du hier?"
       }
     ]
   },
@@ -15319,7 +15214,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 8.6,
         "end": 11.68,
         "duration": 3.08,
-        "text": "- Nico kommt aus Spanien nach Deutschland."
+        "text": "Nico kommt aus Spanien nach Deutschland."
       },
       {
         "id": 2,
@@ -15340,21 +15235,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 19.88,
         "end": 20.92,
         "duration": 1.04,
-        "text": "- Alles okay?"
+        "text": "Alles okay?"
       },
       {
         "id": 5,
         "start": 21.2,
         "end": 24.72,
         "duration": 3.52,
-        "text": "- Die kleine Emma und ihre Tante Lisa wollen ihm helfen."
+        "text": "Die kleine Emma und ihre Tante Lisa wollen ihm helfen."
       },
       {
         "id": 6,
         "start": 24.76,
         "end": 26.4,
         "duration": 1.64,
-        "text": "- Du willst zu deiner Tante? Zu Yara?"
+        "text": "Du willst zu deiner Tante? Zu Yara?"
       },
       {
         "id": 7,
@@ -15368,14 +15263,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 28.48,
         "end": 29.84,
         "duration": 1.36,
-        "text": "- Yippie!"
+        "text": "Yippie!"
       },
       {
         "id": 9,
         "start": 29.88,
         "end": 33.85,
         "duration": 3.97,
-        "text": "- Nico kann für ein paar Tage in Lisas Wohngemeinschaft bleiben."
+        "text": "Nico kann für ein paar Tage in Lisas Wohngemeinschaft bleiben."
       },
       {
         "id": 10,
@@ -15389,35 +15284,35 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 38.24,
         "end": 39.16,
         "duration": 0.92,
-        "text": "- Wer ist denn das?"
+        "text": "Wer ist denn das?"
       },
       {
         "id": 12,
         "start": 39.28,
         "end": 40.36,
         "duration": 1.08,
-        "text": "- Das ist Nico."
+        "text": "Das ist Nico."
       },
       {
         "id": 13,
         "start": 41.16,
         "end": 45.8,
         "duration": 4.64,
-        "text": "- Sie wollen Nico helfen, seine Tante Yara und ihren Fahrradladen zu finden."
+        "text": "Sie wollen Nico helfen, seine Tante Yara und ihren Fahrradladen zu finden."
       },
       {
         "id": 14,
         "start": 45.8,
         "end": 47.64,
         "duration": 1.84,
-        "text": "- Also, Freunde, ich habe 'ne Idee! Wir …"
+        "text": "Also, Freunde, ich habe 'ne Idee! Wir"
       },
       {
         "id": 15,
         "start": 47.64,
         "end": 50.72,
         "duration": 3.08,
-        "text": "wir posten das Foto von Yara bei Book und fragen: ..."
+        "text": "wir posten das Foto von Yara bei Book und fragen:"
       },
       {
         "id": 16,
@@ -15431,7 +15326,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 53.88,
         "end": 57.4,
         "duration": 3.52,
-        "text": "- Auf einer WG-Party lernt Nico Selma kennen."
+        "text": "Auf einer WG-Party lernt Nico Selma kennen."
       },
       {
         "id": 18,
@@ -15445,7 +15340,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 61.52,
         "end": 62.88,
         "duration": 1.36,
-        "text": "- Hi, ich bin Nico."
+        "text": "Hi, ich bin Nico."
       },
       {
         "id": 20,
@@ -15459,77 +15354,77 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 65.32,
         "end": 67.32,
         "duration": 2.0,
-        "text": "- Ich bin Selma. Ich komme aus Syrien."
+        "text": "Ich bin Selma. Ich komme aus Syrien."
       },
       {
         "id": 22,
         "start": 68.48,
         "end": 71.64,
         "duration": 3.16,
-        "text": "- Für Selmas Familie gibt es gute Nachrichten."
+        "text": "Für Selmas Familie gibt es gute Nachrichten."
       },
       {
         "id": 23,
         "start": 71.69,
         "end": 74.52,
         "duration": 2.83,
-        "text": "- Die Aufenthaltserlaubnis! Wir dürfen in Deutschland bleiben!"
+        "text": "Die Aufenthaltserlaubnis! Wir dürfen in Deutschland bleiben!"
       },
       {
         "id": 24,
         "start": 75.8,
         "end": 79.64,
         "duration": 3.84,
-        "text": "- Ein paar Tage später findet Selma Nicos Tasche."
+        "text": "Ein paar Tage später findet Selma Nicos Tasche."
       },
       {
         "id": 25,
         "start": 80.05,
         "end": 83.72,
         "duration": 3.67,
-        "text": "- Du, Lisa? Nico von der Party, der bei euch gewohnt hat, …"
+        "text": "Du, Lisa? Nico von der Party, der bei euch gewohnt hat,"
       },
       {
         "id": 26,
         "start": 84.0,
         "end": 86.08,
         "duration": 2.08,
-        "text": "... der hat doch seine Tasche verloren?"
+        "text": "der hat doch seine Tasche verloren?"
       },
       {
         "id": 27,
         "start": 86.4,
         "end": 88.32,
         "duration": 1.92,
-        "text": "- Die beiden treffen sich."
+        "text": "Die beiden treffen sich."
       },
       {
         "id": 28,
         "start": 89.6,
         "end": 91.2,
         "duration": 1.6,
-        "text": "- Ist das …? - Deine Tasche?"
+        "text": "Ist das ? Deine Tasche?"
       },
       {
         "id": 29,
         "start": 91.52,
         "end": 93.8,
         "duration": 2.28,
-        "text": "- Nico bekommt seine Tasche zurück."
+        "text": "Nico bekommt seine Tasche zurück."
       },
       {
         "id": 30,
         "start": 93.88,
         "end": 95.16,
         "duration": 1.28,
-        "text": "- Ja, das gefällt mir."
+        "text": "Ja, das gefällt mir."
       },
       {
         "id": 31,
         "start": 96.12,
         "end": 99.4,
         "duration": 3.28,
-        "text": "- Selma und Nico verbringen viel Zeit miteinander"
+        "text": "Selma und Nico verbringen viel Zeit miteinander"
       },
       {
         "id": 32,
@@ -15557,7 +15452,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 107.8,
         "end": 109.96,
         "duration": 2.16,
-        "text": "- Mein Vater sagt immer, ich muss studieren."
+        "text": "Mein Vater sagt immer, ich muss studieren."
       },
       {
         "id": 36,
@@ -15571,14 +15466,14 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 111.48,
         "end": 113.8,
         "duration": 2.32,
-        "text": "- Doch dann gibt es ein Problem."
+        "text": "Doch dann gibt es ein Problem."
       },
       {
         "id": 38,
         "start": 114.8,
         "end": 116.84,
         "duration": 2.04,
-        "text": "- Du kannst nur noch zwei Tage in der WG bleiben,"
+        "text": "Du kannst nur noch zwei Tage in der WG bleiben,"
       },
       {
         "id": 39,
@@ -15592,7 +15487,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 119.12,
         "end": 123.52,
         "duration": 4.4,
-        "text": "- Nico muss die WG verlassen und eine neue Unterkunft suchen."
+        "text": "Nico muss die WG verlassen und eine neue Unterkunft suchen."
       },
       {
         "id": 41,
@@ -15613,7 +15508,7 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 131.0,
         "end": 132.6,
         "duration": 1.6,
-        "text": "- Ich habe doch Platz."
+        "text": "Ich habe doch Platz."
       },
       {
         "id": 44,
@@ -15627,21 +15522,21 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 135.6,
         "end": 139.28,
         "duration": 3.68,
-        "text": "- Nico und Lisa finden schließlich Yaras Fahrradladen."
+        "text": "Nico und Lisa finden schließlich Yaras Fahrradladen."
       },
       {
         "id": 46,
         "start": 139.32,
         "end": 140.72,
         "duration": 1.4,
-        "text": "- Das ist der Fahrradladen!"
+        "text": "Das ist der Fahrradladen!"
       },
       {
         "id": 47,
         "start": 140.76,
         "end": 143.72,
         "duration": 2.96,
-        "text": "- Doch er ist geschlossen und Yara ist nicht da."
+        "text": "Doch er ist geschlossen und Yara ist nicht da."
       },
       {
         "id": 48,
@@ -15655,42 +15550,42 @@ export const NICOS_WEG_PLAYLIST = {
         "start": 151.81,
         "end": 152.81,
         "duration": 1.0,
-        "text": "- Du kennst Yara?"
+        "text": "Du kennst Yara?"
       },
       {
         "id": 50,
         "start": 152.81,
         "end": 154.32,
         "duration": 1.51,
-        "text": "- Das ist meine Tante!"
+        "text": "Das ist meine Tante!"
       },
       {
         "id": 51,
         "start": 155.04,
         "end": 157.53,
         "duration": 2.49,
-        "text": "- Aber auch sie wissen nicht, wo Yara ist."
+        "text": "Aber auch sie wissen nicht, wo Yara ist."
       },
       {
         "id": 52,
         "start": 157.6,
         "end": 158.84,
         "duration": 1.24,
-        "text": "- Sie kommt wieder!"
+        "text": "Sie kommt wieder!"
       },
       {
         "id": 53,
         "start": 158.88,
         "end": 160.09,
         "duration": 1.21,
-        "text": "- Doch dann ..."
+        "text": "Doch dann"
       },
       {
         "id": 54,
         "start": 163.84,
         "end": 165.16,
         "duration": 1.32,
-        "text": "- Nico!"
+        "text": "Nico!"
       }
     ]
   },

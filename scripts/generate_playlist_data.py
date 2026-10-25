@@ -14,11 +14,29 @@ def time_to_sec(timestr):
     return 0.0
 
 def clean_text(text):
-    text = re.sub(r'<[^>]+>', '', text)
-    text = text.replace('&nbsp;', ' ').replace('&amp;', '&').replace('&quot;', '"').replace('&#39;', "'")
-    text = text.replace('–', '-').replace('—', '-')
-    text = re.sub(r'\s+', ' ', text).strip()
-    return text
+    if not text:
+        return ''
+    # Remove HTML tags
+    t = re.sub(r'<[^>]+>', '', text)
+    # Decode basic entities
+    t = t.replace('&nbsp;', ' ').replace('&amp;', '&').replace('&quot;', '"').replace('&#39;', "'").replace('&apos;', "'")
+    # Remove sound descriptions [Musik], (Lachen), etc.
+    t = re.sub(r'\[[^\]]*\]', ' ', t)
+    t = re.sub(r'\([^)]*\)', ' ', t)
+    # Remove musical notes
+    t = re.sub(r'[♪♫🎵🎶#_]', ' ', t)
+    # Remove ellipses (... or … or ..)
+    t = re.sub(r'\.{2,}', '', t)
+    t = re.sub(r'…+', '', t)
+    # Remove speaker dashes at beginning (e.g. "– Hallo!" -> "Hallo!")
+    t = re.sub(r'^[–—\-\s\.,:;]+', '', t)
+    # Remove isolated speaker dashes inside text (e.g. " - ")
+    t = re.sub(r'\s+[–—\-]+\s+', ' ', t)
+    # Remove trailing dashes
+    t = re.sub(r'[–—\-\s]+$', '', t)
+    # Clean multiple spaces
+    t = re.sub(r'\s+', ' ', t).strip()
+    return t
 
 def parse_vtt(file_path):
     with open(file_path, 'r', encoding='utf-8') as f:

@@ -34,7 +34,16 @@ assert.strictEqual(segmented[0].start, 1.0);
 assert.strictEqual(segmented[0].end, 3.0);
 assert.strictEqual(segmented[1].text, 'Ich bin Nico.');
 assert.strictEqual(segmented[2].text, 'Wie heißt du eigentlich?');
-console.log('  ✅ Sentence segmentation cleaned [Musik] and grouped fragments correctly!');
+
+// Test cleaning speaker dashes (- , – ) and ellipses (... , …)
+const mockWithDashes = [
+  { text: '– Hallo, wie geht es dir?', start: 10.0, duration: 2.0 },
+  { text: '– Mir geht es gut … danke!', start: 12.5, duration: 2.5 }
+];
+const cleanedDashes = segmentSentences(mockWithDashes);
+assert.strictEqual(cleanedDashes[0].text, 'Hallo, wie geht es dir?');
+assert.strictEqual(cleanedDashes[1].text, 'Mir geht es gut danke!');
+console.log('  ✅ Subtitle cleaner successfully stripped speaker dashes (–, -) and ellipses (..., …)!');
 
 // 3. Test Text Diff Engine (Dictation)
 console.log('\nTest 3: Dictation Text Diff Algorithm');

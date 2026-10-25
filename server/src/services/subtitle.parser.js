@@ -14,16 +14,27 @@ function decodeHtmlEntities(str) {
 }
 
 /**
- * Clean caption text: remove sound descriptions like [Musik], (Applause), etc.
+ * Clean caption text: remove sound descriptions like [Musik], speaker dashes (-, –), ellipses (..., …), etc.
  */
-function cleanCaptionText(text) {
+export function cleanCaptionText(text) {
   if (!text) return '';
   let cleaned = decodeHtmlEntities(text);
-  // Remove [Music], [Musik], (Applause), etc.
+  // Remove HTML / VTT tags like <c.S1>, </c>, <v Speaker>
+  cleaned = cleaned.replace(/<[^>]+>/g, ' ');
+  // Remove [Music], [Musik], (Applause), [Lachen], etc.
   cleaned = cleaned.replace(/\[[^\]]*\]/g, ' ');
   cleaned = cleaned.replace(/\([^)]*\)/g, ' ');
-  // Remove musical notes
-  cleaned = cleaned.replace(/[♪♫🎵]/g, ' ');
+  // Remove musical notes & icons
+  cleaned = cleaned.replace(/[♪♫🎵🎶#_]/g, ' ');
+  // Remove ellipses (... or … or ..)
+  cleaned = cleaned.replace(/\.{2,}/g, '');
+  cleaned = cleaned.replace(/…+/g, '');
+  // Remove leading speaker dashes or punctuation
+  cleaned = cleaned.replace(/^[–—\-\s\.,:;]+/, '');
+  // Remove isolated dashes inside text (e.g. " - ")
+  cleaned = cleaned.replace(/\s+[–—\-]+\s+/g, ' ');
+  // Remove trailing dashes or hyphens
+  cleaned = cleaned.replace(/[–—\-\s]+$/, '');
   // Replace newlines and multiple spaces with a single space
   cleaned = cleaned.replace(/\s+/g, ' ').trim();
   return cleaned;
@@ -73,12 +84,10 @@ export function parseVTT(vttText) {
     const lineWithTimestamp = contentLines.find(l => /<\d{2}:\d{2}/.test(l));
     let rawText = lineWithTimestamp ? lineWithTimestamp : contentLines.join(' ');
     
-    // Strip HTML/VTT tags like <c.S1>, </c>, <v Speaker>, <b>, etc.
-    rawText = rawText.replace(/<[^>]+>/g, '').replace(/^[–—\-\s]+/, '');
-    // Strip music notes & brackets
-    rawText = rawText.replace(/[♪♫🎵]/g, '').trim();
+    // Clean text using comprehensive cleaner (removes HTML, dashes -, ellipses ..., sounds [Musik])
+    rawText = cleanCaptionText(rawText);
 
-    if (rawText.startsWith('[') && rawText.endsWith(']')) {
+    if (!rawText) {
       continue;
     }
 

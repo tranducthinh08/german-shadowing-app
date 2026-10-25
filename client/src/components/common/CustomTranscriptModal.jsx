@@ -29,6 +29,20 @@ function parseSrtTime(h, m, s, ms) {
   return +(hours * 3600 + mins * 60 + secs + msecs / 1000).toFixed(2);
 }
 
+function cleanSubtitleText(raw) {
+  if (!raw) return '';
+  let t = raw.replace(/<[^>]+>/g, ' ');
+  t = t.replace(/\[[^\]]*\]/g, ' ');
+  t = t.replace(/\([^)]*\)/g, ' ');
+  t = t.replace(/[♪♫🎵🎶#_]/g, ' ');
+  t = t.replace(/\.{2,}/g, '');
+  t = t.replace(/…+/g, '');
+  t = t.replace(/^[–—\-\s\.,:;]+/, '');
+  t = t.replace(/\s+[–—\-]+\s+/g, ' ');
+  t = t.replace(/[–—\-\s]+$/, '');
+  return t.replace(/\s+/g, ' ').trim();
+}
+
 export function parseCustomTranscript(text) {
   if (!text || typeof text !== 'string') return [];
   const lines = text.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
@@ -50,7 +64,7 @@ export function parseCustomTranscript(text) {
         textLines.push(lines[i]);
       }
       if (textLines.length > 0) {
-        cues.push({ start, end, text: textLines.join(' ') });
+        cues.push({ start, end, text: cleanSubtitleText(textLines.join(' ')) });
       }
       continue;
     }
@@ -60,8 +74,10 @@ export function parseCustomTranscript(text) {
     if (timeAlone && i + 1 < lines.length && !lines[i + 1].match(/^(\d{1,2}:)?(\d{1,2}):(\d{2})$/)) {
       const start = parseSimpleTime(line);
       i++;
-      const text = lines[i];
-      cues.push({ start, end: start + 4, text });
+      const text = cleanSubtitleText(lines[i]);
+      if (text) {
+        cues.push({ start, end: start + 4, text });
+      }
       continue;
     }
 
@@ -70,7 +86,10 @@ export function parseCustomTranscript(text) {
     if (timeInline) {
       const timeStr = timeInline[1] ? `${timeInline[1]}${timeInline[2]}:${timeInline[3]}` : `${timeInline[2]}:${timeInline[3]}`;
       const start = parseSimpleTime(timeStr);
-      cues.push({ start, end: start + 4, text: timeInline[4] });
+      const text = cleanSubtitleText(timeInline[4]);
+      if (text) {
+        cues.push({ start, end: start + 4, text });
+      }
       continue;
     }
   }
@@ -82,9 +101,10 @@ export function parseCustomTranscript(text) {
     }
     cues[j].duration = Math.max(0.5, +(cues[j].end - cues[j].start).toFixed(2));
     cues[j].id = j + 1;
+    cues[j].text = cleanSubtitleText(cues[j].text);
   }
 
-  return cues;
+  return cues.filter(c => Boolean(c.text));
 }
 
 export default function CustomTranscriptModal({
