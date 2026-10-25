@@ -9,7 +9,8 @@ import {
   Clipboard,
   ArrowRight,
   ChevronDown,
-  PenTool
+  PenTool,
+  BookOpen
 } from 'lucide-react';
 
 export default function Header({
@@ -73,7 +74,7 @@ export default function Header({
             </div>
           </div>
 
-          {/* Dedicated Navigation Tabs: Luyện tập | Lịch sử */}
+          {/* Dedicated Navigation Tabs: Luyện tập | Giáo trình A1 | Lịch sử */}
           <div className="flex items-center p-0.5 bg-surface-container-low rounded-xl border border-outline-variant/30">
             <button
               type="button"
@@ -86,6 +87,26 @@ export default function Header({
             >
               <PenTool className="w-3.5 h-3.5" />
               <span>Luyện tập</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => onChangeTab && onChangeTab('playlist')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                activeTab === 'playlist'
+                  ? 'bg-primary-container text-on-primary-container shadow-xs'
+                  : 'text-on-surface-variant hover:text-on-surface'
+              }`}
+            >
+              <BookOpen className="w-3.5 h-3.5 text-secondary" />
+              <span>Giáo trình A1</span>
+              <span className={`text-[10px] font-bold px-1.5 py-0.2 rounded-full ${
+                activeTab === 'playlist'
+                  ? 'bg-on-primary-container/20 text-on-primary-container'
+                  : 'bg-secondary/15 text-secondary'
+              }`}>
+                76 tập
+              </span>
             </button>
 
             <button

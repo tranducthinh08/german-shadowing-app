@@ -9,10 +9,13 @@ import VocabNotebookModal from './components/vocab/VocabNotebookModal';
 import ShortcutsModal from './components/common/ShortcutsModal';
 import CustomTranscriptModal from './components/common/CustomTranscriptModal';
 import StudyHistoryTab from './components/history/StudyHistoryTab';
+import PlaylistView from './components/playlist/PlaylistView';
+import EpisodeNavBar from './components/playlist/EpisodeNavBar';
 import GamificationModal from './components/gamification/GamificationModal';
 import RewardToast from './components/gamification/RewardToast';
 import UserProfileModal from './components/user/UserProfileModal';
 import { getGamificationData, recordLearningAction } from './utils/gamification';
+import { NICOS_WEG_PLAYLIST, NICOS_WEG_EPISODES_MAP } from './data/nicosWegPlaylist';
 import {
   getCurrentUser,
   setCurrentUser as persistCurrentUser,
@@ -28,7 +31,15 @@ import {
   migrateLegacyDataIfApplicable
 } from './utils/userStorage';
 import { loadVideoApi } from './services/api';
-import { PenTool, Mic, Sparkles, AlertCircle, History, RotateCcw } from 'lucide-react';
+import { PenTool, Mic, Sparkles, AlertCircle, History, RotateCcw, BookOpen, GraduationCap } from 'lucide-react';
+
+function extractVideoId(urlOrId) {
+  if (!urlOrId) return null;
+  const str = urlOrId.trim();
+  if (/^[a-zA-Z0-9_-]{11}$/.test(str)) return str;
+  const match = str.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/);
+  return match ? match[1] : null;
+}
 
 export default function App() {
   // Main Navigation Tab: 'studio' | 'history'
@@ -197,8 +208,56 @@ export default function App() {
     }
   }, []);
 
+  // Load episode directly from pre-indexed Nicos Weg curriculum
+  const handleSelectEpisode = (episode, resetProgress = false) => {
+    if (!episode) return;
+    const lessonData = {
+      videoId: episode.videoId,
+      title: episode.fullTitle || episode.title,
+      author: episode.author || 'DW Deutsch lernen',
+      language: 'de',
+      thumbnail: episode.thumbnail,
+      sentences: episode.sentences,
+      isSample: true,
+      playlistInfo: {
+        playlistId: 'PLs7zUO7VPyJ6eoN6SmB1UcwvPUagK87ix',
+        episodeNumber: episode.episodeNumber,
+        category: episode.category
+      }
+    };
+    setCurrentVideo(lessonData);
+    setCurrentLanguage('de');
+    setActiveSegmentIndex(0);
+    setIsLooping(false);
+    setResetTrigger((prev) => prev + 1);
+
+    if (resetProgress) {
+      setCompletedSentenceIds(new Set());
+      if (currentUser?.username) {
+        deleteUserCompletedSentences(currentUser.username, episode.videoId);
+      }
+      updateStudyHistory(lessonData, 0);
+    } else {
+      const userCompleted = currentUser?.username
+        ? getUserCompletedSentences(currentUser.username, episode.videoId)
+        : new Set();
+      setCompletedSentenceIds(userCompleted);
+      updateStudyHistory(lessonData, userCompleted.size);
+    }
+
+    setErrorMessage(null);
+    setMainTab('studio');
+  };
+
   // Load video handler
   const handleLoadVideo = async (urlOrId, lang = currentLanguage, resetProgress = false) => {
+    // 1. Check if it's one of the 80 episodes in our pre-indexed Nicos Weg series (instant offline load)
+    const rawId = extractVideoId(urlOrId);
+    if (rawId && NICOS_WEG_EPISODES_MAP[rawId]) {
+      handleSelectEpisode(NICOS_WEG_EPISODES_MAP[rawId], resetProgress);
+      return;
+    }
+
     setIsLoading(true);
     setErrorMessage(null);
     try {
@@ -484,7 +543,7 @@ export default function App() {
         )}
 
         {/* TAB 1: DEDICATED STUDY HISTORY TAB */}
-        {mainTab === 'history' ? (
+        {mainTab === 'history' && (
           <StudyHistoryTab
             history={studyHistory}
             onSelectLesson={(lesson) => {
@@ -497,9 +556,30 @@ export default function App() {
             onBackToStudio={() => setMainTab('studio')}
             hasActiveVideo={Boolean(currentVideo)}
           />
-        ) : (
-          /* TAB 2: STUDIO WORKSPACE */
+        )}
+
+        {/* TAB 2: DEDICATED A1 PLAYLIST / CURRICULUM TAB */}
+        {mainTab === 'playlist' && (
+          <PlaylistView
+            onSelectEpisode={handleSelectEpisode}
+            completedVideoIds={studyHistory.filter(h => h.completedCount >= (h.sentenceCount || 1)).map(h => h.videoId)}
+            currentVideoId={currentVideo?.videoId}
+            onBackToStudio={() => setMainTab('studio')}
+          />
+        )}
+
+        {/* TAB 3: STUDIO WORKSPACE */}
+        {mainTab === 'studio' && (
           <>
+            {/* Episode Navigation Bar if video belongs to Nicos Weg */}
+            {currentVideo && NICOS_WEG_EPISODES_MAP[currentVideo.videoId] && (
+              <EpisodeNavBar
+                currentVideoId={currentVideo.videoId}
+                onSelectEpisode={handleSelectEpisode}
+                onOpenPlaylistView={() => setMainTab('playlist')}
+              />
+            )}
+
             {/* Video Lesson Bar */}
             {currentVideo && (
               <div className="mb-5 w-full rounded-2xl bg-surface-container/70 backdrop-blur-xl border border-outline-variant/30 px-4 py-3 sm:px-5 sm:py-3.5 shadow-lg flex flex-wrap items-center justify-between gap-3">
@@ -633,6 +713,32 @@ export default function App() {
                       <p className="text-xs text-outline max-w-md mx-auto mt-1 leading-relaxed">
                         Dán link YouTube bất kỳ vào thanh tìm kiếm ở trên, hoặc bấm chọn một bài học chuẩn dưới đây để bắt đầu ngay:
                       </p>
+                    </div>
+
+                    {/* Featured Curriculum: Nicos Weg A1 (DW) */}
+                    <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-secondary/15 via-surface-container-high to-primary/10 border border-secondary/30 text-left flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm max-w-xl mx-auto">
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-secondary text-on-secondary">
+                            TRỌN BỘ 76 TẬP
+                          </span>
+                          <span className="text-xs font-bold text-secondary flex items-center gap-1">
+                            <GraduationCap className="w-3.5 h-3.5" />
+                            Giáo trình Nicos Weg A1 (DW)
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-outline leading-snug">
+                          80 video bài học đã tích hợp sẵn 100% phụ đề chuẩn, chia câu tự động và học offline/online không bao giờ lỗi.
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setMainTab('playlist')}
+                        className="shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-secondary to-primary hover:opacity-95 text-on-primary font-bold text-xs shadow-md shadow-secondary/20 hover:scale-105 transition-all cursor-pointer"
+                      >
+                        <BookOpen className="w-3.5 h-3.5" />
+                        <span>Mở danh sách tập</span>
+                      </button>
                     </div>
 
                     {/* Quick Starter Lessons */}

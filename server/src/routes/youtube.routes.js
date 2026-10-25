@@ -2,6 +2,7 @@ import express from 'express';
 import axios from 'axios';
 import { getVideoData, extractVideoId } from '../services/youtube.service.js';
 import { SAMPLE_VIDEOS } from '../data/mockData.js';
+import { NICOS_WEG_PLAYLIST } from '../data/nicosWegPlaylist.js';
 
 const router = express.Router();
 
@@ -71,6 +72,34 @@ router.get('/samples', (req, res) => {
       thumbnail: v.thumbnail,
       sentenceCount: v.sentences.length
     }))
+  });
+});
+
+/**
+ * GET /api/youtube/playlist/nicos-weg
+ * Returns full DW Deutsch lernen Nicos Weg A1 curriculum
+ */
+router.get('/playlist/nicos-weg', (req, res) => {
+  return res.json({
+    success: true,
+    data: {
+      playlistId: NICOS_WEG_PLAYLIST.playlistId,
+      title: NICOS_WEG_PLAYLIST.title,
+      author: NICOS_WEG_PLAYLIST.author,
+      description: NICOS_WEG_PLAYLIST.description,
+      totalEpisodes: NICOS_WEG_PLAYLIST.totalEpisodes,
+      totalSentences: NICOS_WEG_PLAYLIST.totalSentences,
+      episodes: NICOS_WEG_PLAYLIST.episodes.map(e => ({
+        id: e.id,
+        episodeNumber: e.episodeNumber,
+        title: e.title,
+        fullTitle: e.fullTitle,
+        category: e.category,
+        videoId: e.videoId,
+        thumbnail: e.thumbnail,
+        sentenceCount: e.sentenceCount
+      }))
+    }
   });
 });
 

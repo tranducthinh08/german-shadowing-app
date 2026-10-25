@@ -2,6 +2,7 @@ import axios from 'axios';
 import { YoutubeTranscript } from 'youtube-transcript';
 import { segmentSentences, parseVTT } from './subtitle.parser.js';
 import { SAMPLE_VIDEOS } from '../data/mockData.js';
+import { NICOS_WEG_EPISODES_MAP } from '../data/nicosWegPlaylist.js';
 import { exec } from 'child_process';
 import { promisify } from 'util';
 import fs from 'fs';
@@ -357,6 +358,26 @@ export async function getVideoData(urlOrId, requestedLang = 'de') {
       language: sample.language,
       sentences: sample.sentences,
       isSample: true
+    };
+  }
+
+  // Check pre-indexed Nicos Weg A1 curriculum (80 episodes)
+  const nicosEpisode = NICOS_WEG_EPISODES_MAP[videoId];
+  if (nicosEpisode && nicosEpisode.sentences && nicosEpisode.sentences.length > 0) {
+    return {
+      videoId: nicosEpisode.videoId,
+      title: nicosEpisode.fullTitle || nicosEpisode.title,
+      author: nicosEpisode.author,
+      thumbnail: nicosEpisode.thumbnail,
+      language: nicosEpisode.language,
+      sentences: nicosEpisode.sentences,
+      isSample: true,
+      playlistInfo: {
+        playlistId: 'PLs7zUO7VPyJ6eoN6SmB1UcwvPUagK87ix',
+        episodeNumber: nicosEpisode.episodeNumber,
+        category: nicosEpisode.category,
+        title: nicosEpisode.title
+      }
     };
   }
 
