@@ -68,9 +68,157 @@ export async function getVideoMetadata(videoId) {
 }
 
 /**
+ * Extract subtitles using YouTube InnerTube Android API (100% pure JS, bypasses PoToken and Bot challenges)
+ */
+async function fetchInnerTubeCaptions(videoId, requestedLang = 'de') {
+  try {
+    const postUrl = 'https://www.youtube.com/youtubei/v1/player?prettyPrint=false';
+    const res = await axios.post(
+      postUrl,
+      {
+        context: {
+          client: {
+            clientName: 'ANDROID',
+            clientVersion: '20.10.38'
+          }
+        },
+        videoId
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'User-Agent': 'com.google.android.youtube/20.10.38 (Linux; U; Android 14)'
+        },
+        timeout: 9000
+      }
+    );
+
+    const tracks = res.data?.captions?.playerCaptionsTracklistRenderer?.captionTracks || [];
+    if (!Array.isArray(tracks) || tracks.length === 0) return null;
+
+    // Prioritize language: exact match -> prefix match (e.g. de-DE) -> de/en -> first track
+    let track = tracks.find(t => t.languageCode === requestedLang) ||
+                tracks.find(t => t.languageCode?.startsWith(requestedLang)) ||
+                tracks.find(t => t.languageCode?.startsWith('de') || t.languageCode?.startsWith('en')) ||
+                tracks[0];
+
+    if (!track?.baseUrl) return null;
+
+    const subRes = await axios.get(track.baseUrl, { timeout: 9000 });
+    const xml = subRes.data;
+    if (!xml || typeof xml !== 'string') return null;
+
+    const list = [];
+    // Pattern 1: <p t="startMs" d="durMs"...>text</p> (Format 3 / srv3)
+    const pRegex = /<p t="(\d+)" d="(\d+)"[^>]*>([\s\S]*?)<\/p>/g;
+    let pm;
+    while ((pm = pRegex.exec(xml)) !== null) {
+      const clean = pm[3]
+        .replace(/<[^>]+>/g, '')
+        .replace(/&amp;/g, '&')
+        .replace(/&#39;/g, "'")
+        .replace(/&quot;/g, '"')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .trim();
+      if (clean) {
+        list.push({
+          start: parseInt(pm[1], 10) / 1000,
+          duration: parseInt(pm[2], 10) / 1000,
+          text: clean
+        });
+      }
+    }
+
+    // Pattern 2: <text start="startSec" dur="durSec">text</text> (Standard timedtext XML format)
+    if (list.length === 0) {
+      const textRegex = /<text start="([^"]*)" dur="([^"]*)">([^<]*)<\/text>/g;
+      let tm;
+      while ((tm = textRegex.exec(xml)) !== null) {
+        const clean = tm[3]
+          .replace(/&amp;/g, '&')
+          .replace(/&#39;/g, "'")
+          .replace(/&quot;/g, '"')
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .trim();
+        if (clean) {
+          list.push({
+            start: parseFloat(tm[1]) || 0,
+            duration: parseFloat(tm[2]) || 0,
+            text: clean
+          });
+        }
+      }
+    }
+
+    if (list.length === 0) return null;
+    const detectedLang = track.languageCode?.startsWith('de') ? 'de' : track.languageCode?.startsWith('en') ? 'en' : requestedLang;
+
+    return { rawCaptions: list, detectedLang };
+  } catch (err) {
+    console.warn(`InnerTube caption extraction note for ${videoId}:`, err.message);
+    return null;
+  }
+}
+
+/**
+ * Fetch with YoutubeTranscript library with intelligent language code fallback
+ */
+async function fetchWithYoutubeTranscript(videoId, requestedLang = 'de') {
+  const candidates = requestedLang === 'de'
+    ? ['de', 'de-DE', 'de-AT', 'de-CH']
+    : ['en', 'en-US', 'en-GB', 'en-CA', 'en-AU'];
+
+  for (const lang of candidates) {
+    try {
+      const list = await YoutubeTranscript.fetchTranscript(videoId, { lang });
+      if (list && list.length > 0) {
+        return {
+          rawCaptions: list.map(item => ({
+            text: item.text,
+            start: item.offset / 1000,
+            duration: item.duration / 1000
+          })),
+          detectedLang: requestedLang
+        };
+      }
+    } catch (e) {
+      const msg = e.message || '';
+      const match = msg.match(/Available languages:\s*([^\n\r]+)/);
+      if (match && match[1]) {
+        const available = match[1].split(',').map(s => s.trim());
+        const bestLang = available.find(l => l === requestedLang || l.startsWith(requestedLang));
+        if (bestLang && !candidates.includes(bestLang)) {
+          candidates.push(bestLang);
+        }
+      }
+    }
+  }
+
+  // Final fallback without language filter
+  try {
+    const list = await YoutubeTranscript.fetchTranscript(videoId);
+    if (list && list.length > 0) {
+      return {
+        rawCaptions: list.map(item => ({
+          text: item.text,
+          start: item.offset / 1000,
+          duration: item.duration / 1000
+        })),
+        detectedLang: requestedLang
+      };
+    }
+  } catch (e) {}
+
+  return null;
+}
+
+/**
  * Extract subtitles using yt-dlp (bypasses PoToken and YouTube anti-bot checks)
  */
 async function fetchSubtitlesWithYtDlp(videoId, requestedLang = 'de') {
+  if (process.env.VERCEL) return null; // Skip yt-dlp on Vercel serverless
   const tmpPrefix = path.join(os.tmpdir(), `polyglot_sub_${videoId}_${Date.now()}`);
   const langArg = requestedLang === 'de' ? 'de,de-DE,de-AT,de-CH' : 'en,en-US,en-GB,en-CA';
   const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
@@ -217,42 +365,38 @@ export async function getVideoData(urlOrId, requestedLang = 'de') {
   let rawCaptions = null;
   let detectedLang = requestedLang;
 
-  // 1. Primary Engine: yt-dlp (Bypasses YouTube PoToken / Bot challenges)
-  console.log(`[YouTube Service] Fetching subtitles via yt-dlp for ${videoId}...`);
-  const ytDlpResult = await fetchSubtitlesWithYtDlp(videoId, requestedLang);
-  if (ytDlpResult && ytDlpResult.rawCaptions.length > 0) {
-    rawCaptions = ytDlpResult.rawCaptions;
-    detectedLang = ytDlpResult.detectedLang;
-    console.log(`[YouTube Service] yt-dlp succeeded! Got ${rawCaptions.length} caption cues [${detectedLang}].`);
+  // 1. Primary Engine: YouTube InnerTube Android API (100% JS, serverless-ready, bypasses PoToken)
+  console.log(`[YouTube Service] Fetching subtitles via InnerTube API for ${videoId}...`);
+  const innerTubeResult = await fetchInnerTubeCaptions(videoId, requestedLang);
+  if (innerTubeResult && innerTubeResult.rawCaptions.length > 0) {
+    rawCaptions = innerTubeResult.rawCaptions;
+    detectedLang = innerTubeResult.detectedLang;
+    console.log(`[YouTube Service] InnerTube succeeded! Got ${rawCaptions.length} cues [${detectedLang}].`);
   }
 
-  // 2. Secondary Engine: YoutubeTranscript library fallback
+  // 2. Secondary Engine: YoutubeTranscript with smart language tag fallback
   if (!rawCaptions || rawCaptions.length === 0) {
-    try {
-      console.log(`[YouTube Service] Trying YoutubeTranscript fallback...`);
-      const list = await YoutubeTranscript.fetchTranscript(videoId, { lang: requestedLang });
-      if (list && list.length > 0) {
-        rawCaptions = list.map(item => ({
-          text: item.text,
-          start: item.offset / 1000,
-          duration: item.duration / 1000
-        }));
-      }
-    } catch (e1) {
-      try {
-        const listFallback = await YoutubeTranscript.fetchTranscript(videoId);
-        if (listFallback && listFallback.length > 0) {
-          rawCaptions = listFallback.map(item => ({
-            text: item.text,
-            start: item.offset / 1000,
-            duration: item.duration / 1000
-          }));
-        }
-      } catch (e2) {}
+    console.log(`[YouTube Service] Trying YoutubeTranscript fallback for ${videoId}...`);
+    const ytTranscriptResult = await fetchWithYoutubeTranscript(videoId, requestedLang);
+    if (ytTranscriptResult && ytTranscriptResult.rawCaptions.length > 0) {
+      rawCaptions = ytTranscriptResult.rawCaptions;
+      detectedLang = ytTranscriptResult.detectedLang;
+      console.log(`[YouTube Service] YoutubeTranscript succeeded! Got ${rawCaptions.length} cues.`);
     }
   }
 
-  // 3. Tertiary Engine: Direct HTML scraping fallback
+  // 3. Tertiary Engine: yt-dlp (runs in local environments with python)
+  if ((!rawCaptions || rawCaptions.length === 0) && !process.env.VERCEL) {
+    console.log(`[YouTube Service] Trying yt-dlp local fallback for ${videoId}...`);
+    const ytDlpResult = await fetchSubtitlesWithYtDlp(videoId, requestedLang);
+    if (ytDlpResult && ytDlpResult.rawCaptions.length > 0) {
+      rawCaptions = ytDlpResult.rawCaptions;
+      detectedLang = ytDlpResult.detectedLang;
+      console.log(`[YouTube Service] yt-dlp succeeded! Got ${rawCaptions.length} cues [${detectedLang}].`);
+    }
+  }
+
+  // 4. Quaternary Engine: Direct HTML scraping fallback
   if (!rawCaptions || rawCaptions.length === 0) {
     console.log(`[YouTube Service] Trying direct HTML watch page fallback...`);
     const directRes = await fetchDirectCaptions(videoId, requestedLang);
@@ -264,7 +408,7 @@ export async function getVideoData(urlOrId, requestedLang = 'de') {
 
   if (!rawCaptions || rawCaptions.length === 0) {
     throw new Error(
-      `Không thể lấy phụ đề cho video này (video có thể không có phụ đề CC hoặc người đăng đã tắt phụ đề). Bạn hãy thử một video khác có phụ đề tiếng Đức/Anh, hoặc chọn một bài học có sẵn trong mục "Bài mẫu"!`
+      `Video này không có phụ đề CC (hoặc người đăng đã tắt phụ đề). Vui lòng thử một video YouTube khác có bật phụ đề CC (tiếng Đức hoặc tiếng Anh), hoặc chọn một bài học gợi ý có sẵn!`
     );
   }
 
