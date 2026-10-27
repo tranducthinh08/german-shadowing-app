@@ -6,17 +6,10 @@ import { useUserSession } from './hooks/useUserSession';
 import { useGamificationSession } from './hooks/useGamificationSession';
 import { useVideoSession } from './hooks/useVideoSession';
 import {
-  setCurrentUser as persistCurrentUser,
-  getUserSettings,
-  saveUserSettings,
-  getUserSavedVocab,
-  getUserStudyHistory,
-  getUserCompletedSentences,
-  saveUserCompletedSentences,
-  deleteUserCompletedSentences,
-  getUserHardLetters,
-  getUserAlphabetReviewProgress,
-  migrateLegacyDataIfApplicable
+  setCurrentUser as persistCurrentUser, getUserSettings, saveUserSettings,
+  getUserSavedVocab, getUserStudyHistory, getUserCompletedSentences,
+  saveUserCompletedSentences, deleteUserCompletedSentences, getUserHardLetters,
+  getUserAlphabetReviewProgress, migrateLegacyDataIfApplicable
 } from './utils/userStorage';
 import { AlertCircle } from 'lucide-react';
 
@@ -24,6 +17,7 @@ import { AlertCircle } from 'lucide-react';
 const StudyHistoryTab = lazy(() => import('./components/history/StudyHistoryTab'));
 const LessonsTab = lazy(() => import('./components/lessons/LessonsTab'));
 const AlphabetTab = lazy(() => import('./components/alphabet/AlphabetTab'));
+const SpeakingCoachTab = lazy(() => import('./components/speaking/SpeakingCoachTab'));
 
 function TabLoadingFallback() {
   return (
@@ -38,72 +32,31 @@ export default function App() {
   const [mainTab, setMainTab] = useState('studio');
 
   const {
-    currentUser,
-    setCurrentUser,
-    isUserModalOpen,
-    setIsUserModalOpen,
-    userSettings,
-    setUserSettings,
-    savedWords,
-    setSavedWords,
-    completedSentenceIds,
-    setCompletedSentenceIds,
-    studyHistory,
-    setStudyHistory,
-    hardLetters,
-    setHardLetters,
-    alphabetReviewProgress,
-    setAlphabetReviewProgress,
-    updateStudyHistory,
-    handleToggleBlur,
-    handleToggleGenderColors,
-    handleToggleStrictGerman,
-    handleToggleLiveCheck,
-    handleToggleHardLetter,
-    handleSaveWord,
-    handleRemoveWord
+    currentUser, setCurrentUser, isUserModalOpen, setIsUserModalOpen,
+    userSettings, setUserSettings, savedWords, setSavedWords,
+    completedSentenceIds, setCompletedSentenceIds, studyHistory, setStudyHistory,
+    hardLetters, setHardLetters, alphabetReviewProgress, setAlphabetReviewProgress,
+    updateStudyHistory, handleToggleBlur, handleToggleGenderColors,
+    handleToggleStrictGerman, handleToggleLiveCheck, handleToggleHardLetter,
+    handleSaveWord, handleRemoveWord
   } = useUserSession();
 
   const {
-    isGamificationOpen,
-    setIsGamificationOpen,
-    activeReward,
-    setActiveReward,
-    gamificationData,
-    setGamificationData,
-    reloadGamification,
-    handleCompleteSentenceReward,
-    handleCompleteDailyReview,
-    handleCompleteDaily5Checkoff,
-    handleSaveWordReward
+    isGamificationOpen, setIsGamificationOpen, activeReward, setActiveReward,
+    gamificationData, setGamificationData, reloadGamification,
+    handleCompleteSentenceReward, handleCompleteDailyReview,
+    handleCompleteDaily5Checkoff, handleSaveWordReward,
+    handleCompleteSpeakingCoachPractice
   } = useGamificationSession(currentUser);
 
   const {
-    currentVideo,
-    activeSegmentIndex,
-    studyMode,
-    setStudyMode,
-    currentLanguage,
-    setCurrentLanguage,
-    playbackSpeed,
-    setPlaybackSpeed,
-    isLooping,
-    setIsLooping,
-    isLoading,
-    errorMessage,
-    setErrorMessage,
-    resetTrigger,
-    playerRef,
-    activeSegment,
-    handleSelectEpisode,
-    handleLoadVideo,
-    handleApplyCustomLesson,
-    handleResetLesson,
-    handleNextSegment,
-    handlePrevSegment,
-    handleSelectSegment,
-    handleReplaySegment,
-    handleReplaySlow
+    currentVideo, activeSegmentIndex, studyMode, setStudyMode,
+    currentLanguage, setCurrentLanguage, playbackSpeed, setPlaybackSpeed,
+    isLooping, setIsLooping, isLoading, errorMessage, setErrorMessage,
+    resetTrigger, playerRef, activeSegment, handleSelectEpisode,
+    handleLoadVideo, handleApplyCustomLesson, handleResetLesson,
+    handleNextSegment, handlePrevSegment, handleSelectSegment,
+    handleReplaySegment, handleReplaySlow
   } = useVideoSession(userSettings);
 
   const [selectedWord, setSelectedWord] = useState(null);
@@ -321,6 +274,15 @@ export default function App() {
               onCompleteDailyReview={(data) => handleCompleteDailyReview(data, setAlphabetReviewProgress)}
               onCompleteDaily5Checkoff={handleCompleteDaily5Checkoff}
               currentUser={currentUser}
+            />
+          )}
+
+          {mainTab === 'speaking_coach' && (
+            <SpeakingCoachTab
+              currentVideo={currentVideo}
+              currentUser={currentUser}
+              onBackToStudio={() => setMainTab('studio')}
+              onRecordSpeakingReward={handleCompleteSpeakingCoachPractice}
             />
           )}
         </Suspense>

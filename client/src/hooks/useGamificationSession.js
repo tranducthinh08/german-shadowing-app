@@ -108,6 +108,45 @@ export function useGamificationSession(currentUser) {
     setGamificationData(result.updatedData);
   }, [currentUser?.username]);
 
+  const handleCompleteSpeakingCoachPractice = useCallback(
+    ({ score = 0, targetText = '', spokenText = '' } = {}) => {
+      const result = recordLearningAction('SPEAKING_COACH_PRACTICE', { score, targetText, spokenText }, currentUser?.username);
+      setGamificationData(result.updatedData);
+
+      if (result.leveledUp) {
+        setActiveReward({
+          icon: '👑',
+          title: `Lên Level ${result.newLevel.level}!`,
+          message: `Chúc mừng bạn đã đạt danh hiệu "${result.newLevel.title}"!`,
+          xpGained: result.xpGained
+        });
+      } else if (result.newBadges?.includes('speaking_coach_pro')) {
+        setActiveReward({
+          icon: '🗣️',
+          title: 'Huy hiệu: Giọng nói bản xứ!',
+          message: 'Luyện phát âm với điểm số xuất sắc trên 90%!',
+          xpGained: result.xpGained
+        });
+      } else if (result.goalReached) {
+        setActiveReward({
+          icon: '🎯',
+          title: 'Mục tiêu hoàn thành!',
+          message: 'Bạn đã đạt 100% mục tiêu học hôm nay (+30 XP thưởng)!',
+          xpGained: result.xpGained
+        });
+      } else if (result.xpGained > 0) {
+        setActiveReward({
+          icon: score >= 90 ? '🌟' : '🎙️',
+          title: score >= 90 ? 'Phát âm tuyệt vời!' : 'Hoàn thành lượt luyện tập!',
+          message: `Điểm phát âm: ${score}%. Bạn nhận được +${result.xpGained} XP!`,
+          xpGained: result.xpGained
+        });
+      }
+      return result;
+    },
+    [currentUser?.username]
+  );
+
   return {
     isGamificationOpen,
     setIsGamificationOpen,
@@ -119,6 +158,7 @@ export function useGamificationSession(currentUser) {
     handleCompleteSentenceReward,
     handleCompleteDailyReview,
     handleCompleteDaily5Checkoff,
-    handleSaveWordReward
+    handleSaveWordReward,
+    handleCompleteSpeakingCoachPractice
   };
 }

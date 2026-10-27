@@ -1,18 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
-  Headphones,
-  Search,
-  Bookmark,
-  History,
-  HelpCircle,
-  Trophy,
-  Clipboard,
-  ArrowRight,
-  ChevronDown,
-  PenTool,
-  BookOpen,
-  Languages
+  Headphones, Search, Bookmark, History, HelpCircle,
+  Trophy, Clipboard, ArrowRight, ChevronDown, PenTool,
+  BookOpen, Languages, Mic
 } from 'lucide-react';
+
+const LEARN_NAV_ITEMS = [
+  { id: 'speaking_coach', title: 'Luyện phát âm AI', tag: 'Mới', desc: 'Chẩn đoán Umlaut, khẩu hình & chấm điểm', icon: Mic },
+  { id: 'alphabet', title: 'Bảng chữ cái (ABC)', tag: '41 âm', desc: '26 chữ, Umlaute, âm khó & ôn mỗi ngày', icon: Languages },
+  { id: 'lessons', title: 'Bài học giáo trình', tag: 'A1 • A2', desc: 'Nicos Weg (DW) • 80 tập đầy đủ phụ đề', icon: BookOpen }
+];
 
 export default function Header({
   activeTab = 'studio',
@@ -108,17 +105,17 @@ export default function Header({
               <span>Luyện tập</span>
             </button>
 
-            {/* Smart Learning Dropdown: Bảng chữ cái & Bài học */}
+            {/* Smart Learning Dropdown: Bảng chữ cái, Bài học & Luyện phát âm AI */}
             <div className="relative" ref={learnDropdownRef}>
               <button
                 type="button"
                 onClick={() => setIsLearnDropdownOpen(!isLearnDropdownOpen)}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                  activeTab === 'lessons' || activeTab === 'playlist' || activeTab === 'alphabet'
+                  activeTab === 'lessons' || activeTab === 'playlist' || activeTab === 'alphabet' || activeTab === 'speaking_coach'
                     ? 'bg-primary-container text-on-primary-container shadow-xs'
                     : 'text-on-surface-variant hover:text-on-surface'
                 }`}
-                title="Chọn chương trình học: Bảng chữ cái hoặc Bài học A1/A2"
+                title="Chọn chương trình học: Bảng chữ cái, Luyện phát âm AI hoặc Bài học A1/A2"
               >
                 {activeTab === 'alphabet' ? (
                   <>
@@ -126,6 +123,14 @@ export default function Header({
                     <span>Bảng chữ cái</span>
                     <span className="text-[10px] font-bold px-1.5 py-0.2 rounded-full bg-on-primary-container/20 text-on-primary-container">
                       ABC
+                    </span>
+                  </>
+                ) : activeTab === 'speaking_coach' ? (
+                  <>
+                    <Mic className="w-3.5 h-3.5 text-secondary" />
+                    <span>Phát âm AI</span>
+                    <span className="text-[10px] font-bold px-1.5 py-0.2 rounded-full bg-on-primary-container/20 text-on-primary-container">
+                      Coach
                     </span>
                   </>
                 ) : (
@@ -150,64 +155,40 @@ export default function Header({
                   <div className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-outline mb-1">
                     Nội dung học tập
                   </div>
-
-                  {/* Option 1: Bảng chữ cái tiếng Đức */}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      if (onChangeTab) onChangeTab('alphabet');
-                      setIsLearnDropdownOpen(false);
-                    }}
-                    className={`w-full flex items-start gap-3 p-2.5 rounded-xl text-left transition-all cursor-pointer ${
-                      activeTab === 'alphabet'
-                        ? 'bg-secondary-container/25 border border-secondary/40 text-on-surface'
-                        : 'hover:bg-surface-container-high text-on-surface'
-                    }`}
-                  >
-                    <div className="w-8 h-8 rounded-xl bg-secondary/15 flex items-center justify-center shrink-0 mt-0.5">
-                      <Languages className="w-4 h-4 text-secondary" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between gap-1">
-                        <span className="text-xs font-bold text-on-surface">Bảng chữ cái (ABC)</span>
-                        <span className="text-[10px] font-bold px-1.5 py-0.2 rounded-md bg-secondary/20 text-secondary">
-                          41 âm
-                        </span>
-                      </div>
-                      <p className="text-[11px] text-on-surface-variant truncate mt-0.5">
-                        26 chữ, Umlaute, âm khó & ôn mỗi ngày
-                      </p>
-                    </div>
-                  </button>
-
-                  {/* Option 2: Bài học Nicos Weg A1/A2 */}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      if (onChangeTab) onChangeTab('lessons');
-                      setIsLearnDropdownOpen(false);
-                    }}
-                    className={`w-full flex items-start gap-3 p-2.5 rounded-xl text-left transition-all cursor-pointer mt-1 ${
-                      activeTab === 'lessons' || activeTab === 'playlist'
-                        ? 'bg-secondary-container/25 border border-secondary/40 text-on-surface'
-                        : 'hover:bg-surface-container-high text-on-surface'
-                    }`}
-                  >
-                    <div className="w-8 h-8 rounded-xl bg-secondary/15 flex items-center justify-center shrink-0 mt-0.5">
-                      <BookOpen className="w-4 h-4 text-secondary" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between gap-1">
-                        <span className="text-xs font-bold text-on-surface">Bài học theo giáo trình</span>
-                        <span className="text-[10px] font-bold px-1.5 py-0.2 rounded-md bg-secondary/20 text-secondary">
-                          A1 • A2
-                        </span>
-                      </div>
-                      <p className="text-[11px] text-on-surface-variant truncate mt-0.5">
-                        Nicos Weg (DW) • 80 tập đầy đủ phụ đề
-                      </p>
-                    </div>
-                  </button>
+                  {LEARN_NAV_ITEMS.map((item) => {
+                    const Icon = item.icon;
+                    const isSelected = activeTab === item.id || (item.id === 'lessons' && activeTab === 'playlist');
+                    return (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => {
+                          if (onChangeTab) onChangeTab(item.id);
+                          setIsLearnDropdownOpen(false);
+                        }}
+                        className={`w-full flex items-start gap-3 p-2 rounded-xl text-left transition-all cursor-pointer mb-1 ${
+                          isSelected
+                            ? 'bg-secondary-container/25 border border-secondary/40 text-on-surface'
+                            : 'hover:bg-surface-container-high text-on-surface'
+                        }`}
+                      >
+                        <div className="w-8 h-8 rounded-xl bg-secondary/15 flex items-center justify-center shrink-0 mt-0.5">
+                          <Icon className="w-4 h-4 text-secondary" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-1">
+                            <span className="text-xs font-bold text-on-surface">{item.title}</span>
+                            <span className="text-[10px] font-bold px-1.5 py-0.2 rounded-md bg-secondary/20 text-secondary">
+                              {item.tag}
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-on-surface-variant truncate mt-0.5">
+                            {item.desc}
+                          </p>
+                        </div>
+                      </button>
+                    );
+                  })}
                 </div>
               )}
             </div>

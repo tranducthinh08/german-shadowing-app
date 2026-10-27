@@ -307,6 +307,8 @@ export default function ShadowingWorkspace({
       <ShadowingScoreCard
         recognizedText={recognizedText}
         speechScore={speechScore}
+        targetSentence={activeSegment?.text}
+        language={language}
       />
 
       {/* Word-by-Word Pronunciation Correction & Practice Drawer */}

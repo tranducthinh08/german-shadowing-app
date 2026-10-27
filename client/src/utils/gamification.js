@@ -1,14 +1,6 @@
 /**
- * Gamification & Habit Building Engine
- * 
- * Handles:
- * 1. Streak Tracking (Calculates daily streaks, streaks freeze, activity calendar)
- * 2. Daily Learning Goals (Sentence targets: 5, 10, 15, 25 sentences/day)
- * 3. XP (Experience Points) & Level Progression (Level 1 to 10 with titles)
- * 4. Achievement Badges (Unlockable milestones)
- * 5. LocalStorage persistence & real-time event broadcasting
+ * Gamification & Habit Building Engine: Streaks, Goals, XP, Badges, Level Progression
  */
-
 import { getLocalDateString } from './timeFormat.js';
 
 const DEFAULT_STORAGE_KEY = 'polyglot_gamification';
@@ -103,6 +95,13 @@ export const ALL_BADGES = [
     desc: 'Hoàn thành bài ôn tập bảng chữ cái tiếng Đức',
     icon: '🔤',
     category: 'skill'
+  },
+  {
+    id: 'speaking_coach_pro',
+    name: 'Giọng nói bản xứ',
+    desc: 'Luyện phát âm với Speaking Coach đạt điểm số xuất sắc trên 90%',
+    icon: '🗣️',
+    category: 'skill'
   }
 ];
 
@@ -114,32 +113,16 @@ function getTodayString() {
 // Helper: Get difference in days between two YYYY-MM-DD strings
 function getDayDifference(dateStr1, dateStr2) {
   if (!dateStr1 || !dateStr2) return 999;
-  const d1 = new Date(dateStr1);
-  const d2 = new Date(dateStr2);
-  const diffTime = Math.abs(d2 - d1);
-  return Math.round(diffTime / (1000 * 60 * 60 * 24));
+  return Math.round(Math.abs(new Date(dateStr2) - new Date(dateStr1)) / (1000 * 60 * 60 * 24));
 }
 
 // Get initial default gamification state
 function getDefaultGamificationState() {
   const today = getTodayString();
   return {
-    streak: {
-      currentStreak: 1,
-      bestStreak: 1,
-      lastStudyDate: today,
-      activityDates: [today]
-    },
-    dailyGoal: {
-      targetSentences: 10,
-      completedToday: 0,
-      lastDate: today
-    },
-    xp: {
-      totalXp: 20, // Welcome bonus
-      level: 1,
-      levelTitle: 'Khởi đầu mới'
-    },
+    streak: { currentStreak: 1, bestStreak: 1, lastStudyDate: today, activityDates: [today] },
+    dailyGoal: { targetSentences: 10, completedToday: 0, lastDate: today },
+    xp: { totalXp: 20, level: 1, levelTitle: 'Khởi đầu mới' },
     unlockedBadges: ['first_sentence'],
     recentReward: null
   };
@@ -236,7 +219,17 @@ export function calculateLevel(totalXp) {
  * @returns {object} { xpGained, leveledUp, newBadge, goalReached, updatedData }
  */
 export function recordLearningAction(action, payload = {}, username) {
-  const user = username || payload?.username;
+  let actionName = action;
+  let actionPayload = payload;
+  let user = username || payload?.username;
+
+  // Support both (action, payload, user) and (user, action, payload)
+  if (typeof payload === 'string') {
+    user = action;
+    actionName = payload;
+    actionPayload = username || {};
+  }
+
   const data = getGamificationData(user);
   const today = getTodayString();
 
@@ -246,7 +239,7 @@ export function recordLearningAction(action, payload = {}, username) {
   let leveledUp = false;
 
   // 1. Process XP according to action
-  switch (action) {
+  switch (actionName) {
     case 'COMPLETE_DICTATION':
       xpGained = 15;
       data.dailyGoal.completedToday += 1;
@@ -259,9 +252,9 @@ export function recordLearningAction(action, payload = {}, username) {
       }
       break;
     case 'COMPLETE_SHADOWING':
-      xpGained = payload.score >= 85 ? 25 : 15;
+      xpGained = actionPayload.score >= 85 ? 25 : 15;
       data.dailyGoal.completedToday += 1;
-      if (payload.score >= 85 && !data.unlockedBadges.includes('shadowing_star')) {
+      if (actionPayload.score >= 85 && !data.unlockedBadges.includes('shadowing_star')) {
         newBadges.push('shadowing_star');
       }
       break;
@@ -273,22 +266,30 @@ export function recordLearningAction(action, payload = {}, username) {
       break;
     case 'SAVE_VOCAB':
       xpGained = 5;
-      if (payload.vocabCount >= 5 && !data.unlockedBadges.includes('vocab_collector')) {
+      if (actionPayload.vocabCount >= 5 && !data.unlockedBadges.includes('vocab_collector')) {
         newBadges.push('vocab_collector');
       }
       break;
     case 'ALPHABET_REVIEW':
     case 'alphabet_review':
-      xpGained = payload?.xp || 30;
+      xpGained = actionPayload?.xp || 30;
       if (!data.unlockedBadges.includes('alphabet_master')) {
         newBadges.push('alphabet_master');
       }
       break;
     case 'DAILY_5_COMPLETED':
     case 'daily_5_completed':
-      xpGained = payload?.xp || 25;
+      xpGained = actionPayload?.xp || 25;
       if (!data.unlockedBadges.includes('alphabet_master')) {
         newBadges.push('alphabet_master');
+      }
+      break;
+    case 'SPEAKING_COACH_PRACTICE':
+    case 'speaking_coach_practice':
+      xpGained = actionPayload?.score >= 95 ? 15 : actionPayload?.score >= 80 ? 10 : 5;
+      data.dailyGoal.completedToday += 1;
+      if (actionPayload?.score >= 90 && !data.unlockedBadges.includes('speaking_coach_pro')) {
+        newBadges.push('speaking_coach_pro');
       }
       break;
     default:
