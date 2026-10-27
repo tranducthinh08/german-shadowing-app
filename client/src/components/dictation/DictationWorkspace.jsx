@@ -387,10 +387,10 @@ export default function DictationWorkspace({
                     <span
                       key={idx}
                       className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-950/40 text-emerald-300 border border-emerald-500/50 shadow-xs transition-all"
-                      title="Chính xác"
+                      title="Đúng"
                     >
                       <Check className="w-3 h-3 text-emerald-400 shrink-0" />
-                      <span>{token.cleanTarget || token.typedWord}</span>
+                      <span>{token.typedWord}</span>
                     </span>
                   );
                 }
@@ -412,12 +412,11 @@ export default function DictationWorkspace({
                   return (
                     <span
                       key={idx}
-                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-amber-950/40 text-amber-300 border border-amber-500/50 shadow-xs transition-all"
-                      title={`Lỗi nhẹ, từ đúng: ${token.cleanTarget}`}
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-rose-950/40 text-rose-300 border border-rose-500/50 shadow-xs transition-all"
+                      title="Sai"
                     >
-                      <AlertTriangle className="w-3 h-3 text-amber-400 shrink-0" />
+                      <X className="w-3 h-3 text-rose-400 shrink-0" />
                       <span>{token.typedWord}</span>
-                      <span className="text-[10px] text-amber-400/80">({token.cleanTarget})</span>
                     </span>
                   );
                 }
@@ -427,11 +426,10 @@ export default function DictationWorkspace({
                     <span
                       key={idx}
                       className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-rose-950/40 text-rose-300 border border-rose-500/50 shadow-xs transition-all"
-                      title={`Sai, từ đúng: ${token.cleanTarget}`}
+                      title="Sai"
                     >
                       <X className="w-3 h-3 text-rose-400 shrink-0" />
-                      <span className="line-through opacity-80">{token.typedWord}</span>
-                      <span className="text-[10px] text-rose-200 font-bold">→ {token.cleanTarget}</span>
+                      <span>{token.typedWord}</span>
                     </span>
                   );
                 }

@@ -125,11 +125,11 @@ const live2 = computeLiveStream('Hey, Le', liveTarget, { strictCase: false });
 assert.strictEqual(live2.tokens[0].status, 'correct');
 assert.strictEqual(live2.tokens[1].status, 'typing', 'Word 2 should be in typing status');
 
-// Case C: User typed second word wrong
+// Case C: User typed second word wrong (pure red status, no answer leakage)
 const live3 = computeLiveStream('Hey, Tom ', liveTarget, { strictCase: false });
 assert.strictEqual(live3.tokens[0].status, 'correct');
 assert.strictEqual(live3.tokens[1].status, 'wrong', 'Word 2 should be red/wrong');
-assert.strictEqual(live3.tokens[1].suggestion, 'Lena');
+assert.strictEqual(live3.tokens[1].typedWord, 'Tom');
 
 // Case D: Full sentence matching with contraction s tolerance
 const live4 = computeLiveStream('hey, Lena ! Na, wie geht\'s', liveTarget, { strictCase: false });

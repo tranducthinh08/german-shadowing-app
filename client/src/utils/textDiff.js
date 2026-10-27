@@ -326,16 +326,14 @@ export function computeLiveStream(userInput = '', targetText = '', options = {})
           targetWord: tw,
           cleanTarget: twClean,
           typedWord: uw,
-          status: 'typo',
-          suggestion: twClean
+          status: 'typo'
         });
       } else if (check.typoType === 'umlaut') {
         tokens.push({
           targetWord: tw,
           cleanTarget: twClean,
           typedWord: uw,
-          status: 'typo',
-          suggestion: twClean
+          status: 'typo'
         });
       } else {
         tokens.push({
@@ -358,8 +356,7 @@ export function computeLiveStream(userInput = '', targetText = '', options = {})
         targetWord: tw,
         cleanTarget: twClean,
         typedWord: uw,
-        status: 'wrong',
-        suggestion: twClean
+        status: 'wrong'
       });
     }
   }
