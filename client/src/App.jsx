@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import Header from './components/common/Header';
-import StudyHistoryTab from './components/history/StudyHistoryTab';
-import LessonsTab from './components/lessons/LessonsTab';
-import AlphabetTab from './components/alphabet/AlphabetTab';
 import StudioWorkspace from './components/studio/StudioWorkspace';
 import AppModals from './components/common/AppModals';
 import { useUserSession } from './hooks/useUserSession';
@@ -22,6 +19,20 @@ import {
   migrateLegacyDataIfApplicable
 } from './utils/userStorage';
 import { AlertCircle } from 'lucide-react';
+
+// Lazy-load secondary tabs to minimize initial bundle size and speed up page load
+const StudyHistoryTab = lazy(() => import('./components/history/StudyHistoryTab'));
+const LessonsTab = lazy(() => import('./components/lessons/LessonsTab'));
+const AlphabetTab = lazy(() => import('./components/alphabet/AlphabetTab'));
+
+function TabLoadingFallback() {
+  return (
+    <div className="flex flex-col items-center justify-center py-24 gap-3 text-outline">
+      <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+      <span className="text-xs font-medium">Đang tải dữ liệu...</span>
+    </div>
+  );
+}
 
 export default function App() {
   const [mainTab, setMainTab] = useState('studio');
@@ -266,52 +277,54 @@ export default function App() {
           </div>
         )}
 
-        {mainTab === 'history' && (
-          <StudyHistoryTab
-            history={studyHistory}
-            onSelectLesson={(lesson) => {
-              handleLoadVideo(lesson.videoId, lesson.language, false, syncProgressOnLoad);
-              setMainTab('studio');
-            }}
-            onSelectEpisode={(ep, reset) => {
-              handleSelectEpisode(ep, reset, syncProgressOnLoad);
-              setMainTab('studio');
-            }}
-            onResetLesson={handleResetLessonFromHistory}
-            onRemoveLesson={(id) => setStudyHistory((prev) => prev.filter((h) => h.videoId !== id))}
-            onClearHistory={() => setStudyHistory([])}
-            onBackToStudio={() => setMainTab('studio')}
-            hasActiveVideo={Boolean(currentVideo)}
-          />
-        )}
+        <Suspense fallback={<TabLoadingFallback />}>
+          {mainTab === 'history' && (
+            <StudyHistoryTab
+              history={studyHistory}
+              onSelectLesson={(lesson) => {
+                handleLoadVideo(lesson.videoId, lesson.language, false, syncProgressOnLoad);
+                setMainTab('studio');
+              }}
+              onSelectEpisode={(ep, reset) => {
+                handleSelectEpisode(ep, reset, syncProgressOnLoad);
+                setMainTab('studio');
+              }}
+              onResetLesson={handleResetLessonFromHistory}
+              onRemoveLesson={(id) => setStudyHistory((prev) => prev.filter((h) => h.videoId !== id))}
+              onClearHistory={() => setStudyHistory([])}
+              onBackToStudio={() => setMainTab('studio')}
+              hasActiveVideo={Boolean(currentVideo)}
+            />
+          )}
 
-        {(mainTab === 'lessons' || mainTab === 'playlist') && (
-          <LessonsTab
-            onSelectEpisode={(ep, reset) => {
-              handleSelectEpisode(ep, reset, syncProgressOnLoad);
-              setMainTab('studio');
-            }}
-            onSelectLesson={(lesson) => {
-              handleLoadVideo(lesson.videoId, lesson.language, false, syncProgressOnLoad);
-              setMainTab('studio');
-            }}
-            completedVideoIds={studyHistory.filter((h) => h.completedCount >= (h.sentenceCount || 1)).map((h) => h.videoId)}
-            currentVideoId={currentVideo?.videoId}
-            onBackToStudio={() => setMainTab('studio')}
-            onOpenAlphabet={() => setMainTab('alphabet')}
-          />
-        )}
+          {(mainTab === 'lessons' || mainTab === 'playlist') && (
+            <LessonsTab
+              onSelectEpisode={(ep, reset) => {
+                handleSelectEpisode(ep, reset, syncProgressOnLoad);
+                setMainTab('studio');
+              }}
+              onSelectLesson={(lesson) => {
+                handleLoadVideo(lesson.videoId, lesson.language, false, syncProgressOnLoad);
+                setMainTab('studio');
+              }}
+              completedVideoIds={studyHistory.filter((h) => h.completedCount >= (h.sentenceCount || 1)).map((h) => h.videoId)}
+              currentVideoId={currentVideo?.videoId}
+              onBackToStudio={() => setMainTab('studio')}
+              onOpenAlphabet={() => setMainTab('alphabet')}
+            />
+          )}
 
-        {mainTab === 'alphabet' && (
-          <AlphabetTab
-            hardLetters={hardLetters}
-            onToggleHardLetter={handleToggleHardLetter}
-            alphabetReviewProgress={alphabetReviewProgress}
-            onCompleteDailyReview={(data) => handleCompleteDailyReview(data, setAlphabetReviewProgress)}
-            onCompleteDaily5Checkoff={handleCompleteDaily5Checkoff}
-            currentUser={currentUser}
-          />
-        )}
+          {mainTab === 'alphabet' && (
+            <AlphabetTab
+              hardLetters={hardLetters}
+              onToggleHardLetter={handleToggleHardLetter}
+              alphabetReviewProgress={alphabetReviewProgress}
+              onCompleteDailyReview={(data) => handleCompleteDailyReview(data, setAlphabetReviewProgress)}
+              onCompleteDaily5Checkoff={handleCompleteDaily5Checkoff}
+              currentUser={currentUser}
+            />
+          )}
+        </Suspense>
 
         {mainTab === 'studio' && (
           <StudioWorkspace

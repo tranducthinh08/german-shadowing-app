@@ -1,11 +1,13 @@
-import React from 'react';
-import UserProfileModal from '../user/UserProfileModal';
-import WordPopover from '../vocab/WordPopover';
-import VocabNotebookModal from '../vocab/VocabNotebookModal';
-import ShortcutsModal from './ShortcutsModal';
-import CustomTranscriptModal from './CustomTranscriptModal';
-import GamificationModal from '../gamification/GamificationModal';
+import React, { lazy, Suspense } from 'react';
 import RewardToast from '../gamification/RewardToast';
+
+// Lazy-load modals so they don't bloat the initial application bundle
+const UserProfileModal = lazy(() => import('../user/UserProfileModal'));
+const WordPopover = lazy(() => import('../vocab/WordPopover'));
+const VocabNotebookModal = lazy(() => import('../vocab/VocabNotebookModal'));
+const ShortcutsModal = lazy(() => import('./ShortcutsModal'));
+const CustomTranscriptModal = lazy(() => import('./CustomTranscriptModal'));
+const GamificationModal = lazy(() => import('../gamification/GamificationModal'));
 
 export default function AppModals({
   currentUser,
@@ -33,15 +35,17 @@ export default function AppModals({
   onDismissReward
 }) {
   return (
-    <>
+    <Suspense fallback={null}>
       {/* User Profile Modal */}
-      <UserProfileModal
-        isOpen={isUserModalOpen}
-        onClose={onCloseUserModal}
-        currentUser={currentUser}
-        onSelectUser={onSelectUser}
-        canClose={Boolean(currentUser)}
-      />
+      {isUserModalOpen && (
+        <UserProfileModal
+          isOpen={isUserModalOpen}
+          onClose={onCloseUserModal}
+          currentUser={currentUser}
+          onSelectUser={onSelectUser}
+          canClose={Boolean(currentUser)}
+        />
+      )}
 
       {/* Word Popover */}
       {selectedWord && (
@@ -56,35 +60,43 @@ export default function AppModals({
       )}
 
       {/* Sổ từ vựng Modal */}
-      <VocabNotebookModal
-        isOpen={isVocabOpen}
-        onClose={onCloseVocab}
-        savedWords={savedWords}
-        onRemoveWord={onRemoveWord}
-      />
+      {isVocabOpen && (
+        <VocabNotebookModal
+          isOpen={isVocabOpen}
+          onClose={onCloseVocab}
+          savedWords={savedWords}
+          onRemoveWord={onRemoveWord}
+        />
+      )}
 
       {/* Shortcuts Modal */}
-      <ShortcutsModal
-        isOpen={isShortcutsOpen}
-        onClose={onCloseShortcuts}
-      />
+      {isShortcutsOpen && (
+        <ShortcutsModal
+          isOpen={isShortcutsOpen}
+          onClose={onCloseShortcuts}
+        />
+      )}
 
       {/* Custom Transcript Modal */}
-      <CustomTranscriptModal
-        isOpen={isCustomTranscriptOpen}
-        onClose={onCloseCustomTranscript}
-        onApplyCustomLesson={onApplyCustomLesson}
-        currentLanguage={currentLanguage}
-      />
+      {isCustomTranscriptOpen && (
+        <CustomTranscriptModal
+          isOpen={isCustomTranscriptOpen}
+          onClose={onCloseCustomTranscript}
+          onApplyCustomLesson={onApplyCustomLesson}
+          currentLanguage={currentLanguage}
+        />
+      )}
 
       {/* Gamification Dashboard Modal */}
-      <GamificationModal
-        isOpen={isGamificationOpen}
-        onClose={onCloseGamification}
-        gamificationData={gamificationData}
-        onUpdateData={onUpdateGamificationData}
-        currentUser={currentUser}
-      />
+      {isGamificationOpen && (
+        <GamificationModal
+          isOpen={isGamificationOpen}
+          onClose={onCloseGamification}
+          gamificationData={gamificationData}
+          onUpdateData={onUpdateGamificationData}
+          currentUser={currentUser}
+        />
+      )}
 
       {/* Floating Reward Notification Toast */}
       {activeReward && (
@@ -93,6 +105,6 @@ export default function AppModals({
           onDismiss={onDismissReward}
         />
       )}
-    </>
+    </Suspense>
   );
 }
