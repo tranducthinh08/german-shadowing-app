@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import { GERMAN_ALPHABET, MINIMAL_PAIRS } from '../../data/germanAlphabetData';
 import { speakWord, stopCurrentAudio } from '../../utils/pronunciationGuide';
+import { getLocalDateString } from '../../utils/timeFormat';
 import DailyReviewDrill from './DailyReviewDrill';
 
 export default function AlphabetTab({
@@ -51,7 +52,7 @@ export default function AlphabetTab({
   const [voiceFeedback, setVoiceFeedback] = useState(null);
   const recognitionRef = useRef(null);
 
-  const today = new Date().toISOString().split('T')[0];
+  const today = getLocalDateString();
   const isReviewedToday = alphabetReviewProgress?.lastReviewDate === today;
   const reviewStreak = alphabetReviewProgress?.reviewStreak || 0;
 
@@ -83,10 +84,15 @@ export default function AlphabetTab({
     });
   }, [activeFilter, searchQuery, safeHardLetters]);
 
-  // Clean up auto-play timer and audio on unmount
+  // Clean up auto-play timer, micro recognition, and audio on unmount
   useEffect(() => {
     return () => {
       if (autoPlayTimerRef.current) clearInterval(autoPlayTimerRef.current);
+      if (recognitionRef.current) {
+        try {
+          recognitionRef.current.abort();
+        } catch (e) {}
+      }
       stopCurrentAudio();
     };
   }, []);

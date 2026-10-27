@@ -36,6 +36,8 @@ export default function Header({
 
   // Close dropdown on click outside
   useEffect(() => {
+    if (!isLearnDropdownOpen) return;
+
     function handleClickOutside(event) {
       if (learnDropdownRef.current && !learnDropdownRef.current.contains(event.target)) {
         setIsLearnDropdownOpen(false);
@@ -43,7 +45,7 @@ export default function Header({
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  }, [isLearnDropdownOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

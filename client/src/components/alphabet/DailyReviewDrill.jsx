@@ -42,9 +42,14 @@ export default function DailyReviewDrill({
 
   const currentQ = questions[currentIndex];
 
-  // Clean up audio on unmount
+  // Clean up audio and microphone recognition on unmount
   useEffect(() => {
     return () => {
+      if (recognitionRef.current) {
+        try {
+          recognitionRef.current.abort();
+        } catch (e) {}
+      }
       stopCurrentAudio();
     };
   }, []);
@@ -104,7 +109,7 @@ export default function DailyReviewDrill({
       setIsCompleted(true);
       if (onComplete) {
         onComplete({
-          correctCount: correctCount + (selectedOptionId && currentQ?.options?.find(o => o.id === selectedOptionId)?.isCorrect ? 1 : 0),
+          correctCount,
           totalQuestions: questions.length,
           xpEarned: 30
         });
@@ -191,7 +196,7 @@ export default function DailyReviewDrill({
 
   const handleSkipVoice = () => {
     setIsAnswered(true);
-    setSelectedOptionId('voice_success');
+    setSelectedOptionId('voice_skip');
     handleNext();
   };
 

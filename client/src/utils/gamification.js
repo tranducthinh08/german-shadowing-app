@@ -9,6 +9,8 @@
  * 5. LocalStorage persistence & real-time event broadcasting
  */
 
+import { getLocalDateString } from './timeFormat.js';
+
 const DEFAULT_STORAGE_KEY = 'polyglot_gamification';
 
 /**
@@ -103,10 +105,9 @@ export const ALL_BADGES = [
   }
 ];
 
-// Helper: Format today as YYYY-MM-DD
+// Helper: Format today as YYYY-MM-DD in local time
 function getTodayString() {
-  const d = new Date();
-  return d.toISOString().split('T')[0];
+  return getLocalDateString();
 }
 
 // Helper: Get difference in days between two YYYY-MM-DD strings

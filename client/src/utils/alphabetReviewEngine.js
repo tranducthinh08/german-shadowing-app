@@ -6,6 +6,7 @@
  */
 
 import { GERMAN_ALPHABET, MINIMAL_PAIRS, getDifficultLetters, getAlphabetItemById } from '../data/germanAlphabetData.js';
+import { getLocalDateString } from './timeFormat.js';
 
 // Helper: Shuffle an array in-place
 function shuffle(array) {
@@ -200,7 +201,7 @@ export function generateDailyReviewSession(userStarredIds = [], questionCount = 
  * @returns {object} updated progress object
  */
 export function calculateReviewProgressUpdate(currentProgress, correctCount, totalQuestions) {
-  const today = new Date().toISOString().split('T')[0];
+  const today = getLocalDateString();
   const lastDate = currentProgress?.lastReviewDate;
 
   let newStreak = currentProgress?.reviewStreak || 0;

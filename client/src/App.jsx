@@ -762,7 +762,7 @@ export default function App() {
 
                     {studyMode === 'dictation' ? (
                       <DictationWorkspace
-                        key={`dict-${activeSegment?.id || 'seg'}-${resetTrigger}`}
+                        key={`dict-${currentVideo?.videoId || 'vid'}-${activeSegment?.id || activeSegmentIndex}-${resetTrigger}`}
                         activeSegment={activeSegment}
                         segmentIndex={activeSegmentIndex}
                         totalSegments={currentVideo.sentences?.length || 0}
@@ -779,7 +779,7 @@ export default function App() {
                       />
                     ) : (
                       <ShadowingWorkspace
-                        key={`shad-${activeSegment?.id || 'seg'}-${resetTrigger}`}
+                        key={`shad-${currentVideo?.videoId || 'vid'}-${activeSegment?.id || activeSegmentIndex}-${resetTrigger}`}
                         activeSegment={activeSegment}
                         segmentIndex={activeSegmentIndex}
                         totalSegments={currentVideo.sentences?.length || 0}

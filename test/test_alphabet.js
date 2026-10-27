@@ -9,6 +9,7 @@ import {
   generateDailyReviewSession,
   calculateReviewProgressUpdate
 } from '../client/src/utils/alphabetReviewEngine.js';
+import { getLocalDateString } from '../client/src/utils/timeFormat.js';
 import {
   getUserHardLetters,
   saveUserHardLetters,
@@ -118,7 +119,7 @@ console.log('  ✅ Generated 8 diverse questions with verified single-correct-an
 // Test 4: Streak & Progress Calculator
 // -------------------------------------------------------------
 console.log('\nTest 4: Review Progress & Streak Calculation');
-const today = new Date().toISOString().split('T')[0];
+const today = getLocalDateString();
 
 // First time ever session
 const p1 = calculateReviewProgressUpdate(null, 7, 8);
@@ -134,7 +135,7 @@ assert.strictEqual(p2.totalSessions, 2);
 assert.strictEqual(p2.totalCorrect, 15);
 
 // Consecutive day session (yesterday to today): streak increments
-const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+const yesterday = getLocalDateString(new Date(Date.now() - 24 * 60 * 60 * 1000));
 const yesterdayProgress = {
   lastReviewDate: yesterday,
   reviewStreak: 3,
