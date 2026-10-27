@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "cd client && npm install && npm run build",
+  "buildCommand": "(test -d client && cd client || true) && npm install && npm run build",
   "outputDirectory": "client/dist",
   "functions": {
     "api/**/*.js": {

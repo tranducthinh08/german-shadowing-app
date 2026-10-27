@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "buildCommand": "(test -d client && cd client || true) && npm install && npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
