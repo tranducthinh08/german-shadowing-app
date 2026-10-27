@@ -190,7 +190,7 @@ export default function TranscriptList({
                   ? 'bg-primary-container text-on-primary-container border-primary shadow-xs'
                   : 'bg-surface-container text-outline border-outline-variant/30'
               }`}
-              title={isBlurScript ? 'Chế độ mờ: chỉ hiện câu đang học & câu đã hoàn thành' : 'Hiện toàn bộ câu'}
+              title={isBlurScript ? 'Chế độ mờ: chỉ hiển thị câu đã hoàn thành 100%' : 'Hiện toàn bộ câu'}
             >
               {isBlurScript ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
               <span>{isBlurScript ? 'Làm mờ' : 'Hiện hết'}</span>
@@ -216,7 +216,7 @@ export default function TranscriptList({
         {filteredSentences.map((sentence, index) => {
           const isActive = sentence.id === activeSegmentId;
           const isCompleted = completedSentenceIds.has(sentence.id);
-          const shouldBlur = isBlurScript && !isCompleted && !isActive;
+          const shouldBlur = isBlurScript && !isCompleted;
           const translationVi = translations[sentence.id] || sentence.translationVi;
 
           return (

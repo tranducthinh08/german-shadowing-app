@@ -51,20 +51,22 @@ console.log('  ✅ Users registered and profile switching verified');
 
 // 2. Test User Settings / Toggles Isolation
 console.log('\nTest 2: User Settings & Toggles Isolation (Những gì người dùng bật)');
-// Alice toggles: blur OFF, gender colors ON, mode shadowing, language de
+// Alice toggles: blur OFF, gender colors ON, mode shadowing, language de, strictNounCapitalization OFF
 saveUserSettings('Alice', {
   isBlurScript: false,
   showGenderColors: true,
   activeMode: 'shadowing',
-  selectedLang: 'de'
+  selectedLang: 'de',
+  strictNounCapitalization: false
 });
 
-// Bob toggles: blur ON, gender colors OFF, mode dictation, language en
+// Bob toggles: blur ON, gender colors OFF, mode dictation, language en, strictNounCapitalization ON
 saveUserSettings('Bob', {
   isBlurScript: true,
   showGenderColors: false,
   activeMode: 'dictation',
-  selectedLang: 'en'
+  selectedLang: 'en',
+  strictNounCapitalization: true
 });
 
 const aliceSettings = getUserSettings('Alice');
@@ -72,12 +74,14 @@ assert.strictEqual(aliceSettings.isBlurScript, false, 'Alice blur should be FALS
 assert.strictEqual(aliceSettings.showGenderColors, true, 'Alice gender colors should be TRUE');
 assert.strictEqual(aliceSettings.activeMode, 'shadowing', 'Alice mode should be shadowing');
 assert.strictEqual(aliceSettings.selectedLang, 'de', 'Alice lang should be de');
+assert.strictEqual(aliceSettings.strictNounCapitalization, false, 'Alice strictNounCapitalization should be FALSE');
 
 const bobSettings = getUserSettings('Bob');
 assert.strictEqual(bobSettings.isBlurScript, true, 'Bob blur should be TRUE');
 assert.strictEqual(bobSettings.showGenderColors, false, 'Bob gender colors should be FALSE');
 assert.strictEqual(bobSettings.activeMode, 'dictation', 'Bob mode should be dictation');
 assert.strictEqual(bobSettings.selectedLang, 'en', 'Bob lang should be en');
+assert.strictEqual(bobSettings.strictNounCapitalization, true, 'Bob strictNounCapitalization should be TRUE');
 console.log('  ✅ User settings are strictly isolated and do not collide');
 
 // 3. Test Learning Progress & Completed Sentences Isolation

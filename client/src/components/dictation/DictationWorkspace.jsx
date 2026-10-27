@@ -16,15 +16,26 @@ export default function DictationWorkspace({
   isLooping,
   onToggleLoop,
   language = 'de',
-  onCompleteSentence
+  onCompleteSentence,
+  strictGerman: propStrictGerman,
+  onToggleStrictGerman
 }) {
   const [userInput, setUserInput] = useState('');
   const [diffResult, setDiffResult] = useState(null);
   const [showHint, setShowHint] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
-  const [strictGerman, setStrictGerman] = useState(true);
+  const [localStrictGerman, setLocalStrictGerman] = useState(true);
+  const strictGerman = propStrictGerman !== undefined ? propStrictGerman : localStrictGerman;
   const [showGrammarModal, setShowGrammarModal] = useState(false);
   const inputRef = useRef(null);
+
+  const handleToggleStrict = (val) => {
+    if (onToggleStrictGerman) {
+      onToggleStrictGerman(val);
+    } else {
+      setLocalStrictGerman(val);
+    }
+  };
 
   // Reset input and diff result when segment changes
   useEffect(() => {
@@ -74,7 +85,7 @@ export default function DictationWorkspace({
 
     setDiffResult(result);
 
-    if (result.isPerfect && onCompleteSentence) {
+    if ((result.isPerfect || result.score === 100) && onCompleteSentence) {
       onCompleteSentence(activeSegment.id, result.score);
     }
   };
@@ -237,7 +248,7 @@ export default function DictationWorkspace({
             <input
               type="checkbox"
               checked={strictGerman}
-              onChange={(e) => setStrictGerman(e.target.checked)}
+              onChange={(e) => handleToggleStrict(e.target.checked)}
               className="rounded bg-surface-container border-outline-variant text-secondary focus:ring-0 w-3.5 h-3.5"
             />
             <span>Bắt buộc viết hoa danh từ</span>

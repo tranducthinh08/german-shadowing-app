@@ -179,6 +179,16 @@ export default function App() {
     });
   };
 
+  const handleToggleStrictGerman = (newVal) => {
+    setUserSettings((prev) => {
+      const next = { ...prev, strictNounCapitalization: newVal };
+      if (currentUser?.username) {
+        saveUserSettings(currentUser.username, { strictNounCapitalization: newVal });
+      }
+      return next;
+    });
+  };
+
   // Update study history item (per user)
   const updateStudyHistory = (videoData, completedCount, username = currentUser?.username) => {
     if (!videoData) return;
@@ -692,6 +702,8 @@ export default function App() {
                         onToggleLoop={() => setIsLooping(!isLooping)}
                         language={currentLanguage}
                         onCompleteSentence={handleCompleteSentence}
+                        strictGerman={userSettings.strictNounCapitalization !== undefined ? userSettings.strictNounCapitalization : true}
+                        onToggleStrictGerman={handleToggleStrictGerman}
                       />
                     ) : (
                       <ShadowingWorkspace
