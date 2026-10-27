@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Headphones,
   Search,
@@ -31,6 +31,19 @@ export default function Header({
   onOpenUserProfile
 }) {
   const [inputUrl, setInputUrl] = useState('');
+  const [isLearnDropdownOpen, setIsLearnDropdownOpen] = useState(false);
+  const learnDropdownRef = useRef(null);
+
+  // Close dropdown on click outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (learnDropdownRef.current && !learnDropdownRef.current.contains(event.target)) {
+        setIsLearnDropdownOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -75,11 +88,14 @@ export default function Header({
             </div>
           </div>
 
-          {/* Dedicated Navigation Tabs: Luyện tập | Bài học (A1, A2) | Lịch sử */}
+          {/* Dedicated Navigation Tabs: Luyện tập | Học tập ▾ (Bảng chữ cái / Bài học) | Lịch sử */}
           <div className="flex items-center p-0.5 bg-surface-container-low rounded-xl border border-outline-variant/30">
             <button
               type="button"
-              onClick={() => onChangeTab && onChangeTab('studio')}
+              onClick={() => {
+                if (onChangeTab) onChangeTab('studio');
+                setIsLearnDropdownOpen(false);
+              }}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                 activeTab === 'studio'
                   ? 'bg-primary-container text-on-primary-container shadow-xs'
@@ -90,49 +106,116 @@ export default function Header({
               <span>Luyện tập</span>
             </button>
 
-            <button
-              type="button"
-              onClick={() => onChangeTab && onChangeTab('alphabet')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                activeTab === 'alphabet'
-                  ? 'bg-primary-container text-on-primary-container shadow-xs'
-                  : 'text-on-surface-variant hover:text-on-surface'
-              }`}
-            >
-              <Languages className="w-3.5 h-3.5 text-secondary" />
-              <span>Bảng chữ cái</span>
-              <span className={`text-[10px] font-bold px-1.5 py-0.2 rounded-full ${
-                activeTab === 'alphabet'
-                  ? 'bg-on-primary-container/20 text-on-primary-container'
-                  : 'bg-secondary/15 text-secondary'
-              }`}>
-                ABC
-              </span>
-            </button>
+            {/* Smart Learning Dropdown: Bảng chữ cái & Bài học */}
+            <div className="relative" ref={learnDropdownRef}>
+              <button
+                type="button"
+                onClick={() => setIsLearnDropdownOpen(!isLearnDropdownOpen)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                  activeTab === 'lessons' || activeTab === 'playlist' || activeTab === 'alphabet'
+                    ? 'bg-primary-container text-on-primary-container shadow-xs'
+                    : 'text-on-surface-variant hover:text-on-surface'
+                }`}
+                title="Chọn chương trình học: Bảng chữ cái hoặc Bài học A1/A2"
+              >
+                {activeTab === 'alphabet' ? (
+                  <>
+                    <Languages className="w-3.5 h-3.5 text-secondary" />
+                    <span>Bảng chữ cái</span>
+                    <span className="text-[10px] font-bold px-1.5 py-0.2 rounded-full bg-on-primary-container/20 text-on-primary-container">
+                      ABC
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <BookOpen className="w-3.5 h-3.5 text-secondary" />
+                    <span>Bài học</span>
+                    <span className={`text-[10px] font-bold px-1.5 py-0.2 rounded-full ${
+                      activeTab === 'lessons' || activeTab === 'playlist'
+                        ? 'bg-on-primary-container/20 text-on-primary-container'
+                        : 'bg-secondary/15 text-secondary'
+                    }`}>
+                      A1 • A2
+                    </span>
+                  </>
+                )}
+                <ChevronDown className={`w-3 h-3 text-outline transition-transform duration-200 ${isLearnDropdownOpen ? 'rotate-180 text-on-surface' : ''}`} />
+              </button>
+
+              {/* Glassmorphic Dropdown Menu */}
+              {isLearnDropdownOpen && (
+                <div className="absolute top-full left-0 mt-2 w-72 bg-[#070b14]/95 backdrop-blur-2xl rounded-2xl border border-outline-variant/40 shadow-2xl p-2 z-50 animate-in fade-in zoom-in-95 duration-150">
+                  <div className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-outline mb-1">
+                    Nội dung học tập
+                  </div>
+
+                  {/* Option 1: Bảng chữ cái tiếng Đức */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (onChangeTab) onChangeTab('alphabet');
+                      setIsLearnDropdownOpen(false);
+                    }}
+                    className={`w-full flex items-start gap-3 p-2.5 rounded-xl text-left transition-all cursor-pointer ${
+                      activeTab === 'alphabet'
+                        ? 'bg-secondary-container/25 border border-secondary/40 text-on-surface'
+                        : 'hover:bg-surface-container-high text-on-surface'
+                    }`}
+                  >
+                    <div className="w-8 h-8 rounded-xl bg-secondary/15 flex items-center justify-center shrink-0 mt-0.5">
+                      <Languages className="w-4 h-4 text-secondary" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-1">
+                        <span className="text-xs font-bold text-on-surface">Bảng chữ cái (ABC)</span>
+                        <span className="text-[10px] font-bold px-1.5 py-0.2 rounded-md bg-secondary/20 text-secondary">
+                          41 âm
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-on-surface-variant truncate mt-0.5">
+                        26 chữ, Umlaute, âm khó & ôn mỗi ngày
+                      </p>
+                    </div>
+                  </button>
+
+                  {/* Option 2: Bài học Nicos Weg A1/A2 */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (onChangeTab) onChangeTab('lessons');
+                      setIsLearnDropdownOpen(false);
+                    }}
+                    className={`w-full flex items-start gap-3 p-2.5 rounded-xl text-left transition-all cursor-pointer mt-1 ${
+                      activeTab === 'lessons' || activeTab === 'playlist'
+                        ? 'bg-secondary-container/25 border border-secondary/40 text-on-surface'
+                        : 'hover:bg-surface-container-high text-on-surface'
+                    }`}
+                  >
+                    <div className="w-8 h-8 rounded-xl bg-secondary/15 flex items-center justify-center shrink-0 mt-0.5">
+                      <BookOpen className="w-4 h-4 text-secondary" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-1">
+                        <span className="text-xs font-bold text-on-surface">Bài học theo giáo trình</span>
+                        <span className="text-[10px] font-bold px-1.5 py-0.2 rounded-md bg-secondary/20 text-secondary">
+                          A1 • A2
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-on-surface-variant truncate mt-0.5">
+                        Nicos Weg (DW) • 80 tập đầy đủ phụ đề
+                      </p>
+                    </div>
+                  </button>
+                </div>
+              )}
+            </div>
 
             <button
               type="button"
-              onClick={() => onChangeTab && onChangeTab('lessons')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                activeTab === 'lessons' || activeTab === 'playlist'
-                  ? 'bg-primary-container text-on-primary-container shadow-xs'
-                  : 'text-on-surface-variant hover:text-on-surface'
-              }`}
-            >
-              <BookOpen className="w-3.5 h-3.5 text-secondary" />
-              <span>Bài học</span>
-              <span className={`text-[10px] font-bold px-1.5 py-0.2 rounded-full ${
-                activeTab === 'lessons' || activeTab === 'playlist'
-                  ? 'bg-on-primary-container/20 text-on-primary-container'
-                  : 'bg-secondary/15 text-secondary'
-              }`}>
-                A1 • A2
-              </span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => onChangeTab && onChangeTab('history')}
+              onClick={() => {
+                if (onChangeTab) onChangeTab('history');
+                setIsLearnDropdownOpen(false);
+              }}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                 activeTab === 'history'
                   ? 'bg-primary-container text-on-primary-container shadow-xs'

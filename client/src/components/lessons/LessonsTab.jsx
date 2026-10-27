@@ -14,7 +14,8 @@ import {
   ChevronRight,
   Flame,
   Globe2,
-  Award
+  Award,
+  Languages
 } from 'lucide-react';
 import { NICOS_WEG_PLAYLIST } from '../../data/nicosWegPlaylist.js';
 
@@ -23,7 +24,8 @@ export default function LessonsTab({
   onSelectLesson,
   completedVideoIds = [],
   currentVideoId = null,
-  onBackToStudio
+  onBackToStudio,
+  onOpenAlphabet
 }) {
   // Level selection: 'A1' | 'A2' | 'B1' | 'EN'
   const [activeLevel, setActiveLevel] = useState('A1');
@@ -255,6 +257,29 @@ export default function LessonsTab({
           );
         })}
       </div>
+
+      {/* Quick link to Alphabet & Pronunciation if available */}
+      {onOpenAlphabet && (
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3.5 rounded-2xl bg-gradient-to-r from-secondary/15 via-surface-container-high/80 to-surface-container-low border border-secondary/30 shadow-xs">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-secondary/20 flex items-center justify-center text-secondary shrink-0">
+              <Languages className="w-4 h-4" />
+            </div>
+            <div>
+              <div className="text-xs font-bold text-on-surface">Khởi đầu từ con số 0: Bảng chữ cái & Âm khó (ABC)</div>
+              <div className="text-[11px] text-on-surface-variant">Học cách phát âm 41 âm vị, mẹo khẩu hình Ä, Ö, Ü, ß và bài ôn luyện mỗi ngày</div>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={onOpenAlphabet}
+            className="px-3.5 py-1.5 rounded-xl bg-secondary text-on-secondary text-xs font-bold hover:brightness-110 flex items-center gap-1.5 cursor-pointer shrink-0 shadow-xs"
+          >
+            <span>Học Bảng chữ cái</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      )}
 
       {/* CONTENT FOR LEVEL A1: NICOS WEG FULL 76 EPISODES */}
       {activeLevel === 'A1' && (

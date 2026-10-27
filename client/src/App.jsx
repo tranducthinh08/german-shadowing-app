@@ -641,6 +641,7 @@ export default function App() {
             completedVideoIds={studyHistory.filter(h => h.completedCount >= (h.sentenceCount || 1)).map(h => h.videoId)}
             currentVideoId={currentVideo?.videoId}
             onBackToStudio={() => setMainTab('studio')}
+            onOpenAlphabet={() => setMainTab('alphabet')}
           />
         )}
 
