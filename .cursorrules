@@ -1,0 +1,113 @@
+# PolyGlot Studio (.cursorrules)
+# Architecture, Coding Guidelines & AI Performance Rules
+
+You are acting as a Senior Full-Stack Engineer and Software Architect working on PolyGlot Studio ("german-english-shadowing"), an interactive language-learning web application for German and English shadowing and dictation.
+
+---
+
+## 1. TECH STACK & ARCHITECTURE
+
+- **Architecture**: Hybrid Monorepo with separated Client and Server.
+  - `client/`: Single Page Application (SPA) built with React 18 and Vite 5.
+  - `server/`: REST API backend built with Node.js (>= 20) and Express 4.
+  - `api/`: Vercel Serverless Function entry point exporting the Express app (`api/index.js`).
+- **Ports & Proxy**:
+  - Local Client: `http://localhost:3000`
+  - Local Server: `http://localhost:5001`
+  - Vite dev server proxies `/api` requests to `http://localhost:5001`.
+- **Styling**: Tailwind CSS 3.4 using a "Dark Glassmorphism" theme (Slate-900 base, semi-transparent panels with backdrop-blur, subtle borders).
+- **Icons**: Exclusively use `lucide-react`. Do not introduce secondary icon packs.
+- **Web APIs**:
+  - Web Speech API (`SpeechRecognition` / `webkitSpeechRecognition`) for voice input.
+  - MediaRecorder API & AudioContext for audio recording & dual playback.
+  - YouTube IFrame Player API for fine-grained millisecond-level video navigation.
+
+---
+
+## 2. DIRECTORY STRUCTURE CONVENTIONS
+
+```
+german_shadowing/
+├── client/src/
+│   ├── components/
+│   │   ├── common/       # Header, SampleModal, ShortcutsModal, CustomTranscriptModal
+│   │   ├── dictation/    # DictationWorkspace, GermanKeys, Diff breakdown
+│   │   ├── shadowing/    # ShadowingWorkspace, AudioRecorder, DualPlayback, SpeechScorer
+│   │   ├── player/       # YouTubePlayer (forwardRef, imperative playback controls)
+│   │   ├── transcript/   # TranscriptList, active sentence syncing & autoscroll
+│   │   ├── grammar/      # GrammarAnalysisModal (syntactic breakdown, case, gender)
+│   │   ├── vocab/        # WordPopover, VocabNotebookModal
+│   │   ├── gamification/ # GamificationModal, RewardToast (XP, streak, badges)
+│   │   ├── user/         # UserProfileModal, multi-profile switcher
+│   │   ├── playlist/     # PlaylistView, EpisodeNavBar (Nicos Weg A1 curriculum)
+│   │   ├── history/      # StudyHistoryTab, StudyHistoryModal
+│   │   └── lessons/      # LessonsTab
+│   ├── utils/            # Pure domain algorithms & storage isolation
+│   │   ├── userStorage.js        # Multi-user namespaced localStorage manager
+│   │   ├── gamification.js       # XP, daily streaks, level calculation, badge engine
+│   │   ├── textDiff.js           # Diff comparison, Levenshtein, German umlaut tolerance
+│   │   ├── sentenceAnalyzer.js   # German syntax parser (V2, Inversion, TeKaMoLo)
+│   │   ├── germanGrammar.js      # Der/Die/Das gender lookup & compound noun resolver
+│   │   ├── properNouns.js        # Named entity recognition to prevent false diff penalties
+│   │   ├── pronunciationGuide.js # IPA rules & German Web Speech synthesis
+│   │   └── timeFormat.js         # Millisecond & timestamp formatters
+│   ├── services/api.js   # Frontend API client (loadVideo, translate, dict lookup)
+│   └── data/             # Pre-indexed curricula (nicosWegPlaylist.js)
+├── server/src/
+│   ├── routes/           # youtube.routes.js, dict.routes.js
+│   ├── services/         # youtube.service.js, subtitle.parser.js, dict.service.js
+│   └── data/             # mockData.js, nicosWegPlaylist.js
+└── test/                 # Pure Node.js unit tests (test_core, test_grammar, test_gamification, test_user_storage, test_playlist)
+```
+
+---
+
+## 3. CODING GUIDELINES & BEST PRACTICES
+
+### 3.1. Component Design & State Management
+- **State Lifting**: Global state (active video, current segment index, user profile, active mode) lives in `client/src/App.jsx`.
+- **Imperative Player Controls**: Use `forwardRef` and `useImperativeHandle` for media controls (`YouTubePlayer.jsx`). Do NOT trigger rapid parent state updates for sub-second playback time unless necessary.
+- **Naming Conventions**:
+  - Components: `PascalCase` (`DictationWorkspace.jsx`, `RewardToast.jsx`).
+  - Pure functions & utilities: `camelCase` (`compareSentence`, `getUserSettings`).
+  - Event Handlers: Internal handlers named `handle<Action>` (e.g., `handleCheckAnswer`), passed props named `on<Event>` (e.g., `onCompleteSentence`).
+  - System Constants: `UPPER_SNAKE_CASE` (`DEFAULT_USER_SETTINGS`, `GERMAN_SPECIAL_CHARS`).
+
+### 3.2. Data Persistence & Multi-User Isolation
+- **CRITICAL**: Never save bare keys directly to `localStorage` (e.g., `localStorage.setItem('savedVocab', ...)`).
+- Always use the user-scoped helpers in `client/src/utils/userStorage.js`:
+  - `getUserSettings(username)` / `saveUserSettings(username, settings)`
+  - `getUserSavedVocab(username)` / `saveUserSavedVocab(username, vocab)`
+  - `getUserCompletedSentences(username, videoId)` / `saveUserCompletedSentences(...)`
+  - `getUserStudyHistory(username)` / `saveUserStudyHistory(...)`
+- For gamification actions (XP, streak, badges), always call `recordLearningAction(username, actionType, payload)` in `gamification.js`.
+
+### 3.3. German Language & Pedagogical Rules
+- **Umlauts & Eszett**: Support German characters `ä, ö, ü, ß, Ä, Ö, Ü`. Always maintain tolerance toggles in `textDiff.js` when strict mode is disabled (`ae -> ä`, `oe -> ö`, `ue -> ü`, `ss -> ß`).
+- **Noun Capitalization**: German nouns must be capitalized when strict mode is active.
+- **Gender Color Coding**:
+  - Masculine (`der`): Blue (`text-blue-400`, `border-blue-500/40`, `bg-blue-950/30`)
+  - Feminine (`die`): Rose/Pink (`text-rose-400`, `border-rose-500/40`, `bg-rose-950/30`)
+  - Neuter (`das`): Amber/Yellow (`text-amber-400`, `border-amber-500/40`, `bg-amber-950/30`)
+  - Plural: Emerald/Green (`text-emerald-400`, `border-emerald-500/40`, `bg-emerald-950/30`)
+
+### 3.4. Memory Management & Browser API Safety
+- Always check for browser API existence before calling:
+  - `window.SpeechRecognition || window.webkitSpeechRecognition`
+  - `navigator.mediaDevices && navigator.mediaDevices.getUserMedia`
+  - `typeof localStorage !== 'undefined'`
+- Clean up all timers (`clearTimeout`, `clearInterval`) and audio/recognition streams in the `useEffect` cleanup return.
+
+---
+
+## 4. PERFORMANCE RULES FOR AI AGENTS
+
+1. **Avoid Wasteful File Scans**:
+   - Never run recursive file searches over `node_modules/`, `client/dist/`, `.git/`, or system build outputs.
+   - For domain features, refer directly to `client/src/components/<domain>/` and `client/src/utils/`.
+2. **Whole-File Reads for Modular Files**:
+   - Utility and service files are modular (< 300 lines). Prefer reading them completely in one pass instead of fragmented chunk reads.
+3. **Preserve Documentation & Comments**:
+   - Retain existing JSDoc comments, explanatory notes, and pedagogical comments in files.
+4. **Verification Protocol**:
+   - Whenever any utility in `client/src/utils/` or backend service in `server/src/services/` is altered, immediately execute `npm test` in the terminal to verify zero regressions across all 5 test suites.

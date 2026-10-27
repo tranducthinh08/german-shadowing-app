@@ -2,6 +2,7 @@ import assert from 'assert';
 import { segmentSentences } from '../server/src/services/subtitle.parser.js';
 import { extractVideoId } from '../server/src/services/youtube.service.js';
 import { compareSentence } from '../client/src/utils/textDiff.js';
+import { extractProperNouns } from '../client/src/utils/properNouns.js';
 
 console.log('🧪 Starting Automated Tests for PolyGlot Shadowing & Dictation...\n');
 
@@ -69,5 +70,44 @@ const resDiff = compareSentence('Hallo Nico', 'Hallo, ich bin Nico.', { strictCa
 assert(resDiff.tokens.some(t => t.status === 'missing'), 'Expected missing tokens');
 assert(resDiff.score < 100, 'Score should be less than 100%');
 console.log('  ✅ Missing word detection verified!');
+
+// Case D: User Screenshot Scenario (Tolerance for 's, ’s, and space before punctuation)
+console.log('\nTest 4: Contraction \'s / ’s Tolerance & Punctuation Spacing');
+const userTarget = 'Hey, Lena! Na, wie geht’s?';
+
+// 1. User typed straight quote 's and space before !
+const resUserCase = compareSentence('hey, Lena ! Na, wie geht\'s', userTarget, { strictCase: false });
+assert.strictEqual(resUserCase.score, 100, 'User sentence with straight quote and spaced ! should score 100%');
+assert.strictEqual(resUserCase.isPerfect, true, 'User sentence should be perfect');
+assert(!resUserCase.tokens.some(t => t.status === 'extra'), 'Spaced exclamation mark should not be an extra token');
+assert(!resUserCase.tokens.some(t => t.status === 'typo'), 'geht\'s vs geht’s should not be a typo');
+console.log('  ✅ User screenshot case ("hey, Lena ! Na, wie geht\'s") scored 100% perfect!');
+
+// 2. Testing all contraction variants (gehts, geht, geht 's)
+const resNoApos = compareSentence('Hey, Lena! Na, wie gehts', userTarget, { strictCase: false });
+assert.strictEqual(resNoApos.score, 100, 'gehts should match geht\'s without penalty');
+
+const resOmittedS = compareSentence('Hey, Lena! Na, wie geht', userTarget, { strictCase: false });
+assert.strictEqual(resOmittedS.score, 100, 'geht should match geht\'s without penalty');
+
+const resSeparatedS = compareSentence('Hey, Lena! Na, wie geht \'s', userTarget, { strictCase: false });
+assert.strictEqual(resSeparatedS.score, 100, 'geht \'s should match geht\'s without penalty');
+console.log('  ✅ All apostrophe s variants (geht\'s, geht’s, gehts, geht, geht \'s) verified!');
+
+// 3. Proper Nouns Extraction
+console.log('\nTest 5: Proper Nouns Extractor (Nicos Weg & Contextual Detection)');
+const names1 = extractProperNouns('Hey, Lena! Na, wie geht’s?', 'de');
+assert(names1.includes('Lena'), 'Expected Lena to be extracted from "Hey, Lena! Na, wie geht’s?"');
+
+const names2 = extractProperNouns('Hallo, Sarah! Wie geht es dir?', 'de');
+assert(names2.includes('Sarah'), 'Expected Sarah to be extracted');
+
+const names3 = extractProperNouns('Das ist Yara und das ist Sebastian.', 'de');
+assert(names3.includes('Yara'), 'Expected Yara to be extracted');
+assert(names3.includes('Sebastian'), 'Expected Sebastian to be extracted');
+
+const names4 = extractProperNouns('Das ist Nicos Tasche.', 'de');
+assert(names4.includes('Nicos'), 'Expected genitive Nicos to be extracted');
+console.log('  ✅ Proper nouns successfully detected across Nicos Weg character names!');
 
 console.log('\n🎉 ALL AUTOMATED UNIT TESTS PASSED SUCCESSFULLY!\n');

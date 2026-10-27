@@ -1,10 +1,30 @@
 import { normalizeGerman } from './germanUtils.js';
 
 /**
- * Remove standard punctuation from a word for relaxed matching
+ * Remove standard and unicode punctuation from a word for relaxed matching
  */
 export function cleanPunctuation(str = '') {
-  return str.replace(/^[.,/#!$%^&*;:{}=\-_`~()?"'„“”»«–—…]+|[.,/#!$%^&*;:{}=\-_`~()?"'„“”»«–—…]+$/g, '');
+  return str.replace(
+    /^[.,/#!$%^&*;:{}=\-_`~()?"'„“”»«–—…\u2019\u2018\u02BC\u201A\u2032]+|[.,/#!$%^&*;:{}=\-_`~()?"'„“”»«–—…\u2019\u2018\u02BC\u201A\u2032]+$/g,
+    ''
+  );
+}
+
+/**
+ * Normalize curly/typographic apostrophes and spaces before punctuation marks
+ */
+export function normalizeContractionsAndPunctuation(str = '') {
+  return str
+    .replace(/[\u2019\u2018`\u00B4\u02BC\u201A\u2032]/g, "'") // unify all apostrophe variants to standard single quote '
+    .replace(/\s+([.,!?:;])/g, '$1') // eliminate spaces before punctuation (e.g. "Lena !" -> "Lena!")
+    .replace(/(\w+)\s+'s\b/gi, "$1's"); // attach detached 's (e.g. "geht 's" -> "geht's")
+}
+
+/**
+ * Unify all apostrophes to ASCII single quote
+ */
+function normalizeApos(w = '') {
+  return w.replace(/[\u2019\u2018`\u00B4\u02BC\u201A\u2032]/g, "'");
 }
 
 /**
@@ -50,21 +70,38 @@ function levenshtein(a, b) {
 }
 
 /**
- * Check if two words are a match or close typo
+ * Check if two words are a match or close typo, with full tolerance for apostrophe 's / ’s
  */
 function isWordMatchOrClose(w1, w2) {
-  if (w1 === w2) return { match: true, typoType: null };
-  if (w1.toLowerCase() === w2.toLowerCase()) return { match: true, typoType: 'case' };
+  const w1AposNorm = normalizeApos(w1);
+  const w2AposNorm = normalizeApos(w2);
+  const w1Low = w1AposNorm.toLowerCase();
+  const w2Low = w2AposNorm.toLowerCase();
 
-  const w1Low = w1.toLowerCase();
-  const w2Low = w2.toLowerCase();
+  // 1. Direct or case-insensitive match
+  if (w1Low === w2Low) {
+    return { match: true, typoType: w1AposNorm === w2AposNorm ? null : 'case' };
+  }
 
-  // Umlaut checks
+  // 2. Tolerance for 's / ’s / s / omitted 's (e.g. geht's == geht == gehts == geht's)
+  // Only applies when at least one word has an apostrophe
+  const hasApos = w1Low.includes("'") || w2Low.includes("'");
+  if (hasApos) {
+    const stem1 = w1Low.replace(/'s$/, '').replace(/s$/, '');
+    const stem2 = w2Low.replace(/'s$/, '').replace(/s$/, '');
+    if (stem1 && stem1.length >= 2 && stem1 === stem2) {
+      const stemRaw1 = w1AposNorm.replace(/'s$/i, '').replace(/s$/i, '');
+      const stemRaw2 = w2AposNorm.replace(/'s$/i, '').replace(/s$/i, '');
+      return { match: true, typoType: stemRaw1 === stemRaw2 ? null : 'case' };
+    }
+  }
+
+  // 3. German Umlaut checks (e.g. ue -> ü, ae -> ä)
   if (normalizeGerman(w1Low) === normalizeGerman(w2Low) || stripUmlauts(w1Low) === stripUmlauts(w2Low)) {
     return { match: true, typoType: 'umlaut' };
   }
 
-  // Levenshtein close typo check (threshold 1 for short words, 2 for longer)
+  // 4. Levenshtein close typo check (threshold 1 for short words, 2 for longer)
   const dist = levenshtein(w1Low, w2Low);
   const maxAllowedDist = w1Low.length > 5 ? 2 : (w1Low.length > 3 ? 1 : 0);
   if (dist <= maxAllowedDist) {
@@ -83,8 +120,16 @@ function isWordMatchOrClose(w1, w2) {
 export function compareSentence(userText = '', targetText = '', options = {}) {
   const { strictCase = false, strictGermanUmlauts = true } = options;
 
-  const targetWords = targetText.trim().split(/\s+/).filter(Boolean);
-  const userWords = userText.trim().split(/\s+/).filter(Boolean);
+  const normalizedUserText = normalizeContractionsAndPunctuation(userText);
+  const normalizedTargetText = normalizeContractionsAndPunctuation(targetText);
+
+  const targetWords = normalizedTargetText.trim().split(/\s+/).filter(Boolean);
+  // Filter out standalone punctuation tokens so typing " !" or "?" standalone does not count as "Từ thừa"
+  const userWords = normalizedUserText
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .filter(w => cleanPunctuation(w).length > 0);
 
   if (targetWords.length === 0) {
     return {
@@ -155,7 +200,6 @@ export function compareSentence(userText = '', targetText = '', options = {}) {
       const tw = item.targetWord;
       const uw = item.userWord;
       const twClean = cleanPunctuation(tw);
-      const uwClean = cleanPunctuation(uw);
 
       if (!item.typoType) {
         tokens.push({
@@ -180,7 +224,7 @@ export function compareSentence(userText = '', targetText = '', options = {}) {
         }
       } else if (item.typoType === 'umlaut') {
         tokens.push({
-          word: tw,
+          word: twClean || tw,
           userInput: uw,
           status: 'typo',
           note: 'Thiếu hoặc sai dấu Umlaut (ä, ö, ü, ß)',
@@ -188,9 +232,9 @@ export function compareSentence(userText = '', targetText = '', options = {}) {
         });
         correctCount += 0.7;
       } else {
-        // Spelling typo
+        // Spelling typo - display cleaned target word to avoid confusing punctuation in badge
         tokens.push({
-          word: tw,
+          word: twClean || tw,
           userInput: uw,
           status: 'typo',
           note: 'Sai chính tả nhẹ',
