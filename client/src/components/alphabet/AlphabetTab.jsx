@@ -21,7 +21,7 @@ import {
   BookOpen
 } from 'lucide-react';
 import { GERMAN_ALPHABET, MINIMAL_PAIRS } from '../../data/germanAlphabetData';
-import { speakWord } from '../../utils/pronunciationGuide';
+import { speakWord, stopCurrentAudio } from '../../utils/pronunciationGuide';
 import DailyReviewDrill from './DailyReviewDrill';
 
 export default function AlphabetTab({
@@ -31,10 +31,14 @@ export default function AlphabetTab({
   onCompleteDailyReview,
   currentUser
 }) {
+  const safeHardLetters = Array.isArray(hardLetters) ? hardLetters : [];
   const [activeFilter, setActiveFilter] = useState('all'); // 'all' | 'standard' | 'umlaut' | 'cluster' | 'difficult' | 'starred'
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedLetter, setSelectedLetter] = useState(null);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+
+  // Audio playing indicator state
+  const [playingAudioId, setPlayingAudioId] = useState(null);
 
   // Auto-play all letters state
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
@@ -43,6 +47,7 @@ export default function AlphabetTab({
 
   // Micro voice test state in detail modal
   const [isRecording, setIsRecording] = useState(false);
+  const [recordingWord, setRecordingWord] = useState(null);
   const [voiceFeedback, setVoiceFeedback] = useState(null);
   const recognitionRef = useRef(null);
 
@@ -72,16 +77,17 @@ export default function AlphabetTab({
       if (activeFilter === 'umlaut') return item.category === 'umlaut';
       if (activeFilter === 'cluster') return item.category === 'cluster';
       if (activeFilter === 'difficult') return item.isDifficult;
-      if (activeFilter === 'starred') return hardLetters.includes(item.id);
+      if (activeFilter === 'starred') return safeHardLetters.includes(item.id);
 
       return true; // 'all'
     });
-  }, [activeFilter, searchQuery, hardLetters]);
+  }, [activeFilter, searchQuery, safeHardLetters]);
 
-  // Clean up auto-play timer on unmount
+  // Clean up auto-play timer and audio on unmount
   useEffect(() => {
     return () => {
       if (autoPlayTimerRef.current) clearInterval(autoPlayTimerRef.current);
+      stopCurrentAudio();
     };
   }, []);
 
@@ -89,7 +95,9 @@ export default function AlphabetTab({
   const handleToggleAutoPlay = () => {
     if (isAutoPlaying) {
       if (autoPlayTimerRef.current) clearInterval(autoPlayTimerRef.current);
+      stopCurrentAudio();
       setIsAutoPlaying(false);
+      setPlayingAudioId(null);
       return;
     }
 
@@ -97,15 +105,17 @@ export default function AlphabetTab({
     let idx = 0;
     const playList = filteredLetters.length > 0 ? filteredLetters : GERMAN_ALPHABET;
 
-    const playNext = () => {
+    const playNext = async () => {
       if (idx >= playList.length) {
         setIsAutoPlaying(false);
+        setPlayingAudioId(null);
         if (autoPlayTimerRef.current) clearInterval(autoPlayTimerRef.current);
         return;
       }
       const item = playList[idx];
       setAutoPlayIndex(idx);
-      speakWord(item.ttsLetter || item.name, 'de', 0.85);
+      setPlayingAudioId(item.id);
+      await speakWord(item.ttsLetter || item.name, 'de', 0.85);
       idx++;
     };
 
@@ -114,9 +124,25 @@ export default function AlphabetTab({
   };
 
   // Play audio for a single item
-  const handlePlayLetter = (e, item) => {
+  const handlePlayLetter = async (e, item) => {
     e?.stopPropagation();
-    speakWord(item.ttsLetter || item.name, 'de', 0.85);
+    setPlayingAudioId(item.id);
+    try {
+      await speakWord(item.ttsLetter || item.name, 'de', 0.85);
+    } finally {
+      setTimeout(() => setPlayingAudioId(null), 300);
+    }
+  };
+
+  // Play audio for an example word
+  const handlePlayWord = async (e, word) => {
+    e?.stopPropagation();
+    setPlayingAudioId(word);
+    try {
+      await speakWord(word, 'de', 0.85);
+    } finally {
+      setTimeout(() => setPlayingAudioId(null), 300);
+    }
   };
 
   // Toggle hard letter star
@@ -129,15 +155,24 @@ export default function AlphabetTab({
 
   // Single word speech testing in detail modal
   const handleTestVoice = (targetWord) => {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const SpeechRecognition = typeof window !== 'undefined' && (window.SpeechRecognition || window.webkitSpeechRecognition);
     if (!SpeechRecognition) {
-      alert('Trình duyệt chưa hỗ trợ Web Speech API.');
+      setVoiceFeedback({
+        status: 'unsupported',
+        targetWord,
+        message: 'Trình duyệt của bạn hiện chưa hỗ trợ Web Speech API nhận diện giọng nói. Bạn có thể bấm nút bên dưới để tự xác nhận đã đọc to.'
+      });
       return;
     }
 
     if (isRecording) {
-      if (recognitionRef.current) recognitionRef.current.stop();
+      if (recognitionRef.current) {
+        try {
+          recognitionRef.current.stop();
+        } catch (e) {}
+      }
       setIsRecording(false);
+      setRecordingWord(null);
       return;
     }
 
@@ -149,7 +184,8 @@ export default function AlphabetTab({
 
       recognition.onstart = () => {
         setIsRecording(true);
-        setVoiceFeedback({ status: 'listening', message: 'Đang nghe... Hãy đọc to từ mẫu!' });
+        setRecordingWord(targetWord);
+        setVoiceFeedback({ status: 'listening', targetWord, message: `🎙️ Đang nghe... Hãy đọc to từ "${targetWord}"!` });
       };
 
       recognition.onresult = (event) => {
@@ -160,29 +196,51 @@ export default function AlphabetTab({
         if (isMatch) {
           setVoiceFeedback({
             status: 'correct',
+            targetWord,
             message: `Xuất sắc! Bạn đã đọc "${spoken}" chuẩn xác! 🎉`
           });
         } else {
           setVoiceFeedback({
             status: 'wrong',
-            message: `Trình duyệt nghe thấy: "${spoken}". Hãy bấm loa nghe lại khẩu hình rồi thử nhé!`
+            targetWord,
+            message: `Trình duyệt nghe thấy: "${spoken}". Hãy bấm loa nghe lại rồi thử lại nhé!`
           });
         }
       };
 
-      recognition.onerror = () => {
+      recognition.onerror = (e) => {
         setIsRecording(false);
-        setVoiceFeedback({ status: 'wrong', message: 'Không bắt được âm thanh. Hãy thử lại.' });
+        setRecordingWord(null);
+        if (e.error === 'not-allowed') {
+          setVoiceFeedback({
+            status: 'blocked',
+            targetWord,
+            message: 'Micro đang bị chặn bởi trình duyệt. Vui lòng cho phép quyền truy cập Micro trên thanh địa chỉ, hoặc bấm nút tự xác nhận bên dưới.'
+          });
+        } else {
+          setVoiceFeedback({
+            status: 'wrong',
+            targetWord,
+            message: 'Không thu được âm thanh rõ ràng. Bạn có thể thử lại ở nơi yên tĩnh hơn hoặc bấm tự xác nhận.'
+          });
+        }
       };
 
       recognition.onend = () => {
         setIsRecording(false);
+        setRecordingWord(null);
       };
 
       recognitionRef.current = recognition;
       recognition.start();
     } catch (e) {
       setIsRecording(false);
+      setRecordingWord(null);
+      setVoiceFeedback({
+        status: 'wrong',
+        targetWord,
+        message: 'Không thể khởi động micro lúc này. Bạn có thể tự đọc to từ mẫu.'
+      });
     }
   };
 
@@ -190,13 +248,23 @@ export default function AlphabetTab({
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       {/* Daily Review Drill Modal / Overlay */}
       {isReviewModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
-          <div className="w-full max-w-2xl my-auto">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200"
+          onClick={() => {
+            stopCurrentAudio();
+            setIsReviewModalOpen(false);
+          }}
+        >
+          <div className="w-full max-w-2xl my-auto" onClick={(e) => e.stopPropagation()}>
             <DailyReviewDrill
-              userStarredIds={hardLetters}
+              userStarredIds={safeHardLetters}
               currentUser={currentUser}
-              onClose={() => setIsReviewModalOpen(false)}
+              onClose={() => {
+                stopCurrentAudio();
+                setIsReviewModalOpen(false);
+              }}
               onComplete={(results) => {
+                stopCurrentAudio();
                 if (onCompleteDailyReview) {
                   onCompleteDailyReview(results);
                 }
@@ -448,10 +516,14 @@ export default function AlphabetTab({
                 <button
                   type="button"
                   onClick={(e) => handlePlayLetter(e, item)}
-                  className="w-7 h-7 rounded-lg bg-surface-container-high hover:bg-secondary hover:text-on-secondary text-on-surface-variant flex items-center justify-center transition-all cursor-pointer"
+                  className={`w-7 h-7 rounded-lg flex items-center justify-center transition-all cursor-pointer ${
+                    playingAudioId === item.id
+                      ? 'bg-secondary text-on-secondary ring-2 ring-secondary/50 scale-110 shadow-sm'
+                      : 'bg-surface-container-high hover:bg-secondary hover:text-on-secondary text-on-surface-variant'
+                  }`}
                   title="Nghe phát âm"
                 >
-                  <Volume2 className="w-3.5 h-3.5" />
+                  <Volume2 className={`w-3.5 h-3.5 ${playingAudioId === item.id ? 'animate-pulse' : ''}`} />
                 </button>
               </div>
             </div>
@@ -476,12 +548,23 @@ export default function AlphabetTab({
 
       {/* Detail Drawer / Modal for Selected Letter */}
       {selectedLetter && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
-          <div className="bg-[#0b1120] text-on-surface rounded-2xl border border-outline-variant/40 p-6 max-w-xl w-full my-auto shadow-2xl relative">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200"
+          onClick={() => {
+            stopCurrentAudio();
+            setSelectedLetter(null);
+            setVoiceFeedback(null);
+          }}
+        >
+          <div
+            className="bg-[#0b1120] text-on-surface rounded-2xl border border-outline-variant/40 p-6 max-w-xl w-full my-auto shadow-2xl relative"
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* Close Button */}
             <button
               type="button"
               onClick={() => {
+                stopCurrentAudio();
                 setSelectedLetter(null);
                 setVoiceFeedback(null);
               }}
@@ -507,9 +590,9 @@ export default function AlphabetTab({
                     type="button"
                     onClick={(e) => handleToggleStar(e, selectedLetter.id)}
                     className="cursor-pointer"
-                    title={hardLetters.includes(selectedLetter.id) ? 'Bỏ gắn sao' : 'Gắn sao cần ôn'}
+                    title={safeHardLetters.includes(selectedLetter.id) ? 'Bỏ gắn sao' : 'Gắn sao cần ôn'}
                   >
-                    <Star className={`w-5 h-5 ${hardLetters.includes(selectedLetter.id) ? 'fill-amber-400 text-amber-400' : 'text-outline hover:text-amber-400'}`} />
+                    <Star className={`w-5 h-5 ${safeHardLetters.includes(selectedLetter.id) ? 'fill-amber-400 text-amber-400' : 'text-outline hover:text-amber-400'}`} />
                   </button>
                 </div>
 
@@ -524,10 +607,14 @@ export default function AlphabetTab({
               <button
                 type="button"
                 onClick={(e) => handlePlayLetter(e, selectedLetter)}
-                className="w-11 h-11 rounded-xl bg-secondary text-on-secondary hover:brightness-110 flex items-center justify-center shadow-md cursor-pointer shrink-0"
+                className={`w-11 h-11 rounded-xl flex items-center justify-center shadow-md cursor-pointer shrink-0 transition-all ${
+                  playingAudioId === selectedLetter.id
+                    ? 'bg-secondary ring-4 ring-secondary/40 scale-105 text-on-secondary'
+                    : 'bg-secondary text-on-secondary hover:brightness-110'
+                }`}
                 title="Nghe phát âm tên chữ cái"
               >
-                <Volume2 className="w-5 h-5" />
+                <Volume2 className={`w-5 h-5 ${playingAudioId === selectedLetter.id ? 'animate-pulse' : ''}`} />
               </button>
             </div>
 
@@ -579,25 +666,29 @@ export default function AlphabetTab({
                     <div className="flex items-center gap-2">
                       <button
                         type="button"
-                        onClick={() => speakWord(ex.de, 'de', 0.85)}
-                        className="p-2 rounded-lg bg-surface-container-high hover:bg-secondary hover:text-on-secondary text-on-surface-variant transition-all cursor-pointer"
+                        onClick={(e) => handlePlayWord(e, ex.de)}
+                        className={`p-2 rounded-lg transition-all cursor-pointer ${
+                          playingAudioId === ex.de
+                            ? 'bg-secondary text-on-secondary ring-2 ring-secondary/40 scale-105'
+                            : 'bg-surface-container-high hover:bg-secondary hover:text-on-secondary text-on-surface-variant'
+                        }`}
                         title="Nghe từ này"
                       >
-                        <Volume2 className="w-4 h-4" />
+                        <Volume2 className={`w-4 h-4 ${playingAudioId === ex.de ? 'animate-pulse' : ''}`} />
                       </button>
 
                       <button
                         type="button"
                         onClick={() => handleTestVoice(ex.de)}
                         className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 transition-all cursor-pointer ${
-                          isRecording
-                            ? 'bg-rose-500 text-white animate-pulse'
+                          isRecording && recordingWord === ex.de
+                            ? 'bg-rose-500 text-white animate-pulse ring-2 ring-rose-400'
                             : 'bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface-variant'
                         }`}
                         title="Bấm để đọc thử từ này qua micro"
                       >
                         <Mic className="w-3.5 h-3.5" />
-                        <span className="text-[11px]">Đọc thử</span>
+                        <span className="text-[11px]">{isRecording && recordingWord === ex.de ? 'Đang nghe...' : 'Đọc thử'}</span>
                       </button>
                     </div>
                   </div>
@@ -605,16 +696,31 @@ export default function AlphabetTab({
               </div>
             </div>
 
-            {/* Voice feedback message */}
+            {/* Voice feedback message with friendly self-validation option */}
             {voiceFeedback && (
-              <div className={`p-3 rounded-xl text-xs font-semibold mb-3 ${
+              <div className={`p-3.5 rounded-xl text-xs font-semibold mb-3 ${
                 voiceFeedback.status === 'correct'
                   ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/30'
                   : voiceFeedback.status === 'listening'
                     ? 'bg-primary/20 text-on-primary-container border border-primary/30'
                     : 'bg-rose-500/15 text-rose-300 border border-rose-500/30'
               }`}>
-                {voiceFeedback.message}
+                <div>{voiceFeedback.message}</div>
+                {voiceFeedback.status !== 'correct' && voiceFeedback.status !== 'listening' && (
+                  <div className="mt-2.5 pt-2 border-t border-white/10 flex items-center justify-between gap-2 flex-wrap">
+                    <span className="text-[11px] text-outline font-normal">Trình duyệt khó nhận diện giọng nói?</span>
+                    <button
+                      type="button"
+                      onClick={() => setVoiceFeedback({
+                        status: 'correct',
+                        message: `Tuyệt vời! Bạn đã tự luyện đọc to chuẩn từ "${voiceFeedback.targetWord || ''}". Hãy duy trì luyện tập! 🎉`
+                      })}
+                      className="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[11px] font-bold hover:bg-emerald-500/30 cursor-pointer"
+                    >
+                      ✓ Tôi đã tự đọc to chuẩn từ này
+                    </button>
+                  </div>
+                )}
               </div>
             )}
 
@@ -625,13 +731,14 @@ export default function AlphabetTab({
                 onClick={(e) => handleToggleStar(e, selectedLetter.id)}
                 className="px-3 py-2 rounded-xl border border-outline-variant/30 text-xs font-semibold text-on-surface hover:bg-surface-container-high flex items-center gap-1.5 cursor-pointer"
               >
-                <Star className={`w-4 h-4 ${hardLetters.includes(selectedLetter.id) ? 'fill-amber-400 text-amber-400' : ''}`} />
-                <span>{hardLetters.includes(selectedLetter.id) ? 'Bỏ đánh dấu chữ khó' : 'Lưu vào bài ôn tập'}</span>
+                <Star className={`w-4 h-4 ${safeHardLetters.includes(selectedLetter.id) ? 'fill-amber-400 text-amber-400' : ''}`} />
+                <span>{safeHardLetters.includes(selectedLetter.id) ? 'Bỏ đánh dấu chữ khó' : 'Lưu vào bài ôn tập'}</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => {
+                  stopCurrentAudio();
                   setSelectedLetter(null);
                   setIsReviewModalOpen(true);
                 }}

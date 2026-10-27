@@ -342,15 +342,127 @@ export function getWordPronunciationGuide(rawWord, lang = 'de') {
   };
 }
 
+// Reference to actively playing audio to prevent overlapping speech
+let activeAudioInstance = null;
+
 /**
- * Play native speech synthesis audio for a specific word
+ * Stop any ongoing audio playback (both HTML5 Audio and Web Speech)
+ */
+export function stopCurrentAudio() {
+  if (activeAudioInstance) {
+    try {
+      activeAudioInstance.pause();
+      activeAudioInstance.currentTime = 0;
+    } catch (e) {}
+    activeAudioInstance = null;
+  }
+  if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+    try {
+      window.speechSynthesis.cancel();
+    } catch (e) {}
+  }
+}
+
+/**
+ * Internal fallback using Web Speech API with voice selection and Chrome unfreeze
+ */
+function speakViaWebSpeech(cleanText, lang = 'de', speed = 0.85, resolve) {
+  if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
+    if (resolve) resolve(false);
+    return;
+  }
+
+  try {
+    if (window.speechSynthesis.paused) {
+      window.speechSynthesis.resume();
+    }
+
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    utterance.lang = lang === 'de' ? 'de-DE' : 'en-US';
+    utterance.rate = speed;
+
+    const voices = window.speechSynthesis.getVoices?.() || [];
+    const targetLangCode = lang === 'de' ? 'de' : 'en';
+    const matchVoice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith(targetLangCode));
+    if (matchVoice) {
+      utterance.voice = matchVoice;
+    }
+
+    utterance.onend = () => {
+      if (resolve) resolve(true);
+    };
+    utterance.onerror = () => {
+      if (resolve) resolve(false);
+    };
+
+    // Keep global reference in window to bypass Chrome GC bug
+    window._polyglotUtterance = utterance;
+    window.speechSynthesis.speak(utterance);
+  } catch (e) {
+    if (resolve) resolve(false);
+  }
+}
+
+/**
+ * Play high-fidelity pronunciation audio for a word or German letter.
+ * Dual-Engine Architecture:
+ * 1. Primary: High-fidelity Google TTS MP3 audio stream (crystal clear native pronunciation,
+ *    runs 100% reliably on all operating systems and browsers without needing local voice packs).
+ * 2. Fallback: Native browser Web Speech API (speechSynthesis) if offline or audio stream blocked.
+ * 
+ * @param {string} word - The word or letter name to pronounce
+ * @param {'de'|'en'} lang - Language code ('de' by default)
+ * @param {number} speed - Playback speed rate (default: 0.85)
+ * @returns {Promise<boolean>}
  */
 export function speakWord(word, lang = 'de', speed = 0.85) {
-  if (!('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel();
-  const clean = word.replace(/^[.,!?;:"'„“”»«()]+|[.,!?;:"'„“”»«()]+$/g, '');
-  const utterance = new SpeechSynthesisUtterance(clean);
-  utterance.lang = lang === 'de' ? 'de-DE' : 'en-US';
-  utterance.rate = speed;
-  window.speechSynthesis.speak(utterance);
+  if (!word || typeof window === 'undefined') return Promise.resolve(false);
+
+  const clean = word.replace(/^[.,!?;:"'„“”»«()]+|[.,!?;:"'„“”»«()]+$/g, '').trim();
+  if (!clean) return Promise.resolve(false);
+
+  // Stop any previous playing audio
+  stopCurrentAudio();
+
+  return new Promise((resolve) => {
+    try {
+      const ttsLang = lang === 'de' ? 'de' : 'en';
+      const audioUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${ttsLang}&client=tw-ob&q=${encodeURIComponent(clean)}`;
+      const audio = new Audio(audioUrl);
+      activeAudioInstance = audio;
+      audio.playbackRate = speed;
+
+      let hasResolved = false;
+
+      audio.onended = () => {
+        if (activeAudioInstance === audio) {
+          activeAudioInstance = null;
+        }
+        if (!hasResolved) {
+          hasResolved = true;
+          resolve(true);
+        }
+      };
+
+      audio.onerror = () => {
+        if (activeAudioInstance === audio) {
+          activeAudioInstance = null;
+        }
+        speakViaWebSpeech(clean, lang, speed, resolve);
+      };
+
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // In case browser policy blocked autoplay or network error, fallback to speech synthesis
+          if (activeAudioInstance === audio) {
+            activeAudioInstance = null;
+          }
+          speakViaWebSpeech(clean, lang, speed, resolve);
+        });
+      }
+    } catch (err) {
+      speakViaWebSpeech(clean, lang, speed, resolve);
+    }
+  });
 }

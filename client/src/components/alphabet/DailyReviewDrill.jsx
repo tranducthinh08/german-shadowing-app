@@ -17,7 +17,7 @@ import {
   Lightbulb
 } from 'lucide-react';
 import { generateDailyReviewSession } from '../../utils/alphabetReviewEngine';
-import { speakWord } from '../../utils/pronunciationGuide';
+import { speakWord, stopCurrentAudio } from '../../utils/pronunciationGuide';
 
 export default function DailyReviewDrill({
   userStarredIds = [],
@@ -25,7 +25,8 @@ export default function DailyReviewDrill({
   onClose,
   currentUser
 }) {
-  const [questions, setQuestions] = useState(() => generateDailyReviewSession(userStarredIds, 8));
+  const safeStarredIds = Array.isArray(userStarredIds) ? userStarredIds : [];
+  const [questions, setQuestions] = useState(() => generateDailyReviewSession(safeStarredIds, 8));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOptionId, setSelectedOptionId] = useState(null);
   const [isAnswered, setIsAnswered] = useState(false);
@@ -41,10 +42,18 @@ export default function DailyReviewDrill({
 
   const currentQ = questions[currentIndex];
 
+  // Clean up audio on unmount
+  useEffect(() => {
+    return () => {
+      stopCurrentAudio();
+    };
+  }, []);
+
   // Auto-play audio when moving to a new question
   useEffect(() => {
     if (!currentQ || isCompleted) return;
 
+    stopCurrentAudio();
     setSelectedOptionId(null);
     setIsAnswered(false);
     setVoiceResultText('');
@@ -55,16 +64,22 @@ export default function DailyReviewDrill({
       playCurrentAudio();
     }, 350);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      stopCurrentAudio();
+    };
   }, [currentIndex, isCompleted]);
 
-  const playCurrentAudio = (speed = 0.85) => {
+  const playCurrentAudio = async (speed = 0.85) => {
     if (!currentQ) return;
     const textToPlay = currentQ.audioText || currentQ.targetWord || currentQ.targetLetter;
     if (textToPlay) {
       setIsPlayingAudio(true);
-      speakWord(textToPlay, currentQ.audioLang || 'de', speed);
-      setTimeout(() => setIsPlayingAudio(false), 900);
+      try {
+        await speakWord(textToPlay, currentQ.audioLang || 'de', speed);
+      } finally {
+        setIsPlayingAudio(false);
+      }
     }
   };
 
@@ -82,6 +97,7 @@ export default function DailyReviewDrill({
 
   // Handle Next Question or Finish
   const handleNext = () => {
+    stopCurrentAudio();
     if (currentIndex + 1 < questions.length) {
       setCurrentIndex(prev => prev + 1);
     } else {
@@ -98,15 +114,18 @@ export default function DailyReviewDrill({
 
   // Voice recording for voice challenge
   const handleToggleVoice = () => {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const SpeechRecognition = typeof window !== 'undefined' && (window.SpeechRecognition || window.webkitSpeechRecognition);
     if (!SpeechRecognition) {
-      alert('Trình duyệt của bạn chưa hỗ trợ Web Speech API. Bạn có thể bấm "Bỏ qua & Tự đọc to".');
+      setVoiceResultText('Trình duyệt của bạn chưa hỗ trợ nhận diện giọng nói. Bạn có thể bấm "Tôi đã tự đọc to" để vượt qua câu này.');
+      setVoiceStatus('unmatched');
       return;
     }
 
     if (isRecording) {
       if (recognitionRef.current) {
-        recognitionRef.current.stop();
+        try {
+          recognitionRef.current.stop();
+        } catch (e) {}
       }
       setIsRecording(false);
       return;
@@ -120,7 +139,7 @@ export default function DailyReviewDrill({
 
       recognition.onstart = () => {
         setIsRecording(true);
-        setVoiceResultText('Đang lắng nghe... Hãy đọc to từ mẫu!');
+        setVoiceResultText('🎙️ Đang lắng nghe... Hãy đọc to từ mẫu!');
       };
 
       recognition.onresult = (event) => {
@@ -140,9 +159,13 @@ export default function DailyReviewDrill({
         }
       };
 
-      recognition.onerror = () => {
+      recognition.onerror = (e) => {
         setIsRecording(false);
-        setVoiceResultText('Chưa nhận diện được âm thanh. Hãy thử lại hoặc bấm bỏ qua.');
+        if (e.error === 'not-allowed') {
+          setVoiceResultText('Micro đang bị chặn bởi trình duyệt. Vui lòng cho phép quyền Micro hoặc bấm "Tôi đã tự đọc to".');
+        } else {
+          setVoiceResultText('Chưa thu được âm thanh rõ. Hãy thử lại hoặc bấm "Tôi đã tự đọc to".');
+        }
       };
 
       recognition.onend = () => {
@@ -153,7 +176,17 @@ export default function DailyReviewDrill({
       recognition.start();
     } catch (e) {
       setIsRecording(false);
+      setVoiceResultText('Không thể kích hoạt micro lúc này. Bạn có thể bấm "Tôi đã tự đọc to".');
     }
+  };
+
+  const handleSelfValidateVoice = () => {
+    if (isAnswered) return;
+    setIsAnswered(true);
+    setSelectedOptionId('voice_success');
+    setVoiceStatus('matched');
+    setVoiceResultText('Đã xác nhận tự luyện đọc to chuẩn từ này! 🎉');
+    setCorrectCount(prev => prev + 1);
   };
 
   const handleSkipVoice = () => {
@@ -164,7 +197,8 @@ export default function DailyReviewDrill({
 
   // Restart session
   const handleRestart = () => {
-    setQuestions(generateDailyReviewSession(userStarredIds, 8));
+    stopCurrentAudio();
+    setQuestions(generateDailyReviewSession(safeStarredIds, 8));
     setCurrentIndex(0);
     setCorrectCount(0);
     setIsCompleted(false);
@@ -367,13 +401,22 @@ export default function DailyReviewDrill({
           )}
 
           {!isAnswered && (
-            <button
-              type="button"
-              onClick={handleSkipVoice}
-              className="text-xs text-outline hover:text-on-surface underline cursor-pointer"
-            >
-              Tôi đã tự đọc to (Bỏ qua câu này)
-            </button>
+            <div className="flex items-center justify-center gap-3 mt-2 flex-wrap">
+              <button
+                type="button"
+                onClick={handleSelfValidateVoice}
+                className="px-3 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold hover:bg-emerald-500/30 transition-all cursor-pointer"
+              >
+                ✓ Tôi đã tự đọc to chuẩn (+Điểm)
+              </button>
+              <button
+                type="button"
+                onClick={handleSkipVoice}
+                className="text-xs text-outline hover:text-on-surface underline cursor-pointer"
+              >
+                Bỏ qua câu này
+              </button>
+            </div>
           )}
         </div>
       )}
