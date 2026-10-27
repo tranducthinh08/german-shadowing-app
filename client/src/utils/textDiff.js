@@ -270,3 +270,120 @@ export function compareSentence(userText = '', targetText = '', options = {}) {
     isPerfect
   };
 }
+
+/**
+ * Compute real-time word-by-word streaming validation against target script
+ * @param {string} userInput - Current text in the input box
+ * @param {string} targetText - Target sentence text
+ * @param {object} options - { strictCase: boolean, strictGermanUmlauts: boolean }
+ */
+export function computeLiveStream(userInput = '', targetText = '', options = {}) {
+  const { strictCase = false } = options;
+
+  const normUser = normalizeContractionsAndPunctuation(userInput);
+  const normTarget = normalizeContractionsAndPunctuation(targetText);
+
+  const targetWords = normTarget.trim().split(/\s+/).filter(Boolean);
+  if (targetWords.length === 0) {
+    return { tokens: [], matchedCount: 0, totalCount: 0, isComplete: false, score: 0 };
+  }
+
+  // Filter out standalone punctuation tokens
+  const userWords = normUser
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .filter((w) => cleanPunctuation(w).length > 0);
+
+  // Check if user is actively in the middle of typing the last word (no trailing space)
+  const isTypingLastWord = !/\s$/.test(userInput) && userWords.length > 0;
+
+  const tokens = [];
+  let matchedCount = 0;
+
+  for (let i = 0; i < targetWords.length; i++) {
+    const tw = targetWords[i];
+    const twClean = cleanPunctuation(tw);
+    const uw = userWords[i];
+
+    if (!uw) {
+      tokens.push({
+        targetWord: tw,
+        cleanTarget: twClean,
+        typedWord: '',
+        status: 'pending'
+      });
+      continue;
+    }
+
+    const uwClean = cleanPunctuation(uw);
+    const isCurrentActive = isTypingLastWord && i === userWords.length - 1;
+    const check = isWordMatchOrClose(twClean, uwClean);
+
+    if (check.match) {
+      if (check.typoType === 'case' && strictCase) {
+        tokens.push({
+          targetWord: tw,
+          cleanTarget: twClean,
+          typedWord: uw,
+          status: 'typo',
+          suggestion: twClean
+        });
+      } else if (check.typoType === 'umlaut') {
+        tokens.push({
+          targetWord: tw,
+          cleanTarget: twClean,
+          typedWord: uw,
+          status: 'typo',
+          suggestion: twClean
+        });
+      } else {
+        tokens.push({
+          targetWord: tw,
+          cleanTarget: twClean,
+          typedWord: uw,
+          status: 'correct'
+        });
+        matchedCount++;
+      }
+    } else if (isCurrentActive && twClean.toLowerCase().startsWith(uwClean.toLowerCase())) {
+      tokens.push({
+        targetWord: tw,
+        cleanTarget: twClean,
+        typedWord: uw,
+        status: 'typing'
+      });
+    } else {
+      tokens.push({
+        targetWord: tw,
+        cleanTarget: twClean,
+        typedWord: uw,
+        status: 'wrong',
+        suggestion: twClean
+      });
+    }
+  }
+
+  // Check for any extra words typed beyond target words count
+  if (userWords.length > targetWords.length) {
+    for (let j = targetWords.length; j < userWords.length; j++) {
+      tokens.push({
+        targetWord: '',
+        cleanTarget: '',
+        typedWord: userWords[j],
+        status: 'extra'
+      });
+    }
+  }
+
+  const isComplete = matchedCount === targetWords.length && userWords.length === targetWords.length;
+  const score = Math.round((matchedCount / targetWords.length) * 100);
+
+  return {
+    tokens,
+    matchedCount,
+    totalCount: targetWords.length,
+    isComplete,
+    score
+  };
+}

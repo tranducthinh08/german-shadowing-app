@@ -18,7 +18,8 @@ export const DEFAULT_USER_SETTINGS = {
   activeMode: 'dictation',
   dailySentenceGoal: 10,
   autoShowGrammar: true,
-  strictNounCapitalization: true
+  strictNounCapitalization: true,
+  isLiveCheck: true
 };
 
 const USERS_LIST_KEY = 'polyglot_users_list';

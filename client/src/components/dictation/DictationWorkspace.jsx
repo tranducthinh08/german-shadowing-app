@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Play, RotateCcw, CheckCircle2, ChevronRight, HelpCircle, Eye, Sparkles, Tag, AlertTriangle, BookOpen } from 'lucide-react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { Play, RotateCcw, CheckCircle2, ChevronRight, HelpCircle, Eye, Sparkles, Tag, AlertTriangle, BookOpen, Check, X, Zap } from 'lucide-react';
 import { GERMAN_SPECIAL_CHARS, insertCharToInput } from '../../utils/germanUtils';
-import { compareSentence } from '../../utils/textDiff';
+import { compareSentence, computeLiveStream } from '../../utils/textDiff';
 import { extractProperNouns } from '../../utils/properNouns';
 import GrammarAnalysisModal from '../grammar/GrammarAnalysisModal';
 
@@ -27,6 +27,14 @@ export default function DictationWorkspace({
   const [localStrictGerman, setLocalStrictGerman] = useState(true);
   const strictGerman = propStrictGerman !== undefined ? propStrictGerman : localStrictGerman;
   const [showGrammarModal, setShowGrammarModal] = useState(false);
+  const [isLiveCheck, setIsLiveCheck] = useState(() => {
+    try {
+      const saved = localStorage.getItem('polyglot_dictation_live_check');
+      return saved !== null ? JSON.parse(saved) : true;
+    } catch (e) {
+      return true;
+    }
+  });
   const inputRef = useRef(null);
 
   const handleToggleStrict = (val) => {
@@ -37,22 +45,34 @@ export default function DictationWorkspace({
     }
   };
 
-  // Reset input and diff result when segment changes
-  useEffect(() => {
-    setUserInput('');
-    setDiffResult(null);
-    setShowHint(false);
-    setShowSolution(false);
-    const timer = setTimeout(() => {
-      if (inputRef.current) {
-        inputRef.current.focus();
-      }
-    }, 50);
-    return () => clearTimeout(timer);
-  }, [activeSegment?.id]);
+  const handleToggleLiveCheck = (val) => {
+    setIsLiveCheck(val);
+    try {
+      localStorage.setItem('polyglot_dictation_live_check', JSON.stringify(val));
+    } catch (e) {}
+  };
 
-  // Determine if the answer has met standard (100% or passing score >= 80)
-  const isStandardMet = Boolean(diffResult && (diffResult.score === 100 || diffResult.isPerfect || diffResult.score >= 80));
+  // Compute live word-by-word streaming validation against ground truth
+  const liveStream = useMemo(() => {
+    if (!isLiveCheck || !activeSegment?.text) return null;
+    return computeLiveStream(userInput, activeSegment.text, {
+      strictCase: language === 'de' && strictGerman,
+      strictGermanUmlauts: strictGerman
+    });
+  }, [userInput, activeSegment?.text, isLiveCheck, language, strictGerman]);
+
+  // Determine if the answer has met standard (100% or passing score >= 80, or 100% on live check)
+  const isStandardMet = Boolean(
+    (diffResult && (diffResult.score === 100 || diffResult.isPerfect || diffResult.score >= 80)) ||
+    (isLiveCheck && liveStream && liveStream.isComplete)
+  );
+
+  // Auto-record completion when liveStream hits 100%
+  useEffect(() => {
+    if (isLiveCheck && liveStream?.isComplete && onCompleteSentence && activeSegment?.id) {
+      onCompleteSentence(activeSegment.id, 100);
+    }
+  }, [liveStream?.isComplete, isLiveCheck, activeSegment?.id, onCompleteSentence]);
 
   const handleAdvance = () => {
     if (segmentIndex < totalSegments - 1) {
@@ -264,33 +284,54 @@ export default function DictationWorkspace({
         </div>
       )}
 
-      {/* German Special Characters Virtual Keyboard */}
-      {language === 'de' && (
-        <div className="flex items-center gap-1.5 flex-wrap">
-          <span className="text-outline text-xs mr-0.5">Ký tự Đức:</span>
-          {GERMAN_SPECIAL_CHARS.map(({ char, label }) => (
-            <button
-              key={char}
-              type="button"
-              onClick={() => handleInsertChar(char)}
-              className="w-7 h-7 rounded-lg bg-surface-container hover:bg-primary-container hover:text-on-primary-container text-on-surface font-headline font-bold text-xs flex items-center justify-center transition-all shadow-xs cursor-pointer border border-outline-variant/30 active:scale-95"
-              title={`Chèn ký tự ${char}`}
-            >
-              {label}
-            </button>
-          ))}
-          <span className="text-outline-variant mx-1">|</span>
-          <label className="ml-auto flex items-center gap-1.5 text-xs text-outline cursor-pointer select-none">
+      {/* German Special Characters Virtual Keyboard & Toggles */}
+      <div className="flex items-center gap-1.5 flex-wrap">
+        {language === 'de' && (
+          <>
+            <span className="text-outline text-xs mr-0.5">Ký tự Đức:</span>
+            {GERMAN_SPECIAL_CHARS.map(({ char, label }) => (
+              <button
+                key={char}
+                type="button"
+                onClick={() => handleInsertChar(char)}
+                className="w-7 h-7 rounded-lg bg-surface-container hover:bg-primary-container hover:text-on-primary-container text-on-surface font-headline font-bold text-xs flex items-center justify-center transition-all shadow-xs cursor-pointer border border-outline-variant/30 active:scale-95"
+                title={`Chèn ký tự ${char}`}
+              >
+                {label}
+              </button>
+            ))}
+            <span className="text-outline-variant mx-1">|</span>
+          </>
+        )}
+
+        <div className="ml-auto flex items-center gap-3">
+          {/* Live Check Toggle */}
+          <label className="flex items-center gap-1.5 text-xs text-outline cursor-pointer select-none hover:text-on-surface transition-colors" title="Bật/tắt kiểm tra từ Xanh/Đỏ ngay khi gõ">
             <input
               type="checkbox"
-              checked={strictGerman}
-              onChange={(e) => handleToggleStrict(e.target.checked)}
-              className="rounded bg-surface-container border-outline-variant text-secondary focus:ring-0 w-3.5 h-3.5"
+              checked={isLiveCheck}
+              onChange={(e) => handleToggleLiveCheck(e.target.checked)}
+              className="rounded bg-surface-container border-outline-variant text-secondary focus:ring-0 w-3.5 h-3.5 cursor-pointer"
             />
-            <span>Bắt buộc viết hoa danh từ</span>
+            <span className="flex items-center gap-1">
+              <Zap className="w-3 h-3 text-secondary" />
+              <span>Kiểm tra tức thì (Xanh/Đỏ)</span>
+            </span>
           </label>
+
+          {language === 'de' && (
+            <label className="flex items-center gap-1.5 text-xs text-outline cursor-pointer select-none hover:text-on-surface transition-colors">
+              <input
+                type="checkbox"
+                checked={strictGerman}
+                onChange={(e) => handleToggleStrict(e.target.checked)}
+                className="rounded bg-surface-container border-outline-variant text-secondary focus:ring-0 w-3.5 h-3.5 cursor-pointer"
+              />
+              <span>Bắt buộc viết hoa danh từ</span>
+            </label>
+          )}
         </div>
-      )}
+      </div>
 
       {/* Transcription Textarea Card */}
       <div className="rounded-xl bg-surface-container p-3.5 shadow-sm border border-outline-variant/40 focus-within:border-secondary transition-all flex flex-col gap-2.5">
@@ -321,6 +362,118 @@ export default function DictationWorkspace({
           className="w-full min-h-[85px] bg-surface-container-lowest/80 rounded-lg p-3 text-on-surface font-transcription text-sm sm:text-base leading-relaxed outline-none border border-outline-variant/20 focus:border-secondary/40 transition-all resize-none shadow-inner"
         />
 
+        {/* Live Word-by-Word Validation Stream */}
+        {isLiveCheck && liveStream && liveStream.tokens.length > 0 && (
+          <div className="p-3 rounded-lg bg-surface-container-lowest/90 border border-outline-variant/30 flex flex-col gap-2 transition-all">
+            <div className="flex items-center justify-between text-xs text-outline">
+              <span className="flex items-center gap-1.5 font-semibold text-secondary">
+                <Zap className="w-3.5 h-3.5 text-secondary animate-pulse" />
+                <span>Kiểm tra tức thì:</span>
+              </span>
+              <div className="flex items-center gap-2 font-mono text-[11px]">
+                <span className={liveStream.matchedCount === liveStream.totalCount ? 'text-emerald-400 font-bold' : 'text-on-surface'}>
+                  {liveStream.matchedCount} / {liveStream.totalCount} từ đúng
+                </span>
+                <span className="text-outline-variant">•</span>
+                <span className="font-bold text-secondary">{liveStream.score}%</span>
+              </div>
+            </div>
+
+            {/* Live Token Badges */}
+            <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
+              {liveStream.tokens.map((token, idx) => {
+                if (token.status === 'correct') {
+                  return (
+                    <span
+                      key={idx}
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-950/40 text-emerald-300 border border-emerald-500/50 shadow-xs transition-all"
+                      title="Chính xác"
+                    >
+                      <Check className="w-3 h-3 text-emerald-400 shrink-0" />
+                      <span>{token.cleanTarget || token.typedWord}</span>
+                    </span>
+                  );
+                }
+
+                if (token.status === 'typing') {
+                  return (
+                    <span
+                      key={idx}
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-sky-950/40 text-sky-300 border border-sky-500/50 animate-pulse shadow-xs transition-all"
+                      title="Đang gõ..."
+                    >
+                      <span>{token.typedWord}</span>
+                      <span className="text-[10px] text-sky-400 opacity-60">…</span>
+                    </span>
+                  );
+                }
+
+                if (token.status === 'typo') {
+                  return (
+                    <span
+                      key={idx}
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-amber-950/40 text-amber-300 border border-amber-500/50 shadow-xs transition-all"
+                      title={`Lỗi nhẹ, từ đúng: ${token.cleanTarget}`}
+                    >
+                      <AlertTriangle className="w-3 h-3 text-amber-400 shrink-0" />
+                      <span>{token.typedWord}</span>
+                      <span className="text-[10px] text-amber-400/80">({token.cleanTarget})</span>
+                    </span>
+                  );
+                }
+
+                if (token.status === 'wrong') {
+                  return (
+                    <span
+                      key={idx}
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-rose-950/40 text-rose-300 border border-rose-500/50 shadow-xs transition-all"
+                      title={`Sai, từ đúng: ${token.cleanTarget}`}
+                    >
+                      <X className="w-3 h-3 text-rose-400 shrink-0" />
+                      <span className="line-through opacity-80">{token.typedWord}</span>
+                      <span className="text-[10px] text-rose-200 font-bold">→ {token.cleanTarget}</span>
+                    </span>
+                  );
+                }
+
+                if (token.status === 'extra') {
+                  return (
+                    <span
+                      key={idx}
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-rose-950/30 text-rose-400 border border-dashed border-rose-500/40"
+                      title="Từ thừa"
+                    >
+                      <X className="w-3 h-3 text-rose-400 shrink-0" />
+                      <span>{token.typedWord} (thừa)</span>
+                    </span>
+                  );
+                }
+
+                // pending token
+                return (
+                  <span
+                    key={idx}
+                    className="inline-flex items-center justify-center min-w-[32px] px-2 py-1 rounded-md text-xs text-outline/50 bg-surface-container/40 border border-dashed border-outline-variant/30 select-none"
+                    title="Từ tiếp theo"
+                  >
+                    •••
+                  </span>
+                );
+              })}
+            </div>
+
+            {/* Quick mini-progress bar */}
+            <div className="w-full bg-surface-container h-1 rounded-full overflow-hidden mt-1">
+              <div
+                className={`h-full transition-all duration-300 ${
+                  liveStream.isComplete ? 'bg-emerald-400' : 'bg-secondary'
+                }`}
+                style={{ width: `${Math.min(100, liveStream.score)}%` }}
+              />
+            </div>
+          </div>
+        )}
+
         {/* Input Bar Control Actions */}
         <div className="flex flex-wrap items-center justify-between gap-2 pt-0.5">
           <div className="text-xs">
@@ -328,9 +481,9 @@ export default function DictationWorkspace({
               <span className="text-secondary font-bold flex items-center gap-1.5 animate-pulse">
                 <CheckCircle2 className="w-4 h-4 text-secondary shrink-0" />
                 <span>
-                  {diffResult.score === 100 || diffResult.isPerfect
+                  {liveStream?.isComplete || diffResult?.score === 100 || diffResult?.isPerfect
                     ? 'Đạt chuẩn 100%! Nhấn Enter để sang câu kế tiếp ↵'
-                    : `Đạt chuẩn (${diffResult.score}%)! Nhấn Enter để sang câu kế tiếp ↵`}
+                    : `Đạt chuẩn (${diffResult?.score || liveStream?.score}%)! Nhấn Enter để sang câu kế tiếp ↵`}
                 </span>
               </span>
             ) : (

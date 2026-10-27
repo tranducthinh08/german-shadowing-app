@@ -1,7 +1,7 @@
 import assert from 'assert';
 import { segmentSentences } from '../server/src/services/subtitle.parser.js';
 import { extractVideoId } from '../server/src/services/youtube.service.js';
-import { compareSentence } from '../client/src/utils/textDiff.js';
+import { compareSentence, computeLiveStream } from '../client/src/utils/textDiff.js';
 import { extractProperNouns } from '../client/src/utils/properNouns.js';
 
 console.log('🧪 Starting Automated Tests for PolyGlot Shadowing & Dictation...\n');
@@ -109,5 +109,33 @@ assert(names3.includes('Sebastian'), 'Expected Sebastian to be extracted');
 const names4 = extractProperNouns('Das ist Nicos Tasche.', 'de');
 assert(names4.includes('Nicos'), 'Expected genitive Nicos to be extracted');
 console.log('  ✅ Proper nouns successfully detected across Nicos Weg character names!');
+
+// 4. Live Word-by-Word Stream Validation
+console.log('\nTest 6: Real-Time Word-by-Word Live Check (computeLiveStream)');
+const liveTarget = 'Hey, Lena! Na, wie geht’s?';
+
+// Case A: User typed first word correctly with trailing space
+const live1 = computeLiveStream('Hey, ', liveTarget, { strictCase: false });
+assert.strictEqual(live1.tokens[0].status, 'correct', 'Word 1 should be green/correct');
+assert.strictEqual(live1.tokens[1].status, 'pending', 'Word 2 should be pending');
+assert.strictEqual(live1.matchedCount, 1);
+
+// Case B: User typing second word in progress (prefix matching)
+const live2 = computeLiveStream('Hey, Le', liveTarget, { strictCase: false });
+assert.strictEqual(live2.tokens[0].status, 'correct');
+assert.strictEqual(live2.tokens[1].status, 'typing', 'Word 2 should be in typing status');
+
+// Case C: User typed second word wrong
+const live3 = computeLiveStream('Hey, Tom ', liveTarget, { strictCase: false });
+assert.strictEqual(live3.tokens[0].status, 'correct');
+assert.strictEqual(live3.tokens[1].status, 'wrong', 'Word 2 should be red/wrong');
+assert.strictEqual(live3.tokens[1].suggestion, 'Lena');
+
+// Case D: Full sentence matching with contraction s tolerance
+const live4 = computeLiveStream('hey, Lena ! Na, wie geht\'s', liveTarget, { strictCase: false });
+assert.strictEqual(live4.isComplete, true, 'All words should be matched and sentence complete');
+assert.strictEqual(live4.matchedCount, 5);
+assert.strictEqual(live4.score, 100);
+console.log('  ✅ Real-time live check (correct/typing/wrong/pending/complete) verified!');
 
 console.log('\n🎉 ALL AUTOMATED UNIT TESTS PASSED SUCCESSFULLY!\n');
