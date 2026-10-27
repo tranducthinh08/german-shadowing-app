@@ -233,4 +233,43 @@ assert.strictEqual(d5ProgressB.customOffset, 2);
 
 console.log('  ✅ Daily 5 deterministic selection, rotation, targeted quiz, and multi-user isolation verified');
 
+// -------------------------------------------------------------
+// Test 7: Dual Audio Pronunciation (Letter Spelling vs Phonics Sound)
+// -------------------------------------------------------------
+console.log('\nTest 7: Dual Audio Pronunciation (Letter Spelling Name vs Phonics Sound in Words)');
+
+// Y letter distinction: Spelling is Ypsilon, Phonics is [y] / Ü sound
+const letterY = getAlphabetItemById('y');
+assert(letterY, 'Letter Y must exist');
+assert.strictEqual(letterY.ttsLetter, 'Ypsilon', 'Letter Y spelling name should be Ypsilon');
+assert.strictEqual(letterY.phonicsAudio, 'Ü', 'Letter Y phonics audio must map to Ü for German [y] vowel sound');
+assert(letterY.phonicsSound.includes('[y'), 'Letter Y phonics sound must be [y]');
+assert(letterY.phonicsNote.includes('Ypsilon') && letterY.phonicsNote.includes('Ü'), 'Letter Y phonics note must explain difference between Ypsilon and Ü');
+
+// V letter distinction: Spelling is Vau, Phonics is [f]
+const letterV = getAlphabetItemById('v');
+assert.strictEqual(letterV.ttsLetter, 'Vau', 'Letter V spelling name must be Vau');
+assert.strictEqual(letterV.phonicsAudio, 'Vater', 'Letter V phonics audio should be Vater [f]');
+assert(letterV.phonicsSound.includes('[f]'), 'Letter V phonics sound must include [f]');
+
+// W letter distinction: Spelling is We, Phonics is [v]
+const letterW = getAlphabetItemById('w');
+assert.strictEqual(letterW.ttsLetter, 'We', 'Letter W spelling name must be We');
+assert.strictEqual(letterW.phonicsAudio, 'Wasser', 'Letter W phonics audio should be Wasser [v]');
+assert(letterW.phonicsSound.includes('[v]'), 'Letter W phonics sound must include [v]');
+
+// Z letter distinction: Spelling is Zett, Phonics is [ts]
+const letterZ = getAlphabetItemById('z');
+assert.strictEqual(letterZ.ttsLetter, 'Zett', 'Letter Z spelling name must be Zett');
+assert.strictEqual(letterZ.phonicsAudio, 'Zeit', 'Letter Z phonics audio should be Zeit [ts]');
+assert(letterZ.phonicsSound.includes('[ts]'), 'Letter Z phonics sound must include [ts]');
+
+// ß distinction: Spelling is Eszett, Phonics is [s]
+const letterSz = getAlphabetItemById('sz');
+assert.strictEqual(letterSz.ttsLetter, 'Eszett', 'Letter ß spelling name must be Eszett');
+assert.strictEqual(letterSz.phonicsAudio, 'groß', 'Letter ß phonics audio should be groß [s]');
+assert(letterSz.phonicsSound.includes('[s]'), 'Letter ß phonics sound must include [s]');
+
+console.log('  ✅ Dual audio pronunciation definitions (Letter Spelling vs Phonics Lautwert) verified for Y, V, W, Z, ß and all alphabet items');
+
 console.log('\n🎉 ALL GERMAN ALPHABET & DAILY REVIEW TESTS PASSED SUCCESSFULLY!\n');

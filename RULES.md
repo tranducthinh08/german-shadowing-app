@@ -70,6 +70,15 @@ german_shadowing/
 - Thành phần `YouTubePlayer.jsx` sử dụng `forwardRef` và `useImperativeHandle` để expose các hàm gọi trực tiếp: `seekTo(seconds)`, `play()`, `pause()`, `replaySegment()`, `setSpeed(speed)`.
 - Không cập nhật State React tần suất cao (dưới 100ms) lên Root State chỉ để đếm thời gian phát video.
 
+### 2.5. Giới Hạn Kích Thước File (File Size Limit <= 400 Dòng)
+- **Ngưỡng giới hạn cứng**: Mọi file mã nguồn logic (`.js`, `.jsx`, `.ts`, `.tsx`) trong `client/src` và `server/src` (components, utils, hooks, services, routes, test) **tuyệt đối không được vượt quá 400 dòng**.
+- **Ngoại lệ duy nhất**: Các file dataset fixtures tĩnh trong `src/data/` (như kịch bản 80 tập Nicos Weg 18,000 dòng hoặc từ điển âm thanh tĩnh).
+- **Chiến lược phân tách khi chạm ngưỡng 300 - 350 dòng**:
+  - React Component $\rightarrow$ Tách sub-components cho các khối modal/card/toolbar hoặc tách Custom Hook (`src/hooks/`).
+  - Logic/Utility $\rightarrow$ Tách dữ liệu/constants sang `src/data/` hoặc tách thuật toán phụ trợ sang helper module.
+  - Backend Service $\rightarrow$ Tách các adapter/extractors con thành service modules riêng.
+- **Kiểm tra tự động**: Chạy `npm run check:lines` trước khi commit.
+
 ---
 
 ## 3. QUY TẮC HIỆU NĂNG CHO AI AGENT (PERFORMANCE RULES)

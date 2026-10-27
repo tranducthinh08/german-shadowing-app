@@ -98,6 +98,11 @@ german_shadowing/
   - `typeof localStorage !== 'undefined'`
 - Clean up all timers (`clearTimeout`, `clearInterval`) and audio/recognition streams in the `useEffect` cleanup return.
 
+### 3.5. File Size Limit (<= 400 Lines per File)
+- **STRICT RULE**: Every logic source file (`.js`, `.jsx`, `.ts`, `.tsx`) in `client/src` and `server/src` MUST remain under 400 physical lines.
+- Excluded: Static dataset fixtures in `src/data/` (e.g. `nicosWegPlaylist.js`, `germanAlphabetData.js`).
+- If a component or module approaches 300-350 lines, proactively refactor into child components, custom hooks (`client/src/hooks/`), or utility/data modules. Run `npm run check:lines` to enforce.
+
 ---
 
 ## 4. PERFORMANCE RULES FOR AI AGENTS
