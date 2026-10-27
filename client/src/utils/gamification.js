@@ -93,6 +93,13 @@ export const ALL_BADGES = [
     desc: 'Lưu ít nhất 5 từ mới vào sổ tay',
     icon: '📚',
     category: 'vocab'
+  },
+  {
+    id: 'alphabet_master',
+    name: 'Bậc thầy Chữ cái',
+    desc: 'Hoàn thành bài ôn tập bảng chữ cái tiếng Đức',
+    icon: '🔤',
+    category: 'skill'
   }
 ];
 
@@ -266,6 +273,13 @@ export function recordLearningAction(action, payload = {}, username) {
       xpGained = 5;
       if (payload.vocabCount >= 5 && !data.unlockedBadges.includes('vocab_collector')) {
         newBadges.push('vocab_collector');
+      }
+      break;
+    case 'ALPHABET_REVIEW':
+    case 'alphabet_review':
+      xpGained = payload?.xp || 30;
+      if (!data.unlockedBadges.includes('alphabet_master')) {
+        newBadges.push('alphabet_master');
       }
       break;
     default:

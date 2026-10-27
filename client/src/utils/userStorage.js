@@ -271,3 +271,75 @@ export function migrateLegacyDataIfApplicable(username) {
     }
   }
 }
+
+/**
+ * Get user starred difficult letters for review
+ * @param {string} username
+ * @returns {string[]} Array of letter IDs
+ */
+export function getUserHardLetters(username) {
+  if (!username) return [];
+  const key = getUserStorageKey(username, 'hard_letters');
+  try {
+    if (typeof localStorage === 'undefined') return [];
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : [];
+  } catch (e) {
+    return [];
+  }
+}
+
+/**
+ * Save user starred difficult letters
+ * @param {string} username
+ * @param {string[]} letters
+ */
+export function saveUserHardLetters(username, letters) {
+  if (!username) return;
+  const key = getUserStorageKey(username, 'hard_letters');
+  try {
+    if (typeof localStorage !== 'undefined') {
+      const arr = Array.isArray(letters) ? letters : Array.from(letters || []);
+      localStorage.setItem(key, JSON.stringify(arr));
+    }
+  } catch (e) {}
+}
+
+/**
+ * Get user daily alphabet review progress & streak
+ * @param {string} username
+ */
+export function getUserAlphabetReviewProgress(username) {
+  const defaultProgress = {
+    lastReviewDate: null,
+    reviewStreak: 0,
+    totalSessions: 0,
+    totalQuestionsAnswered: 0,
+    totalCorrect: 0
+  };
+  if (!username) return defaultProgress;
+  const key = getUserStorageKey(username, 'alphabet_review');
+  try {
+    if (typeof localStorage === 'undefined') return defaultProgress;
+    const raw = localStorage.getItem(key);
+    return raw ? { ...defaultProgress, ...JSON.parse(raw) } : defaultProgress;
+  } catch (e) {
+    return defaultProgress;
+  }
+}
+
+/**
+ * Save user daily alphabet review progress & streak
+ * @param {string} username
+ * @param {object} progress
+ */
+export function saveUserAlphabetReviewProgress(username, progress) {
+  if (!username) return;
+  const key = getUserStorageKey(username, 'alphabet_review');
+  try {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(key, JSON.stringify(progress));
+    }
+  } catch (e) {}
+}
+

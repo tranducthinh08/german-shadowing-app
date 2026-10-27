@@ -10,7 +10,8 @@ import {
   ArrowRight,
   ChevronDown,
   PenTool,
-  BookOpen
+  BookOpen,
+  Languages
 } from 'lucide-react';
 
 export default function Header({
@@ -87,6 +88,26 @@ export default function Header({
             >
               <PenTool className="w-3.5 h-3.5" />
               <span>Luyện tập</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => onChangeTab && onChangeTab('alphabet')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                activeTab === 'alphabet'
+                  ? 'bg-primary-container text-on-primary-container shadow-xs'
+                  : 'text-on-surface-variant hover:text-on-surface'
+              }`}
+            >
+              <Languages className="w-3.5 h-3.5 text-secondary" />
+              <span>Bảng chữ cái</span>
+              <span className={`text-[10px] font-bold px-1.5 py-0.2 rounded-full ${
+                activeTab === 'alphabet'
+                  ? 'bg-on-primary-container/20 text-on-primary-container'
+                  : 'bg-secondary/15 text-secondary'
+              }`}>
+                ABC
+              </span>
             </button>
 
             <button

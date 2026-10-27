@@ -12,10 +12,12 @@ import StudyHistoryTab from './components/history/StudyHistoryTab';
 import LessonsTab from './components/lessons/LessonsTab';
 import PlaylistView from './components/playlist/PlaylistView';
 import EpisodeNavBar from './components/playlist/EpisodeNavBar';
+import AlphabetTab from './components/alphabet/AlphabetTab';
 import GamificationModal from './components/gamification/GamificationModal';
 import RewardToast from './components/gamification/RewardToast';
 import UserProfileModal from './components/user/UserProfileModal';
 import { getGamificationData, recordLearningAction } from './utils/gamification';
+import { calculateReviewProgressUpdate } from './utils/alphabetReviewEngine';
 import { NICOS_WEG_PLAYLIST, NICOS_WEG_EPISODES_MAP } from './data/nicosWegPlaylist';
 import {
   getCurrentUser,
@@ -29,6 +31,10 @@ import {
   getUserCompletedSentences,
   saveUserCompletedSentences,
   deleteUserCompletedSentences,
+  getUserHardLetters,
+  saveUserHardLetters,
+  getUserAlphabetReviewProgress,
+  saveUserAlphabetReviewProgress,
   migrateLegacyDataIfApplicable
 } from './utils/userStorage';
 import { loadVideoApi } from './services/api';
@@ -80,6 +86,8 @@ export default function App() {
   const [savedWords, setSavedWords] = useState(() => getUserSavedVocab(currentUser?.username));
   const [completedSentenceIds, setCompletedSentenceIds] = useState(() => new Set());
   const [studyHistory, setStudyHistory] = useState(() => getUserStudyHistory(currentUser?.username));
+  const [hardLetters, setHardLetters] = useState(() => getUserHardLetters(currentUser?.username));
+  const [alphabetReviewProgress, setAlphabetReviewProgress] = useState(() => getUserAlphabetReviewProgress(currentUser?.username));
 
   const playerRef = useRef(null);
 
@@ -101,6 +109,18 @@ export default function App() {
       saveUserStudyHistory(currentUser.username, studyHistory);
     }
   }, [studyHistory, currentUser?.username]);
+
+  useEffect(() => {
+    if (currentUser?.username) {
+      saveUserHardLetters(currentUser.username, hardLetters);
+    }
+  }, [hardLetters, currentUser?.username]);
+
+  useEffect(() => {
+    if (currentUser?.username) {
+      saveUserAlphabetReviewProgress(currentUser.username, alphabetReviewProgress);
+    }
+  }, [alphabetReviewProgress, currentUser?.username]);
 
   // Handle switching or selecting user profile
   const handleSelectUser = (user) => {
@@ -137,7 +157,13 @@ export default function App() {
     const userGamification = getGamificationData(user.username);
     setGamificationData(userGamification);
 
-    // 6. Close modal & show friendly toast
+    // 6. Load user's alphabet review & starred letters
+    const userHardLetters = getUserHardLetters(user.username);
+    setHardLetters(userHardLetters);
+    const userAlphabetProgress = getUserAlphabetReviewProgress(user.username);
+    setAlphabetReviewProgress(userAlphabetProgress);
+
+    // 7. Close modal & show friendly toast
     setIsUserModalOpen(false);
     setActiveReward({
       icon: user.avatar || '🦊',
@@ -145,6 +171,40 @@ export default function App() {
       message: `Đã khôi phục cài đặt riêng và tiến độ học của bạn.`,
       xpGained: 0
     });
+  };
+
+  // Alphabet handlers
+  const handleToggleHardLetter = (letterId) => {
+    setHardLetters((prev) => {
+      if (prev.includes(letterId)) {
+        return prev.filter((id) => id !== letterId);
+      } else {
+        return [...prev, letterId];
+      }
+    });
+  };
+
+  const handleCompleteDailyReview = ({ correctCount, totalQuestions, xpEarned = 30 }) => {
+    setAlphabetReviewProgress((prev) => calculateReviewProgressUpdate(prev, correctCount, totalQuestions));
+
+    if (currentUser?.username) {
+      const { updatedData, reward } = recordLearningAction(currentUser.username, 'ALPHABET_REVIEW', {
+        xp: xpEarned,
+        correctCount,
+        totalQuestions
+      });
+      setGamificationData(updatedData);
+      if (reward) {
+        setActiveReward(reward);
+      } else {
+        setActiveReward({
+          icon: '🔤',
+          title: 'Hoàn thành Ôn tập Chữ cái!',
+          message: `Chính xác ${correctCount}/${totalQuestions} câu. Bạn nhận được +${xpEarned} XP!`,
+          xpGained: xpEarned
+        });
+      }
+    }
   };
 
   // Toggle handlers that persist per user
@@ -581,6 +641,17 @@ export default function App() {
             completedVideoIds={studyHistory.filter(h => h.completedCount >= (h.sentenceCount || 1)).map(h => h.videoId)}
             currentVideoId={currentVideo?.videoId}
             onBackToStudio={() => setMainTab('studio')}
+          />
+        )}
+
+        {/* TAB 3: GERMAN ALPHABET & DAILY REVIEW */}
+        {mainTab === 'alphabet' && (
+          <AlphabetTab
+            hardLetters={hardLetters}
+            onToggleHardLetter={handleToggleHardLetter}
+            alphabetReviewProgress={alphabetReviewProgress}
+            onCompleteDailyReview={handleCompleteDailyReview}
+            currentUser={currentUser}
           />
         )}
 
