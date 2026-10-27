@@ -184,11 +184,12 @@ export default function App() {
     });
   };
 
-  const handleCompleteDailyReview = ({ correctCount, totalQuestions, xpEarned = 30 }) => {
+  const handleCompleteDailyReview = ({ correctCount, totalQuestions, xpEarned = 30, isDaily5 = false }) => {
     setAlphabetReviewProgress((prev) => calculateReviewProgressUpdate(prev, correctCount, totalQuestions));
 
     if (currentUser?.username) {
-      const { updatedData, reward } = recordLearningAction(currentUser.username, 'ALPHABET_REVIEW', {
+      const actionType = isDaily5 ? 'DAILY_5_COMPLETED' : 'ALPHABET_REVIEW';
+      const { updatedData, reward } = recordLearningAction(currentUser.username, actionType, {
         xp: xpEarned,
         correctCount,
         totalQuestions
@@ -198,9 +199,28 @@ export default function App() {
         setActiveReward(reward);
       } else {
         setActiveReward({
-          icon: '🔤',
-          title: 'Hoàn thành Ôn tập Chữ cái!',
+          icon: isDaily5 ? '🎯' : '🔤',
+          title: isDaily5 ? 'Hoàn thành 5 Âm Tiêu Điểm!' : 'Hoàn thành Ôn tập Chữ cái!',
           message: `Chính xác ${correctCount}/${totalQuestions} câu. Bạn nhận được +${xpEarned} XP!`,
+          xpGained: xpEarned
+        });
+      }
+    }
+  };
+
+  const handleCompleteDaily5Checkoff = (xpEarned = 25) => {
+    if (currentUser?.username) {
+      const { updatedData, reward } = recordLearningAction(currentUser.username, 'DAILY_5_COMPLETED', {
+        xp: xpEarned
+      });
+      setGamificationData(updatedData);
+      if (reward) {
+        setActiveReward(reward);
+      } else {
+        setActiveReward({
+          icon: '🎯',
+          title: 'Xuất sắc! Đã ôn xong 5 Âm Tiêu Điểm!',
+          message: `Bạn vừa hoàn thành luyện tập 5 âm vị hôm nay và nhận được +${xpEarned} XP!`,
           xpGained: xpEarned
         });
       }
@@ -652,6 +672,7 @@ export default function App() {
             onToggleHardLetter={handleToggleHardLetter}
             alphabetReviewProgress={alphabetReviewProgress}
             onCompleteDailyReview={handleCompleteDailyReview}
+            onCompleteDaily5Checkoff={handleCompleteDaily5Checkoff}
             currentUser={currentUser}
           />
         )}

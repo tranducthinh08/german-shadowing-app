@@ -283,6 +283,13 @@ export function recordLearningAction(action, payload = {}, username) {
         newBadges.push('alphabet_master');
       }
       break;
+    case 'DAILY_5_COMPLETED':
+    case 'daily_5_completed':
+      xpGained = payload?.xp || 25;
+      if (!data.unlockedBadges.includes('alphabet_master')) {
+        newBadges.push('alphabet_master');
+      }
+      break;
     default:
       xpGained = 10;
   }

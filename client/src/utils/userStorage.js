@@ -343,3 +343,40 @@ export function saveUserAlphabetReviewProgress(username, progress) {
   } catch (e) {}
 }
 
+/**
+ * Get user daily 5 featured sounds progress
+ * @param {string} username
+ */
+export function getUserDaily5Progress(username) {
+  const defaultProgress = {
+    date: null,
+    completedSoundIds: [],
+    customOffset: 0,
+    isQuizCompleted: false
+  };
+  if (!username) return defaultProgress;
+  const key = getUserStorageKey(username, 'daily5_progress');
+  try {
+    if (typeof localStorage === 'undefined') return defaultProgress;
+    const raw = localStorage.getItem(key);
+    return raw ? { ...defaultProgress, ...JSON.parse(raw) } : defaultProgress;
+  } catch (e) {
+    return defaultProgress;
+  }
+}
+
+/**
+ * Save user daily 5 featured sounds progress
+ * @param {string} username
+ * @param {object} progress
+ */
+export function saveUserDaily5Progress(username, progress) {
+  if (!username) return;
+  const key = getUserStorageKey(username, 'daily5_progress');
+  try {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(key, JSON.stringify(progress));
+    }
+  } catch (e) {}
+}
+

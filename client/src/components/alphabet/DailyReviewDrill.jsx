@@ -16,17 +16,25 @@ import {
   HelpCircle,
   Lightbulb
 } from 'lucide-react';
-import { generateDailyReviewSession } from '../../utils/alphabetReviewEngine';
+import { generateDailyReviewSession, generateTargeted5Quiz } from '../../utils/alphabetReviewEngine';
 import { speakWord, stopCurrentAudio } from '../../utils/pronunciationGuide';
 
 export default function DailyReviewDrill({
   userStarredIds = [],
   onComplete,
   onClose,
-  currentUser
+  currentUser,
+  targetFeaturedSounds = null,
+  drillTitle = null,
+  rewardXp = 30
 }) {
   const safeStarredIds = Array.isArray(userStarredIds) ? userStarredIds : [];
-  const [questions, setQuestions] = useState(() => generateDailyReviewSession(safeStarredIds, 8));
+  const [questions, setQuestions] = useState(() => {
+    if (targetFeaturedSounds && targetFeaturedSounds.length > 0) {
+      return generateTargeted5Quiz(targetFeaturedSounds);
+    }
+    return generateDailyReviewSession(safeStarredIds, 8);
+  });
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOptionId, setSelectedOptionId] = useState(null);
   const [isAnswered, setIsAnswered] = useState(false);
@@ -111,7 +119,8 @@ export default function DailyReviewDrill({
         onComplete({
           correctCount,
           totalQuestions: questions.length,
-          xpEarned: 30
+          xpEarned: rewardXp || 30,
+          isDaily5: Boolean(targetFeaturedSounds && targetFeaturedSounds.length > 0)
         });
       }
     }
@@ -203,7 +212,11 @@ export default function DailyReviewDrill({
   // Restart session
   const handleRestart = () => {
     stopCurrentAudio();
-    setQuestions(generateDailyReviewSession(safeStarredIds, 8));
+    if (targetFeaturedSounds && targetFeaturedSounds.length > 0) {
+      setQuestions(generateTargeted5Quiz(targetFeaturedSounds));
+    } else {
+      setQuestions(generateDailyReviewSession(safeStarredIds, 8));
+    }
     setCurrentIndex(0);
     setCorrectCount(0);
     setIsCompleted(false);
@@ -221,7 +234,7 @@ export default function DailyReviewDrill({
         </div>
 
         <h3 className="text-2xl font-bold font-headline mb-2 text-on-surface">
-          Xuất sắc! Hoàn thành bài ôn hôm nay!
+          {drillTitle || 'Xuất sắc! Hoàn thành bài ôn hôm nay!'}
         </h3>
         <p className="text-sm text-on-surface-variant mb-6">
           Bạn vừa duy trì thói quen luyện tai và chuẩn hóa phát âm chữ cái tiếng Đức.
@@ -240,7 +253,7 @@ export default function DailyReviewDrill({
             <span className="text-xs text-on-surface-variant font-medium">Thưởng kinh nghiệm</span>
             <div className="text-2xl font-black text-amber-400 mt-1 flex items-center justify-center gap-1">
               <Sparkles className="w-5 h-5 text-amber-400" />
-              <span>+30 XP</span>
+              <span>+{rewardXp || 30} XP</span>
             </div>
           </div>
         </div>

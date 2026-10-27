@@ -7,14 +7,19 @@ import {
 } from '../client/src/data/germanAlphabetData.js';
 import {
   generateDailyReviewSession,
-  calculateReviewProgressUpdate
+  calculateReviewProgressUpdate,
+  getDailyFeaturedSounds,
+  generateTargeted5Quiz,
+  hashDateString
 } from '../client/src/utils/alphabetReviewEngine.js';
 import { getLocalDateString } from '../client/src/utils/timeFormat.js';
 import {
   getUserHardLetters,
   saveUserHardLetters,
   getUserAlphabetReviewProgress,
-  saveUserAlphabetReviewProgress
+  saveUserAlphabetReviewProgress,
+  getUserDaily5Progress,
+  saveUserDaily5Progress
 } from '../client/src/utils/userStorage.js';
 
 // Polyfill localStorage in Node.js environment if needed
@@ -174,5 +179,58 @@ const progressB = getUserAlphabetReviewProgress(userB);
 assert.strictEqual(progressA.reviewStreak, 5);
 assert.strictEqual(progressB.reviewStreak, 0, 'User B must not be affected by User A progress');
 console.log('  ✅ Multi-user isolation for hard letters and review streaks verified');
+
+// -------------------------------------------------------------
+// Test 6: Daily 5 Featured Sounds & Targeted Quiz Engine
+// -------------------------------------------------------------
+console.log('\nTest 6: Daily 5 Featured Sounds & Targeted Quiz Engine');
+
+// 1. Exactly 5 sounds returned
+const daily5_1 = getDailyFeaturedSounds('2026-10-27', 0, []);
+assert.strictEqual(daily5_1.length, 5, 'Daily featured sounds must return exactly 5 items');
+
+// 2. Deterministic per date string
+const daily5_1_again = getDailyFeaturedSounds('2026-10-27', 0, []);
+assert.deepStrictEqual(daily5_1.map(s => s.id), daily5_1_again.map(s => s.id), 'Daily 5 sounds must be deterministic for the same date');
+
+// 3. Different date string yields different sounds
+const daily5_otherDate = getDailyFeaturedSounds('2026-10-28', 0, []);
+assert.strictEqual(daily5_otherDate.length, 5);
+
+// 4. Custom offset rotates the sounds
+const daily5_rotated = getDailyFeaturedSounds('2026-10-27', 1, []);
+assert.strictEqual(daily5_rotated.length, 5);
+assert.notDeepStrictEqual(daily5_1.map(s => s.id), daily5_rotated.map(s => s.id), 'Rotating offset must produce a different selection');
+
+// 5. Starred letters are prioritized
+const daily5_withStarred = getDailyFeaturedSounds('2026-10-27', 0, ['cluster_pf']);
+assert(daily5_withStarred.some(s => s.id === 'cluster_pf'), 'Starred letter cluster_pf should be prioritized in daily 5');
+
+// 6. Targeted 5-question quiz generator
+const quiz5 = generateTargeted5Quiz(daily5_1);
+assert.strictEqual(quiz5.length, 5, 'Targeted quiz must have exactly 5 questions');
+for (const q of quiz5) {
+  assert(q.id, 'Question missing id');
+  assert(q.title, 'Question missing title');
+  assert(q.instruction, 'Question missing instruction');
+  assert(Array.isArray(q.options) && q.options.length > 0, 'Question missing options');
+  const correctCount = q.options.filter(o => o.isCorrect).length;
+  assert.strictEqual(correctCount, 1, `Quiz question ${q.id} must have exactly 1 correct option`);
+}
+
+// 7. Multi-user isolation for daily 5 progress
+saveUserDaily5Progress(userA, { date: '2026-10-27', completedSoundIds: ['a', 'b'], customOffset: 0, isQuizCompleted: false });
+saveUserDaily5Progress(userB, { date: '2026-10-27', completedSoundIds: ['z'], customOffset: 2, isQuizCompleted: true });
+
+const d5ProgressA = getUserDaily5Progress(userA);
+const d5ProgressB = getUserDaily5Progress(userB);
+
+assert.deepStrictEqual(d5ProgressA.completedSoundIds, ['a', 'b']);
+assert.strictEqual(d5ProgressA.isQuizCompleted, false);
+assert.deepStrictEqual(d5ProgressB.completedSoundIds, ['z']);
+assert.strictEqual(d5ProgressB.isQuizCompleted, true);
+assert.strictEqual(d5ProgressB.customOffset, 2);
+
+console.log('  ✅ Daily 5 deterministic selection, rotation, targeted quiz, and multi-user isolation verified');
 
 console.log('\n🎉 ALL GERMAN ALPHABET & DAILY REVIEW TESTS PASSED SUCCESSFULLY!\n');
