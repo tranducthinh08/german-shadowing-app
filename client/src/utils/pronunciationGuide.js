@@ -366,10 +366,10 @@ export function stopCurrentAudio() {
 /**
  * Internal fallback using Web Speech API with voice selection and Chrome unfreeze
  */
-function speakViaWebSpeech(cleanText, lang = 'de', speed = 0.85, resolve) {
+export function speakViaWebSpeech(cleanText, lang = 'de', speed = 0.85, resolve) {
   if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
     if (resolve) resolve(false);
-    return;
+    return false;
   }
 
   try {
@@ -383,7 +383,7 @@ function speakViaWebSpeech(cleanText, lang = 'de', speed = 0.85, resolve) {
 
     const voices = window.speechSynthesis.getVoices?.() || [];
     const targetLangCode = lang === 'de' ? 'de' : 'en';
-    const matchVoice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith(targetLangCode));
+    const matchVoice = voices.find(v => v.lang && v.lang.toLowerCase().replace('_', '-').startsWith(targetLangCode));
     if (matchVoice) {
       utterance.voice = matchVoice;
     }
@@ -398,17 +398,19 @@ function speakViaWebSpeech(cleanText, lang = 'de', speed = 0.85, resolve) {
     // Keep global reference in window to bypass Chrome GC bug
     window._polyglotUtterance = utterance;
     window.speechSynthesis.speak(utterance);
+    return true;
   } catch (e) {
     if (resolve) resolve(false);
+    return false;
   }
 }
 
 /**
  * Play high-fidelity pronunciation audio for a word or German letter.
  * Dual-Engine Architecture:
- * 1. Primary: High-fidelity Google TTS MP3 audio stream (crystal clear native pronunciation,
- *    runs 100% reliably on all operating systems and browsers without needing local voice packs).
- * 2. Fallback: Native browser Web Speech API (speechSynthesis) if offline or audio stream blocked.
+ * 1. Primary: High-fidelity Serverless TTS Proxy at `/api/tts` (pipes native Google TTS MP3 audio stream
+ *    without third-party referrer block, edge-cached on Vercel CDN, works 100% reliably on all devices).
+ * 2. Fallback: Native browser Web Speech API (speechSynthesis) if offline or serverless stream unreachable.
  * 
  * @param {string} word - The word or letter name to pronounce
  * @param {'de'|'en'} lang - Language code ('de' by default)
@@ -427,7 +429,7 @@ export function speakWord(word, lang = 'de', speed = 0.85) {
   return new Promise((resolve) => {
     try {
       const ttsLang = lang === 'de' ? 'de' : 'en';
-      const audioUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${ttsLang}&client=tw-ob&q=${encodeURIComponent(clean)}`;
+      const audioUrl = `/api/tts?text=${encodeURIComponent(clean)}&lang=${ttsLang}`;
       const audio = new Audio(audioUrl);
       activeAudioInstance = audio;
       audio.playbackRate = speed;

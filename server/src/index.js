@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import youtubeRoutes from './routes/youtube.routes.js';
 import dictRoutes from './routes/dict.routes.js';
+import ttsRoutes from './routes/tts.routes.js';
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 // API Routes
 app.use('/api/youtube', youtubeRoutes);
 app.use('/api/dict', dictRoutes);
+app.use('/api/tts', ttsRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
