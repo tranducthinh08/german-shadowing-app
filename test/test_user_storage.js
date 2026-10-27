@@ -124,4 +124,14 @@ assert.strictEqual(getUserSavedVocab('Alice')[0].word, 'Bahnhof');
 assert.strictEqual(getUserSavedVocab('Bob')[0].word, 'Apple');
 console.log('  ✅ Vocabulary notebook isolated per user');
 
+// 6. Test Object Tolerance in normalizeUsername and Storage Functions (No trim error)
+console.log('\nTest 6: User Object vs String Tolerance (Prevents TypeError: trim is not a function)');
+const userObj = { username: 'Alice', avatar: '🦊' };
+assert.doesNotThrow(() => {
+  getUserSettings(userObj);
+  saveUserSettings(userObj, { isLiveCheck: true });
+}, 'Storage methods must accept currentUser objects without throwing trim error');
+
+console.log('  ✅ User object tolerance verified for all storage calls');
+
 console.log('\n🎉 ALL MULTI-USER STORAGE & ISOLATION TESTS PASSED!\n');

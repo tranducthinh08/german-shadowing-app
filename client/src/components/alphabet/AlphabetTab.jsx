@@ -46,6 +46,7 @@ export default function AlphabetTab({
   const today = getLocalDateString();
   const isReviewedToday = alphabetReviewProgress?.lastReviewDate === today;
   const reviewStreak = alphabetReviewProgress?.reviewStreak || 0;
+  const username = currentUser?.username || currentUser || 'guest';
 
   // Daily 5 Featured Sounds State
   const [daily5RotationOffset, setDaily5RotationOffset] = useState(0);
@@ -55,12 +56,12 @@ export default function AlphabetTab({
 
   // Daily 5 Progress persisted per user profile
   const [daily5Progress, setDaily5Progress] = useState(() => {
-    return getUserDaily5Progress(currentUser, today);
+    return getUserDaily5Progress(username, today);
   });
 
   useEffect(() => {
-    setDaily5Progress(getUserDaily5Progress(currentUser, today));
-  }, [currentUser, today]);
+    setDaily5Progress(getUserDaily5Progress(username, today));
+  }, [username, today]);
 
   // Cleanup audio & timer on unmount
   useEffect(() => {
@@ -89,7 +90,7 @@ export default function AlphabetTab({
       list = list.filter(item => safeHardLetters.includes(item.id));
     }
 
-    if (searchQuery.trim()) {
+    if (typeof searchQuery === 'string' && searchQuery.trim()) {
       const q = searchQuery.toLowerCase().trim();
       list = list.filter(
         item =>
@@ -154,7 +155,7 @@ export default function AlphabetTab({
     };
 
     setDaily5Progress(updatedProgress);
-    saveUserDaily5Progress(currentUser, updatedProgress);
+    saveUserDaily5Progress(username, updatedProgress);
 
     if (updatedList.length === 5 && !daily5Progress.isFullyCompleted && onCompleteDaily5Checkoff) {
       onCompleteDaily5Checkoff(updatedProgress);
@@ -174,7 +175,7 @@ export default function AlphabetTab({
       completedAt: new Date().toISOString()
     };
     setDaily5Progress(updatedProgress);
-    saveUserDaily5Progress(currentUser, updatedProgress);
+    saveUserDaily5Progress(username, updatedProgress);
 
     if (onCompleteDaily5Checkoff) {
       onCompleteDaily5Checkoff(updatedProgress, quizResults);
@@ -229,7 +230,7 @@ export default function AlphabetTab({
           <div className="w-full max-w-2xl my-auto" onClick={(e) => e.stopPropagation()}>
             <DailyReviewDrill
               userStarredIds={safeHardLetters}
-              currentUser={currentUser}
+              currentUser={username}
               onClose={() => {
                 stopCurrentAudio();
                 setIsReviewModalOpen(false);
@@ -257,7 +258,7 @@ export default function AlphabetTab({
           <div className="w-full max-w-2xl my-auto" onClick={(e) => e.stopPropagation()}>
             <DailyReviewDrill
               userStarredIds={safeHardLetters}
-              currentUser={currentUser}
+              currentUser={username}
               targetFeaturedSounds={featured5Sounds}
               drillTitle="🎯 Luyện tập 5 Âm Vị Tiêu Điểm Hôm Nay"
               rewardXp={25}

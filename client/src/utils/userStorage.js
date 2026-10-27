@@ -28,9 +28,11 @@ const CURRENT_USER_KEY = 'polyglot_current_user';
 /**
  * Normalize username for safe storage keys
  */
-export function normalizeUsername(username) {
-  if (!username) return 'guest';
-  return username.trim().toLowerCase().replace(/[^a-z0-9_-]/g, '_');
+export function normalizeUsername(userOrName) {
+  if (!userOrName) return 'guest';
+  const name = typeof userOrName === 'object' ? userOrName?.username : userOrName;
+  if (!name || typeof name !== 'string') return 'guest';
+  return name.trim().toLowerCase().replace(/[^a-z0-9_-]/g, '_');
 }
 
 /**

@@ -16,7 +16,8 @@ const DEFAULT_STORAGE_KEY = 'polyglot_gamification';
 /**
  * Generate user-scoped storage key for gamification
  */
-export function getGamificationStorageKey(username) {
+export function getGamificationStorageKey(userOrName) {
+  const username = typeof userOrName === 'object' ? userOrName?.username : userOrName;
   if (username && typeof username === 'string' && username.trim()) {
     const norm = username.trim().toLowerCase().replace(/[^a-z0-9_-]/g, '_');
     return `polyglot_user_${norm}_gamification`;
