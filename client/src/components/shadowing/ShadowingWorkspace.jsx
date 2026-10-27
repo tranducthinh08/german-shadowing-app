@@ -58,17 +58,30 @@ export default function ShadowingWorkspace({
   const isRecordingRef = useRef(false);
   const accumulatedTranscriptRef = useRef('');
 
-  // Global Tab key to replay native sentence
+  // Global hotkeys: Tab to replay native sentence, Enter to advance when completed
+  const isSpeechStandardMet = Boolean(speechScore && speechScore.score >= 80);
+
   useEffect(() => {
-    const handleGlobalTab = (e) => {
+    const handleGlobalKey = (e) => {
+      if (e.altKey || e.ctrlKey || e.metaKey) return;
+      if (showGrammarModal) return;
+
       if (e.key === 'Tab') {
         e.preventDefault();
         onReplaySegment();
+        return;
+      }
+
+      if (e.key === 'Enter' && !e.shiftKey) {
+        if (isSpeechStandardMet && segmentIndex < totalSegments - 1) {
+          e.preventDefault();
+          onNextSegment();
+        }
       }
     };
-    window.addEventListener('keydown', handleGlobalTab);
-    return () => window.removeEventListener('keydown', handleGlobalTab);
-  }, [onReplaySegment]);
+    window.addEventListener('keydown', handleGlobalKey);
+    return () => window.removeEventListener('keydown', handleGlobalKey);
+  }, [onReplaySegment, isSpeechStandardMet, segmentIndex, totalSegments, onNextSegment, showGrammarModal]);
 
   // Reset when segment changes
   useEffect(() => {

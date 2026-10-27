@@ -43,34 +43,21 @@ export default function DictationWorkspace({
     setDiffResult(null);
     setShowHint(false);
     setShowSolution(false);
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
+    const timer = setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    }, 50);
+    return () => clearTimeout(timer);
   }, [activeSegment?.id]);
 
-  // Global Tab hotkey listener to replay segment
-  useEffect(() => {
-    const handleGlobalTab = (e) => {
-      if (e.key === 'Tab') {
-        e.preventDefault();
-        onReplaySegment();
-      }
-    };
-    window.addEventListener('keydown', handleGlobalTab);
-    return () => window.removeEventListener('keydown', handleGlobalTab);
-  }, [onReplaySegment]);
+  // Determine if the answer has met standard (100% or passing score >= 80)
+  const isStandardMet = Boolean(diffResult && (diffResult.score === 100 || diffResult.isPerfect || diffResult.score >= 80));
 
-  // Extract proper nouns for hint bar
-  const properNouns = activeSegment ? extractProperNouns(activeSegment.text, language) : [];
-
-  // Handle German special character insertion
-  const handleInsertChar = (char) => {
-    insertCharToInput(inputRef.current, char, userInput, setUserInput);
-  };
-
-  // Handle proper noun insertion
-  const handleInsertProperNoun = (noun) => {
-    insertCharToInput(inputRef.current, noun + ' ', userInput, setUserInput);
+  const handleAdvance = () => {
+    if (segmentIndex < totalSegments - 1) {
+      onNextSegment();
+    }
   };
 
   // Check answer
@@ -88,6 +75,57 @@ export default function DictationWorkspace({
     if ((result.isPerfect || result.score === 100) && onCompleteSentence) {
       onCompleteSentence(activeSegment.id, result.score);
     }
+
+    // Keep textarea focused so user can press Enter immediately to advance or edit
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 50);
+  };
+
+  // Global hotkeys listener:
+  // - Tab: Replay current segment
+  // - Enter: If standard is met (100% or >=80), automatically jump to next segment!
+  useEffect(() => {
+    const handleGlobalKeyDown = (e) => {
+      if (e.altKey || e.ctrlKey || e.metaKey) return;
+      if (showGrammarModal) return;
+
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        onReplaySegment();
+        return;
+      }
+
+      if (e.key === 'Enter' && !e.shiftKey) {
+        if (isStandardMet) {
+          e.preventDefault();
+          handleAdvance();
+          return;
+        }
+
+        // If user is focused elsewhere and there is unsubmitted text
+        if (document.activeElement !== inputRef.current && userInput.trim() && !diffResult) {
+          e.preventDefault();
+          handleCheckAnswer();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleGlobalKeyDown);
+    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+  }, [isStandardMet, showGrammarModal, onReplaySegment, segmentIndex, totalSegments, userInput, diffResult]);
+
+  // Extract proper nouns for hint bar
+  const properNouns = activeSegment ? extractProperNouns(activeSegment.text, language) : [];
+
+  // Handle German special character insertion
+  const handleInsertChar = (char) => {
+    insertCharToInput(inputRef.current, char, userInput, setUserInput);
+  };
+
+  // Handle proper noun insertion
+  const handleInsertProperNoun = (noun) => {
+    insertCharToInput(inputRef.current, noun + ' ', userInput, setUserInput);
   };
 
   // Keyboard shortcut listener in textarea
@@ -100,10 +138,8 @@ export default function DictationWorkspace({
 
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      if (!diffResult) {
-        handleCheckAnswer();
-      } else if (diffResult.score >= 80) {
-        onNextSegment();
+      if (isStandardMet) {
+        handleAdvance();
       } else {
         handleCheckAnswer();
       }
@@ -269,7 +305,13 @@ export default function DictationWorkspace({
           ref={inputRef}
           rows={3}
           value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
+          onChange={(e) => {
+            setUserInput(e.target.value);
+            // Clear diffResult when user edits so they can re-check their new input
+            if (diffResult) {
+              setDiffResult(null);
+            }
+          }}
           onKeyDown={handleKeyDown}
           placeholder={
             language === 'de'
@@ -280,17 +322,47 @@ export default function DictationWorkspace({
         />
 
         {/* Input Bar Control Actions */}
-        <div className="flex justify-end pt-0.5">
-          <button
-            type="button"
-            onClick={handleCheckAnswer}
-            disabled={!userInput.trim()}
-            className="px-4 py-2 rounded-full bg-gradient-to-r from-inverse-primary to-secondary-container text-on-primary font-headline font-bold text-xs shadow-xs hover:brightness-110 active:scale-95 disabled:opacity-40 transition-all flex items-center gap-1.5 cursor-pointer"
-          >
-            <CheckCircle2 className="w-4 h-4" />
-            <span>Nộp bài kiểm tra</span>
-            <kbd className="px-1.5 py-0.2 rounded bg-black/20 text-[10px] font-mono">Enter ↵</kbd>
-          </button>
+        <div className="flex flex-wrap items-center justify-between gap-2 pt-0.5">
+          <div className="text-xs">
+            {isStandardMet ? (
+              <span className="text-secondary font-bold flex items-center gap-1.5 animate-pulse">
+                <CheckCircle2 className="w-4 h-4 text-secondary shrink-0" />
+                <span>
+                  {diffResult.score === 100 || diffResult.isPerfect
+                    ? 'Đạt chuẩn 100%! Nhấn Enter để sang câu kế tiếp ↵'
+                    : `Đạt chuẩn (${diffResult.score}%)! Nhấn Enter để sang câu kế tiếp ↵`}
+                </span>
+              </span>
+            ) : (
+              <span className="text-outline text-[11px]">
+                Nhấn <kbd className="px-1 py-0.2 rounded bg-surface-container-high text-on-surface font-mono text-[10px]">Tab</kbd> nghe lại • <kbd className="px-1 py-0.2 rounded bg-surface-container-high text-on-surface font-mono text-[10px]">Enter</kbd> nộp bài
+              </span>
+            )}
+          </div>
+
+          {isStandardMet ? (
+            <button
+              type="button"
+              onClick={handleAdvance}
+              className="px-5 py-2 rounded-full bg-primary-container text-on-primary-container hover:brightness-110 active:scale-95 font-headline font-bold text-xs shadow-md transition-all flex items-center gap-1.5 cursor-pointer ring-2 ring-primary/40 animate-pulse"
+              title="Nhấn phím Enter hoặc click để chuyển sang câu kế tiếp"
+            >
+              <span>{segmentIndex < totalSegments - 1 ? 'Câu tiếp theo' : 'Hoàn thành bài'}</span>
+              <ChevronRight className="w-4 h-4" />
+              <kbd className="px-1.5 py-0.2 rounded bg-black/20 text-[10px] font-mono">Enter ↵</kbd>
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={handleCheckAnswer}
+              disabled={!userInput.trim()}
+              className="px-4 py-2 rounded-full bg-gradient-to-r from-inverse-primary to-secondary-container text-on-primary font-headline font-bold text-xs shadow-xs hover:brightness-110 active:scale-95 disabled:opacity-40 transition-all flex items-center gap-1.5 cursor-pointer"
+            >
+              <CheckCircle2 className="w-4 h-4" />
+              <span>{diffResult ? 'Kiểm tra lại' : 'Nộp bài kiểm tra'}</span>
+              <kbd className="px-1.5 py-0.2 rounded bg-black/20 text-[10px] font-mono">Enter ↵</kbd>
+            </button>
+          )}
         </div>
       </div>
 
@@ -330,14 +402,18 @@ export default function DictationWorkspace({
                 <span>Ngữ pháp</span>
               </button>
 
-              {diffResult.score >= 70 && segmentIndex < totalSegments - 1 && (
+              {segmentIndex < totalSegments - 1 && (
                 <button
                   type="button"
-                  onClick={onNextSegment}
+                  onClick={handleAdvance}
                   className="flex items-center gap-1 px-3.5 py-1.5 rounded-full bg-primary-container text-on-primary-container font-headline font-bold text-xs shadow-xs hover:brightness-110 active:scale-95 transition-all cursor-pointer"
+                  title="Nhấn phím Enter hoặc click để sang câu kế"
                 >
                   <span>Câu kế</span>
                   <ChevronRight className="w-3.5 h-3.5" />
+                  {isStandardMet && (
+                    <kbd className="px-1.5 py-0.2 rounded bg-black/20 text-[10px] font-mono">Enter ↵</kbd>
+                  )}
                 </button>
               )}
             </div>
