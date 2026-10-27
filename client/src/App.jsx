@@ -58,6 +58,7 @@ export default function App() {
     handleToggleBlur,
     handleToggleGenderColors,
     handleToggleStrictGerman,
+    handleToggleLiveCheck,
     handleToggleHardLetter,
     handleSaveWord,
     handleRemoveWord
@@ -88,8 +89,6 @@ export default function App() {
     setPlaybackSpeed,
     isLooping,
     setIsLooping,
-    currentTime,
-    setCurrentTime,
     isLoading,
     errorMessage,
     setErrorMessage,
@@ -342,7 +341,6 @@ export default function App() {
             isLooping={isLooping}
             playbackSpeed={playbackSpeed}
             setPlaybackSpeed={setPlaybackSpeed}
-            setCurrentTime={setCurrentTime}
             handleNextSegment={handleNextSegment}
             handlePrevSegment={handlePrevSegment}
             handleReplaySegment={handleReplaySegment}
@@ -351,6 +349,7 @@ export default function App() {
             resetTrigger={resetTrigger}
             userSettings={userSettings}
             handleToggleStrictGerman={handleToggleStrictGerman}
+            handleToggleLiveCheck={handleToggleLiveCheck}
             handleCompleteSentence={handleCompleteSentence}
             isLoading={isLoading}
             studyHistory={studyHistory}
@@ -359,7 +358,6 @@ export default function App() {
             onOpenHistory={() => setMainTab('history')}
             handleSelectSegment={handleSelectSegment}
             setSelectedWord={setSelectedWord}
-            currentTime={currentTime}
             handleToggleBlur={handleToggleBlur}
             handleToggleGenderColors={handleToggleGenderColors}
           />

@@ -165,7 +165,8 @@ const YouTubePlayer = forwardRef(function YouTubePlayer(
     if (isPlaying) {
       playerRef.current.pauseVideo();
     } else {
-      if (activeSegment && (currentTime < activeSegment.start || currentTime >= activeSegment.end)) {
+      const currentSec = typeof playerRef.current.getCurrentTime === 'function' ? playerRef.current.getCurrentTime() : currentTime;
+      if (activeSegment && (currentSec < activeSegment.start || currentSec >= activeSegment.end)) {
         playerRef.current.seekTo(activeSegment.start, true);
       }
       playerRef.current.playVideo();

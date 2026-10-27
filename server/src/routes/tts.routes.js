@@ -19,6 +19,9 @@ router.get('/', async (req, res) => {
     if (!cleanText) {
       return res.status(400).send('Empty text');
     }
+    if (cleanText.length > 200) {
+      return res.status(400).json({ error: 'Nội dung phát âm vượt quá giới hạn 200 ký tự' });
+    }
 
     const ttsLang = lang === 'en' ? 'en' : 'de';
     const googleTtsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${ttsLang}&client=tw-ob&q=${encodeURIComponent(cleanText)}`;

@@ -20,7 +20,9 @@ export default function DictationWorkspace({
   language = 'de',
   onCompleteSentence,
   strictGerman: propStrictGerman,
-  onToggleStrictGerman
+  onToggleStrictGerman,
+  isLiveCheck: propIsLiveCheck,
+  onToggleLiveCheck
 }) {
   const [userInput, setUserInput] = useState('');
   const [diffResult, setDiffResult] = useState(null);
@@ -29,14 +31,8 @@ export default function DictationWorkspace({
   const [localStrictGerman, setLocalStrictGerman] = useState(true);
   const strictGerman = propStrictGerman !== undefined ? propStrictGerman : localStrictGerman;
   const [showGrammarModal, setShowGrammarModal] = useState(false);
-  const [isLiveCheck, setIsLiveCheck] = useState(() => {
-    try {
-      const saved = localStorage.getItem('polyglot_dictation_live_check');
-      return saved !== null ? JSON.parse(saved) : true;
-    } catch (e) {
-      return true;
-    }
-  });
+  const [localLiveCheck, setLocalLiveCheck] = useState(true);
+  const isLiveCheck = propIsLiveCheck !== undefined ? propIsLiveCheck : localLiveCheck;
   const inputRef = useRef(null);
 
   const handleToggleStrict = (val) => {
@@ -48,11 +44,10 @@ export default function DictationWorkspace({
   };
 
   const handleToggleLiveCheck = (val) => {
-    setIsLiveCheck(val);
-    try {
-      localStorage.setItem('polyglot_dictation_live_check', JSON.stringify(val));
-    } catch (e) {
-      // ignore storage error
+    if (onToggleLiveCheck) {
+      onToggleLiveCheck(val);
+    } else {
+      setLocalLiveCheck(val);
     }
   };
 

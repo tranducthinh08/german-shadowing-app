@@ -19,7 +19,6 @@ export function useVideoSession(initialSettings = {}) {
   const [currentLanguage, setCurrentLanguage] = useState(() => initialSettings.selectedLang || 'de');
   const [playbackSpeed, setPlaybackSpeed] = useState(1);
   const [isLooping, setIsLooping] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [resetTrigger, setResetTrigger] = useState(0);
@@ -200,8 +199,6 @@ export function useVideoSession(initialSettings = {}) {
     setPlaybackSpeed,
     isLooping,
     setIsLooping,
-    currentTime,
-    setCurrentTime,
     isLoading,
     errorMessage,
     setErrorMessage,

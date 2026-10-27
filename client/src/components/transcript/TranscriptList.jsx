@@ -11,7 +11,6 @@ export default function TranscriptList({
   onSelectSegment,
   onWordClick,
   completedSentenceIds = new Set(),
-  currentTime = 0,
   language = 'de',
   onResetLesson,
   isBlurScript: propIsBlurScript,
@@ -45,6 +44,7 @@ export default function TranscriptList({
   const [translations, setTranslations] = useState({});
   const [grammarSentenceModal, setGrammarSentenceModal] = useState(null);
   const activeItemRef = useRef(null);
+  const inFlightTransRef = useRef(new Set());
 
   // Auto-scroll active sentence into view smoothly
   useEffect(() => {
@@ -62,20 +62,26 @@ export default function TranscriptList({
       const sentence = sentences.find((s) => s.id === id);
       if (!sentence) return;
 
-      if (sentence.translationVi && !translations[id]) {
-        setTranslations((prev) => ({ ...prev, [id]: sentence.translationVi }));
+      if (sentence.translationVi) {
+        setTranslations((prev) => {
+          if (prev[id]) return prev;
+          return { ...prev, [id]: sentence.translationVi };
+        });
         return;
       }
 
-      if (!sentence.translationVi && !translations[id]) {
-        translateSentenceApi(sentence.text, language).then((translated) => {
-          if (translated) {
-            setTranslations((prev) => ({ ...prev, [id]: translated }));
-          }
-        });
+      if (!inFlightTransRef.current.has(id)) {
+        inFlightTransRef.current.add(id);
+        translateSentenceApi(sentence.text, language)
+          .then((translated) => {
+            setTranslations((prev) => ({ ...prev, [id]: translated || '' }));
+          })
+          .catch(() => {
+            setTranslations((prev) => ({ ...prev, [id]: '' }));
+          });
       }
     });
-  }, [completedSentenceIds, sentences, language, translations]);
+  }, [completedSentenceIds, sentences, language]);
 
   const filteredSentences = sentences.filter((s) =>
     s.text.toLowerCase().includes(searchQuery.toLowerCase())

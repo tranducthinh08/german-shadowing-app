@@ -110,6 +110,16 @@ export function useUserSession() {
     });
   }, [currentUser?.username]);
 
+  const handleToggleLiveCheck = useCallback((newVal) => {
+    setUserSettings((prev) => {
+      const next = { ...prev, isLiveCheck: newVal };
+      if (currentUser?.username) {
+        saveUserSettings(currentUser.username, { isLiveCheck: newVal });
+      }
+      return next;
+    });
+  }, [currentUser?.username]);
+
   const handleToggleHardLetter = useCallback((letterId) => {
     setHardLetters((prev) =>
       prev.includes(letterId) ? prev.filter((id) => id !== letterId) : [...prev, letterId]
@@ -158,6 +168,7 @@ export function useUserSession() {
     handleToggleBlur,
     handleToggleGenderColors,
     handleToggleStrictGerman,
+    handleToggleLiveCheck,
     handleToggleHardLetter,
     handleSaveWord,
     handleRemoveWord

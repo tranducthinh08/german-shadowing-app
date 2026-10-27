@@ -21,7 +21,6 @@ export default function StudioWorkspace({
   isLooping,
   playbackSpeed,
   setPlaybackSpeed,
-  setCurrentTime,
   handleNextSegment,
   handlePrevSegment,
   handleReplaySegment,
@@ -30,6 +29,7 @@ export default function StudioWorkspace({
   resetTrigger,
   userSettings,
   handleToggleStrictGerman,
+  handleToggleLiveCheck,
   handleCompleteSentence,
   isLoading,
   studyHistory,
@@ -38,7 +38,6 @@ export default function StudioWorkspace({
   onOpenHistory,
   handleSelectSegment,
   setSelectedWord,
-  currentTime,
   handleToggleBlur,
   handleToggleGenderColors
 }) {
@@ -67,7 +66,6 @@ export default function StudioWorkspace({
                 isLooping={isLooping}
                 playbackSpeed={playbackSpeed}
                 onChangeSpeed={setPlaybackSpeed}
-                onTimeUpdate={setCurrentTime}
                 autoPauseAtSegmentEnd={!isLooping}
                 onNextSegment={handleNextSegment}
                 onPrevSegment={handlePrevSegment}
@@ -90,6 +88,8 @@ export default function StudioWorkspace({
                   onCompleteSentence={handleCompleteSentence}
                   strictGerman={userSettings.strictNounCapitalization !== undefined ? userSettings.strictNounCapitalization : true}
                   onToggleStrictGerman={handleToggleStrictGerman}
+                  isLiveCheck={userSettings.isLiveCheck !== undefined ? userSettings.isLiveCheck : true}
+                  onToggleLiveCheck={handleToggleLiveCheck}
                 />
               ) : (
                 <ShadowingWorkspace
@@ -124,7 +124,6 @@ export default function StudioWorkspace({
             onSelectSegment={handleSelectSegment}
             onWordClick={(word) => setSelectedWord({ word, context: activeSegment?.text || '' })}
             completedSentenceIds={completedSentenceIds}
-            currentTime={currentTime}
             language={currentLanguage}
             onResetLesson={onResetLesson}
             isBlurScript={userSettings.isBlurScript}

@@ -11,6 +11,9 @@ const router = express.Router();
  * Diagnoses YouTube InnerTube connectivity on Vercel
  */
 router.get('/debug', async (req, res) => {
+  if (process.env.NODE_ENV === 'production') {
+    return res.status(404).json({ error: 'Endpoint không khả dụng trên môi trường production' });
+  }
   try {
     const { videoId = 'dC6ZGLzdaTs' } = req.query;
     const postUrl = 'https://www.youtube.com/youtubei/v1/player?prettyPrint=false';

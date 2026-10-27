@@ -13,6 +13,8 @@ export function useShadowingRecorder(language = 'de') {
   const recognitionRef = useRef(null);
   const isRecordingRef = useRef(false);
   const accumulatedTranscriptRef = useRef('');
+  const retryCountRef = useRef(0);
+  const retryTimeoutRef = useRef(null);
 
   // Speech Recognition initialization
   useEffect(() => {
@@ -42,6 +44,7 @@ export function useShadowingRecorder(language = 'de') {
 
       const combined = (finalTranscript + interimTranscript).trim();
       if (combined) {
+        retryCountRef.current = 0;
         accumulatedTranscriptRef.current = combined;
         setRecognizedText(combined);
       }
@@ -49,14 +52,31 @@ export function useShadowingRecorder(language = 'de') {
 
     recognition.onerror = (event) => {
       console.warn('Speech recognition status:', event.error);
-      if (event.error === 'no-speech' && isRecordingRef.current) {
-        try { recognition.start(); } catch (e) {}
+      if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
+        setIsRecording(false);
+        isRecordingRef.current = false;
+        return;
+      }
+      if (event.error === 'no-speech' && isRecordingRef.current && retryCountRef.current < 3) {
+        retryCountRef.current += 1;
+        clearTimeout(retryTimeoutRef.current);
+        retryTimeoutRef.current = setTimeout(() => {
+          if (isRecordingRef.current && recognitionRef.current) {
+            try { recognitionRef.current.start(); } catch (e) {}
+          }
+        }, 500);
       }
     };
 
     recognition.onend = () => {
-      if (isRecordingRef.current) {
-        try { recognition.start(); } catch (e) {}
+      if (isRecordingRef.current && retryCountRef.current < 3) {
+        retryCountRef.current += 1;
+        clearTimeout(retryTimeoutRef.current);
+        retryTimeoutRef.current = setTimeout(() => {
+          if (isRecordingRef.current && recognitionRef.current) {
+            try { recognitionRef.current.start(); } catch (e) {}
+          }
+        }, 500);
       }
     };
 
@@ -107,6 +127,8 @@ export function useShadowingRecorder(language = 'de') {
 
   const stopRecording = useCallback((onSettled) => {
     isRecordingRef.current = false;
+    clearTimeout(retryTimeoutRef.current);
+    retryCountRef.current = 0;
     if (mediaRecorderRef.current && isRecording) {
       mediaRecorderRef.current.stop();
       setIsRecording(false);
@@ -139,6 +161,7 @@ export function useShadowingRecorder(language = 'de') {
   useEffect(() => {
     return () => {
       isRecordingRef.current = false;
+      clearTimeout(retryTimeoutRef.current);
       if (timerRef.current) clearInterval(timerRef.current);
       if (audioUrl) URL.revokeObjectURL(audioUrl);
       if (recognitionRef.current) {
