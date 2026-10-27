@@ -205,47 +205,22 @@ export default function AlphabetDetailModal({
           </div>
         </div>
 
-        {/* Dual Audio Pronunciation Modes: Letter Name vs Phonics Sound */}
+        {/* Dual Audio Pronunciation Modes: Phonics Sound (Primary) vs Letter Name (Spelling) */}
         <div className="mb-4 p-3 rounded-2xl bg-surface-container/60 border border-outline-variant/30 flex flex-col sm:flex-row items-stretch gap-2.5">
-          {/* Button 1: Spelling Name */}
-          <button
-            type="button"
-            onClick={(e) => onPlayLetter(e, selectedLetter)}
-            className={`flex-1 p-3 rounded-xl border flex items-center justify-between gap-3 transition-all cursor-pointer text-left ${
-              playingAudioId === selectedLetter.id
-                ? 'bg-secondary/20 border-secondary ring-2 ring-secondary/40 shadow-sm'
-                : 'bg-surface-container-low border-outline-variant/30 hover:border-secondary/50 hover:bg-surface-container-high'
-            }`}
-            title="Nghe phát âm tên chữ cái khi đánh vần (VD: A, B, C, Ypsilon, Vau...)"
-          >
-            <div className="min-w-0">
-              <div className="text-[11px] font-bold text-on-surface flex items-center gap-1.5">
-                <Volume2 className={`w-3.5 h-3.5 text-secondary shrink-0 ${playingAudioId === selectedLetter.id ? 'animate-pulse' : ''}`} />
-                <span className="truncate">Tên chữ: "{selectedLetter.name}"</span>
-              </div>
-              <div className="text-[10px] text-on-surface-variant mt-0.5">
-                Đánh vần bảng chữ cái
-              </div>
-            </div>
-            <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-secondary/15 text-secondary border border-secondary/20 shrink-0">
-              {selectedLetter.ipa}
-            </span>
-          </button>
-
-          {/* Button 2: Phonics Sound */}
+          {/* Button 1: Phonics Sound (Primary) */}
           <button
             type="button"
             onClick={(e) => onPlayPhonics(e, selectedLetter)}
             className={`flex-1 p-3 rounded-xl border flex items-center justify-between gap-3 transition-all cursor-pointer text-left ${
-              playingAudioId === `phonics_${selectedLetter.id}`
+              playingAudioId === `phonics_${selectedLetter.id}` || playingAudioId === selectedLetter.id
                 ? 'bg-primary/20 border-primary ring-2 ring-primary/40 shadow-sm'
                 : 'bg-surface-container-low border-outline-variant/30 hover:border-primary/50 hover:bg-surface-container-high'
             }`}
-            title="Nghe âm vị khi ghép vào từ vựng tiếng Đức (Phonics)"
+            title="Nghe âm vị tự nhiên khi ghép vào từ vựng tiếng Đức (Phonics)"
           >
             <div className="min-w-0">
               <div className="text-[11px] font-bold text-on-surface flex items-center gap-1.5">
-                <Sparkles className={`w-3.5 h-3.5 text-primary shrink-0 ${playingAudioId === `phonics_${selectedLetter.id}` ? 'animate-pulse' : ''}`} />
+                <Sparkles className={`w-3.5 h-3.5 text-primary shrink-0 ${playingAudioId === `phonics_${selectedLetter.id}` || playingAudioId === selectedLetter.id ? 'animate-pulse' : ''}`} />
                 <span className="truncate">Âm vị: {selectedLetter.phonicsSound || selectedLetter.ipa}</span>
               </div>
               <div className="text-[10px] text-on-surface-variant mt-0.5">
@@ -254,6 +229,31 @@ export default function AlphabetDetailModal({
             </div>
             <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-primary/15 text-primary-200 border border-primary/20 shrink-0">
               Phonics
+            </span>
+          </button>
+
+          {/* Button 2: Spelling Name */}
+          <button
+            type="button"
+            onClick={(e) => onPlayLetter(e, selectedLetter)}
+            className={`flex-1 p-3 rounded-xl border flex items-center justify-between gap-3 transition-all cursor-pointer text-left ${
+              playingAudioId === `letter_${selectedLetter.id}`
+                ? 'bg-secondary/20 border-secondary ring-2 ring-secondary/40 shadow-sm'
+                : 'bg-surface-container-low border-outline-variant/30 hover:border-secondary/50 hover:bg-surface-container-high'
+            }`}
+            title="Nghe phát âm tên chữ cái khi đánh vần (VD: A, B, C, Ypsilon, Vau...)"
+          >
+            <div className="min-w-0">
+              <div className="text-[11px] font-bold text-on-surface flex items-center gap-1.5">
+                <Volume2 className={`w-3.5 h-3.5 text-secondary shrink-0 ${playingAudioId === `letter_${selectedLetter.id}` ? 'animate-pulse' : ''}`} />
+                <span className="truncate">Tên chữ: "{selectedLetter.name}"</span>
+              </div>
+              <div className="text-[10px] text-on-surface-variant mt-0.5">
+                Đánh vần bảng chữ cái
+              </div>
+            </div>
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-secondary/15 text-secondary border border-secondary/20 shrink-0">
+              {selectedLetter.ipa}
             </span>
           </button>
         </div>
