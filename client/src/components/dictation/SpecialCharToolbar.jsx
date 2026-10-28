@@ -47,8 +47,9 @@ export default function SpecialCharToolbar({
               <button
                 key={char}
                 type="button"
+                onMouseDown={(e) => e.preventDefault()}
                 onClick={() => onInsertChar && onInsertChar(char)}
-                className="w-7 h-7 rounded-lg bg-surface-container hover:bg-primary-container hover:text-on-primary-container text-on-surface font-headline font-bold text-xs flex items-center justify-center transition-all shadow-xs cursor-pointer border border-outline-variant/30 active:scale-95"
+                className="w-7 h-7 rounded-lg bg-surface-container hover:bg-primary-container hover:text-on-primary-container text-on-surface font-headline font-bold text-xs flex items-center justify-center transition-all shadow-xs cursor-pointer border border-outline-variant/30 active:scale-95 focus-ring"
                 title={`Chèn ký tự ${char}`}
               >
                 {label}

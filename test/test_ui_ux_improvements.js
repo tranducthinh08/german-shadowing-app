@@ -71,4 +71,36 @@ assert.doesNotThrow(() => {
 }, 'Sound effects must never throw unhandled exceptions');
 console.log('  ✅ Web Audio safe degradation verified (0 KB network overhead, graceful degradation)');
 
+// 4. Test insertCharToInput in germanUtils.js (fix n.substring bug)
+console.log('\nTest 4: German character insertion (insertCharToInput)');
+import { insertCharToInput } from '../client/src/utils/germanUtils.js';
+
+// Test 4.1: Insert at end of string (User screenshot case: 'guten morgen herr m' + 'ü' at pos 19)
+const resEnd = insertCharToInput('guten morgen herr m', 19, 19, 'ü');
+assert.strictEqual(resEnd.newText, 'guten morgen herr mü');
+assert.strictEqual(resEnd.newCursorPos, 20);
+console.log('  ✅ Insert character at end of text verified');
+
+// Test 4.2: Insert in middle of string
+const resMid = insertCharToInput('guten mgen', 7, 7, 'ö');
+assert.strictEqual(resMid.newText, 'guten mögen');
+assert.strictEqual(resMid.newCursorPos, 8);
+console.log('  ✅ Insert character in middle of text verified');
+
+// Test 4.3: Replace selected text range
+const resReplace = insertCharToInput('guten morgen', 6, 12, 'Abend');
+assert.strictEqual(resReplace.newText, 'guten Abend');
+assert.strictEqual(resReplace.newCursorPos, 11);
+console.log('  ✅ Replace highlighted text range verified');
+
+// Test 4.4: Safe handling with empty or undefined inputs
+const resEmpty = insertCharToInput('', 0, 0, 'ä');
+assert.strictEqual(resEmpty.newText, 'ä');
+assert.strictEqual(resEmpty.newCursorPos, 1);
+
+const resNull = insertCharToInput(null, undefined, undefined, 'ß');
+assert.strictEqual(resNull.newText, 'ß');
+assert.strictEqual(resNull.newCursorPos, 1);
+console.log('  ✅ Empty/undefined edge cases handled safely');
+
 console.log('\n🎉 ALL UI/UX ENHANCEMENT TESTS PASSED SUCCESSFULLY!\n');
