@@ -58,15 +58,19 @@ export default function TranscriptList({
 
   // When a sentence is completed, auto fetch Vietnamese translation if not already provided
   useEffect(() => {
-    completedSentenceIds.forEach((id) => {
-      const sentence = sentences.find((s) => s.id === id);
-      if (!sentence) return;
+    sentences.forEach((sentence, index) => {
+      const isCompleted =
+        completedSentenceIds.has(sentence.id) ||
+        completedSentenceIds.has(String(sentence.id)) ||
+        completedSentenceIds.has(Number(sentence.id)) ||
+        completedSentenceIds.has(index) ||
+        completedSentenceIds.has(index + 1);
+
+      if (!isCompleted) return;
+      const id = sentence.id;
 
       if (sentence.translationVi) {
-        setTranslations((prev) => {
-          if (prev[id]) return prev;
-          return { ...prev, [id]: sentence.translationVi };
-        });
+        setTranslations((prev) => (prev[id] ? prev : { ...prev, [id]: sentence.translationVi }));
         return;
       }
 
@@ -221,7 +225,12 @@ export default function TranscriptList({
       <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-3 max-h-[calc(100vh-320px)] min-h-[400px]">
         {filteredSentences.map((sentence, index) => {
           const isActive = sentence.id === activeSegmentId;
-          const isCompleted = completedSentenceIds.has(sentence.id);
+          const isCompleted =
+            completedSentenceIds.has(sentence.id) ||
+            completedSentenceIds.has(String(sentence.id)) ||
+            completedSentenceIds.has(Number(sentence.id)) ||
+            completedSentenceIds.has(index) ||
+            completedSentenceIds.has(index + 1);
           const shouldBlur = isBlurScript && !isCompleted;
           const translationVi = translations[sentence.id] || sentence.translationVi;
 

@@ -62,9 +62,15 @@ export default function DictationWorkspace({
     return computeLiveStream(userInput, activeSegment.text, { strictGerman });
   }, [isLiveCheck, userInput, activeSegment, strictGerman]);
 
-  // Trigger earcon sound effect once when live check reaches passing standard
+  // Target sentence identifier: prefer activeSegment.id, fallback to segmentIndex + 1
+  const currentSentenceId = activeSegment?.id !== undefined ? activeSegment.id : (segmentIndex + 1);
+
+  // Trigger earcon sound effect and complete sentence once when live check reaches standard
   useEffect(() => {
     if (!hasPlayedSoundRef.current && isLiveCheck && liveStream?.isComplete) {
+      if (liveStream.score >= 80 && onCompleteSentence) {
+        onCompleteSentence(currentSentenceId, liveStream.score);
+      }
       if (liveStream.score === 100) {
         playPerfectSound(soundEffectsEnabled);
         hasPlayedSoundRef.current = true;
@@ -73,7 +79,7 @@ export default function DictationWorkspace({
         hasPlayedSoundRef.current = true;
       }
     }
-  }, [isLiveCheck, liveStream, soundEffectsEnabled]);
+  }, [isLiveCheck, liveStream, soundEffectsEnabled, currentSentenceId, onCompleteSentence]);
 
   const handleInsertChar = (char) => {
     if (!inputRef.current) return;
@@ -118,7 +124,7 @@ export default function DictationWorkspace({
 
     if (result.score >= 80) {
       if (onCompleteSentence) {
-        onCompleteSentence(segmentIndex, result.score);
+        onCompleteSentence(currentSentenceId, result.score);
       }
       if (!hasPlayedSoundRef.current) {
         if (result.score === 100 || result.isPerfect) {
@@ -132,10 +138,12 @@ export default function DictationWorkspace({
   };
 
   const handleAdvance = () => {
+    const finalScore = diffResult?.score || liveStream?.score || 100;
+    if (onCompleteSentence) {
+      onCompleteSentence(currentSentenceId, finalScore);
+    }
     if (segmentIndex < totalSegments - 1) {
       onNextSegment();
-    } else if (onCompleteSentence) {
-      onCompleteSentence(segmentIndex, diffResult?.score || 100);
     }
   };
 

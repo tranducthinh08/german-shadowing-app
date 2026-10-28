@@ -21,8 +21,17 @@ export default function StudioLessonHeader({
   if (!currentVideo) return null;
 
   const totalSentences = currentVideo.sentences?.length || 0;
+  const effectiveCompletedCount = currentVideo.sentences?.length
+    ? currentVideo.sentences.filter((s, idx) =>
+        completedSentenceIds.has(s.id) ||
+        completedSentenceIds.has(String(s.id)) ||
+        completedSentenceIds.has(Number(s.id)) ||
+        completedSentenceIds.has(idx) ||
+        completedSentenceIds.has(idx + 1)
+      ).length
+    : completedSentenceCount;
   const progressPercent = totalSentences > 0
-    ? Math.round((completedSentenceCount / totalSentences) * 100)
+    ? Math.round((effectiveCompletedCount / totalSentences) * 100)
     : 0;
 
   return (
@@ -54,7 +63,7 @@ export default function StudioLessonHeader({
             <div className="flex items-center gap-2 text-xs text-outline mt-1 font-medium">
               <span>Câu <strong className="text-on-surface">{activeSegmentIndex + 1}</strong> / {totalSentences}</span>
               <span className="text-outline-variant">•</span>
-              <span>Đã học: <strong className="text-secondary font-semibold">{completedSentenceCount}</strong></span>
+              <span>Đã học: <strong className="text-secondary font-semibold">{effectiveCompletedCount}</strong></span>
               {totalSentences > 0 && (
                 <span className="text-[11px] font-mono text-outline">
                   ({progressPercent}%)
@@ -130,7 +139,12 @@ export default function StudioLessonHeader({
             title="Thanh tiến độ câu học (Click mẩu vạch để chuyển nhanh đến câu tương ứng)"
           >
             {currentVideo.sentences?.map((s, idx) => {
-              const isCompleted = completedSentenceIds.has(s.id);
+              const isCompleted =
+                completedSentenceIds.has(s.id) ||
+                completedSentenceIds.has(String(s.id)) ||
+                completedSentenceIds.has(Number(s.id)) ||
+                completedSentenceIds.has(idx) ||
+                completedSentenceIds.has(idx + 1);
               const isActive = idx === activeSegmentIndex;
               return (
                 <button

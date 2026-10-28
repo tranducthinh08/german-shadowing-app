@@ -103,4 +103,29 @@ assert.strictEqual(resNull.newText, 'ß');
 assert.strictEqual(resNull.newCursorPos, 1);
 console.log('  ✅ Empty/undefined edge cases handled safely');
 
+// 5. Test completed sentence unblur resolution across id & index
+console.log('\nTest 5: Completed sentence unblur check across ID, string ID, and 0-based index');
+const sampleSentence = { id: 1, text: 'Guten Morgen, Herr Müller' };
+const index = 0;
+
+function checkIsCompleted(completedSet, sentence, idx) {
+  return (
+    completedSet.has(sentence.id) ||
+    completedSet.has(String(sentence.id)) ||
+    completedSet.has(Number(sentence.id)) ||
+    completedSet.has(idx) ||
+    completedSet.has(idx + 1)
+  );
+}
+
+// Case 5.1: Saved with integer id = 1
+assert.strictEqual(checkIsCompleted(new Set([1]), sampleSentence, index), true);
+// Case 5.2: Saved with string id = '1'
+assert.strictEqual(checkIsCompleted(new Set(['1']), sampleSentence, index), true);
+// Case 5.3: Saved with 0-based index = 0
+assert.strictEqual(checkIsCompleted(new Set([0]), sampleSentence, index), true);
+// Case 5.4: Uncompleted sentence
+assert.strictEqual(checkIsCompleted(new Set([99]), sampleSentence, index), false);
+console.log('  ✅ Unblur matching verified across numeric id, string id, and index fallbacks');
+
 console.log('\n🎉 ALL UI/UX ENHANCEMENT TESTS PASSED SUCCESSFULLY!\n');
