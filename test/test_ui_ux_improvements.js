@@ -127,4 +127,21 @@ assert.strictEqual(checkIsCompleted(new Set([1]), sentence2), false, 'Sentence 2
 assert.strictEqual(checkIsCompleted(new Set([1, 2]), sentence2), true);
 console.log('  ✅ Strict sentence ID matching verified: sentence 2 never prematurely unblurs');
 
+// 6. Test Live Check does NOT falsely mark misspelled words as correct
+console.log('\nTest 6: Real-time Live Check rejects misspelled words (komt -> komm, jetze -> jetzt)');
+import { computeLiveStream } from '../client/src/utils/textDiff.js';
+
+const targetSentence = 'Emma, komm jetzt Entschuldigung!';
+const userMistakeInput = 'emma komt jetze';
+
+const liveRes = computeLiveStream(userMistakeInput, targetSentence, { strictCase: false });
+
+assert.strictEqual(liveRes.tokens[0].status, 'correct', 'emma matches Emma when strictCase=false');
+assert.strictEqual(liveRes.tokens[1].status, 'wrong', 'komt is a spelling error for komm and MUST be wrong');
+assert.strictEqual(liveRes.tokens[2].status, 'wrong', 'jetze is a spelling error for jetzt and MUST be wrong');
+assert.strictEqual(liveRes.tokens[3].status, 'pending', 'Entschuldigung is not yet typed');
+assert.strictEqual(liveRes.matchedCount, 1, 'Only 1 word (emma) is correct, NOT 3');
+assert.strictEqual(liveRes.isComplete, false, 'Sentence must NOT be marked complete when words are wrong');
+console.log('  ✅ Live check accurately flags spelling mistakes as wrong (no false positive)');
+
 console.log('\n🎉 ALL UI/UX ENHANCEMENT TESTS PASSED SUCCESSFULLY!\n');

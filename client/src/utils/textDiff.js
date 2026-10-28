@@ -278,7 +278,7 @@ export function compareSentence(userText = '', targetText = '', options = {}) {
  * @param {object} options - { strictCase: boolean, strictGermanUmlauts: boolean }
  */
 export function computeLiveStream(userInput = '', targetText = '', options = {}) {
-  const { strictCase = false } = options;
+  const strictCase = Boolean(options.strictCase || options.strictGerman);
 
   const normUser = normalizeContractionsAndPunctuation(userInput);
   const normTarget = normalizeContractionsAndPunctuation(targetText);
@@ -307,12 +307,7 @@ export function computeLiveStream(userInput = '', targetText = '', options = {})
     const uw = userWords[i];
 
     if (!uw) {
-      tokens.push({
-        targetWord: tw,
-        cleanTarget: twClean,
-        typedWord: '',
-        status: 'pending'
-      });
+      tokens.push({ targetWord: tw, cleanTarget: twClean, typedWord: '', status: 'pending' });
       continue;
     }
 
@@ -321,43 +316,25 @@ export function computeLiveStream(userInput = '', targetText = '', options = {})
     const check = isWordMatchOrClose(twClean, uwClean);
 
     if (check.match) {
-      if (check.typoType === 'case' && strictCase) {
-        tokens.push({
-          targetWord: tw,
-          cleanTarget: twClean,
-          typedWord: uw,
-          status: 'typo'
-        });
-      } else if (check.typoType === 'umlaut') {
-        tokens.push({
-          targetWord: tw,
-          cleanTarget: twClean,
-          typedWord: uw,
-          status: 'typo'
-        });
+      if (check.typoType === 'case') {
+        if (strictCase) {
+          tokens.push({ targetWord: tw, cleanTarget: twClean, typedWord: uw, status: 'typo' });
+        } else {
+          tokens.push({ targetWord: tw, cleanTarget: twClean, typedWord: uw, status: 'correct' });
+          matchedCount++;
+        }
+      } else if (check.typoType === 'umlaut' || check.typoType === 'spelling') {
+        // Spelling mistake or missing umlaut must be treated as wrong, not correct
+        tokens.push({ targetWord: tw, cleanTarget: twClean, typedWord: uw, status: 'wrong' });
       } else {
-        tokens.push({
-          targetWord: tw,
-          cleanTarget: twClean,
-          typedWord: uw,
-          status: 'correct'
-        });
+        // Pure match
+        tokens.push({ targetWord: tw, cleanTarget: twClean, typedWord: uw, status: 'correct' });
         matchedCount++;
       }
     } else if (isCurrentActive && twClean.toLowerCase().startsWith(uwClean.toLowerCase())) {
-      tokens.push({
-        targetWord: tw,
-        cleanTarget: twClean,
-        typedWord: uw,
-        status: 'typing'
-      });
+      tokens.push({ targetWord: tw, cleanTarget: twClean, typedWord: uw, status: 'typing' });
     } else {
-      tokens.push({
-        targetWord: tw,
-        cleanTarget: twClean,
-        typedWord: uw,
-        status: 'wrong'
-      });
+      tokens.push({ targetWord: tw, cleanTarget: twClean, typedWord: uw, status: 'wrong' });
     }
   }
 
