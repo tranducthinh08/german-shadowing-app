@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { User, Users, Check, Flame, Trophy, ArrowRight, X, ShieldCheck, Sparkles, Plus, Eye, Palette } from 'lucide-react';
+import { User, Users, Check, Flame, Trophy, ArrowRight, X, ShieldCheck, Sparkles, Plus, Eye, Palette, HardDrive } from 'lucide-react';
 import { USER_AVATARS, getUsersList, getUserSettings } from '../../utils/userStorage';
 import { getGamificationData } from '../../utils/gamification';
+import UserStorageTab from './UserStorageTab';
 
 export default function UserProfileModal({
   isOpen,
@@ -85,38 +86,50 @@ export default function UserProfileModal({
             )}
           </div>
 
-          {/* Tab switcher if there are existing users */}
-          {usersList.length > 0 && (
-            <div className="flex items-center gap-2 mt-4 p-1 bg-surface-container-lowest/80 rounded-2xl border border-outline-variant/30 shadow-inner">
+          {/* Tab switcher */}
+          <div className="flex items-center gap-1.5 mt-4 p-1 bg-surface-container-lowest/80 rounded-2xl border border-outline-variant/30 shadow-inner">
+            {usersList.length > 0 && (
               <button
                 type="button"
                 onClick={() => setActiveTab('select')}
-                className={`flex-1 py-1.5 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                className={`flex-1 py-1.5 px-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1 cursor-pointer ${
                   activeTab === 'select'
                     ? 'bg-primary-container text-on-primary-container shadow-md'
                     : 'text-on-surface-variant hover:text-on-surface'
                 }`}
               >
                 <Users className="w-3.5 h-3.5" />
-                <span>Tài khoản có sẵn ({usersList.length})</span>
+                <span>Tài khoản ({usersList.length})</span>
               </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setActiveTab('login');
-                  setUsernameInput('');
-                }}
-                className={`flex-1 py-1.5 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
-                  activeTab === 'login'
-                    ? 'bg-primary-container text-on-primary-container shadow-md'
-                    : 'text-on-surface-variant hover:text-on-surface'
-                }`}
-              >
-                <Plus className="w-3.5 h-3.5" />
-                <span>Nhập tên mới</span>
-              </button>
-            </div>
-          )}
+            )}
+            <button
+              type="button"
+              onClick={() => {
+                setActiveTab('login');
+                setUsernameInput('');
+              }}
+              className={`flex-1 py-1.5 px-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1 cursor-pointer ${
+                activeTab === 'login'
+                  ? 'bg-primary-container text-on-primary-container shadow-md'
+                  : 'text-on-surface-variant hover:text-on-surface'
+              }`}
+            >
+              <Plus className="w-3.5 h-3.5" />
+              <span>Đổi tên</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('storage')}
+              className={`flex-1 py-1.5 px-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1 cursor-pointer ${
+                activeTab === 'storage'
+                  ? 'bg-primary-container text-on-primary-container shadow-md'
+                  : 'text-on-surface-variant hover:text-on-surface'
+              }`}
+            >
+              <HardDrive className="w-3.5 h-3.5 text-secondary" />
+              <span>Bộ nhớ & Sao lưu</span>
+            </button>
+          </div>
         </div>
 
         {/* Modal Body */}
@@ -249,6 +262,14 @@ export default function UserProfileModal({
                 <ArrowRight className="w-4 h-4" />
               </button>
             </form>
+          )}
+
+          {/* TAB 3: Storage & Backup */}
+          {activeTab === 'storage' && (
+            <UserStorageTab
+              currentUser={currentUser}
+              onDataRestored={() => window.location.reload()}
+            />
           )}
 
           {/* Isolated Features Info Banner */}
