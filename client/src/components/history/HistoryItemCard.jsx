@@ -34,6 +34,11 @@ export default function HistoryItemCard({
             <span className="text-[10px] px-2 py-0.2 rounded-md font-bold bg-secondary-container/20 text-secondary border border-secondary/30">
               {lesson.language === 'de' ? '🇩🇪 Tiếng Đức' : '🇬🇧 Tiếng Anh'}
             </span>
+            {lesson.practiceCount > 0 && (
+              <span className="text-[10px] px-2 py-0.2 rounded-md font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                {lesson.practiceCount > 1 ? `Đã học (${lesson.practiceCount} lần)` : 'Đã học'}
+              </span>
+            )}
             <span className="text-xs text-outline truncate">
               {lesson.author}
             </span>

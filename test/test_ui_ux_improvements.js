@@ -237,4 +237,36 @@ assert.strictEqual(getBadgeStatus(true, false), 'Đã học', 'When completed an
 assert.strictEqual(getBadgeStatus(false, false), null, 'When neither, badge is null');
 console.log('  ✅ Badge precedence verified: "Đã học" always takes precedence over "Đang học"');
 
+// 10. Test Video Practice Count (Số lần đã luyện tập) Tracking & Formatting
+console.log('\nTest 10: Practice count tracking and badge label formatting');
+function getPracticeBadgeLabel(isCompleted, practiceCount = 0) {
+  if (!isCompleted) return null;
+  return practiceCount > 1 ? `Đã học (${practiceCount} lần)` : 'Đã học';
+}
+
+assert.strictEqual(getPracticeBadgeLabel(false, 0), null);
+assert.strictEqual(getPracticeBadgeLabel(true, 1), 'Đã học', '1 completion must show "Đã học"');
+assert.strictEqual(getPracticeBadgeLabel(true, 2), 'Đã học (2 lần)', '2 completions must show "Đã học (2 lần)"');
+assert.strictEqual(getPracticeBadgeLabel(true, 5), 'Đã học (5 lần)', '5 completions must show "Đã học (5 lần)"');
+
+// Test practiceCounts lookup derivation from history
+const sampleHistory = [
+  { videoId: 'v1', totalSentences: 10, completedCount: 10, practiceCount: 3 },
+  { videoId: 'v2', totalSentences: 15, completedCount: 15 }, // Legacy item with no practiceCount -> default 1
+  { videoId: 'v3', totalSentences: 20, completedCount: 5 }   // In progress -> 0
+];
+
+const derivedCounts = {};
+sampleHistory.forEach((h) => {
+  const total = h.totalSentences || h.sentenceCount || 0;
+  const isDone = total > 0 && (h.completedCount || 0) >= total;
+  const count = typeof h.practiceCount === 'number' ? h.practiceCount : (isDone ? 1 : 0);
+  if (count > 0) derivedCounts[h.videoId] = count;
+});
+
+assert.strictEqual(derivedCounts['v1'], 3, 'v1 must have practiceCount 3');
+assert.strictEqual(derivedCounts['v2'], 1, 'legacy completed v2 must have practiceCount 1');
+assert.strictEqual(derivedCounts['v3'], undefined, 'incomplete v3 must not have practiceCount');
+console.log('  ✅ Practice count formatting and derivation verified!');
+
 console.log('\n🎉 ALL UI/UX ENHANCEMENT TESTS PASSED SUCCESSFULLY!\n');

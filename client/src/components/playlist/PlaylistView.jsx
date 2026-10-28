@@ -18,6 +18,7 @@ import { NICOS_WEG_PLAYLIST } from '../../data/nicosWegPlaylist.js';
 export default function PlaylistView({
   onSelectEpisode,
   completedVideoIds = [],
+  practiceCounts = {},
   currentVideoId = null,
   onBackToStudio
 }) {
@@ -233,7 +234,11 @@ export default function PlaylistView({
                 {isCompleted ? (
                   <div className="absolute top-2 right-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-600 text-white flex items-center gap-1 shadow-md">
                     <CheckCircle2 className="w-3 h-3" />
-                    <span>Đã học</span>
+                    <span>
+                      {(practiceCounts[ep.videoId] || 1) > 1
+                        ? `Đã học (${practiceCounts[ep.videoId]} lần)`
+                        : 'Đã học'}
+                    </span>
                   </div>
                 ) : isCurrent ? (
                   <div className="absolute top-2 right-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-secondary text-on-secondary flex items-center gap-1 shadow-xs animate-pulse">

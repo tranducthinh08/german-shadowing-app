@@ -61,15 +61,21 @@ export function useUserSession() {
   const updateStudyHistory = useCallback((videoData, completedCount, username = currentUser?.username) => {
     if (!videoData) return;
     setStudyHistory((prev) => {
+      const existing = prev.find((h) => h.videoId === videoData.videoId);
       const filtered = prev.filter((h) => h.videoId !== videoData.videoId);
+      const totalSentences = videoData.sentences?.length || existing?.totalSentences || 0;
+      const count = typeof completedCount === 'number' ? completedCount : completedSentenceIds.size;
+      const practiceCount = existing?.practiceCount || (totalSentences > 0 && count >= totalSentences ? 1 : 0);
+
       const updatedItem = {
         videoId: videoData.videoId,
         title: videoData.title,
         author: videoData.author,
         thumbnail: videoData.thumbnail,
         language: videoData.language,
-        totalSentences: videoData.sentences?.length || 0,
-        completedCount: typeof completedCount === 'number' ? completedCount : completedSentenceIds.size,
+        totalSentences,
+        completedCount: count,
+        practiceCount,
         lastStudiedAt: new Date().toISOString()
       };
       const nextHistory = [updatedItem, ...filtered];
@@ -79,6 +85,35 @@ export function useUserSession() {
       return nextHistory;
     });
   }, [currentUser?.username, completedSentenceIds.size]);
+
+  const recordLessonCompletion = useCallback((videoData, username = currentUser?.username) => {
+    if (!videoData) return;
+    setStudyHistory((prev) => {
+      const existing = prev.find((h) => h.videoId === videoData.videoId);
+      const filtered = prev.filter((h) => h.videoId !== videoData.videoId);
+      const total = videoData.sentences?.length || existing?.totalSentences || 0;
+      const prevCount = existing?.practiceCount || (existing && (existing.completedCount || 0) >= (existing.totalSentences || 1) ? 1 : 0);
+      const newPracticeCount = prevCount + 1;
+
+      const updatedItem = {
+        ...(existing || {}),
+        videoId: videoData.videoId,
+        title: videoData.title || existing?.title,
+        author: videoData.author || existing?.author,
+        thumbnail: videoData.thumbnail || existing?.thumbnail,
+        language: videoData.language || existing?.language,
+        totalSentences: total,
+        completedCount: total,
+        practiceCount: newPracticeCount,
+        lastStudiedAt: new Date().toISOString()
+      };
+      const nextHistory = [updatedItem, ...filtered];
+      if (username) {
+        saveUserStudyHistory(username, nextHistory);
+      }
+      return nextHistory;
+    });
+  }, [currentUser?.username]);
 
   const handleToggleBlur = useCallback((newVal) => {
     setUserSettings((prev) => {
@@ -185,6 +220,7 @@ export function useUserSession() {
     alphabetReviewProgress,
     setAlphabetReviewProgress,
     updateStudyHistory,
+    recordLessonCompletion,
     handleToggleBlur,
     handleToggleGenderColors,
     handleToggleStrictGerman,

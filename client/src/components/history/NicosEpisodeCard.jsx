@@ -48,7 +48,7 @@ export default function NicosEpisodeCard({
           {isCompleted && (
             <div className="absolute top-2 right-2 px-1.5 py-0.5 rounded-md text-[10px] font-bold bg-emerald-500/90 text-white flex items-center gap-1 shadow-xs">
               <CheckCircle2 className="w-3 h-3" />
-              <span>Đã học</span>
+              <span>{studied?.practiceCount > 1 ? `Đã học (${studied.practiceCount} lần)` : 'Đã học'}</span>
             </div>
           )}
 

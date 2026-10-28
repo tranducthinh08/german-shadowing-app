@@ -52,7 +52,7 @@ export default function App() {
     userSettings, setUserSettings, savedWords, setSavedWords,
     completedSentenceIds, setCompletedSentenceIds, studyHistory, setStudyHistory,
     hardLetters, setHardLetters, alphabetReviewProgress, setAlphabetReviewProgress,
-    updateStudyHistory, handleToggleBlur, handleToggleGenderColors,
+    updateStudyHistory, recordLessonCompletion, handleToggleBlur, handleToggleGenderColors,
     handleToggleStrictGerman, handleToggleLiveCheck, handleToggleSoundEffects,
     handleToggleFocusMode, handleToggleHardLetter, handleSaveWord, handleRemoveWord
   } = useUserSession();
@@ -82,21 +82,28 @@ export default function App() {
   const [isShortcutsOpen, setIsShortcutsOpen] = useState(false);
   const [isCustomTranscriptOpen, setIsCustomTranscriptOpen] = useState(false);
 
-  // Completed video IDs calculation across study history & active video
-  const completedVideoIds = useMemo(() => {
+  // Completed video IDs and practice counts calculation across study history & active video
+  const { completedVideoIds, practiceCounts } = useMemo(() => {
     const ids = new Set();
+    const counts = {};
     (studyHistory || []).forEach((h) => {
       const total = h.totalSentences || h.sentenceCount || 0;
-      if (total > 0 && (h.completedCount || 0) >= total) ids.add(h.videoId);
+      const isDone = total > 0 && (h.completedCount || 0) >= total;
+      if (isDone) ids.add(h.videoId);
+      const count = typeof h.practiceCount === 'number' ? h.practiceCount : (isDone ? 1 : 0);
+      if (count > 0) counts[h.videoId] = count;
     });
     if (currentVideo?.videoId && currentVideo?.sentences?.length > 0) {
-      if (completedSentenceIds.size >= currentVideo.sentences.length) ids.add(currentVideo.videoId);
+      if (completedSentenceIds.size >= currentVideo.sentences.length) {
+        ids.add(currentVideo.videoId);
+        counts[currentVideo.videoId] = Math.max(counts[currentVideo.videoId] || 0, 1);
+      }
     }
-    return Array.from(ids);
+    return { completedVideoIds: Array.from(ids), practiceCounts: counts };
   }, [studyHistory, currentVideo?.videoId, currentVideo?.sentences?.length, completedSentenceIds.size]);
 
   const onCompleteLesson = (stats) => {
-    if (currentVideo) updateStudyHistory(currentVideo, currentVideo.sentences?.length || 0);
+    if (currentVideo) recordLessonCompletion(currentVideo);
     handleCompleteSentenceReward(100, studyMode);
     handleCompleteLesson(stats);
   };
@@ -295,6 +302,7 @@ export default function App() {
               onSelectEpisode={(ep, reset) => { handleSelectEpisode(ep, reset, syncProgressOnLoad); setMainTab('studio'); }}
               onSelectLesson={(lesson) => { handleLoadVideo(lesson.videoId, lesson.language, false, syncProgressOnLoad); setMainTab('studio'); }}
               completedVideoIds={completedVideoIds}
+              practiceCounts={practiceCounts}
               currentVideoId={currentVideo?.videoId}
               onBackToStudio={() => setMainTab('studio')}
               onOpenAlphabet={() => setMainTab('alphabet')}

@@ -19,6 +19,7 @@ export default function LessonsTab({
   onSelectEpisode,
   onSelectLesson,
   completedVideoIds = [],
+  practiceCounts = {},
   currentVideoId = null,
   onBackToStudio,
   onOpenAlphabet
@@ -312,6 +313,7 @@ export default function LessonsTab({
                 key={ep.id}
                 ep={ep}
                 isCompleted={completedVideoIds.includes(ep.videoId)}
+                practiceCount={practiceCounts[ep.videoId] || (completedVideoIds.includes(ep.videoId) ? 1 : 0)}
                 isCurrent={currentVideoId === ep.videoId}
                 onSelectEpisode={onSelectEpisode}
               />
