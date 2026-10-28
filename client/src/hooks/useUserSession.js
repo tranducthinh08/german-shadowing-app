@@ -65,14 +65,19 @@ export function useUserSession() {
       const filtered = prev.filter((h) => h.videoId !== videoData.videoId);
       const totalSentences = videoData.sentences?.length || existing?.totalSentences || 0;
       const count = typeof completedCount === 'number' ? completedCount : completedSentenceIds.size;
-      const practiceCount = existing?.practiceCount || (totalSentences > 0 && count >= totalSentences ? 1 : 0);
+      const prevPracticeCount = typeof existing?.practiceCount === 'number' && existing.practiceCount > 0
+        ? existing.practiceCount
+        : (existing && (existing.completedCount || 0) >= (existing.totalSentences || 1) ? 1 : 0);
+      const practiceCount = prevPracticeCount > 0
+        ? prevPracticeCount
+        : (totalSentences > 0 && count >= totalSentences ? 1 : 0);
 
       const updatedItem = {
         videoId: videoData.videoId,
-        title: videoData.title,
-        author: videoData.author,
-        thumbnail: videoData.thumbnail,
-        language: videoData.language,
+        title: videoData.title || existing?.title,
+        author: videoData.author || existing?.author,
+        thumbnail: videoData.thumbnail || existing?.thumbnail,
+        language: videoData.language || existing?.language,
         totalSentences,
         completedCount: count,
         practiceCount,

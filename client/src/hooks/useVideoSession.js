@@ -111,7 +111,7 @@ export function useVideoSession(initialSettings = {}) {
 
       if (!confirmed) {
         const isSure = window.confirm(
-          `Bạn có chắc chắn muốn làm lại bài học "${currentVideo.title}" từ đầu không?\n\n• Tiến độ học sẽ được đặt lại về 0\n• Toàn bộ các câu phụ đề sẽ được làm mờ lại\n• Quay trở về câu số 1`
+          `Bạn có chắc chắn muốn làm lại bài học "${currentVideo.title}" từ đầu không?\n\n• Số lần đã học trước đó vẫn được lưu giữ nguyên vẹn\n• Toàn bộ các câu phụ đề sẽ được làm mờ lại\n• Quay trở về câu số 1 để luyện tập lượt mới`
         );
         if (!isSure) return;
       }

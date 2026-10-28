@@ -269,4 +269,63 @@ assert.strictEqual(derivedCounts['v2'], 1, 'legacy completed v2 must have practi
 assert.strictEqual(derivedCounts['v3'], undefined, 'incomplete v3 must not have practiceCount');
 console.log('  ✅ Practice count formatting and derivation verified!');
 
+// 11. Test Reset Lesson preserves practiceCount and completion badge
+console.log('\nTest 11: Reset Lesson (Làm lại từ đầu) preservation of practiceCount and completed status');
+
+function updateStudyHistoryMock(existingList, videoData, newCompletedCount) {
+  const existing = existingList.find((h) => h.videoId === videoData.videoId);
+  const filtered = existingList.filter((h) => h.videoId !== videoData.videoId);
+  const total = videoData.sentences?.length || existing?.totalSentences || 0;
+  const prevPracticeCount = typeof existing?.practiceCount === 'number' && existing.practiceCount > 0
+    ? existing.practiceCount
+    : (existing && (existing.completedCount || 0) >= (existing.totalSentences || 1) ? 1 : 0);
+  const practiceCount = prevPracticeCount > 0
+    ? prevPracticeCount
+    : (total > 0 && newCompletedCount >= total ? 1 : 0);
+
+  return [
+    {
+      videoId: videoData.videoId,
+      totalSentences: total,
+      completedCount: newCompletedCount,
+      practiceCount
+    },
+    ...filtered
+  ];
+}
+
+// 11.1: Completed episode in history
+let history = [
+  { videoId: 'ep1', totalSentences: 19, completedCount: 19, practiceCount: 1 }
+];
+
+// 11.2: User clicks "Làm lại từ đầu" -> completedCount resets to 0
+history = updateStudyHistoryMock(history, { videoId: 'ep1', sentences: new Array(19).fill({}) }, 0);
+assert.strictEqual(history[0].completedCount, 0, 'Current attempt progress must be reset to 0');
+assert.strictEqual(history[0].practiceCount, 1, 'CRITICAL: practiceCount MUST be preserved at 1');
+
+// 11.3: Check completedVideoIds resolution when completedCount is 0 but practiceCount is 1
+function resolveStatusAndBadge(h, activeVideoId, activeCompletedCount) {
+  const total = h.totalSentences || 0;
+  const isDone = (typeof h.practiceCount === 'number' && h.practiceCount > 0) ||
+    (total > 0 && (h.completedCount || 0) >= total);
+  const practiceCount = typeof h.practiceCount === 'number' && h.practiceCount > 0
+    ? h.practiceCount
+    : (isDone ? 1 : 0);
+  return { isDone, practiceCount };
+}
+
+const statusAfterReset = resolveStatusAndBadge(history[0], 'ep1', 0);
+assert.strictEqual(statusAfterReset.isDone, true, 'isDone MUST remain true after reset because practiceCount > 0');
+assert.strictEqual(statusAfterReset.practiceCount, 1, 'practiceCount must remain 1');
+assert.strictEqual(getPracticeBadgeLabel(statusAfterReset.isDone, statusAfterReset.practiceCount), 'Đã học');
+
+// 11.4: User finishes attempt 2 -> practiceCount increments to 2
+history[0].practiceCount += 1;
+history[0].completedCount = 19;
+const statusAfterRound2 = resolveStatusAndBadge(history[0], 'ep1', 19);
+assert.strictEqual(statusAfterRound2.practiceCount, 2);
+assert.strictEqual(getPracticeBadgeLabel(statusAfterRound2.isDone, statusAfterRound2.practiceCount), 'Đã học (2 lần)');
+console.log('  ✅ Reset lesson strictly preserves practiceCount and "Đã học" badge across retries!');
+
 console.log('\n🎉 ALL UI/UX ENHANCEMENT TESTS PASSED SUCCESSFULLY!\n');

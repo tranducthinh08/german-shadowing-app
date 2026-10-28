@@ -88,9 +88,10 @@ export default function App() {
     const counts = {};
     (studyHistory || []).forEach((h) => {
       const total = h.totalSentences || h.sentenceCount || 0;
-      const isDone = total > 0 && (h.completedCount || 0) >= total;
+      const isDone = (typeof h.practiceCount === 'number' && h.practiceCount > 0) ||
+        (total > 0 && (h.completedCount || 0) >= total);
       if (isDone) ids.add(h.videoId);
-      const count = typeof h.practiceCount === 'number' ? h.practiceCount : (isDone ? 1 : 0);
+      const count = typeof h.practiceCount === 'number' && h.practiceCount > 0 ? h.practiceCount : (isDone ? 1 : 0);
       if (count > 0) counts[h.videoId] = count;
     });
     if (currentVideo?.videoId && currentVideo?.sentences?.length > 0) {
@@ -133,9 +134,7 @@ export default function App() {
 
   const handleResetLessonProgress = (video) => {
     setCompletedSentenceIds(new Set());
-    if (currentUser?.username) {
-      deleteUserCompletedSentences(currentUser.username, video.videoId);
-    }
+    if (currentUser?.username) deleteUserCompletedSentences(currentUser.username, video.videoId);
     updateStudyHistory(video, 0);
   };
 
@@ -207,11 +206,15 @@ export default function App() {
     if (currentVideo?.videoId === lesson.videoId) {
       handleResetLesson(true, handleResetLessonProgress);
     } else {
-      if (currentUser?.username) {
-        deleteUserCompletedSentences(currentUser.username, lesson.videoId);
-      }
+      if (currentUser?.username) deleteUserCompletedSentences(currentUser.username, lesson.videoId);
       setStudyHistory((prev) =>
-        prev.map((h) => (h.videoId === lesson.videoId ? { ...h, completedCount: 0 } : h))
+        prev.map((h) => {
+          if (h.videoId !== lesson.videoId) return h;
+          const prevCount = typeof h.practiceCount === 'number' && h.practiceCount > 0
+            ? h.practiceCount
+            : ((h.totalSentences || h.sentenceCount || 0) > 0 && (h.completedCount || 0) >= (h.totalSentences || h.sentenceCount || 1) ? 1 : 0);
+          return { ...h, completedCount: 0, practiceCount: prevCount };
+        })
       );
       handleLoadVideo(lesson.videoId, lesson.language, true, syncProgressOnLoad);
     }
