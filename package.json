@@ -10,7 +10,7 @@
     "install:all": "npm install && npm --prefix server install && npm --prefix client install",
     "build": "cd client && npm install && npm run build",
     "check:lines": "node scripts/check-line-limits.js",
-    "test": "node scripts/check-line-limits.js && node test/test_core.js && node test/test_grammar.js && node test/test_gamification.js && node test/test_user_storage.js && node test/test_playlist.js && node test/test_alphabet.js && node test/test_speaking_coach.js",
+    "test": "node scripts/check-line-limits.js && node test/test_core.js && node test/test_grammar.js && node test/test_gamification.js && node test/test_user_storage.js && node test/test_playlist.js && node test/test_alphabet.js && node test/test_speaking_coach.js && node test/test_sidebar_navigation.js",
     "start": "node server/src/index.js"
   },
   "dependencies": {

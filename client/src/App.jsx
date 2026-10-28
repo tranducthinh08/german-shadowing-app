@@ -1,5 +1,6 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import Header from './components/common/Header';
+import AppSidebar from './components/navigation/AppSidebar';
 import StudioWorkspace from './components/studio/StudioWorkspace';
 import AppModals from './components/common/AppModals';
 import { useUserSession } from './hooks/useUserSession';
@@ -30,6 +31,21 @@ function TabLoadingFallback() {
 
 export default function App() {
   const [mainTab, setMainTab] = useState('studio');
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(() => localStorage.getItem('polyglot_sidebar_collapsed') === 'true');
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+
+  const handleToggleSidebarCollapse = () => {
+    setIsSidebarCollapsed(prev => {
+      const next = !prev;
+      try { localStorage.setItem('polyglot_sidebar_collapsed', String(next)); } catch (e) {}
+      return next;
+    });
+  };
+
+  const handleNavigate = (tabId, mode) => {
+    setMainTab(tabId);
+    if (mode) setStudyMode(mode);
+  };
 
   const {
     currentUser, setCurrentUser, isUserModalOpen, setIsUserModalOpen,
@@ -179,32 +195,47 @@ export default function App() {
       <div className="pointer-events-none fixed inset-0 z-0 opacity-30 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(128,131,255,0.12),rgba(255,255,255,0))]"></div>
       <div className="pointer-events-none fixed -top-32 -left-20 w-96 h-96 bg-primary/10 rounded-full blur-[140px]"></div>
 
-      <Header
+      {/* Persistent Left Sidebar Navigation */}
+      <AppSidebar
         activeTab={mainTab}
-        onChangeTab={setMainTab}
-        onLoadVideo={(urlOrId, lang) => handleLoadVideo(urlOrId, lang, false, syncProgressOnLoad)}
-        isLoading={isLoading}
-        currentLanguage={currentLanguage}
-        onChangeLanguage={(lang) => {
-          setCurrentLanguage(lang);
-          if (currentUser?.username) {
-            saveUserSettings(currentUser.username, { selectedLang: lang });
-          }
-          if (currentVideo) {
-            handleLoadVideo(currentVideo.videoId, lang, false, syncProgressOnLoad);
-          }
-        }}
-        onOpenVocab={() => setIsVocabOpen(true)}
+        studyMode={studyMode}
+        onChangeTab={handleNavigate}
         savedVocabCount={savedWords.length}
         historyCount={studyHistory.length}
-        onOpenShortcuts={() => setIsShortcutsOpen(true)}
-        gamificationData={gamificationData}
+        isCollapsed={isSidebarCollapsed}
+        onToggleCollapse={handleToggleSidebarCollapse}
+        isMobileOpen={isMobileSidebarOpen}
+        onCloseMobile={() => setIsMobileSidebarOpen(false)}
+        onOpenVocab={() => setIsVocabOpen(true)}
         onOpenGamification={() => setIsGamificationOpen(true)}
-        currentUser={currentUser}
         onOpenUserProfile={() => setIsUserModalOpen(true)}
+        currentUser={currentUser}
       />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-5 relative z-10">
+      {/* Main Content Area (offset by Sidebar width on desktop) */}
+      <div className={`flex-1 flex flex-col min-w-0 transition-all duration-300 ${
+        isSidebarCollapsed ? 'lg:pl-20' : 'lg:pl-64'
+      }`}>
+        <Header
+          onOpenMobileMenu={() => setIsMobileSidebarOpen(true)}
+          onLoadVideo={(urlOrId, lang) => { handleLoadVideo(urlOrId, lang, false, syncProgressOnLoad); setMainTab('studio'); }}
+          isLoading={isLoading}
+          currentLanguage={currentLanguage}
+          onChangeLanguage={(lang) => {
+            setCurrentLanguage(lang);
+            if (currentUser?.username) saveUserSettings(currentUser.username, { selectedLang: lang });
+            if (currentVideo) handleLoadVideo(currentVideo.videoId, lang, false, syncProgressOnLoad);
+          }}
+          onOpenVocab={() => setIsVocabOpen(true)}
+          savedVocabCount={savedWords.length}
+          onOpenShortcuts={() => setIsShortcutsOpen(true)}
+          gamificationData={gamificationData}
+          onOpenGamification={() => setIsGamificationOpen(true)}
+          currentUser={currentUser}
+          onOpenUserProfile={() => setIsUserModalOpen(true)}
+        />
+
+        <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-5 relative z-10">
         {errorMessage && (
           <div className="mb-4 p-3.5 rounded-xl bg-error-container/30 border border-error/50 flex flex-wrap items-center justify-between gap-3 text-error text-xs animate-shake">
             <div className="flex items-center gap-2 flex-1 min-w-0">
@@ -325,6 +356,7 @@ export default function App() {
           />
         )}
       </main>
+      </div>
 
       <AppModals
         currentUser={currentUser}

@@ -1,26 +1,17 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
-  Headphones, Search, Bookmark, History, HelpCircle,
-  Trophy, Clipboard, ArrowRight, ChevronDown, PenTool,
-  BookOpen, Languages, Mic
+  Menu, Search, Bookmark, HelpCircle, Trophy, Clipboard,
+  ArrowRight, ChevronDown
 } from 'lucide-react';
 
-const LEARN_NAV_ITEMS = [
-  { id: 'speaking_coach', title: 'Luyện phát âm AI', tag: 'Mới', desc: 'Chẩn đoán Umlaut, khẩu hình & chấm điểm', icon: Mic },
-  { id: 'alphabet', title: 'Bảng chữ cái (ABC)', tag: '41 âm', desc: '26 chữ, Umlaute, âm khó & ôn mỗi ngày', icon: Languages },
-  { id: 'lessons', title: 'Bài học giáo trình', tag: 'A1 • A2', desc: 'Nicos Weg (DW) • 80 tập đầy đủ phụ đề', icon: BookOpen }
-];
-
 export default function Header({
-  activeTab = 'studio',
-  onChangeTab,
+  onOpenMobileMenu,
   onLoadVideo,
   isLoading,
   currentLanguage,
   onChangeLanguage,
   onOpenVocab,
   savedVocabCount = 0,
-  historyCount = 0,
   onOpenShortcuts,
   gamificationData,
   onOpenGamification,
@@ -28,27 +19,11 @@ export default function Header({
   onOpenUserProfile
 }) {
   const [inputUrl, setInputUrl] = useState('');
-  const [isLearnDropdownOpen, setIsLearnDropdownOpen] = useState(false);
-  const learnDropdownRef = useRef(null);
-
-  // Close dropdown on click outside
-  useEffect(() => {
-    if (!isLearnDropdownOpen) return;
-
-    function handleClickOutside(event) {
-      if (learnDropdownRef.current && !learnDropdownRef.current.contains(event.target)) {
-        setIsLearnDropdownOpen(false);
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isLearnDropdownOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (inputUrl.trim()) {
       onLoadVideo(inputUrl.trim(), currentLanguage);
-      if (onChangeTab) onChangeTab('studio');
     }
   };
 
@@ -58,7 +33,6 @@ export default function Header({
       if (text) {
         setInputUrl(text);
         onLoadVideo(text.trim(), currentLanguage);
-        if (onChangeTab) onChangeTab('studio');
       }
     } catch (e) {
       // Clipboard access denied, keep manual input
@@ -68,159 +42,22 @@ export default function Header({
   const streakCount = gamificationData?.streak?.currentStreak || 0;
 
   return (
-    <header className="sticky top-0 z-50 h-16 bg-[#070b14]/90 backdrop-blur-xl border-b border-outline-variant/30 transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
+    <header className="sticky top-0 z-30 h-16 bg-[#070b14]/90 backdrop-blur-xl border-b border-outline-variant/30 transition-all">
+      <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
         
-        {/* Left: Brand Logo & Main View Tabs */}
-        <div className="flex items-center gap-3 shrink-0">
-          <div 
-            onClick={() => onChangeTab && onChangeTab('studio')}
-            className="flex items-center gap-2.5 cursor-pointer group"
+        {/* Left: Mobile Hamburger & Page Indicator */}
+        <div className="flex items-center gap-2.5 shrink-0">
+          <button
+            type="button"
+            onClick={onOpenMobileMenu}
+            className="flex lg:hidden p-2 rounded-xl bg-surface-container-low hover:bg-surface-container-high border border-outline-variant/30 text-on-surface transition-colors cursor-pointer"
+            title="Mở menu điều hướng"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-inverse-primary to-secondary flex items-center justify-center shadow-md shadow-primary-container/20 group-hover:scale-105 transition-transform">
-              <Headphones className="w-4 h-4 text-on-primary" />
-            </div>
-            <div className="hidden lg:block">
-              <span className="font-headline font-bold text-base tracking-tight bg-gradient-to-r from-primary via-secondary to-tertiary bg-clip-text text-transparent">
-                PolyGlot Studio
-              </span>
-            </div>
-          </div>
+            <Menu className="w-5 h-5" />
+          </button>
 
-          {/* Dedicated Navigation Tabs: Luyện tập | Học tập ▾ (Bảng chữ cái / Bài học) | Lịch sử */}
-          <div className="flex items-center p-0.5 bg-surface-container-low rounded-xl border border-outline-variant/30">
-            <button
-              type="button"
-              onClick={() => {
-                if (onChangeTab) onChangeTab('studio');
-                setIsLearnDropdownOpen(false);
-              }}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                activeTab === 'studio'
-                  ? 'bg-primary-container text-on-primary-container shadow-xs'
-                  : 'text-on-surface-variant hover:text-on-surface'
-              }`}
-            >
-              <PenTool className="w-3.5 h-3.5" />
-              <span>Luyện tập</span>
-            </button>
-
-            {/* Smart Learning Dropdown: Bảng chữ cái, Bài học & Luyện phát âm AI */}
-            <div className="relative" ref={learnDropdownRef}>
-              <button
-                type="button"
-                onClick={() => setIsLearnDropdownOpen(!isLearnDropdownOpen)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                  activeTab === 'lessons' || activeTab === 'playlist' || activeTab === 'alphabet' || activeTab === 'speaking_coach'
-                    ? 'bg-primary-container text-on-primary-container shadow-xs'
-                    : 'text-on-surface-variant hover:text-on-surface'
-                }`}
-                title="Chọn chương trình học: Bảng chữ cái, Luyện phát âm AI hoặc Bài học A1/A2"
-              >
-                {activeTab === 'alphabet' ? (
-                  <>
-                    <Languages className="w-3.5 h-3.5 text-secondary" />
-                    <span>Bảng chữ cái</span>
-                    <span className="text-[10px] font-bold px-1.5 py-0.2 rounded-full bg-on-primary-container/20 text-on-primary-container">
-                      ABC
-                    </span>
-                  </>
-                ) : activeTab === 'speaking_coach' ? (
-                  <>
-                    <Mic className="w-3.5 h-3.5 text-secondary" />
-                    <span>Phát âm AI</span>
-                    <span className="text-[10px] font-bold px-1.5 py-0.2 rounded-full bg-on-primary-container/20 text-on-primary-container">
-                      Coach
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    <BookOpen className="w-3.5 h-3.5 text-secondary" />
-                    <span>Bài học</span>
-                    <span className={`text-[10px] font-bold px-1.5 py-0.2 rounded-full ${
-                      activeTab === 'lessons' || activeTab === 'playlist'
-                        ? 'bg-on-primary-container/20 text-on-primary-container'
-                        : 'bg-secondary/15 text-secondary'
-                    }`}>
-                      A1 • A2
-                    </span>
-                  </>
-                )}
-                <ChevronDown className={`w-3 h-3 text-outline transition-transform duration-200 ${isLearnDropdownOpen ? 'rotate-180 text-on-surface' : ''}`} />
-              </button>
-
-              {/* Glassmorphic Dropdown Menu */}
-              {isLearnDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 w-72 bg-[#070b14]/95 backdrop-blur-2xl rounded-2xl border border-outline-variant/40 shadow-2xl p-2 z-50 animate-in fade-in zoom-in-95 duration-150">
-                  <div className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-outline mb-1">
-                    Nội dung học tập
-                  </div>
-                  {LEARN_NAV_ITEMS.map((item) => {
-                    const Icon = item.icon;
-                    const isSelected = activeTab === item.id || (item.id === 'lessons' && activeTab === 'playlist');
-                    return (
-                      <button
-                        key={item.id}
-                        type="button"
-                        onClick={() => {
-                          if (onChangeTab) onChangeTab(item.id);
-                          setIsLearnDropdownOpen(false);
-                        }}
-                        className={`w-full flex items-start gap-3 p-2 rounded-xl text-left transition-all cursor-pointer mb-1 ${
-                          isSelected
-                            ? 'bg-secondary-container/25 border border-secondary/40 text-on-surface'
-                            : 'hover:bg-surface-container-high text-on-surface'
-                        }`}
-                      >
-                        <div className="w-8 h-8 rounded-xl bg-secondary/15 flex items-center justify-center shrink-0 mt-0.5">
-                          <Icon className="w-4 h-4 text-secondary" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center justify-between gap-1">
-                            <span className="text-xs font-bold text-on-surface">{item.title}</span>
-                            <span className="text-[10px] font-bold px-1.5 py-0.2 rounded-md bg-secondary/20 text-secondary">
-                              {item.tag}
-                            </span>
-                          </div>
-                          <p className="text-[11px] text-on-surface-variant truncate mt-0.5">
-                            {item.desc}
-                          </p>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-
-            <button
-              type="button"
-              onClick={() => {
-                if (onChangeTab) onChangeTab('history');
-                setIsLearnDropdownOpen(false);
-              }}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                activeTab === 'history'
-                  ? 'bg-primary-container text-on-primary-container shadow-xs'
-                  : 'text-on-surface-variant hover:text-on-surface'
-              }`}
-            >
-              <History className="w-3.5 h-3.5" />
-              <span>Lịch sử</span>
-              {historyCount > 0 && (
-                <span className={`text-[10px] font-bold px-1.5 py-0.2 rounded-full ${
-                  activeTab === 'history'
-                    ? 'bg-on-primary-container/20 text-on-primary-container'
-                    : 'bg-surface-container-high text-outline'
-                }`}>
-                  {historyCount}
-                </span>
-              )}
-            </button>
-          </div>
-
-          {/* Compact Language Selector */}
-          <div className="hidden sm:flex items-center p-0.5 bg-surface-container-low rounded-lg border border-outline-variant/30">
+          {/* Quick Language Selector */}
+          <div className="flex items-center p-0.5 bg-surface-container-low rounded-lg border border-outline-variant/30">
             <button
               type="button"
               onClick={() => onChangeLanguage('de')}
@@ -251,8 +88,8 @@ export default function Header({
         </div>
 
         {/* Center: Clean YouTube URL Input Bar */}
-        <div className="flex-1 max-w-md mx-2 flex items-center gap-2">
-          <form onSubmit={handleSubmit} className="flex-1 flex items-center bg-surface-container-low/90 rounded-full px-3 py-1 border border-outline-variant/40 focus-within:border-secondary transition-all shadow-xs">
+        <div className="flex-1 max-w-xl mx-2 flex items-center gap-2">
+          <form onSubmit={handleSubmit} className="flex-1 flex items-center bg-surface-container-low/90 rounded-full px-3.5 py-1.5 border border-outline-variant/40 focus-within:border-secondary transition-all shadow-xs">
             <Search className="w-3.5 h-3.5 text-secondary mr-2 shrink-0" />
             <input
               type="text"
@@ -265,7 +102,7 @@ export default function Header({
               <button
                 type="button"
                 onClick={handlePasteClipboard}
-                className="hidden md:flex ml-1 px-2 py-0.5 rounded-full text-[11px] font-medium text-outline hover:text-on-surface hover:bg-surface-container-high transition-all items-center gap-1 shrink-0 cursor-pointer"
+                className="hidden md:flex ml-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium text-outline hover:text-on-surface hover:bg-surface-container-high transition-all items-center gap-1 shrink-0 cursor-pointer"
                 title="Dán từ Clipboard"
               >
                 <Clipboard className="w-3 h-3 text-secondary" />
@@ -283,7 +120,7 @@ export default function Header({
           </form>
         </div>
 
-        {/* Right: Actions, Gamification, and User Profile */}
+        {/* Right: Gamification, Vocab & User Profile */}
         <div className="flex items-center gap-1.5 shrink-0">
           {/* Gamification Streak & Trophy Button */}
           <button
@@ -298,7 +135,7 @@ export default function Header({
             )}
           </button>
 
-          {/* Sổ từ vựng */}
+          {/* Sổ từ vựng nhanh */}
           <button
             type="button"
             onClick={onOpenVocab}
@@ -324,7 +161,7 @@ export default function Header({
           </button>
 
           {/* User Profile Pill */}
-          <div className="pl-1.5 border-l border-outline-variant/30">
+          <div className="pl-1 border-l border-outline-variant/30">
             <button
               type="button"
               onClick={onOpenUserProfile}
