@@ -22,12 +22,10 @@ export default function StudioLessonHeader({
 
   const totalSentences = currentVideo.sentences?.length || 0;
   const effectiveCompletedCount = currentVideo.sentences?.length
-    ? currentVideo.sentences.filter((s, idx) =>
+    ? currentVideo.sentences.filter((s) =>
         completedSentenceIds.has(s.id) ||
         completedSentenceIds.has(String(s.id)) ||
-        completedSentenceIds.has(Number(s.id)) ||
-        completedSentenceIds.has(idx) ||
-        completedSentenceIds.has(idx + 1)
+        completedSentenceIds.has(Number(s.id))
       ).length
     : completedSentenceCount;
   const progressPercent = totalSentences > 0
@@ -142,9 +140,7 @@ export default function StudioLessonHeader({
               const isCompleted =
                 completedSentenceIds.has(s.id) ||
                 completedSentenceIds.has(String(s.id)) ||
-                completedSentenceIds.has(Number(s.id)) ||
-                completedSentenceIds.has(idx) ||
-                completedSentenceIds.has(idx + 1);
+                completedSentenceIds.has(Number(s.id));
               const isActive = idx === activeSegmentIndex;
               return (
                 <button

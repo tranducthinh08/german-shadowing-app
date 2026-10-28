@@ -103,29 +103,28 @@ assert.strictEqual(resNull.newText, 'ß');
 assert.strictEqual(resNull.newCursorPos, 1);
 console.log('  ✅ Empty/undefined edge cases handled safely');
 
-// 5. Test completed sentence unblur resolution across id & index
-console.log('\nTest 5: Completed sentence unblur check across ID, string ID, and 0-based index');
-const sampleSentence = { id: 1, text: 'Guten Morgen, Herr Müller' };
-const index = 0;
+// 5. Test completed sentence unblur resolution strictly by sentence ID
+console.log('\nTest 5: Completed sentence unblur check strictly by sentence ID (prevent premature unblur of next sentence)');
+const sentence1 = { id: 1, text: 'Guten Morgen, Herr Müller' };
+const sentence2 = { id: 2, text: 'Guten Morgen, Frau Schneider' };
 
-function checkIsCompleted(completedSet, sentence, idx) {
+function checkIsCompleted(completedSet, sentence) {
   return (
     completedSet.has(sentence.id) ||
     completedSet.has(String(sentence.id)) ||
-    completedSet.has(Number(sentence.id)) ||
-    completedSet.has(idx) ||
-    completedSet.has(idx + 1)
+    completedSet.has(Number(sentence.id))
   );
 }
 
-// Case 5.1: Saved with integer id = 1
-assert.strictEqual(checkIsCompleted(new Set([1]), sampleSentence, index), true);
-// Case 5.2: Saved with string id = '1'
-assert.strictEqual(checkIsCompleted(new Set(['1']), sampleSentence, index), true);
-// Case 5.3: Saved with 0-based index = 0
-assert.strictEqual(checkIsCompleted(new Set([0]), sampleSentence, index), true);
-// Case 5.4: Uncompleted sentence
-assert.strictEqual(checkIsCompleted(new Set([99]), sampleSentence, index), false);
-console.log('  ✅ Unblur matching verified across numeric id, string id, and index fallbacks');
+// Case 5.1: Sentence 1 completed (id = 1) -> Sentence 1 is unblurred
+assert.strictEqual(checkIsCompleted(new Set([1]), sentence1), true);
+assert.strictEqual(checkIsCompleted(new Set(['1']), sentence1), true);
+
+// Case 5.2: CRITICAL BUG REPRO: When only sentence 1 is completed (Set([1])), sentence 2 (id = 2, index = 1) MUST NOT be completed!
+assert.strictEqual(checkIsCompleted(new Set([1]), sentence2), false, 'Sentence 2 must NOT be marked completed when only sentence 1 is done');
+
+// Case 5.3: Both completed
+assert.strictEqual(checkIsCompleted(new Set([1, 2]), sentence2), true);
+console.log('  ✅ Strict sentence ID matching verified: sentence 2 never prematurely unblurs');
 
 console.log('\n🎉 ALL UI/UX ENHANCEMENT TESTS PASSED SUCCESSFULLY!\n');

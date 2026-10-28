@@ -58,13 +58,11 @@ export default function TranscriptList({
 
   // When a sentence is completed, auto fetch Vietnamese translation if not already provided
   useEffect(() => {
-    sentences.forEach((sentence, index) => {
+    sentences.forEach((sentence) => {
       const isCompleted =
         completedSentenceIds.has(sentence.id) ||
         completedSentenceIds.has(String(sentence.id)) ||
-        completedSentenceIds.has(Number(sentence.id)) ||
-        completedSentenceIds.has(index) ||
-        completedSentenceIds.has(index + 1);
+        completedSentenceIds.has(Number(sentence.id));
 
       if (!isCompleted) return;
       const id = sentence.id;
@@ -228,9 +226,7 @@ export default function TranscriptList({
           const isCompleted =
             completedSentenceIds.has(sentence.id) ||
             completedSentenceIds.has(String(sentence.id)) ||
-            completedSentenceIds.has(Number(sentence.id)) ||
-            completedSentenceIds.has(index) ||
-            completedSentenceIds.has(index + 1);
+            completedSentenceIds.has(Number(sentence.id));
           const shouldBlur = isBlurScript && !isCompleted;
           const translationVi = translations[sentence.id] || sentence.translationVi;
 
