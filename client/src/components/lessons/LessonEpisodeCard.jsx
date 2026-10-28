@@ -12,7 +12,9 @@ export default function LessonEpisodeCard({
       onClick={() => onSelectEpisode && onSelectEpisode(ep)}
       className={`group relative flex flex-col justify-between rounded-2xl p-3.5 border transition-all cursor-pointer hover:scale-[1.02] shadow-sm hover:shadow-xl ${
         isCurrent
-          ? 'bg-secondary-container/20 border-secondary ring-1 ring-secondary'
+          ? isCompleted
+            ? 'bg-emerald-950/20 border-emerald-500 ring-2 ring-emerald-500/50 shadow-md shadow-emerald-500/10'
+            : 'bg-secondary-container/20 border-secondary ring-1 ring-secondary'
           : isCompleted
           ? 'bg-surface-container/80 border-emerald-500/30 hover:border-emerald-500/60'
           : 'bg-surface-container-low hover:bg-surface-container border-outline-variant/30 hover:border-secondary/40'
@@ -42,17 +44,16 @@ export default function LessonEpisodeCard({
           )}
         </div>
 
-        {isCompleted && (
-          <div className="absolute top-2 right-2 px-1.5 py-0.5 rounded-md text-[10px] font-bold bg-emerald-500/90 text-white flex items-center gap-1 shadow-xs">
+        {isCompleted ? (
+          <div className="absolute top-2 right-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-600 text-white flex items-center gap-1 shadow-md">
             <CheckCircle2 className="w-3 h-3" />
             <span>Đã học</span>
           </div>
-        )}
-        {isCurrent && (
-          <div className="absolute top-2 right-2 px-1.5 py-0.5 rounded-md text-[10px] font-bold bg-secondary text-on-secondary flex items-center gap-1 shadow-xs animate-pulse">
+        ) : isCurrent ? (
+          <div className="absolute top-2 right-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-secondary text-on-secondary flex items-center gap-1 shadow-xs animate-pulse">
             <span>Đang học</span>
           </div>
-        )}
+        ) : null}
 
         <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[11px] text-white/90">
           <span className="flex items-center gap-1 font-medium">
@@ -80,8 +81,10 @@ export default function LessonEpisodeCard({
           <span className="text-outline">
             {ep.sentenceCount} câu đàm thoại
           </span>
-          <span className="font-semibold text-secondary group-hover:text-primary transition-colors flex items-center gap-1">
-            Học tập này
+          <span className={`font-semibold transition-colors flex items-center gap-1 ${
+            isCompleted ? 'text-emerald-400 group-hover:text-emerald-300' : 'text-secondary group-hover:text-primary'
+          }`}>
+            {isCompleted ? 'Luyện lại' : isCurrent ? 'Học tiếp' : 'Học tập này'}
             <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
           </span>
         </div>

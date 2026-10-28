@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect, lazy, Suspense, useMemo } from 'react';
 import Header from './components/common/Header';
 import AppSidebar from './components/navigation/AppSidebar';
 import StudioWorkspace from './components/studio/StudioWorkspace';
@@ -72,13 +72,34 @@ export default function App() {
     resetTrigger, playerRef, activeSegment, handleSelectEpisode,
     handleLoadVideo, handleApplyCustomLesson, handleResetLesson,
     handleNextSegment, handlePrevSegment, handleSelectSegment,
-    handleReplaySegment, handleReplaySlow
+    handleReplaySegment, handleReplaySlow,
+    completedLessonData, setCompletedLessonData, handleCompleteLesson,
+    handleNextLessonFromCompletion, handleReplayLessonFromCompletion
   } = useVideoSession(userSettings);
 
   const [selectedWord, setSelectedWord] = useState(null);
   const [isVocabOpen, setIsVocabOpen] = useState(false);
   const [isShortcutsOpen, setIsShortcutsOpen] = useState(false);
   const [isCustomTranscriptOpen, setIsCustomTranscriptOpen] = useState(false);
+
+  // Completed video IDs calculation across study history & active video
+  const completedVideoIds = useMemo(() => {
+    const ids = new Set();
+    (studyHistory || []).forEach((h) => {
+      const total = h.totalSentences || h.sentenceCount || 0;
+      if (total > 0 && (h.completedCount || 0) >= total) ids.add(h.videoId);
+    });
+    if (currentVideo?.videoId && currentVideo?.sentences?.length > 0) {
+      if (completedSentenceIds.size >= currentVideo.sentences.length) ids.add(currentVideo.videoId);
+    }
+    return Array.from(ids);
+  }, [studyHistory, currentVideo?.videoId, currentVideo?.sentences?.length, completedSentenceIds.size]);
+
+  const onCompleteLesson = (stats) => {
+    if (currentVideo) updateStudyHistory(currentVideo, currentVideo.sentences?.length || 0);
+    handleCompleteSentenceReward(100, studyMode);
+    handleCompleteLesson(stats);
+  };
 
   // Sync completed sentences per video & user
   useEffect(() => {
@@ -197,19 +218,12 @@ export default function App() {
 
       {/* Persistent Left Sidebar Navigation */}
       <AppSidebar
-        activeTab={mainTab}
-        studyMode={studyMode}
-        onChangeTab={handleNavigate}
-        savedVocabCount={savedWords.length}
-        historyCount={studyHistory.length}
-        isCollapsed={isSidebarCollapsed}
-        onToggleCollapse={handleToggleSidebarCollapse}
-        isMobileOpen={isMobileSidebarOpen}
-        onCloseMobile={() => setIsMobileSidebarOpen(false)}
-        onOpenVocab={() => setIsVocabOpen(true)}
-        onOpenGamification={() => setIsGamificationOpen(true)}
-        onOpenUserProfile={() => setIsUserModalOpen(true)}
-        currentUser={currentUser}
+        activeTab={mainTab} studyMode={studyMode} onChangeTab={handleNavigate}
+        savedVocabCount={savedWords.length} historyCount={studyHistory.length}
+        isCollapsed={isSidebarCollapsed} onToggleCollapse={handleToggleSidebarCollapse}
+        isMobileOpen={isMobileSidebarOpen} onCloseMobile={() => setIsMobileSidebarOpen(false)}
+        onOpenVocab={() => setIsVocabOpen(true)} onOpenGamification={() => setIsGamificationOpen(true)}
+        onOpenUserProfile={() => setIsUserModalOpen(true)} currentUser={currentUser}
       />
 
       {/* Main Content Area (offset by Sidebar width on desktop) */}
@@ -219,19 +233,15 @@ export default function App() {
         <Header
           onOpenMobileMenu={() => setIsMobileSidebarOpen(true)}
           onLoadVideo={(urlOrId, lang) => { handleLoadVideo(urlOrId, lang, false, syncProgressOnLoad); setMainTab('studio'); }}
-          isLoading={isLoading}
-          currentLanguage={currentLanguage}
+          isLoading={isLoading} currentLanguage={currentLanguage}
           onChangeLanguage={(lang) => {
             setCurrentLanguage(lang);
             if (currentUser?.username) saveUserSettings(currentUser.username, { selectedLang: lang });
             if (currentVideo) handleLoadVideo(currentVideo.videoId, lang, false, syncProgressOnLoad);
           }}
-          onOpenVocab={() => setIsVocabOpen(true)}
-          savedVocabCount={savedWords.length}
-          onOpenShortcuts={() => setIsShortcutsOpen(true)}
-          gamificationData={gamificationData}
-          onOpenGamification={() => setIsGamificationOpen(true)}
-          currentUser={currentUser}
+          onOpenVocab={() => setIsVocabOpen(true)} savedVocabCount={savedWords.length}
+          onOpenShortcuts={() => setIsShortcutsOpen(true)} gamificationData={gamificationData}
+          onOpenGamification={() => setIsGamificationOpen(true)} currentUser={currentUser}
           onOpenUserProfile={() => setIsUserModalOpen(true)}
         />
 
@@ -282,15 +292,9 @@ export default function App() {
 
           {(mainTab === 'lessons' || mainTab === 'playlist') && (
             <LessonsTab
-              onSelectEpisode={(ep, reset) => {
-                handleSelectEpisode(ep, reset, syncProgressOnLoad);
-                setMainTab('studio');
-              }}
-              onSelectLesson={(lesson) => {
-                handleLoadVideo(lesson.videoId, lesson.language, false, syncProgressOnLoad);
-                setMainTab('studio');
-              }}
-              completedVideoIds={studyHistory.filter((h) => h.completedCount >= (h.sentenceCount || 1)).map((h) => h.videoId)}
+              onSelectEpisode={(ep, reset) => { handleSelectEpisode(ep, reset, syncProgressOnLoad); setMainTab('studio'); }}
+              onSelectLesson={(lesson) => { handleLoadVideo(lesson.videoId, lesson.language, false, syncProgressOnLoad); setMainTab('studio'); }}
+              completedVideoIds={completedVideoIds}
               currentVideoId={currentVideo?.videoId}
               onBackToStudio={() => setMainTab('studio')}
               onOpenAlphabet={() => setMainTab('alphabet')}
@@ -355,35 +359,27 @@ export default function App() {
             handleToggleGenderColors={handleToggleGenderColors}
             isFocusMode={Boolean(userSettings?.isFocusMode)}
             onToggleFocusMode={() => handleToggleFocusMode(!userSettings?.isFocusMode)}
+            onCompleteLesson={onCompleteLesson}
           />
         )}
       </main>
       </div>
 
       <AppModals
-        currentUser={currentUser}
-        isUserModalOpen={isUserModalOpen}
-        onCloseUserModal={() => setIsUserModalOpen(false)}
-        onSelectUser={handleSelectUser}
-        selectedWord={selectedWord}
-        onCloseWordPopover={() => setSelectedWord(null)}
-        onSaveWord={(args) => handleSaveWord(args, handleSaveWordReward)}
-        savedWords={savedWords}
-        currentLanguage={currentLanguage}
-        isVocabOpen={isVocabOpen}
-        onCloseVocab={() => setIsVocabOpen(false)}
-        onRemoveWord={handleRemoveWord}
-        isShortcutsOpen={isShortcutsOpen}
-        onCloseShortcuts={() => setIsShortcutsOpen(false)}
-        isCustomTranscriptOpen={isCustomTranscriptOpen}
-        onCloseCustomTranscript={() => setIsCustomTranscriptOpen(false)}
+        currentUser={currentUser} isUserModalOpen={isUserModalOpen} onCloseUserModal={() => setIsUserModalOpen(false)}
+        onSelectUser={handleSelectUser} selectedWord={selectedWord} onCloseWordPopover={() => setSelectedWord(null)}
+        onSaveWord={(args) => handleSaveWord(args, handleSaveWordReward)} savedWords={savedWords} currentLanguage={currentLanguage}
+        isVocabOpen={isVocabOpen} onCloseVocab={() => setIsVocabOpen(false)} onRemoveWord={handleRemoveWord}
+        isShortcutsOpen={isShortcutsOpen} onCloseShortcuts={() => setIsShortcutsOpen(false)}
+        isCustomTranscriptOpen={isCustomTranscriptOpen} onCloseCustomTranscript={() => setIsCustomTranscriptOpen(false)}
         onApplyCustomLesson={(data) => handleApplyCustomLesson(data, syncProgressOnLoad)}
-        isGamificationOpen={isGamificationOpen}
-        onCloseGamification={() => setIsGamificationOpen(false)}
-        gamificationData={gamificationData}
-        onUpdateGamificationData={(updated) => setGamificationData(updated)}
-        activeReward={activeReward}
-        onDismissReward={() => setActiveReward(null)}
+        isGamificationOpen={isGamificationOpen} onCloseGamification={() => setIsGamificationOpen(false)}
+        gamificationData={gamificationData} onUpdateGamificationData={(updated) => setGamificationData(updated)}
+        activeReward={activeReward} onDismissReward={() => setActiveReward(null)}
+        completedLessonData={completedLessonData} onCloseLessonCompletion={() => setCompletedLessonData(null)}
+        onNextLessonFromCompletion={() => handleNextLessonFromCompletion(syncProgressOnLoad)}
+        onReplayLessonFromCompletion={() => handleReplayLessonFromCompletion(handleResetLessonProgress)}
+        onOpenLessonsFromCompletion={() => { setCompletedLessonData(null); setMainTab('lessons'); }}
       />
     </div>
   );

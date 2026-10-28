@@ -41,7 +41,8 @@ export default function StudioWorkspace({
   handleToggleBlur,
   handleToggleGenderColors,
   isFocusMode = false,
-  onToggleFocusMode
+  onToggleFocusMode,
+  onCompleteLesson
 }) {
   return (
     <>
@@ -101,6 +102,7 @@ export default function StudioWorkspace({
                   isLiveCheck={userSettings.isLiveCheck !== undefined ? userSettings.isLiveCheck : true}
                   onToggleLiveCheck={handleToggleLiveCheck}
                   soundEffectsEnabled={userSettings?.soundEffectsEnabled !== false}
+                  onCompleteLesson={onCompleteLesson}
                 />
               ) : (
                 <ShadowingWorkspace
@@ -113,6 +115,7 @@ export default function StudioWorkspace({
                   onReplaySegment={handleReplaySegment}
                   language={currentLanguage}
                   onCompleteSentence={handleCompleteSentence}
+                  onCompleteLesson={onCompleteLesson}
                 />
               )}
             </>

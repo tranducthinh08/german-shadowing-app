@@ -24,7 +24,8 @@ export default function DictationWorkspace({
   onToggleStrictGerman,
   isLiveCheck: propIsLiveCheck,
   onToggleLiveCheck,
-  soundEffectsEnabled = true
+  soundEffectsEnabled = true,
+  onCompleteLesson
 }) {
   const [userInput, setUserInput] = useState('');
   const [diffResult, setDiffResult] = useState(null);
@@ -144,6 +145,8 @@ export default function DictationWorkspace({
     }
     if (segmentIndex < totalSegments - 1) {
       onNextSegment();
+    } else if (onCompleteLesson) {
+      onCompleteLesson({ score: finalScore });
     }
   };
 

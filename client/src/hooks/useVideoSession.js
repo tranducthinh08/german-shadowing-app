@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback } from 'react';
 import { loadVideoApi } from '../services/api';
-import { NICOS_WEG_EPISODES_MAP } from '../data/nicosWegPlaylist';
+import { NICOS_WEG_EPISODES_MAP, NICOS_WEG_PLAYLIST } from '../data/nicosWegPlaylist';
 
 function extractVideoId(urlOrId) {
   if (!urlOrId) return null;
@@ -186,6 +186,39 @@ export function useVideoSession(initialSettings = {}) {
     }
   }, [activeSegment]);
 
+  const [completedLessonData, setCompletedLessonData] = useState(null);
+
+  const handleCompleteLesson = useCallback((stats = {}) => {
+    if (!currentVideo) return;
+    const currentVideoId = currentVideo.videoId;
+    let nextEp = null;
+    if (NICOS_WEG_PLAYLIST?.episodes) {
+      const idx = NICOS_WEG_PLAYLIST.episodes.findIndex((e) => e.videoId === currentVideoId);
+      if (idx >= 0 && idx < NICOS_WEG_PLAYLIST.episodes.length - 1) {
+        nextEp = NICOS_WEG_PLAYLIST.episodes[idx + 1];
+      }
+    }
+    setCompletedLessonData({
+      video: currentVideo,
+      nextEpisode: nextEp,
+      stats
+    });
+  }, [currentVideo]);
+
+  const handleNextLessonFromCompletion = useCallback((onProgressSync) => {
+    if (completedLessonData?.nextEpisode) {
+      handleSelectEpisode(completedLessonData.nextEpisode, false, onProgressSync);
+    }
+    setCompletedLessonData(null);
+  }, [completedLessonData, handleSelectEpisode]);
+
+  const handleReplayLessonFromCompletion = useCallback((onResetProgress) => {
+    if (completedLessonData?.video) {
+      handleResetLesson(true, onResetProgress);
+    }
+    setCompletedLessonData(null);
+  }, [completedLessonData, handleResetLesson]);
+
   return {
     currentVideo,
     setCurrentVideo,
@@ -213,6 +246,11 @@ export function useVideoSession(initialSettings = {}) {
     handlePrevSegment,
     handleSelectSegment,
     handleReplaySegment,
-    handleReplaySlow
+    handleReplaySlow,
+    completedLessonData,
+    setCompletedLessonData,
+    handleCompleteLesson,
+    handleNextLessonFromCompletion,
+    handleReplayLessonFromCompletion
   };
 }

@@ -4,7 +4,8 @@ import {
   ChevronLeft,
   Sparkles,
   BookOpen,
-  Radio
+  Radio,
+  CheckCircle2
 } from 'lucide-react';
 import { compareSentence } from '../../utils/textDiff';
 import { useShadowingRecorder } from '../../hooks/useShadowingRecorder';
@@ -21,7 +22,8 @@ export default function ShadowingWorkspace({
   onPrevSegment,
   onReplaySegment,
   language = 'de',
-  onCompleteSentence
+  onCompleteSentence,
+  onCompleteLesson
 }) {
   const [speechScore, setSpeechScore] = useState(null);
   const [isPlayingDual, setIsPlayingDual] = useState(false);
@@ -60,15 +62,19 @@ export default function ShadowingWorkspace({
       }
 
       if (e.key === 'Enter' && !e.shiftKey) {
-        if (isSpeechStandardMet && segmentIndex < totalSegments - 1) {
+        if (isSpeechStandardMet) {
           e.preventDefault();
-          onNextSegment();
+          if (segmentIndex < totalSegments - 1) {
+            onNextSegment();
+          } else if (onCompleteLesson) {
+            onCompleteLesson();
+          }
         }
       }
     };
     window.addEventListener('keydown', handleGlobalKey);
     return () => window.removeEventListener('keydown', handleGlobalKey);
-  }, [onReplaySegment, isSpeechStandardMet, segmentIndex, totalSegments, onNextSegment, showGrammarModal]);
+  }, [onReplaySegment, isSpeechStandardMet, segmentIndex, totalSegments, onNextSegment, onCompleteLesson, showGrammarModal]);
 
   // Reset when segment changes
   useEffect(() => {
@@ -265,15 +271,27 @@ export default function ShadowingWorkspace({
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <button
-              type="button"
-              disabled={segmentIndex === totalSegments - 1}
-              onClick={onNextSegment}
-              className="p-1.5 rounded-full bg-surface-container text-outline hover:text-on-surface hover:bg-surface-bright disabled:opacity-30 transition-all border border-outline-variant/30 cursor-pointer"
-              title="Câu tiếp theo"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
+            {segmentIndex === totalSegments - 1 && onCompleteLesson ? (
+              <button
+                type="button"
+                onClick={() => onCompleteLesson()}
+                className="px-3 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1 shadow-xs cursor-pointer transition-all"
+                title="Hoàn thành bài học"
+              >
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>Hoàn thành bài</span>
+              </button>
+            ) : (
+              <button
+                type="button"
+                disabled={segmentIndex === totalSegments - 1}
+                onClick={onNextSegment}
+                className="p-1.5 rounded-full bg-surface-container text-outline hover:text-on-surface hover:bg-surface-bright disabled:opacity-30 transition-all border border-outline-variant/30 cursor-pointer"
+                title="Câu tiếp theo"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            )}
           </div>
         </div>
       </div>

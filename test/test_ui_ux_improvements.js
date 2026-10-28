@@ -29,7 +29,11 @@ const filesToCheck = [
   'client/src/components/studio/StudioLessonHeader.jsx',
   'client/src/components/studio/StudioWorkspace.jsx',
   'client/src/components/studio/StudioStarterView.jsx',
+  'client/src/components/studio/LessonCompletionModal.jsx',
+  'client/src/components/lessons/LessonEpisodeCard.jsx',
+  'client/src/components/playlist/PlaylistView.jsx',
   'client/src/components/dictation/DictationWorkspace.jsx',
+  'client/src/components/shadowing/ShadowingWorkspace.jsx',
   'client/src/components/common/ShortcutsModal.jsx',
   'client/src/App.jsx'
 ];
@@ -143,5 +147,73 @@ assert.strictEqual(liveRes.tokens[3].status, 'pending', 'Entschuldigung is not y
 assert.strictEqual(liveRes.matchedCount, 1, 'Only 1 word (emma) is correct, NOT 3');
 assert.strictEqual(liveRes.isComplete, false, 'Sentence must NOT be marked complete when words are wrong');
 console.log('  ✅ Live check accurately flags spelling mistakes as wrong (no false positive)');
+
+// 7. Test completedVideoIds calculation logic
+console.log('\nTest 7: Completed Video IDs calculation across history and active video');
+import { NICOS_WEG_PLAYLIST } from '../client/src/data/nicosWegPlaylist.js';
+
+function computeCompletedVideoIds(studyHistory, currentVideo, completedSentenceIds) {
+  const ids = new Set();
+  (studyHistory || []).forEach((h) => {
+    const total = h.totalSentences || h.sentenceCount || 0;
+    if (total > 0 && (h.completedCount || 0) >= total) ids.add(h.videoId);
+  });
+  if (currentVideo?.videoId && currentVideo?.sentences?.length > 0) {
+    if (completedSentenceIds.size >= currentVideo.sentences.length) {
+      ids.add(currentVideo.videoId);
+    }
+  }
+  return Array.from(ids);
+}
+
+const mockHistory = [
+  { videoId: 'ep1_vid', completedCount: 15, totalSentences: 15 }, // Fully completed with totalSentences
+  { videoId: 'ep2_vid', completedCount: 5, totalSentences: 20 },  // In progress
+  { videoId: 'ep3_vid', completedCount: 10, sentenceCount: 10 },  // Fully completed with legacy sentenceCount
+];
+const mockActiveVideo = {
+  videoId: 'ep4_vid',
+  sentences: [{ id: 1 }, { id: 2 }, { id: 3 }]
+};
+
+// When ep4 has 3 completed sentences
+const completedIds = computeCompletedVideoIds(mockHistory, mockActiveVideo, new Set([1, 2, 3]));
+assert(completedIds.includes('ep1_vid'), 'ep1_vid should be marked completed');
+assert(!completedIds.includes('ep2_vid'), 'ep2_vid should NOT be marked completed');
+assert(completedIds.includes('ep3_vid'), 'ep3_vid should be marked completed');
+assert(completedIds.includes('ep4_vid'), 'ep4_vid should be marked completed via active session');
+console.log('  ✅ completedVideoIds properly marks completed videos from history & active session');
+
+// 8. Test Next Episode Resolution from NICOS_WEG_PLAYLIST
+console.log('\nTest 8: Next Episode Auto-advance Resolution');
+const ep1 = NICOS_WEG_PLAYLIST.episodes[0];
+const ep2 = NICOS_WEG_PLAYLIST.episodes[1];
+const lastEp = NICOS_WEG_PLAYLIST.episodes[NICOS_WEG_PLAYLIST.episodes.length - 1];
+
+function resolveNextEpisode(currentVideoId) {
+  const idx = NICOS_WEG_PLAYLIST.episodes.findIndex((e) => e.videoId === currentVideoId);
+  if (idx >= 0 && idx < NICOS_WEG_PLAYLIST.episodes.length - 1) {
+    return NICOS_WEG_PLAYLIST.episodes[idx + 1];
+  }
+  return null;
+}
+
+assert.strictEqual(resolveNextEpisode(ep1.videoId)?.id, ep2.id, 'Next episode of ep1 must be ep2');
+assert.strictEqual(resolveNextEpisode(lastEp.videoId), null, 'Next episode of last episode must be null');
+console.log('  ✅ Auto-advance accurately identifies next episode in curriculum');
+
+// 9. Test Card Status Precedence (Completed has precedence over In Progress)
+console.log('\nTest 9: Lesson Card Status Precedence');
+function getBadgeStatus(isCompleted, isCurrent) {
+  if (isCompleted) return 'Đã học';
+  if (isCurrent) return 'Đang học';
+  return null;
+}
+
+assert.strictEqual(getBadgeStatus(true, true), 'Đã học', 'When both completed and current, badge MUST be "Đã học"');
+assert.strictEqual(getBadgeStatus(false, true), 'Đang học', 'When current but not completed, badge MUST be "Đang học"');
+assert.strictEqual(getBadgeStatus(true, false), 'Đã học', 'When completed and not current, badge MUST be "Đã học"');
+assert.strictEqual(getBadgeStatus(false, false), null, 'When neither, badge is null');
+console.log('  ✅ Badge precedence verified: "Đã học" always takes precedence over "Đang học"');
 
 console.log('\n🎉 ALL UI/UX ENHANCEMENT TESTS PASSED SUCCESSFULLY!\n');

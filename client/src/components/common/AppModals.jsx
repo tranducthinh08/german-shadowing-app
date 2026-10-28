@@ -8,6 +8,7 @@ const VocabNotebookModal = lazy(() => import('../vocab/VocabNotebookModal'));
 const ShortcutsModal = lazy(() => import('./ShortcutsModal'));
 const CustomTranscriptModal = lazy(() => import('./CustomTranscriptModal'));
 const GamificationModal = lazy(() => import('../gamification/GamificationModal'));
+const LessonCompletionModal = lazy(() => import('../studio/LessonCompletionModal'));
 
 export default function AppModals({
   currentUser,
@@ -32,7 +33,12 @@ export default function AppModals({
   gamificationData,
   onUpdateGamificationData,
   activeReward,
-  onDismissReward
+  onDismissReward,
+  completedLessonData,
+  onCloseLessonCompletion,
+  onNextLessonFromCompletion,
+  onReplayLessonFromCompletion,
+  onOpenLessonsFromCompletion
 }) {
   return (
     <Suspense fallback={null}>
@@ -103,6 +109,18 @@ export default function AppModals({
         <RewardToast
           reward={activeReward}
           onDismiss={onDismissReward}
+        />
+      )}
+
+      {/* Lesson Completion Celebratory Modal */}
+      {completedLessonData && (
+        <LessonCompletionModal
+          isOpen={Boolean(completedLessonData)}
+          onClose={onCloseLessonCompletion}
+          lessonData={completedLessonData}
+          onNextLesson={onNextLessonFromCompletion}
+          onReplayLesson={onReplayLessonFromCompletion}
+          onOpenLessons={onOpenLessonsFromCompletion}
         />
       )}
     </Suspense>
