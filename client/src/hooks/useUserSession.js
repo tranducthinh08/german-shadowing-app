@@ -120,6 +120,26 @@ export function useUserSession() {
     });
   }, [currentUser?.username]);
 
+  const handleToggleSoundEffects = useCallback((newVal) => {
+    setUserSettings((prev) => {
+      const next = { ...prev, soundEffectsEnabled: newVal };
+      if (currentUser?.username) {
+        saveUserSettings(currentUser.username, { soundEffectsEnabled: newVal });
+      }
+      return next;
+    });
+  }, [currentUser?.username]);
+
+  const handleToggleFocusMode = useCallback((newVal) => {
+    setUserSettings((prev) => {
+      const next = { ...prev, isFocusMode: newVal };
+      if (currentUser?.username) {
+        saveUserSettings(currentUser.username, { isFocusMode: newVal });
+      }
+      return next;
+    });
+  }, [currentUser?.username]);
+
   const handleToggleHardLetter = useCallback((letterId) => {
     setHardLetters((prev) =>
       prev.includes(letterId) ? prev.filter((id) => id !== letterId) : [...prev, letterId]
@@ -169,6 +189,8 @@ export function useUserSession() {
     handleToggleGenderColors,
     handleToggleStrictGerman,
     handleToggleLiveCheck,
+    handleToggleSoundEffects,
+    handleToggleFocusMode,
     handleToggleHardLetter,
     handleSaveWord,
     handleRemoveWord

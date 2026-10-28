@@ -1,0 +1,74 @@
+import assert from 'assert';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const rootDir = path.resolve(__dirname, '..');
+
+console.log('\n🧪 Starting Tests for UI/UX Pro Max Improvements...\n');
+
+// Mock localStorage in Node.js for userStorage testing
+if (typeof global.localStorage === 'undefined') {
+  let store = {};
+  global.localStorage = {
+    getItem: (key) => store[key] || null,
+    setItem: (key, val) => { store[key] = String(val); },
+    removeItem: (key) => { delete store[key]; },
+    clear: () => { store = {}; },
+    key: (i) => Object.keys(store)[i] || null,
+    get length() { return Object.keys(store).length; }
+  };
+}
+
+// 1. Test Line limit for UI/UX components
+console.log('Test 1: Line Limit Check for UI/UX Enhanced Files');
+const filesToCheck = [
+  'client/src/utils/soundEffects.js',
+  'client/src/components/studio/StudioLessonHeader.jsx',
+  'client/src/components/studio/StudioWorkspace.jsx',
+  'client/src/components/studio/StudioStarterView.jsx',
+  'client/src/components/dictation/DictationWorkspace.jsx',
+  'client/src/components/common/ShortcutsModal.jsx',
+  'client/src/App.jsx'
+];
+
+for (const relPath of filesToCheck) {
+  const fullPath = path.join(rootDir, relPath);
+  assert(fs.existsSync(fullPath), `File must exist: ${relPath}`);
+  const lines = fs.readFileSync(fullPath, 'utf8').split('\n').length;
+  assert(lines <= 400, `${relPath} exceeds 400 lines (current: ${lines})`);
+  console.log(`  ✅ ${relPath}: ${lines} lines (<= 400 lines)`);
+}
+
+// 2. Test User Settings Default Values & Isolation
+console.log('\nTest 2: User Settings Default Values for Sound Effects & Focus Mode');
+import { DEFAULT_USER_SETTINGS, getUserSettings, saveUserSettings } from '../client/src/utils/userStorage.js';
+
+assert.strictEqual(DEFAULT_USER_SETTINGS.soundEffectsEnabled, true, 'Default soundEffectsEnabled must be true');
+assert.strictEqual(DEFAULT_USER_SETTINGS.isFocusMode, false, 'Default isFocusMode must be false');
+console.log('  ✅ DEFAULT_USER_SETTINGS verified: soundEffectsEnabled=true, isFocusMode=false');
+
+// Test saving and toggling for a test user
+const testUser = 'ux_tester_01';
+saveUserSettings(testUser, { soundEffectsEnabled: false, isFocusMode: true });
+const retrievedSettings = getUserSettings(testUser);
+assert.strictEqual(retrievedSettings.soundEffectsEnabled, false, 'User setting soundEffectsEnabled must persist as false');
+assert.strictEqual(retrievedSettings.isFocusMode, true, 'User setting isFocusMode must persist as true');
+console.log('  ✅ User setting persistence verified for custom sound and focus states');
+
+// 3. Test soundEffects.js safe execution without browser Web Audio
+console.log('\nTest 3: Sound Effects safe invocation in non-browser or muted environments');
+import { playSuccessSound, playPerfectSound } from '../client/src/utils/soundEffects.js';
+
+// Should not throw even when window/AudioContext is not defined in Node.js
+assert.doesNotThrow(() => {
+  playSuccessSound(false); // muted
+  playPerfectSound(false); // muted
+  playSuccessSound(true);  // unmuted in node (safe fallback)
+  playPerfectSound(true);  // unmuted in node (safe fallback)
+}, 'Sound effects must never throw unhandled exceptions');
+console.log('  ✅ Web Audio safe degradation verified (0 KB network overhead, graceful degradation)');
+
+console.log('\n🎉 ALL UI/UX ENHANCEMENT TESTS PASSED SUCCESSFULLY!\n');

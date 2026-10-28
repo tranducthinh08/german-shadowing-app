@@ -5,14 +5,14 @@ export default function ShortcutsModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   const shortcuts = [
-    { key: 'Tab', desc: 'Nghe lại câu hiện tại (Phát lại segment)' },
+    { key: 'Tab', desc: 'Nghe lại câu hiện tại (Replay Segment)' },
+    { key: 'Shift + Tab', desc: 'Nghe lại câu với tốc độ chậm (0.75x)' },
+    { key: 'Enter', desc: 'Nộp bài kiểm tra / Chuyển sang câu tiếp khi đạt chuẩn' },
+    { key: 'Ctrl / Cmd + →', desc: 'Chuyển nhanh sang câu tiếp theo' },
+    { key: 'Ctrl / Cmd + ←', desc: 'Quay lại câu trước đó' },
     { key: 'Space', desc: 'Phát / Tạm dừng câu hiện tại' },
-    { key: 'Enter', desc: 'Nộp bài kiểm tra chính tả (trong Dictation)' },
-    { key: 'Ctrl + Space', desc: 'Phát lại câu với tốc độ chậm (0.75x)' },
-    { key: 'Tab hoặc Ctrl + →', desc: 'Chuyển sang câu tiếp theo' },
-    { key: 'Ctrl + ←', desc: 'Quay lại câu trước' },
     { key: 'L', desc: 'Bật / Tắt chế độ lặp lại câu (Loop)' },
-    { key: 'Bàn phím Đức', desc: 'Nhấn vào các nút ä, ö, ü, ß để chèn nhanh ký tự đặc biệt' }
+    { key: 'ä, ö, ü, ß', desc: 'Chèn nhanh ký tự đặc biệt tiếng Đức hoặc tên riêng' }
   ];
 
   return (

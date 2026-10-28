@@ -3,6 +3,7 @@ import { Play, RotateCcw, CheckCircle2, ChevronRight, HelpCircle, Eye, Sparkles 
 import { insertCharToInput } from '../../utils/germanUtils';
 import { compareSentence, computeLiveStream } from '../../utils/textDiff';
 import { extractProperNouns } from '../../utils/properNouns';
+import { playSuccessSound, playPerfectSound } from '../../utils/soundEffects';
 import GrammarAnalysisModal from '../grammar/GrammarAnalysisModal';
 import SpecialCharToolbar from './SpecialCharToolbar';
 import DictationFeedbackView from './DictationFeedbackView';
@@ -22,7 +23,8 @@ export default function DictationWorkspace({
   strictGerman: propStrictGerman,
   onToggleStrictGerman,
   isLiveCheck: propIsLiveCheck,
-  onToggleLiveCheck
+  onToggleLiveCheck,
+  soundEffectsEnabled = true
 }) {
   const [userInput, setUserInput] = useState('');
   const [diffResult, setDiffResult] = useState(null);
@@ -34,22 +36,10 @@ export default function DictationWorkspace({
   const [localLiveCheck, setLocalLiveCheck] = useState(true);
   const isLiveCheck = propIsLiveCheck !== undefined ? propIsLiveCheck : localLiveCheck;
   const inputRef = useRef(null);
+  const hasPlayedSoundRef = useRef(false);
 
-  const handleToggleStrict = (val) => {
-    if (onToggleStrictGerman) {
-      onToggleStrictGerman(val);
-    } else {
-      setLocalStrictGerman(val);
-    }
-  };
-
-  const handleToggleLiveCheck = (val) => {
-    if (onToggleLiveCheck) {
-      onToggleLiveCheck(val);
-    } else {
-      setLocalLiveCheck(val);
-    }
-  };
+  const handleToggleStrict = (val) => onToggleStrictGerman ? onToggleStrictGerman(val) : setLocalStrictGerman(val);
+  const handleToggleLiveCheck = (val) => onToggleLiveCheck ? onToggleLiveCheck(val) : setLocalLiveCheck(val);
 
   // Reset states when moving to a new sentence
   useEffect(() => {
@@ -57,15 +47,13 @@ export default function DictationWorkspace({
     setDiffResult(null);
     setShowHint(false);
     setShowSolution(false);
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
+    hasPlayedSoundRef.current = false;
+    if (inputRef.current) inputRef.current.focus();
   }, [segmentIndex, activeSegment]);
 
   // Extract proper nouns for helper chips
   const properNouns = useMemo(() => {
-    if (!activeSegment || !activeSegment.text) return [];
-    return extractProperNouns(activeSegment.text);
+    return (!activeSegment || !activeSegment.text) ? [] : extractProperNouns(activeSegment.text);
   }, [activeSegment]);
 
   // Real-time live check stream
@@ -73,6 +61,19 @@ export default function DictationWorkspace({
     if (!isLiveCheck || !activeSegment || !activeSegment.text) return null;
     return computeLiveStream(userInput, activeSegment.text, { strictGerman });
   }, [isLiveCheck, userInput, activeSegment, strictGerman]);
+
+  // Trigger earcon sound effect once when live check reaches passing standard
+  useEffect(() => {
+    if (!hasPlayedSoundRef.current && isLiveCheck && liveStream?.isComplete) {
+      if (liveStream.score === 100) {
+        playPerfectSound(soundEffectsEnabled);
+        hasPlayedSoundRef.current = true;
+      } else if (liveStream.score >= 80) {
+        playSuccessSound(soundEffectsEnabled);
+        hasPlayedSoundRef.current = true;
+      }
+    }
+  }, [isLiveCheck, liveStream, soundEffectsEnabled]);
 
   const handleInsertChar = (char) => {
     if (!inputRef.current) return;
@@ -115,8 +116,18 @@ export default function DictationWorkspace({
 
     setDiffResult(result);
 
-    if (result.score >= 80 && onCompleteSentence) {
-      onCompleteSentence(segmentIndex, result.score);
+    if (result.score >= 80) {
+      if (onCompleteSentence) {
+        onCompleteSentence(segmentIndex, result.score);
+      }
+      if (!hasPlayedSoundRef.current) {
+        if (result.score === 100 || result.isPerfect) {
+          playPerfectSound(soundEffectsEnabled);
+        } else {
+          playSuccessSound(soundEffectsEnabled);
+        }
+        hasPlayedSoundRef.current = true;
+      }
     }
   };
 
@@ -134,19 +145,26 @@ export default function DictationWorkspace({
     return false;
   }, [diffResult, isLiveCheck, liveStream]);
 
-  // Global Hotkey Tab -> Replay segment
+  // Global Hotkeys: Tab (replay), Shift+Tab (0.75x slow), Ctrl/Cmd + Left/Right (nav)
   useEffect(() => {
     const handleGlobalKeyDown = (e) => {
-      if (e.key === 'Tab') {
+      if (e.key === 'Tab' && !e.shiftKey) {
         e.preventDefault();
-        if (onReplaySegment) {
-          onReplaySegment();
-        }
+        if (onReplaySegment) onReplaySegment();
+      } else if (e.key === 'Tab' && e.shiftKey) {
+        e.preventDefault();
+        if (onReplaySlow) onReplaySlow();
+      } else if ((e.ctrlKey || e.metaKey || e.altKey) && e.key === 'ArrowRight') {
+        e.preventDefault();
+        if (onNextSegment) onNextSegment();
+      } else if ((e.ctrlKey || e.metaKey || e.altKey) && e.key === 'ArrowLeft') {
+        e.preventDefault();
+        if (onPrevSegment) onPrevSegment();
       }
     };
     window.addEventListener('keydown', handleGlobalKeyDown);
     return () => window.removeEventListener('keydown', handleGlobalKeyDown);
-  }, [onReplaySegment]);
+  }, [onReplaySegment, onReplaySlow, onNextSegment, onPrevSegment]);
 
   // Handle Enter key inside textarea
   const handleKeyDown = (e) => {
@@ -199,7 +217,7 @@ export default function DictationWorkspace({
           <button
             type="button"
             onClick={onReplaySegment}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary-container text-on-primary-container hover:brightness-110 active:scale-95 text-xs font-bold transition-all shadow-xs cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary-container text-on-primary-container hover:brightness-110 active:scale-95 text-xs font-bold transition-all shadow-xs cursor-pointer focus-ring"
             title="Nhấn phím Tab hoặc click để nghe lại câu"
           >
             <Play className="w-3.5 h-3.5 fill-current" />
@@ -210,17 +228,18 @@ export default function DictationWorkspace({
           <button
             type="button"
             onClick={onReplaySlow}
-            className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-bright text-xs font-semibold transition-all cursor-pointer border border-outline-variant/30"
-            title="Nghe chậm 0.75x"
+            className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-bright text-xs font-semibold transition-all cursor-pointer border border-outline-variant/30 focus-ring"
+            title="Nghe chậm 0.75x (Phím Shift + Tab)"
           >
             <RotateCcw className="w-3 h-3 text-secondary" />
             <span>0.75x</span>
+            <kbd className="hidden sm:inline px-1 py-0.2 rounded bg-black/20 text-[9px] font-mono text-outline">Shift+Tab</kbd>
           </button>
 
           <button
             type="button"
             onClick={() => setShowHint(!showHint)}
-            className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-bright text-xs font-medium transition-all cursor-pointer border border-outline-variant/30"
+            className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-bright text-xs font-medium transition-all cursor-pointer border border-outline-variant/30 focus-ring"
             title="Gợi ý chữ cái đầu"
           >
             <HelpCircle className="w-3 h-3 text-secondary" />
@@ -230,7 +249,7 @@ export default function DictationWorkspace({
           <button
             type="button"
             onClick={() => setShowSolution(!showSolution)}
-            className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-surface-container text-outline hover:text-on-surface hover:bg-surface-bright text-xs font-medium transition-all cursor-pointer border border-outline-variant/30"
+            className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-surface-container text-outline hover:text-on-surface hover:bg-surface-bright text-xs font-medium transition-all cursor-pointer border border-outline-variant/30 focus-ring"
             title="Xem đáp án câu gốc"
           >
             <Eye className="w-3 h-3 text-tertiary" />
@@ -280,17 +299,15 @@ export default function DictationWorkspace({
           value={userInput}
           onChange={(e) => {
             setUserInput(e.target.value);
-            if (diffResult) {
-              setDiffResult(null);
-            }
+            if (diffResult) setDiffResult(null);
           }}
           onKeyDown={handleKeyDown}
           placeholder={
             language === 'de'
-              ? "Nghe và gõ lại câu bạn nghe được... (Tab: nghe lại, Enter: nộp bài)"
-              : "Type the exact English sentence you heard... (Tab: replay, Enter: submit)"
+              ? "Nghe và gõ lại câu bạn nghe được... (Tab: nghe lại, Shift+Tab: nghe chậm, Enter: nộp bài)"
+              : "Type the exact English sentence you heard... (Tab: replay, Shift+Tab: slow, Enter: submit)"
           }
-          className="w-full min-h-[85px] bg-surface-container-lowest/80 rounded-lg p-3 text-on-surface font-transcription text-sm sm:text-base leading-relaxed outline-none border border-outline-variant/20 focus:border-secondary/40 transition-all resize-none shadow-inner"
+          className="w-full min-h-[85px] bg-surface-container-lowest/80 rounded-lg p-3 text-on-surface font-transcription text-sm sm:text-base leading-relaxed outline-none border border-outline-variant/20 focus-ring transition-all resize-none shadow-inner"
         />
 
         {/* Input Bar Control Actions */}
@@ -307,7 +324,7 @@ export default function DictationWorkspace({
               </span>
             ) : (
               <span className="text-outline text-[11px]">
-                Nhấn <kbd className="px-1 py-0.2 rounded bg-surface-container-high text-on-surface font-mono text-[10px]">Tab</kbd> nghe lại • <kbd className="px-1 py-0.2 rounded bg-surface-container-high text-on-surface font-mono text-[10px]">Enter</kbd> nộp bài
+                <kbd className="px-1 py-0.2 rounded bg-surface-container-high text-on-surface font-mono text-[10px]">Tab</kbd> nghe lại • <kbd className="px-1 py-0.2 rounded bg-surface-container-high text-on-surface font-mono text-[10px]">Shift+Tab</kbd> 0.75x • <kbd className="px-1 py-0.2 rounded bg-surface-container-high text-on-surface font-mono text-[10px]">Enter</kbd> nộp bài
               </span>
             )}
           </div>
@@ -316,7 +333,7 @@ export default function DictationWorkspace({
             <button
               type="button"
               onClick={handleAdvance}
-              className="px-5 py-2 rounded-full bg-primary-container text-on-primary-container hover:brightness-110 active:scale-95 font-headline font-bold text-xs shadow-md transition-all flex items-center gap-1.5 cursor-pointer ring-2 ring-primary/40 animate-pulse"
+              className="px-5 py-2 rounded-full bg-primary-container text-on-primary-container hover:brightness-110 active:scale-95 font-headline font-bold text-xs shadow-md transition-all flex items-center gap-1.5 cursor-pointer ring-2 ring-primary/40 focus-ring animate-pulse"
               title="Nhấn phím Enter hoặc click để chuyển sang câu kế tiếp"
             >
               <span>{segmentIndex < totalSegments - 1 ? 'Câu tiếp theo' : 'Hoàn thành bài'}</span>
@@ -328,7 +345,7 @@ export default function DictationWorkspace({
               type="button"
               onClick={handleCheckAnswer}
               disabled={!userInput.trim()}
-              className="px-4 py-2 rounded-full bg-gradient-to-r from-inverse-primary to-secondary-container text-on-primary font-headline font-bold text-xs shadow-xs hover:brightness-110 active:scale-95 disabled:opacity-40 transition-all flex items-center gap-1.5 cursor-pointer"
+              className="px-4 py-2 rounded-full bg-gradient-to-r from-inverse-primary to-secondary-container text-on-primary font-headline font-bold text-xs shadow-xs hover:brightness-110 active:scale-95 disabled:opacity-40 transition-all flex items-center gap-1.5 cursor-pointer focus-ring"
             >
               <CheckCircle2 className="w-4 h-4" />
               <span>{diffResult ? 'Kiểm tra lại' : 'Nộp bài kiểm tra'}</span>

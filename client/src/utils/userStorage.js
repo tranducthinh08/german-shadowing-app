@@ -19,7 +19,9 @@ export const DEFAULT_USER_SETTINGS = {
   dailySentenceGoal: 10,
   autoShowGrammar: true,
   strictNounCapitalization: true,
-  isLiveCheck: true
+  isLiveCheck: true,
+  soundEffectsEnabled: true,
+  isFocusMode: false
 };
 
 const USERS_LIST_KEY = 'polyglot_users_list';

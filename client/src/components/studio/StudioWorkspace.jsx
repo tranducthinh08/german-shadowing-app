@@ -39,7 +39,9 @@ export default function StudioWorkspace({
   handleSelectSegment,
   setSelectedWord,
   handleToggleBlur,
-  handleToggleGenderColors
+  handleToggleGenderColors,
+  isFocusMode = false,
+  onToggleFocusMode
 }) {
   return (
     <>
@@ -53,10 +55,18 @@ export default function StudioWorkspace({
         onResetLesson={onResetLesson}
         onSelectEpisode={onSelectEpisode}
         onOpenPlaylistView={onOpenPlaylistView}
+        completedSentenceIds={completedSentenceIds}
+        onSelectSegmentIndex={(idx) => {
+          if (currentVideo?.sentences?.[idx]) {
+            handleSelectSegment(currentVideo.sentences[idx]);
+          }
+        }}
+        isFocusMode={isFocusMode}
+        onToggleFocusMode={onToggleFocusMode}
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div className="lg:col-span-7 space-y-4">
+      <div className={`grid grid-cols-1 ${isFocusMode ? 'max-w-4xl mx-auto' : 'lg:grid-cols-12'} gap-6 transition-all duration-300`}>
+        <div className={`${isFocusMode ? 'w-full' : 'lg:col-span-7'} space-y-4`}>
           {currentVideo ? (
             <>
               <YouTubePlayer
@@ -90,6 +100,7 @@ export default function StudioWorkspace({
                   onToggleStrictGerman={handleToggleStrictGerman}
                   isLiveCheck={userSettings.isLiveCheck !== undefined ? userSettings.isLiveCheck : true}
                   onToggleLiveCheck={handleToggleLiveCheck}
+                  soundEffectsEnabled={userSettings?.soundEffectsEnabled !== false}
                 />
               ) : (
                 <ShadowingWorkspace
@@ -117,21 +128,33 @@ export default function StudioWorkspace({
           )}
         </div>
 
-        <div className="lg:col-span-5">
-          <TranscriptList
-            sentences={currentVideo?.sentences || []}
-            activeSegmentId={activeSegment?.id}
-            onSelectSegment={handleSelectSegment}
-            onWordClick={(word) => setSelectedWord({ word, context: activeSegment?.text || '' })}
-            completedSentenceIds={completedSentenceIds}
-            language={currentLanguage}
-            onResetLesson={onResetLesson}
-            isBlurScript={userSettings.isBlurScript}
-            onToggleBlur={handleToggleBlur}
-            showGenderColors={userSettings.showGenderColors}
-            onToggleGenderColors={handleToggleGenderColors}
-          />
-        </div>
+        {isFocusMode ? (
+          <div className="w-full text-center py-2">
+            <button
+              type="button"
+              onClick={onToggleFocusMode}
+              className="px-4 py-2 rounded-full bg-surface-container hover:bg-surface-bright text-xs text-outline hover:text-on-surface border border-outline-variant/30 transition-all cursor-pointer inline-flex items-center gap-1.5 focus-ring"
+            >
+              <span>🎯 Đang bật Chế độ Tập trung (Focus Mode). Nhấn để mở lại danh sách phụ đề</span>
+            </button>
+          </div>
+        ) : (
+          <div className="lg:col-span-5">
+            <TranscriptList
+              sentences={currentVideo?.sentences || []}
+              activeSegmentId={activeSegment?.id}
+              onSelectSegment={handleSelectSegment}
+              onWordClick={(word) => setSelectedWord({ word, context: activeSegment?.text || '' })}
+              completedSentenceIds={completedSentenceIds}
+              language={currentLanguage}
+              onResetLesson={onResetLesson}
+              isBlurScript={userSettings.isBlurScript}
+              onToggleBlur={handleToggleBlur}
+              showGenderColors={userSettings.showGenderColors}
+              onToggleGenderColors={handleToggleGenderColors}
+            />
+          </div>
+        )}
       </div>
     </>
   );

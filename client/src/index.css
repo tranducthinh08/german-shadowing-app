@@ -39,6 +39,14 @@
 }
 
 /* Custom scrollbars */
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid #4cd7f6;
+  outline-offset: 2px;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;

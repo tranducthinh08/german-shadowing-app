@@ -11,7 +11,7 @@
     "build": "cd client && npm install && npm run build",
     "check:lines": "node scripts/check-line-limits.js",
     "check:bundle": "node scripts/monitor-bundle.js",
-    "test": "node scripts/check-line-limits.js && node test/test_core.js && node test/test_grammar.js && node test/test_gamification.js && node test/test_user_storage.js && node test/test_playlist.js && node test/test_alphabet.js && node test/test_speaking_coach.js && node test/test_sidebar_navigation.js && node test/test_storage_optimization.js",
+    "test": "node scripts/check-line-limits.js && node test/test_core.js && node test/test_grammar.js && node test/test_gamification.js && node test/test_user_storage.js && node test/test_playlist.js && node test/test_alphabet.js && node test/test_speaking_coach.js && node test/test_sidebar_navigation.js && node test/test_storage_optimization.js && node test/test_ui_ux_improvements.js",
     "start": "node server/src/index.js"
   },
   "dependencies": {

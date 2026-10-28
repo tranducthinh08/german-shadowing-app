@@ -50,53 +50,68 @@ export default function StudioStarterView({
       </div>
 
       {/* Quick Starter Lessons */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-xl mx-auto pt-1">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 max-w-xl mx-auto pt-1">
         <button
           type="button"
           onClick={() => onLoadVideo('dC6ZGLzdaTs', 'de')}
           disabled={isLoading}
-          className="p-3 rounded-xl bg-surface-container-high/80 hover:bg-surface-bright border border-outline-variant/30 hover:border-secondary/40 text-left transition-all cursor-pointer group shadow-xs hover:scale-[1.02]"
+          className="p-3.5 rounded-2xl bg-surface-container-high/90 hover:bg-surface-bright border border-outline-variant/30 hover:border-secondary/50 text-left transition-all duration-200 cursor-pointer group shadow-sm hover:shadow-lg hover:-translate-y-0.5 focus-ring"
         >
-          <div className="flex items-center gap-1.5 text-[11px] font-bold text-secondary mb-1">
-            <span>🇩🇪</span>
-            <span>Nicos Weg A1</span>
+          <div className="flex items-center justify-between gap-1.5 mb-2">
+            <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-secondary/20 text-secondary border border-secondary/30">
+              🇩🇪 A1 • Khởi đầu
+            </span>
+            <span className="text-[10px] text-outline font-mono">19 câu</span>
           </div>
-          <p className="text-xs font-semibold text-on-surface group-hover:text-primary transition-colors line-clamp-1">
-            Folge 1: Hallo!
+          <p className="text-xs font-bold text-on-surface group-hover:text-secondary transition-colors line-clamp-1">
+            Nicos Weg: Folge 1
           </p>
-          <span className="text-[10px] text-outline mt-1 block">DW Deutsch • 19 câu</span>
+          <p className="text-[11px] text-outline mt-0.5 line-clamp-1">
+            Hallo! Giới thiệu bản thân & tên
+          </p>
+          <span className="text-[10px] text-outline/80 mt-2 block font-medium">DW Deutsch • CEFR A1</span>
         </button>
 
         <button
           type="button"
           onClick={() => onLoadVideo('jPvhLhCkhB8', 'de')}
           disabled={isLoading}
-          className="p-3 rounded-xl bg-surface-container-high/80 hover:bg-surface-bright border border-outline-variant/30 hover:border-secondary/40 text-left transition-all cursor-pointer group shadow-xs hover:scale-[1.02]"
+          className="p-3.5 rounded-2xl bg-surface-container-high/90 hover:bg-surface-bright border border-outline-variant/30 hover:border-secondary/50 text-left transition-all duration-200 cursor-pointer group shadow-sm hover:shadow-lg hover:-translate-y-0.5 focus-ring"
         >
-          <div className="flex items-center gap-1.5 text-[11px] font-bold text-secondary mb-1">
-            <span>🇩🇪</span>
-            <span>Easy German</span>
+          <div className="flex items-center justify-between gap-1.5 mb-2">
+            <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-tertiary/20 text-tertiary-fixed border border-tertiary/30">
+              🇩🇪 B1 • Giao tiếp
+            </span>
+            <span className="text-[10px] text-outline font-mono">7 câu</span>
           </div>
-          <p className="text-xs font-semibold text-on-surface group-hover:text-primary transition-colors line-clamp-1">
-            Berlin: What do you like?
+          <p className="text-xs font-bold text-on-surface group-hover:text-secondary transition-colors line-clamp-1">
+            Easy German: Berlin
           </p>
-          <span className="text-[10px] text-outline mt-1 block">Giao tiếp • 7 câu</span>
+          <p className="text-[11px] text-outline mt-0.5 line-clamp-1">
+            Phỏng vấn đường phố thực tế
+          </p>
+          <span className="text-[10px] text-outline/80 mt-2 block font-medium">Khẩu ngữ tự nhiên</span>
         </button>
 
         <button
           type="button"
           onClick={() => onLoadVideo('gghSrnzS9kY', 'en')}
           disabled={isLoading}
-          className="p-3 rounded-xl bg-surface-container-high/80 hover:bg-surface-bright border border-outline-variant/30 hover:border-primary/40 text-left transition-all cursor-pointer group shadow-xs hover:scale-[1.02]"
+          className="p-3.5 rounded-2xl bg-surface-container-high/90 hover:bg-surface-bright border border-outline-variant/30 hover:border-primary/50 text-left transition-all duration-200 cursor-pointer group shadow-sm hover:shadow-lg hover:-translate-y-0.5 focus-ring"
         >
-          <div className="flex items-center gap-1.5 text-[11px] font-bold text-primary mb-1">
-            <span>🇬🇧</span>
-            <span>English Daily</span>
+          <div className="flex items-center justify-between gap-1.5 mb-2">
+            <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-primary/20 text-primary border border-primary/30">
+              🇬🇧 Daily • Đời sống
+            </span>
+            <span className="text-[10px] text-outline font-mono">8 câu</span>
           </div>
-          <p className="text-xs font-semibold text-on-surface group-hover:text-primary transition-colors line-clamp-1">
+          <p className="text-xs font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-1">
             Ordering at a Café
           </p>
-          <span className="text-[10px] text-outline mt-1 block">Hội thoại • 8 câu</span>
+          <p className="text-[11px] text-outline mt-0.5 line-clamp-1">
+            Hội thoại gọi cà phê chuẩn bản xứ
+          </p>
+          <span className="text-[10px] text-outline/80 mt-2 block font-medium">Tiếng Anh giao tiếp</span>
         </button>
       </div>
 

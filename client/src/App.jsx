@@ -53,8 +53,8 @@ export default function App() {
     completedSentenceIds, setCompletedSentenceIds, studyHistory, setStudyHistory,
     hardLetters, setHardLetters, alphabetReviewProgress, setAlphabetReviewProgress,
     updateStudyHistory, handleToggleBlur, handleToggleGenderColors,
-    handleToggleStrictGerman, handleToggleLiveCheck, handleToggleHardLetter,
-    handleSaveWord, handleRemoveWord
+    handleToggleStrictGerman, handleToggleLiveCheck, handleToggleSoundEffects,
+    handleToggleFocusMode, handleToggleHardLetter, handleSaveWord, handleRemoveWord
   } = useUserSession();
 
   const {
@@ -353,6 +353,8 @@ export default function App() {
             setSelectedWord={setSelectedWord}
             handleToggleBlur={handleToggleBlur}
             handleToggleGenderColors={handleToggleGenderColors}
+            isFocusMode={Boolean(userSettings?.isFocusMode)}
+            onToggleFocusMode={() => handleToggleFocusMode(!userSettings?.isFocusMode)}
           />
         )}
       </main>

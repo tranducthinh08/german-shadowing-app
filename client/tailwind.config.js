@@ -19,7 +19,7 @@ export default {
         'surface-container-highest': '#31353f',
         'on-surface': '#dfe2f0',
         'on-surface-variant': '#c7c4d7',
-        outline: '#908fa0',
+        outline: '#a2a0b4',
         'outline-variant': '#464554',
 
         // Stitch Brand Accents
