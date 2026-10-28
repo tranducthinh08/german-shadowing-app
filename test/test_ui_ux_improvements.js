@@ -148,6 +148,27 @@ assert.strictEqual(liveRes.matchedCount, 1, 'Only 1 word (emma) is correct, NOT 
 assert.strictEqual(liveRes.isComplete, false, 'Sentence must NOT be marked complete when words are wrong');
 console.log('  ✅ Live check accurately flags spelling mistakes as wrong (no false positive)');
 
+// Case 6.2: USER SCREENSHOT BUG REPRO: Actively typing prefix of word (hall in Hallo)
+console.log('Test 6.2: Actively typing prefix (hall in Hallo) must be typing status, NOT red wrong');
+const liveTypingHallo = computeLiveStream('hall', 'Hallo!', { strictCase: false });
+assert.strictEqual(liveTypingHallo.tokens[0].status, 'typing', 'hall while typing Hallo must have typing status');
+assert.strictEqual(liveTypingHallo.tokens[0].typedWord, 'hall');
+
+const liveCompleteHallo = computeLiveStream('hallo', 'Hallo!', { strictCase: false });
+assert.strictEqual(liveCompleteHallo.tokens[0].status, 'correct', 'hallo must be correct');
+assert.strictEqual(liveCompleteHallo.matchedCount, 1);
+
+const liveSpaceHallo = computeLiveStream('hall ', 'Hallo!', { strictCase: false });
+assert.strictEqual(liveSpaceHallo.tokens[0].status, 'wrong', 'hall with trailing space finished word and must be wrong');
+
+// CompareSentence score and typoCount verification
+import { compareSentence } from '../client/src/utils/textDiff.js';
+const diffHall = compareSentence('hall', 'Hallo!', { strictCase: false });
+assert.strictEqual(diffHall.score, 50, 'hall vs Hallo gives 50% partial credit');
+assert.strictEqual(diffHall.correctCount, 0, 'exact correctCount must be 0, not rounded to 1');
+assert.strictEqual(diffHall.typoCount, 1, 'typoCount must be 1');
+console.log('  ✅ Prefix while typing (hall) and exact count for spelling typos verified!');
+
 // 7. Test completedVideoIds calculation logic
 console.log('\nTest 7: Completed Video IDs calculation across history and active video');
 import { NICOS_WEG_PLAYLIST } from '../client/src/data/nicosWegPlaylist.js';

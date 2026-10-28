@@ -136,7 +136,13 @@ export default function DictationFeedbackView({
                   {diffResult.isPerfect ? 'Hoàn hảo 100%!' : diffResult.score >= 80 ? 'Xuất sắc! Gần đúng tuyệt đối.' : 'Cần chú ý một số từ bên dưới!'}
                 </h4>
                 <p className="text-[11px] text-outline">
-                  Đúng {diffResult.correctCount} / {diffResult.totalCount} từ • {diffResult.score >= 80 ? 'Đạt điểm chuẩn' : 'Hãy nghe lại và thử lại'}
+                  {diffResult.score >= 80 ? (
+                    `Đúng ${diffResult.correctCount} / ${diffResult.totalCount} từ • Đạt điểm chuẩn`
+                  ) : diffResult.typoCount > 0 ? (
+                    `${diffResult.correctCount} / ${diffResult.totalCount} từ đúng hoàn chỉnh • ${diffResult.typoCount} từ cần sửa chính tả`
+                  ) : (
+                    `Đúng ${diffResult.correctCount} / ${diffResult.totalCount} từ • Hãy nghe lại và thử lại`
+                  )}
                 </p>
               </div>
             </div>

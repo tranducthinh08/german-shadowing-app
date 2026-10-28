@@ -259,13 +259,16 @@ export function compareSentence(userText = '', targetText = '', options = {}) {
     }
   }
 
+  const exactCorrectCount = tokens.filter((t) => t.status === 'correct').length;
+  const typoCount = tokens.filter((t) => t.status === 'typo').length;
   const score = Math.round(Math.min(100, Math.max(0, (correctCount / targetWords.length) * 100)));
   const isPerfect = score === 100 && userWords.length === targetWords.length;
 
   return {
     tokens,
     score,
-    correctCount: Math.round(correctCount),
+    correctCount: exactCorrectCount,
+    typoCount,
     totalCount: targetWords.length,
     isPerfect
   };
@@ -313,6 +316,34 @@ export function computeLiveStream(userInput = '', targetText = '', options = {})
 
     const uwClean = cleanPunctuation(uw);
     const isCurrentActive = isTypingLastWord && i === userWords.length - 1;
+
+    // 1. If actively typing the last word, prioritize exact or prefix matching (e.g. "hall" in "Hallo")
+    if (isCurrentActive) {
+      const twLow = twClean.toLowerCase();
+      const uwLow = uwClean.toLowerCase();
+      const twNoUmlaut = stripUmlauts(twLow);
+      const uwNoUmlaut = stripUmlauts(uwLow);
+
+      const isExactMatch = twLow === uwLow || twNoUmlaut === uwNoUmlaut;
+      const isPrefixMatch = twLow.startsWith(uwLow) || twNoUmlaut.startsWith(uwNoUmlaut);
+
+      if (isExactMatch) {
+        if (strictCase && twClean !== uwClean) {
+          tokens.push({ targetWord: tw, cleanTarget: twClean, typedWord: uw, status: 'typo' });
+        } else {
+          tokens.push({ targetWord: tw, cleanTarget: twClean, typedWord: uw, status: 'correct' });
+          matchedCount++;
+        }
+        continue;
+      }
+
+      if (isPrefixMatch) {
+        tokens.push({ targetWord: tw, cleanTarget: twClean, typedWord: uw, status: 'typing' });
+        continue;
+      }
+    }
+
+    // 2. Full word evaluation (or inactive/submitted words)
     const check = isWordMatchOrClose(twClean, uwClean);
 
     if (check.match) {
@@ -331,8 +362,6 @@ export function computeLiveStream(userInput = '', targetText = '', options = {})
         tokens.push({ targetWord: tw, cleanTarget: twClean, typedWord: uw, status: 'correct' });
         matchedCount++;
       }
-    } else if (isCurrentActive && twClean.toLowerCase().startsWith(uwClean.toLowerCase())) {
-      tokens.push({ targetWord: tw, cleanTarget: twClean, typedWord: uw, status: 'typing' });
     } else {
       tokens.push({ targetWord: tw, cleanTarget: twClean, typedWord: uw, status: 'wrong' });
     }
