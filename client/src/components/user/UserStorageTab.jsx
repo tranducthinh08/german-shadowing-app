@@ -1,15 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { HardDrive, Download, Upload, Trash2, CheckCircle, RefreshCw, AlertCircle } from 'lucide-react';
+import { HardDrive, Download, Upload, Trash2, CheckCircle, RefreshCw, AlertCircle, Key, Eye, EyeOff, Save, Sparkles } from 'lucide-react';
 import {
   getStorageHealth,
   cleanupStorage,
   exportUserBackup,
   importUserBackup
 } from '../../utils/storageMonitor';
+import { getUserSettings, saveUserSettings } from '../../utils/userStorage';
 
 export default function UserStorageTab({ currentUser, onDataRestored }) {
   const [health, setHealth] = useState(null);
   const [notice, setNotice] = useState(null);
+  const [geminiKeyInput, setGeminiKeyInput] = useState('');
+  const [showKey, setShowKey] = useState(false);
+  const [isKeySaved, setIsKeySaved] = useState(false);
   const fileInputRef = useRef(null);
 
   const refreshHealth = () => {
@@ -19,7 +23,18 @@ export default function UserStorageTab({ currentUser, onDataRestored }) {
 
   useEffect(() => {
     refreshHealth();
+    if (currentUser?.username) {
+      const settings = getUserSettings(currentUser.username);
+      setGeminiKeyInput(settings?.geminiApiKey || '');
+    }
   }, [currentUser]);
+
+  const handleSaveGeminiKey = () => {
+    if (!currentUser?.username) return;
+    saveUserSettings(currentUser.username, { geminiApiKey: geminiKeyInput.trim() });
+    setIsKeySaved(true);
+    setTimeout(() => setIsKeySaved(false), 2500);
+  };
 
   const handleExport = () => {
     try {
@@ -146,6 +161,57 @@ export default function UserStorageTab({ currentUser, onDataRestored }) {
         <div className="p-2.5 rounded-xl bg-surface-container border border-outline-variant/20">
           <span className="text-[10px] text-outline block">Thành tích & Gamification</span>
           <span className="font-bold text-on-surface">{health.breakdown.gamification.formatted}</span>
+        </div>
+      </div>
+
+      {/* Gemini AI API Key Settings Card */}
+      <div className="p-3.5 rounded-2xl bg-surface-container border border-outline-variant/30 space-y-2.5">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-1.5 text-xs font-bold text-on-surface">
+            <Sparkles className="w-3.5 h-3.5 text-secondary animate-pulse" />
+            <span>Gemini AI API Key (Cá nhân)</span>
+          </div>
+          {isKeySaved && (
+            <span className="text-[10px] text-emerald-400 font-bold flex items-center gap-1 animate-fade-in">
+              <CheckCircle className="w-3 h-3" />
+              Đã lưu
+            </span>
+          )}
+        </div>
+
+        <p className="text-[11px] text-outline leading-relaxed">
+          Nhập API Key Google Gemini của bạn để dịch câu & hỏi đáp AI với hạn mức riêng (Key được lưu biệt lập trên trình duyệt này).
+        </p>
+
+        <div className="flex items-center gap-2">
+          <div className="relative flex-1 flex items-center">
+            <Key className="absolute left-3 w-3.5 h-3.5 text-outline" />
+            <input
+              type={showKey ? 'text' : 'password'}
+              value={geminiKeyInput}
+              onChange={(e) => setGeminiKeyInput(e.target.value)}
+              placeholder="AIzaSy... (để trống nếu dùng mặc định)"
+              className="w-full pl-9 pr-9 py-2 bg-surface-container-lowest border border-outline-variant/30 rounded-xl text-xs text-on-surface font-mono placeholder:text-outline/50 focus:outline-none focus:border-secondary"
+            />
+            <button
+              type="button"
+              onClick={() => setShowKey(!showKey)}
+              className="absolute right-2.5 text-outline hover:text-on-surface p-1 transition-colors"
+              title={showKey ? 'Ẩn key' : 'Hiện key'}
+            >
+              {showKey ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+            </button>
+          </div>
+
+          <button
+            type="button"
+            onClick={handleSaveGeminiKey}
+            className="px-3 py-2 rounded-xl bg-primary-container text-on-primary-container hover:brightness-110 active:scale-95 text-xs font-bold transition-all flex items-center gap-1 cursor-pointer shadow-xs shrink-0"
+            title="Lưu API Key"
+          >
+            <Save className="w-3.5 h-3.5" />
+            <span>Lưu</span>
+          </button>
         </div>
       </div>
 

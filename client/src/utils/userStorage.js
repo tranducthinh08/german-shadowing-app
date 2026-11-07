@@ -21,7 +21,8 @@ export const DEFAULT_USER_SETTINGS = {
   strictNounCapitalization: true,
   isLiveCheck: true,
   soundEffectsEnabled: true,
-  isFocusMode: false
+  isFocusMode: false,
+  geminiApiKey: ''
 };
 
 const USERS_LIST_KEY = 'polyglot_users_list';
@@ -382,5 +383,9 @@ export function saveUserDaily5Progress(username, progress) {
       localStorage.setItem(key, JSON.stringify(progress));
     }
   } catch (e) {}
+}
+
+export function getUserGeminiKey(username) {
+  return getUserSettings(username)?.geminiApiKey || '';
 }
 

@@ -7,25 +7,15 @@ import { playSuccessSound, playPerfectSound } from '../../utils/soundEffects';
 import GrammarAnalysisModal from '../grammar/GrammarAnalysisModal';
 import SpecialCharToolbar from './SpecialCharToolbar';
 import DictationFeedbackView from './DictationFeedbackView';
+import DictationTranslationCard from './DictationTranslationCard';
 
 export default function DictationWorkspace({
-  activeSegment,
-  segmentIndex,
-  totalSegments,
-  onNextSegment,
-  onPrevSegment,
-  onReplaySegment,
-  onReplaySlow,
-  isLooping,
-  onToggleLoop,
-  language = 'de',
-  onCompleteSentence,
-  strictGerman: propStrictGerman,
-  onToggleStrictGerman,
-  isLiveCheck: propIsLiveCheck,
-  onToggleLiveCheck,
-  soundEffectsEnabled = true,
-  onCompleteLesson
+  activeSegment, segmentIndex, totalSegments,
+  onNextSegment, onPrevSegment, onReplaySegment, onReplaySlow,
+  isLooping, onToggleLoop, language = 'de', onCompleteSentence,
+  strictGerman: propStrictGerman, onToggleStrictGerman,
+  isLiveCheck: propIsLiveCheck, onToggleLiveCheck,
+  soundEffectsEnabled = true, onCompleteLesson
 }) {
   const [userInput, setUserInput] = useState('');
   const [diffResult, setDiffResult] = useState(null);
@@ -375,6 +365,13 @@ export default function DictationWorkspace({
         onAdvance={handleAdvance}
         segmentIndex={segmentIndex}
         totalSegments={totalSegments}
+        isStandardMet={isStandardMet}
+      />
+
+      {/* AI Smart Translation Card */}
+      <DictationTranslationCard
+        sentenceText={activeSegment.text}
+        language={language}
         isStandardMet={isStandardMet}
       />
 

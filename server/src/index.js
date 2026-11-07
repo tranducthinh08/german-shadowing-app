@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import youtubeRoutes from './routes/youtube.routes.js';
 import dictRoutes from './routes/dict.routes.js';
 import ttsRoutes from './routes/tts.routes.js';
+import aiRoutes from './routes/ai.routes.js';
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use('/api/youtube', youtubeRoutes);
 app.use('/api/dict', dictRoutes);
 app.use('/api/tts', ttsRoutes);
+app.use('/api/ai', aiRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
