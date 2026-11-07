@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Sparkles, ChevronDown, ChevronUp, Loader2, Lightbulb, Bot, BookOpen } from 'lucide-react';
+import { Sparkles, ChevronDown, ChevronUp, Loader2, Lightbulb, Bot, BookOpen, Key, Check } from 'lucide-react';
 import { translateWithAiApi } from '../../services/api';
-import { getCurrentUser, getUserGeminiKey } from '../../utils/userStorage';
+import { getCurrentUser, getUserGeminiKey, saveUserSettings } from '../../utils/userStorage';
 
 // In-memory session cache for instant translation switching
 const translationCache = new Map();
@@ -16,6 +16,9 @@ export default function DictationTranslationCard({
   const [isLoading, setIsLoading] = useState(false);
   const [translationData, setTranslationData] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [showKeyInput, setShowKeyInput] = useState(false);
+  const [keyInputVal, setKeyInputVal] = useState('');
+  const [keySavedNotice, setKeySavedNotice] = useState(false);
   const autoOpenedRef = useRef(false);
 
   const cacheKey = `${language}:${sentenceText || ''}`;
@@ -94,6 +97,21 @@ export default function DictationTranslationCard({
           <button
             type="button"
             onClick={() => {
+              const user = getCurrentUser();
+              if (!showKeyInput) {
+                setKeyInputVal(getUserGeminiKey(user?.username) || '');
+              }
+              setShowKeyInput(!showKeyInput);
+            }}
+            className="p-1 rounded-full text-outline hover:text-on-surface hover:bg-surface-container transition-all cursor-pointer"
+            title="Cài đặt Gemini API Key"
+          >
+            <Key className="w-3.5 h-3.5" />
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
               if (!isOpen && !translationData) {
                 handleFetchTranslation(true);
               } else {
@@ -123,6 +141,36 @@ export default function DictationTranslationCard({
           </button>
         </div>
       </div>
+
+      {/* Inline Key Configuration Bar */}
+      {showKeyInput && (
+        <div className="p-3 bg-surface-container border-b border-outline-variant/30 flex items-center gap-2 animate-fade-in">
+          <input
+            type="password"
+            value={keyInputVal}
+            onChange={(e) => setKeyInputVal(e.target.value)}
+            placeholder="Dán Gemini API Key (AIzaSy...)"
+            className="flex-1 px-2.5 py-1.5 bg-surface-container-lowest border border-outline-variant/30 rounded-lg text-xs font-mono text-on-surface focus:outline-none focus:border-secondary"
+          />
+          <button
+            type="button"
+            onClick={() => {
+              const user = getCurrentUser();
+              if (user?.username) {
+                saveUserSettings(user.username, { geminiApiKey: keyInputVal.trim() });
+                translationCache.delete(cacheKey);
+                setKeySavedNotice(true);
+                setTimeout(() => setKeySavedNotice(false), 2000);
+                handleFetchTranslation(true);
+              }
+            }}
+            className="px-2.5 py-1.5 rounded-lg bg-primary-container text-on-primary-container text-xs font-bold shrink-0 hover:brightness-110 cursor-pointer flex items-center gap-1"
+          >
+            {keySavedNotice ? <Check className="w-3.5 h-3.5 text-emerald-300" /> : null}
+            <span>{keySavedNotice ? 'Đã lưu!' : 'Lưu Key'}</span>
+          </button>
+        </div>
+      )}
 
       {/* Expanded Content View */}
       {isOpen && (

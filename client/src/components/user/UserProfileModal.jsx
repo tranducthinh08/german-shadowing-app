@@ -127,7 +127,7 @@ export default function UserProfileModal({
               }`}
             >
               <HardDrive className="w-3.5 h-3.5 text-secondary" />
-              <span>Bộ nhớ & Sao lưu</span>
+              <span>Bộ nhớ & API Key</span>
             </button>
           </div>
         </div>
