@@ -11,11 +11,16 @@ import {
   Languages
 } from 'lucide-react';
 import { NICOS_WEG_PLAYLIST } from '../../data/nicosWegPlaylist.js';
+import { EASY_GERMAN_PLAYLIST } from '../../data/easyGermanPlaylist.js';
 import LessonLevelSelector from './LessonLevelSelector';
 import LessonEpisodeCard from './LessonEpisodeCard';
 import OtherLevelsView from './OtherLevelsView';
+import CurriculumTrackSwitcher from './CurriculumTrackSwitcher';
+import EasyGermanLessonsView from './EasyGermanLessonsView';
 
 export default function LessonsTab({
+  activeCurriculum = 'nicos_weg',
+  onChangeCurriculum,
   onSelectEpisode,
   onSelectLesson,
   completedVideoIds = [],
@@ -25,20 +30,36 @@ export default function LessonsTab({
   onOpenAlphabet
 }) {
   const [activeLevel, setActiveLevel] = useState('A1');
+  const [activeTrack, setActiveTrack] = useState(activeCurriculum || 'nicos_weg');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedStage, setSelectedStage] = useState('all');
+
+  // Sync external curriculum changes (e.g. from Sidebar)
+  React.useEffect(() => {
+    if (activeCurriculum && (activeCurriculum === 'nicos_weg' || activeCurriculum === 'easy_german')) {
+      setActiveTrack(activeCurriculum);
+      setActiveLevel('A1');
+    }
+  }, [activeCurriculum]);
+
+  const handleTrackChange = (track) => {
+    setActiveTrack(track);
+    if (onChangeCurriculum) onChangeCurriculum(track);
+  };
+
+  const totalA1Sentences = NICOS_WEG_PLAYLIST.totalSentences + EASY_GERMAN_PLAYLIST.totalSentences;
 
   const levels = [
     {
       id: 'A1',
       title: 'Trình độ A1',
-      subtitle: 'Nicos Weg (DW)',
+      subtitle: 'Nicos Weg & Easy German',
       lang: '🇩🇪 Đức',
-      desc: 'Người mới bắt đầu từ con số 0',
+      desc: 'Người mới bắt đầu từ con số 0 (DW & Đường phố)',
       status: 'available',
-      badge: '76 tập đầy đủ',
-      episodesCount: '80 tập',
-      sentencesCount: NICOS_WEG_PLAYLIST.totalSentences
+      badge: '90 tập đầy đủ',
+      episodesCount: '90 tập',
+      sentencesCount: totalA1Sentences
     },
     {
       id: 'A2',
@@ -77,49 +98,21 @@ export default function LessonsTab({
 
   const stageOptions = [
     { id: 'all', label: 'Tất cả 76 tập' },
-    { id: 'stage_1', label: 'Chặng 1: Làm quen & Gặp gỡ (Tập 1 - 18)' },
-    { id: 'stage_2', label: 'Chặng 2: Tìm đồ & Cuộc sống (Tập 19 - 36)' },
-    { id: 'stage_3', label: 'Chặng 3: Gia đình & Công việc (Tập 37 - 54)' },
-    { id: 'stage_4', label: 'Chặng 4: Hội nhập & Tương lai (Tập 55 - 76)' },
+    { id: 'stage_1', label: 'Chặng 1: Làm quen (Tập 1 - 18)' },
+    { id: 'stage_2', label: 'Chặng 2: Cuộc sống (Tập 19 - 36)' },
+    { id: 'stage_3', label: 'Chặng 3: Gia đình (Tập 37 - 54)' },
+    { id: 'stage_4', label: 'Chặng 4: Hội nhập (Tập 55 - 76)' },
     { id: 'special', label: 'Tập đặc biệt' }
   ];
 
   const a2PreviewLessons = [
-    {
-      id: 'a2_1',
-      title: 'A2 - Bài 1: Đặt bàn và gọi món tại quán ăn Đức',
-      description: 'Luyện cấu trúc nhã nhặn "Ich möchte gern...", "Könnten Sie bitte...", các thì quá khứ Perfekt.',
-      sentencesCount: 28,
-      author: 'PolyGlot Curriculum',
-      videoId: 'dC6ZGLzdaTs'
-    },
-    {
-      id: 'a2_2',
-      title: 'A2 - Bài 2: Hỏi đường và phương tiện công cộng tại Berlin',
-      description: 'Làm chủ giới từ chỉ phương hướng (nach, zu, an, in) và cách hỏi đường tự nhiên.',
-      sentencesCount: 32,
-      author: 'PolyGlot Curriculum',
-      videoId: 'SrcZ2ud4T3o'
-    }
+    { id: 'a2_1', title: 'A2 - Bài 1: Đặt bàn và gọi món tại quán ăn Đức', description: 'Luyện cấu trúc nhã nhặn "Ich möchte gern...", "Könnten Sie bitte...", thì quá khứ Perfekt.', sentencesCount: 28, author: 'PolyGlot Curriculum', videoId: 'dC6ZGLzdaTs' },
+    { id: 'a2_2', title: 'A2 - Bài 2: Hỏi đường và phương tiện công cộng tại Berlin', description: 'Làm chủ giới từ chỉ phương hướng (nach, zu, an, in) và cách hỏi đường tự nhiên.', sentencesCount: 32, author: 'PolyGlot Curriculum', videoId: 'SrcZ2ud4T3o' }
   ];
 
   const englishLessons = [
-    {
-      id: 'en_1',
-      title: 'Daily English Conversation: Meeting New People',
-      description: 'Luyện nói đuổi và ngữ điệu tự nhiên chuẩn bản ngữ khi làm quen người mới.',
-      sentencesCount: 24,
-      author: 'English Lab',
-      videoId: 'upvuC9FR-xU'
-    },
-    {
-      id: 'en_2',
-      title: 'At the Coffee Shop: Ordering & Small Talk',
-      description: 'Từ vựng và phản xạ giao tiếp tại quán cà phê.',
-      sentencesCount: 26,
-      author: 'English Lab',
-      videoId: 'idFrq0H1Af0'
-    }
+    { id: 'en_1', title: 'Daily English Conversation: Meeting New People', description: 'Luyện nói đuổi và ngữ điệu tự nhiên chuẩn bản ngữ khi làm quen người mới.', sentencesCount: 24, author: 'English Lab', videoId: 'upvuC9FR-xU' },
+    { id: 'en_2', title: 'At the Coffee Shop: Ordering & Small Talk', description: 'Từ vựng và phản xạ giao tiếp tại quán cà phê.', sentencesCount: 26, author: 'English Lab', videoId: 'idFrq0H1Af0' }
   ];
 
   const filteredA1Episodes = useMemo(() => {
@@ -227,114 +220,135 @@ export default function LessonsTab({
         </div>
       )}
 
-      {/* CONTENT FOR LEVEL A1: NICOS WEG FULL 76 EPISODES */}
+      {/* CONTENT FOR LEVEL A1: NICOS WEG & EASY GERMAN */}
       {activeLevel === 'A1' && (
         <div className="space-y-5">
-          {/* A1 Header info */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-4 rounded-2xl bg-surface-container/70 border border-outline-variant/30">
-            <div className="space-y-1">
-              <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 rounded-md text-[11px] font-bold bg-secondary text-on-secondary">
-                  DEUTSCHE WELLE A1
-                </span>
-                <h2 className="text-sm sm:text-base font-headline font-bold text-on-surface">
-                  Nicos Weg – Einfach Deutsch lernen (76 tập đầy đủ)
-                </h2>
-              </div>
-              <p className="text-xs text-outline">
-                Đã nạp sẵn 100% phụ đề tiếng Đức chuẩn. Bạn có thể bấm vào bất kỳ tập nào để học ngay lập tức.
-              </p>
-            </div>
-
-            <button
-              type="button"
-              onClick={() => {
-                const ep1 = NICOS_WEG_PLAYLIST.episodes.find(e => e.episodeNumber === 1);
-                if (ep1) onSelectEpisode(ep1);
-              }}
-              className="shrink-0 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-secondary to-primary text-on-primary font-bold text-xs shadow-md shadow-secondary/20 hover:scale-105 transition-all cursor-pointer"
-            >
-              <Play className="w-3.5 h-3.5 fill-current" />
-              <span>Bắt đầu từ Tập 1: Hallo!</span>
-            </button>
+          {/* Curriculum Track Switcher */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <CurriculumTrackSwitcher
+              activeTrack={activeTrack}
+              onChangeTrack={handleTrackChange}
+              nicosCount={NICOS_WEG_PLAYLIST.totalEpisodes}
+              easyGermanCount={EASY_GERMAN_PLAYLIST.totalEpisodes}
+            />
           </div>
 
-          {/* Search & Filter Bar */}
-          <div className="space-y-3">
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-              <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-outline" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Tìm theo số tập hoặc tên bài (VD: Hallo, Tập 5, Essen, Wohnung)..."
-                  className="w-full bg-surface-container-low border border-outline-variant/40 focus:border-secondary rounded-xl pl-10 pr-4 py-2 text-xs text-on-surface placeholder:text-outline focus:outline-none transition-all shadow-xs"
-                />
-                {searchQuery && (
+          {activeTrack === 'easy_german' ? (
+            <EasyGermanLessonsView
+              onSelectEpisode={onSelectEpisode}
+              completedVideoIds={completedVideoIds}
+              practiceCounts={practiceCounts}
+              currentVideoId={currentVideoId}
+            />
+          ) : (
+            <>
+              {/* A1 Header info */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-4 rounded-2xl bg-surface-container/70 border border-outline-variant/30">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <span className="px-2 py-0.5 rounded-md text-[11px] font-bold bg-secondary text-on-secondary">
+                      DEUTSCHE WELLE A1
+                    </span>
+                    <h2 className="text-sm sm:text-base font-headline font-bold text-on-surface">
+                      Nicos Weg – Einfach Deutsch lernen (76 tập đầy đủ)
+                    </h2>
+                  </div>
+                  <p className="text-xs text-outline">
+                    Đã nạp sẵn 100% phụ đề tiếng Đức chuẩn. Bạn có thể bấm vào bất kỳ tập nào để học ngay lập tức.
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    const ep1 = NICOS_WEG_PLAYLIST.episodes.find(e => e.episodeNumber === 1);
+                    if (ep1) onSelectEpisode(ep1);
+                  }}
+                  className="shrink-0 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-secondary to-primary text-on-primary font-bold text-xs shadow-md shadow-secondary/20 hover:scale-105 transition-all cursor-pointer"
+                >
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                  <span>Bắt đầu từ Tập 1: Hallo!</span>
+                </button>
+              </div>
+
+              {/* Search & Filter Bar */}
+              <div className="space-y-3">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                  <div className="relative flex-1 max-w-md">
+                    <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-outline" />
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="Tìm theo số tập hoặc tên bài (VD: Hallo, Tập 5, Essen, Wohnung)..."
+                      className="w-full bg-surface-container-low border border-outline-variant/40 focus:border-secondary rounded-xl pl-10 pr-4 py-2 text-xs text-on-surface placeholder:text-outline focus:outline-none transition-all shadow-xs"
+                    />
+                    {searchQuery && (
+                      <button
+                        type="button"
+                        onClick={() => setSearchQuery('')}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-outline hover:text-on-surface"
+                      >
+                        ✕
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="text-xs text-outline font-medium text-right">
+                    Hiển thị <span className="font-bold text-on-surface">{filteredA1Episodes.length}</span> / {NICOS_WEG_PLAYLIST.episodes.length} tập
+                  </div>
+                </div>
+
+                {/* Stages pills */}
+                <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+                  {stageOptions.map((opt) => (
+                    <button
+                      key={opt.id}
+                      type="button"
+                      onClick={() => setSelectedStage(opt.id)}
+                      className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
+                        selectedStage === opt.id
+                          ? 'bg-secondary-container text-on-secondary-container shadow-xs'
+                          : 'bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high border border-outline-variant/30'
+                      }`}
+                    >
+                      {opt.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Episode Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {filteredA1Episodes.map((ep) => (
+                  <LessonEpisodeCard
+                    key={ep.id}
+                    ep={ep}
+                    isCompleted={completedVideoIds.includes(ep.videoId)}
+                    practiceCount={practiceCounts[ep.videoId] || (completedVideoIds.includes(ep.videoId) ? 1 : 0)}
+                    isCurrent={currentVideoId === ep.videoId}
+                    onSelectEpisode={onSelectEpisode}
+                  />
+                ))}
+              </div>
+
+              {filteredA1Episodes.length === 0 && (
+                <div className="p-12 text-center rounded-2xl bg-surface-container-low border border-outline-variant/30 space-y-3">
+                  <BookOpen className="w-8 h-8 text-outline mx-auto" />
+                  <h3 className="text-sm font-semibold text-on-surface">Không tìm thấy tập nào</h3>
+                  <p className="text-xs text-outline max-w-sm mx-auto">
+                    Không có tập phim nào khớp với từ khóa "{searchQuery}". Bạn hãy thử tìm với từ khác hoặc xóa bộ lọc.
+                  </p>
                   <button
                     type="button"
-                    onClick={() => setSearchQuery('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-outline hover:text-on-surface"
+                    onClick={() => { setSearchQuery(''); setSelectedStage('all'); }}
+                    className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-surface-container-high text-secondary hover:bg-surface-bright"
                   >
-                    ✕
+                    Xóa bộ lọc
                   </button>
-                )}
-              </div>
-
-              <div className="text-xs text-outline font-medium text-right">
-                Hiển thị <span className="font-bold text-on-surface">{filteredA1Episodes.length}</span> / {NICOS_WEG_PLAYLIST.episodes.length} tập
-              </div>
-            </div>
-
-            {/* Stages pills */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-              {stageOptions.map((opt) => (
-                <button
-                  key={opt.id}
-                  type="button"
-                  onClick={() => setSelectedStage(opt.id)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
-                    selectedStage === opt.id
-                      ? 'bg-secondary-container text-on-secondary-container shadow-xs'
-                      : 'bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high border border-outline-variant/30'
-                  }`}
-                >
-                  {opt.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Episode Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {filteredA1Episodes.map((ep) => (
-              <LessonEpisodeCard
-                key={ep.id}
-                ep={ep}
-                isCompleted={completedVideoIds.includes(ep.videoId)}
-                practiceCount={practiceCounts[ep.videoId] || (completedVideoIds.includes(ep.videoId) ? 1 : 0)}
-                isCurrent={currentVideoId === ep.videoId}
-                onSelectEpisode={onSelectEpisode}
-              />
-            ))}
-          </div>
-
-          {filteredA1Episodes.length === 0 && (
-            <div className="p-12 text-center rounded-2xl bg-surface-container-low border border-outline-variant/30 space-y-3">
-              <BookOpen className="w-8 h-8 text-outline mx-auto" />
-              <h3 className="text-sm font-semibold text-on-surface">Không tìm thấy tập nào</h3>
-              <p className="text-xs text-outline max-w-sm mx-auto">
-                Không có tập phim nào khớp với từ khóa "{searchQuery}". Bạn hãy thử tìm với từ khác hoặc xóa bộ lọc.
-              </p>
-              <button
-                type="button"
-                onClick={() => { setSearchQuery(''); setSelectedStage('all'); }}
-                className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-surface-container-high text-secondary hover:bg-surface-bright"
-              >
-                Xóa bộ lọc
-              </button>
-            </div>
+                </div>
+              )}
+            </>
           )}
         </div>
       )}

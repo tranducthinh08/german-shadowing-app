@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { segmentSentences } from './subtitle.parser.js';
 import { SAMPLE_VIDEOS } from '../data/mockData.js';
-import { NICOS_WEG_EPISODES_MAP } from '../data/nicosWegPlaylist.js';
+import { ALL_EPISODES_MAP, getCurriculumByVideoId } from '../data/curriculumRegistry.js';
 import { extractCaptionsWithFallbacks } from './captionExtractors.js';
 
 /**
@@ -84,22 +84,23 @@ export async function getVideoData(urlOrId, requestedLang = 'de') {
     };
   }
 
-  // Check pre-indexed Nicos Weg A1 curriculum (80 episodes)
-  const nicosEpisode = NICOS_WEG_EPISODES_MAP[videoId];
-  if (nicosEpisode && nicosEpisode.sentences && nicosEpisode.sentences.length > 0) {
+  // Check pre-indexed curricula (DW Nicos Weg or Easy German)
+  const preindexedEp = ALL_EPISODES_MAP[videoId];
+  if (preindexedEp && preindexedEp.sentences && preindexedEp.sentences.length > 0) {
+    const curriculum = getCurriculumByVideoId(videoId);
     return {
-      videoId: nicosEpisode.videoId,
-      title: nicosEpisode.fullTitle || nicosEpisode.title,
-      author: nicosEpisode.author,
-      thumbnail: nicosEpisode.thumbnail,
-      language: nicosEpisode.language,
-      sentences: nicosEpisode.sentences,
+      videoId: preindexedEp.videoId,
+      title: preindexedEp.fullTitle || preindexedEp.title,
+      author: preindexedEp.author,
+      thumbnail: preindexedEp.thumbnail,
+      language: preindexedEp.language,
+      sentences: preindexedEp.sentences,
       isSample: true,
       playlistInfo: {
-        playlistId: 'PLs7zUO7VPyJ6eoN6SmB1UcwvPUagK87ix',
-        episodeNumber: nicosEpisode.episodeNumber,
-        category: nicosEpisode.category,
-        title: nicosEpisode.title
+        playlistId: curriculum ? curriculum.playlistId : 'PLs7zUO7VPyJ6eoN6SmB1UcwvPUagK87ix',
+        episodeNumber: preindexedEp.episodeNumber,
+        category: preindexedEp.category,
+        title: preindexedEp.title
       }
     };
   }

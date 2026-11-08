@@ -1,7 +1,7 @@
 import React from 'react';
 import { PenTool, Mic, RotateCcw, Maximize2, Minimize2 } from 'lucide-react';
 import EpisodeNavBar from '../playlist/EpisodeNavBar';
-import { NICOS_WEG_EPISODES_MAP } from '../../data/nicosWegPlaylist';
+import { ALL_EPISODES_MAP } from '../../data/curriculumRegistry';
 
 export default function StudioLessonHeader({
   currentVideo,
@@ -34,8 +34,8 @@ export default function StudioLessonHeader({
 
   return (
     <>
-      {/* Episode Navigation Bar if video belongs to Nicos Weg */}
-      {NICOS_WEG_EPISODES_MAP[currentVideo.videoId] && (
+      {/* Episode Navigation Bar if video belongs to pre-indexed curriculum */}
+      {ALL_EPISODES_MAP[currentVideo.videoId] && (
         <EpisodeNavBar
           currentVideoId={currentVideo.videoId}
           onSelectEpisode={onSelectEpisode}

@@ -35,6 +35,8 @@ const CODE_EXTENSIONS = new Set(['.js', '.jsx', '.ts', '.tsx']);
 const WHITELISTED_FILES = new Set([
   'client/src/data/nicosWegPlaylist.js',
   'server/src/data/nicosWegPlaylist.js',
+  'client/src/data/easyGermanPlaylist.js',
+  'server/src/data/easyGermanPlaylist.js',
   'client/src/data/germanAlphabetData.js'
 ]);
 

@@ -20,31 +20,29 @@ const LessonsTab = lazy(() => import('./components/lessons/LessonsTab'));
 const AlphabetTab = lazy(() => import('./components/alphabet/AlphabetTab'));
 const SpeakingCoachTab = lazy(() => import('./components/speaking/SpeakingCoachTab'));
 
-function TabLoadingFallback() {
-  return (
-    <div className="flex flex-col items-center justify-center py-24 gap-3 text-outline">
-      <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
-      <span className="text-xs font-medium">Đang tải dữ liệu...</span>
-    </div>
-  );
-}
+const TabLoadingFallback = () => (
+  <div className="flex flex-col items-center justify-center py-24 gap-3 text-outline">
+    <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+    <span className="text-xs font-medium">Đang tải dữ liệu...</span>
+  </div>
+);
 
 export default function App() {
   const [mainTab, setMainTab] = useState('studio');
+  const [activeCurriculum, setActiveCurriculum] = useState('nicos_weg');
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(() => localStorage.getItem('polyglot_sidebar_collapsed') === 'true');
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
-  const handleToggleSidebarCollapse = () => {
-    setIsSidebarCollapsed(prev => {
-      const next = !prev;
-      try { localStorage.setItem('polyglot_sidebar_collapsed', String(next)); } catch (e) {}
-      return next;
-    });
-  };
+  const handleToggleSidebarCollapse = () => setIsSidebarCollapsed(prev => {
+    const next = !prev;
+    try { localStorage.setItem('polyglot_sidebar_collapsed', String(next)); } catch (e) {}
+    return next;
+  });
 
-  const handleNavigate = (tabId, mode) => {
+  const handleNavigate = (tabId, modeOrCurriculum) => {
     setMainTab(tabId);
-    if (mode) setStudyMode(mode);
+    if (modeOrCurriculum === 'shadowing' || modeOrCurriculum === 'dictation') setStudyMode(modeOrCurriculum);
+    else if (modeOrCurriculum === 'nicos_weg' || modeOrCurriculum === 'easy_german') setActiveCurriculum(modeOrCurriculum);
   };
 
   const {
@@ -119,14 +117,10 @@ export default function App() {
   const syncProgressOnLoad = (videoData, resetProgress) => {
     if (resetProgress) {
       setCompletedSentenceIds(new Set());
-      if (currentUser?.username) {
-        deleteUserCompletedSentences(currentUser.username, videoData.videoId);
-      }
+      if (currentUser?.username) deleteUserCompletedSentences(currentUser.username, videoData.videoId);
       updateStudyHistory(videoData, 0);
     } else {
-      const userCompleted = currentUser?.username
-        ? getUserCompletedSentences(currentUser.username, videoData.videoId)
-        : new Set();
+      const userCompleted = currentUser?.username ? getUserCompletedSentences(currentUser.username, videoData.videoId) : new Set();
       setCompletedSentenceIds(userCompleted);
       updateStudyHistory(videoData, userCompleted.size);
     }
@@ -228,7 +222,7 @@ export default function App() {
 
       {/* Persistent Left Sidebar Navigation */}
       <AppSidebar
-        activeTab={mainTab} studyMode={studyMode} onChangeTab={handleNavigate}
+        activeTab={mainTab} studyMode={studyMode} activeCurriculum={activeCurriculum} onChangeTab={handleNavigate}
         savedVocabCount={savedWords.length} historyCount={studyHistory.length}
         isCollapsed={isSidebarCollapsed} onToggleCollapse={handleToggleSidebarCollapse}
         isMobileOpen={isMobileSidebarOpen} onCloseMobile={() => setIsMobileSidebarOpen(false)}
@@ -302,6 +296,8 @@ export default function App() {
 
           {(mainTab === 'lessons' || mainTab === 'playlist') && (
             <LessonsTab
+              activeCurriculum={activeCurriculum}
+              onChangeCurriculum={setActiveCurriculum}
               onSelectEpisode={(ep, reset) => { handleSelectEpisode(ep, reset, syncProgressOnLoad); setMainTab('studio'); }}
               onSelectLesson={(lesson) => { handleLoadVideo(lesson.videoId, lesson.language, false, syncProgressOnLoad); setMainTab('studio'); }}
               completedVideoIds={completedVideoIds}
@@ -343,7 +339,7 @@ export default function App() {
             onChangeMode={handleChangeMode}
             onResetLesson={() => handleResetLesson(false, handleResetLessonProgress)}
             onSelectEpisode={(ep, reset) => handleSelectEpisode(ep, reset, syncProgressOnLoad)}
-            onOpenPlaylistView={() => setMainTab('playlist')}
+            onOpenPlaylistView={(currId) => { if (currId) setActiveCurriculum(currId); setMainTab('playlist'); }}
             playerRef={playerRef}
             activeSegment={activeSegment}
             isLooping={isLooping}

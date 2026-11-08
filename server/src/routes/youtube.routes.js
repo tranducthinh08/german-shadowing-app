@@ -3,6 +3,7 @@ import axios from 'axios';
 import { getVideoData, extractVideoId } from '../services/youtube.service.js';
 import { SAMPLE_VIDEOS } from '../data/mockData.js';
 import { NICOS_WEG_PLAYLIST } from '../data/nicosWegPlaylist.js';
+import { EASY_GERMAN_PLAYLIST } from '../data/easyGermanPlaylist.js';
 
 const router = express.Router();
 
@@ -93,6 +94,34 @@ router.get('/playlist/nicos-weg', (req, res) => {
       totalEpisodes: NICOS_WEG_PLAYLIST.totalEpisodes,
       totalSentences: NICOS_WEG_PLAYLIST.totalSentences,
       episodes: NICOS_WEG_PLAYLIST.episodes.map(e => ({
+        id: e.id,
+        episodeNumber: e.episodeNumber,
+        title: e.title,
+        fullTitle: e.fullTitle,
+        category: e.category,
+        videoId: e.videoId,
+        thumbnail: e.thumbnail,
+        sentenceCount: e.sentenceCount
+      }))
+    }
+  });
+});
+
+/**
+ * GET /api/youtube/playlist/easy-german
+ * Returns Easy German A1 foundation curriculum
+ */
+router.get('/playlist/easy-german', (req, res) => {
+  return res.json({
+    success: true,
+    data: {
+      playlistId: EASY_GERMAN_PLAYLIST.playlistId,
+      title: EASY_GERMAN_PLAYLIST.title,
+      author: EASY_GERMAN_PLAYLIST.author,
+      description: EASY_GERMAN_PLAYLIST.description,
+      totalEpisodes: EASY_GERMAN_PLAYLIST.totalEpisodes,
+      totalSentences: EASY_GERMAN_PLAYLIST.totalSentences,
+      episodes: EASY_GERMAN_PLAYLIST.episodes.map(e => ({
         id: e.id,
         episodeNumber: e.episodeNumber,
         title: e.title,

@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import {
   Headphones, Home, Flame, Languages, Bookmark, ChevronLeft,
   ChevronRight, ChevronDown, Mic, PenTool, BookOpen, History,
-  Trophy, Settings, X, Sparkles
+  Trophy, Settings, X, Sparkles, GraduationCap
 } from 'lucide-react';
 
 export default function AppSidebar({
   activeTab = 'studio',
   studyMode = 'dictation',
+  activeCurriculum = 'nicos_weg',
   onChangeTab,
   savedVocabCount = 0,
   historyCount = 0,
@@ -260,23 +261,45 @@ export default function AppSidebar({
                   {!isCollapsed && <span>Viết (Chép chính tả)</span>}
                 </button>
 
-                {/* 5.4 Bài học giáo trình (Nicos Weg) */}
+                {/* 5.4 Nicos Weg (DW) */}
                 <button
                   type="button"
-                  onClick={() => handleNavClick('lessons')}
+                  onClick={() => handleNavClick('lessons', 'nicos_weg')}
                   className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
-                    activeTab === 'lessons' || activeTab === 'playlist'
+                    (activeTab === 'lessons' || activeTab === 'playlist') && activeCurriculum !== 'easy_german'
                       ? 'bg-secondary-container/25 text-secondary border-l-3 border-secondary font-bold'
                       : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
                   } ${isCollapsed ? 'justify-center px-0' : ''}`}
-                  title="Bài học theo giáo trình: Nicos Weg A1 • A2"
+                  title="Nicos Weg (DW) - 80 tập cốt truyện"
                 >
                   <BookOpen className="w-3.5 h-3.5 text-secondary shrink-0" />
                   {!isCollapsed && (
                     <div className="flex items-center justify-between flex-1 min-w-0">
-                      <span>Bài học Nicos Weg</span>
+                      <span>Nicos Weg (DW)</span>
                       <span className="text-[9px] font-bold px-1 py-0.2 rounded bg-surface-container text-outline">
                         80 tập
+                      </span>
+                    </div>
+                  )}
+                </button>
+
+                {/* 5.5 Easy German (A1) */}
+                <button
+                  type="button"
+                  onClick={() => handleNavClick('lessons', 'easy_german')}
+                  className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+                    (activeTab === 'lessons' || activeTab === 'playlist') && activeCurriculum === 'easy_german'
+                      ? 'bg-secondary-container/25 text-secondary border-l-3 border-secondary font-bold'
+                      : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
+                  } ${isCollapsed ? 'justify-center px-0' : ''}`}
+                  title="Easy German (A1) - 10 tập giao tiếp"
+                >
+                  <GraduationCap className="w-3.5 h-3.5 text-secondary shrink-0" />
+                  {!isCollapsed && (
+                    <div className="flex items-center justify-between flex-1 min-w-0">
+                      <span>Easy German (A1)</span>
+                      <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-secondary/15 text-secondary">
+                        10 tập
                       </span>
                     </div>
                   )}

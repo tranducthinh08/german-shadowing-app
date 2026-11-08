@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback } from 'react';
 import { loadVideoApi } from '../services/api';
-import { NICOS_WEG_EPISODES_MAP, NICOS_WEG_PLAYLIST } from '../data/nicosWegPlaylist';
+import { ALL_EPISODES_MAP, getCurriculumByVideoId } from '../data/curriculumRegistry';
 
 function extractVideoId(urlOrId) {
   if (!urlOrId) return null;
@@ -64,8 +64,8 @@ export function useVideoSession(initialSettings = {}) {
   const handleLoadVideo = useCallback(
     async (urlOrId, lang = currentLanguage, resetProgress = false, onProgressSync) => {
       const rawId = extractVideoId(urlOrId);
-      if (rawId && NICOS_WEG_EPISODES_MAP[rawId]) {
-        handleSelectEpisode(NICOS_WEG_EPISODES_MAP[rawId], resetProgress, onProgressSync);
+      if (rawId && ALL_EPISODES_MAP[rawId]) {
+        handleSelectEpisode(ALL_EPISODES_MAP[rawId], resetProgress, onProgressSync);
         return;
       }
 
@@ -192,10 +192,12 @@ export function useVideoSession(initialSettings = {}) {
     if (!currentVideo) return;
     const currentVideoId = currentVideo.videoId;
     let nextEp = null;
-    if (NICOS_WEG_PLAYLIST?.episodes) {
-      const idx = NICOS_WEG_PLAYLIST.episodes.findIndex((e) => e.videoId === currentVideoId);
-      if (idx >= 0 && idx < NICOS_WEG_PLAYLIST.episodes.length - 1) {
-        nextEp = NICOS_WEG_PLAYLIST.episodes[idx + 1];
+    const curriculum = getCurriculumByVideoId(currentVideoId);
+    const playlist = curriculum?.playlist;
+    if (playlist?.episodes) {
+      const idx = playlist.episodes.findIndex((e) => e.videoId === currentVideoId);
+      if (idx >= 0 && idx < playlist.episodes.length - 1) {
+        nextEp = playlist.episodes[idx + 1];
       }
     }
     setCompletedLessonData({

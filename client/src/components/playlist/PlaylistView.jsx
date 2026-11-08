@@ -1,31 +1,27 @@
 import React, { useState, useMemo } from 'react';
 import {
-  BookOpen,
-  Play,
-  Search,
-  Sparkles,
-  CheckCircle2,
-  Filter,
-  Layers,
-  Music,
-  GraduationCap,
-  ArrowRight,
-  Clock,
-  ChevronRight
+  BookOpen, Play, Search, Sparkles, CheckCircle2, Filter,
+  Layers, Music, GraduationCap, ArrowRight, Clock, ChevronRight, Film, Radio
 } from 'lucide-react';
 import { NICOS_WEG_PLAYLIST } from '../../data/nicosWegPlaylist.js';
+import { EASY_GERMAN_PLAYLIST } from '../../data/easyGermanPlaylist.js';
 
 export default function PlaylistView({
+  initialPlaylist = 'nicos_weg',
   onSelectEpisode,
   completedVideoIds = [],
   practiceCounts = {},
   currentVideoId = null,
   onBackToStudio
 }) {
+  const [selectedCurriculum, setSelectedCurriculum] = useState(initialPlaylist || 'nicos_weg');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('all');
 
-  const filterOptions = [
+  const isEasyGerman = selectedCurriculum === 'easy_german';
+  const activePlaylist = isEasyGerman ? EASY_GERMAN_PLAYLIST : NICOS_WEG_PLAYLIST;
+
+  const nicosFilterOptions = [
     { id: 'all', label: 'Tất cả (80)', min: 0, max: 999 },
     { id: 'part1', label: 'Tập 1 – 20 (Khởi đầu)', min: 1, max: 20 },
     { id: 'part2', label: 'Tập 21 – 40 (Đời sống)', min: 21, max: 40 },
@@ -34,35 +30,90 @@ export default function PlaylistView({
     { id: 'special', label: 'Đặc biệt & Bài hát', special: true }
   ];
 
+  const easyGermanFilterOptions = [
+    { id: 'all', label: `Tất cả (${EASY_GERMAN_PLAYLIST.totalEpisodes})` },
+    { id: 'Giao tiếp cơ bản', label: 'Giao tiếp cơ bản' },
+    { id: 'Từ vựng đời sống', label: 'Từ vựng đời sống' },
+    { id: 'Phát âm & Bảng chữ cái', label: 'Phát âm' },
+    { id: 'Động từ & Ngữ pháp', label: 'Động từ & Ngữ pháp' },
+    { id: 'Đời sống & Mua sắm', label: 'Đời sống & Mua sắm' }
+  ];
+
+  const filterOptions = isEasyGerman ? easyGermanFilterOptions : nicosFilterOptions;
+
   const filteredEpisodes = useMemo(() => {
-    return NICOS_WEG_PLAYLIST.episodes.filter(ep => {
+    return activePlaylist.episodes.filter(ep => {
       // Search query filter
       if (searchQuery.trim()) {
         const query = searchQuery.toLowerCase().trim();
         const matchTitle = ep.title.toLowerCase().includes(query);
         const matchFull = ep.fullTitle.toLowerCase().includes(query);
-        const matchNum = `tập ${ep.episodeNumber}`.includes(query) || `folge ${ep.episodeNumber}`.includes(query) || `${ep.episodeNumber}` === query;
+        const matchNum = `tập ${ep.episodeNumber}`.includes(query) || `${ep.episodeNumber}` === query;
         if (!matchTitle && !matchFull && !matchNum) return false;
       }
 
       // Range/category filter
       if (selectedFilter === 'all') return true;
+
+      if (isEasyGerman) {
+        return ep.category === selectedFilter;
+      }
+
       if (selectedFilter === 'special') {
         return ep.category !== 'Bài học A1' || ep.episodeNumber === 0;
       }
 
-      const activeOpt = filterOptions.find(f => f.id === selectedFilter);
+      const activeOpt = nicosFilterOptions.find(f => f.id === selectedFilter);
       if (activeOpt && activeOpt.min !== undefined) {
         return ep.episodeNumber >= activeOpt.min && ep.episodeNumber <= activeOpt.max && ep.category === 'Bài học A1';
       }
 
       return true;
     });
-  }, [searchQuery, selectedFilter]);
+  }, [activePlaylist, searchQuery, selectedFilter, isEasyGerman]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
       
+      {/* Curriculum Switcher Tabs on Top */}
+      <div className="flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          onClick={() => { setSelectedCurriculum('nicos_weg'); setSelectedFilter('all'); }}
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl font-bold text-xs transition-all cursor-pointer ${
+            !isEasyGerman
+              ? 'bg-secondary text-on-secondary shadow-md scale-[1.02]'
+              : 'bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high border border-outline-variant/30'
+          }`}
+        >
+          <Film className="w-4 h-4" />
+          <span>Nicos Weg (DW)</span>
+          <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+            !isEasyGerman ? 'bg-black/25 text-white' : 'bg-surface-container-high text-outline'
+          }`}>
+            80 tập
+          </span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => { setSelectedCurriculum('easy_german'); setSelectedFilter('all'); }}
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl font-bold text-xs transition-all cursor-pointer ${
+            isEasyGerman
+              ? 'bg-secondary text-on-secondary shadow-md scale-[1.02]'
+              : 'bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high border border-outline-variant/30'
+          }`}
+        >
+          <Radio className="w-4 h-4" />
+          <span>Easy German (A1)</span>
+          <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+            isEasyGerman ? 'bg-black/25 text-white' : 'bg-secondary/15 text-secondary'
+          }`}>
+            10 tập
+          </span>
+        </button>
+      </div>
+
       {/* Hero Banner */}
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-surface-container-high via-surface-container to-surface-container-low border border-outline-variant/40 p-6 sm:p-8 shadow-xl">
         <div className="absolute top-0 right-0 -mr-16 -mt-16 w-80 h-80 rounded-full bg-secondary/10 blur-3xl pointer-events-none" />
@@ -73,7 +124,7 @@ export default function PlaylistView({
             <div className="flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-secondary/20 text-secondary border border-secondary/30">
                 <GraduationCap className="w-3.5 h-3.5" />
-                Giáo trình DW A1 chính thức
+                {isEasyGerman ? 'Easy German A1 đường phố' : 'Giáo trình DW A1 chính thức'}
               </span>
               <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-primary/10 text-primary border border-primary/20">
                 🇩🇪 Tiếng Đức chuẩn
@@ -84,21 +135,23 @@ export default function PlaylistView({
             </div>
 
             <h1 className="text-2xl sm:text-3xl font-headline font-bold text-on-surface tracking-tight">
-              Nicos Weg – Einfach Deutsch lernen
+              {isEasyGerman ? 'Easy German – German A1' : 'Nicos Weg – Einfach Deutsch lernen'}
             </h1>
             <p className="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-              Trọn bộ 76 tập phim học tiếng Đức trình độ A1 của Deutsche Welle. Toàn bộ các tập đã được tích hợp sẵn phụ đề chuẩn từng giây, chia câu tự động và hỗ trợ dịch từ vựng, luyện nghe & chép chính tả ngay lập tức!
+              {isEasyGerman
+                ? 'Trọn bộ 10 bài học tiếng Đức giao tiếp A1 thực tế ngoài đường phố Berlin từ kênh Easy German. Giọng nói chậm, phát âm rõ ràng, đi kèm kịch bản đối soát từng câu.'
+                : 'Trọn bộ 76 tập phim học tiếng Đức trình độ A1 của Deutsche Welle. Toàn bộ các tập đã được tích hợp sẵn phụ đề chuẩn từng giây, chia câu tự động và hỗ trợ dịch từ vựng, luyện nghe & chép chính tả ngay lập tức!'}
             </p>
 
             {/* Quick Stats */}
             <div className="flex flex-wrap items-center gap-4 pt-1 text-xs text-outline">
               <div className="flex items-center gap-1.5">
                 <Layers className="w-4 h-4 text-secondary" />
-                <span className="font-semibold text-on-surface">{NICOS_WEG_PLAYLIST.totalEpisodes}</span> tập đầy đủ
+                <span className="font-semibold text-on-surface">{activePlaylist.totalEpisodes}</span> tập đầy đủ
               </div>
               <div className="flex items-center gap-1.5">
                 <Sparkles className="w-4 h-4 text-primary" />
-                <span className="font-semibold text-on-surface">{NICOS_WEG_PLAYLIST.totalSentences.toLocaleString()}</span> câu thực hành
+                <span className="font-semibold text-on-surface">{activePlaylist.totalSentences.toLocaleString()}</span> câu thực hành
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400" />
@@ -112,13 +165,13 @@ export default function PlaylistView({
             <button
               type="button"
               onClick={() => {
-                const firstEp = NICOS_WEG_PLAYLIST.episodes.find(e => e.episodeNumber === 1) || NICOS_WEG_PLAYLIST.episodes[0];
-                onSelectEpisode(firstEp);
+                const firstEp = activePlaylist.episodes[0];
+                if (firstEp) onSelectEpisode(firstEp);
               }}
               className="flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-gradient-to-r from-secondary to-primary hover:opacity-95 text-on-primary font-headline font-bold text-xs sm:text-sm shadow-lg shadow-secondary/25 transition-all hover:scale-[1.02] cursor-pointer"
             >
               <Play className="w-4 h-4 fill-current" />
-              <span>Học từ Tập 1: Hallo!</span>
+              <span>{isEasyGerman ? 'Học từ Tập 1' : 'Học từ Tập 1: Hallo!'}</span>
             </button>
             {onBackToStudio && (
               <button
@@ -126,6 +179,13 @@ export default function PlaylistView({
                 onClick={onBackToStudio}
                 className="flex items-center justify-center gap-1.5 px-4 py-3 rounded-2xl bg-surface-container-high hover:bg-surface-bright text-on-surface text-xs font-semibold border border-outline-variant/30 transition-all cursor-pointer"
               >
+                <span>Về phòng luyện tập</span>
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
                 <span>Về phòng luyện tập</span>
                 <ChevronRight className="w-4 h-4" />
               </button>
