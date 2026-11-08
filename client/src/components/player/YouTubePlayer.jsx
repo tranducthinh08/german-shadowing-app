@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useImperativeHandle, forwardRef } from 'react';
-import { Play, Pause, RotateCcw, Volume2, VolumeX, Gauge, Repeat, SkipBack, SkipForward } from 'lucide-react';
+import { Play, Pause, RotateCcw, Volume2, VolumeX, Gauge, Repeat, SkipBack, SkipForward, Eye, EyeOff, Headphones } from 'lucide-react';
 import { formatTime } from '../../utils/timeFormat';
 
 const YouTubePlayer = forwardRef(function YouTubePlayer(
@@ -14,7 +14,9 @@ const YouTubePlayer = forwardRef(function YouTubePlayer(
     onSegmentEnd,
     onNextSegment,
     onPrevSegment,
-    language = 'de'
+    language = 'de',
+    hideVideo: propHideVideo,
+    onToggleHideVideo: propOnToggleHideVideo
   },
   ref
 ) {
@@ -25,27 +27,36 @@ const YouTubePlayer = forwardRef(function YouTubePlayer(
   const [duration, setDuration] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const [localHideVideo, setLocalHideVideo] = useState(() => {
+    try {
+      return localStorage.getItem('polyglot_hide_video') === 'true';
+    } catch (e) {
+      return false;
+    }
+  });
+
+  const isHideVideo = propHideVideo !== undefined ? propHideVideo : localHideVideo;
+
+  const handleToggleHideVideo = () => {
+    if (propOnToggleHideVideo) {
+      propOnToggleHideVideo(!isHideVideo);
+    } else {
+      setLocalHideVideo((prev) => {
+        const next = !prev;
+        try { localStorage.setItem('polyglot_hide_video', String(next)); } catch (e) {}
+        return next;
+      });
+    }
+  };
 
   // Interval ticker for tracking time
   const timeTickerRef = useRef(null);
 
   // Expose methods to parent components via ref
   useImperativeHandle(ref, () => ({
-    seekTo: (seconds) => {
-      if (playerRef.current && typeof playerRef.current.seekTo === 'function') {
-        playerRef.current.seekTo(seconds, true);
-      }
-    },
-    play: () => {
-      if (playerRef.current && typeof playerRef.current.playVideo === 'function') {
-        playerRef.current.playVideo();
-      }
-    },
-    pause: () => {
-      if (playerRef.current && typeof playerRef.current.pauseVideo === 'function') {
-        playerRef.current.pauseVideo();
-      }
-    },
+    seekTo: (sec) => playerRef.current?.seekTo?.(sec, true),
+    play: () => playerRef.current?.playVideo?.(),
+    pause: () => playerRef.current?.pauseVideo?.(),
     replaySegment: () => {
       if (activeSegment && playerRef.current) {
         playerRef.current.seekTo(activeSegment.start, true);
@@ -53,11 +64,9 @@ const YouTubePlayer = forwardRef(function YouTubePlayer(
         setIsPlaying(true);
       }
     },
-    setSpeed: (speed) => {
-      if (playerRef.current && typeof playerRef.current.setPlaybackRate === 'function') {
-        playerRef.current.setPlaybackRate(speed);
-      }
-    }
+    setSpeed: (speed) => playerRef.current?.setPlaybackRate?.(speed),
+    toggleHideVideo: handleToggleHideVideo,
+    isHideVideo
   }));
 
   // Initialize YouTube Player
@@ -194,9 +203,53 @@ const YouTubePlayer = forwardRef(function YouTubePlayer(
 
   return (
     <div className="flex flex-col rounded-2xl overflow-hidden bg-surface-container border border-outline-variant/30 shadow-xl transition-all">
-      {/* 16:9 Clean Video Frame */}
-      <div className="relative w-full pb-[56.25%] bg-black overflow-hidden">
-        <div ref={containerRef} className="absolute inset-0 w-full h-full" />
+      {/* 16:9 Video Frame / Audio-Only Focus Card */}
+      <div className="relative w-full overflow-hidden bg-black transition-all">
+        {/* Real YouTube player container - ALWAYS kept in DOM for audio playback & API control */}
+        <div className={isHideVideo ? 'absolute -top-[9999px] -left-[9999px] w-1 h-1 opacity-0 pointer-events-none' : 'relative w-full pb-[56.25%]'}>
+          <div ref={containerRef} className="absolute inset-0 w-full h-full" />
+        </div>
+
+        {/* Audio-only Focus Card */}
+        {isHideVideo && (
+          <div className="relative w-full py-10 px-6 sm:py-12 bg-gradient-to-br from-[#0b101e] via-[#0f172a] to-[#090d16] border-b border-outline-variant/30 flex flex-col items-center justify-center text-center gap-3 overflow-hidden animate-fade-in">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-secondary/10 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="relative z-10">
+              <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-tr from-secondary/25 to-primary/20 flex items-center justify-center border border-secondary/30 shadow-lg ${isPlaying ? 'scale-105 shadow-secondary/25' : ''} transition-all`}>
+                <Headphones className={`w-7 h-7 sm:w-8 sm:h-8 text-secondary ${isPlaying ? 'animate-pulse' : ''}`} />
+              </div>
+              {isPlaying && (
+                <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-secondary"></span>
+                </span>
+              )}
+            </div>
+
+            <div className="space-y-1 max-w-md z-10">
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-secondary/15 text-secondary border border-secondary/20">
+                🎧 Chế độ Nghe thuần âm thanh (Audio-Only)
+              </span>
+              <h3 className="text-sm sm:text-base font-headline font-bold text-on-surface">
+                Đã ẩn video để tập trung nghe chép
+              </h3>
+              <p className="text-xs text-outline leading-relaxed max-w-sm mx-auto">
+                Tránh nhìn phụ đề in sẵn trên video. Hãy chỉ dùng đôi tai để cảm nhận và ghi chép!
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleToggleHideVideo}
+              className="mt-1 flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-container-high hover:bg-surface-bright text-on-surface border border-outline-variant/40 text-xs font-semibold transition-all cursor-pointer shadow-xs hover:scale-105 z-10"
+              title="Bấm để hiển thị lại khung hình video"
+            >
+              <Eye className="w-3.5 h-3.5 text-secondary" />
+              <span>Hiện lại video</span>
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Clean Control Bar */}
@@ -262,6 +315,21 @@ const YouTubePlayer = forwardRef(function YouTubePlayer(
           >
             <Repeat className="w-3.5 h-3.5" />
             <span>{isLooping ? 'Đang lặp' : 'Lặp câu'}</span>
+          </button>
+
+          {/* Hide / Show Video Toggle (Audio-only dictation) */}
+          <button
+            type="button"
+            onClick={handleToggleHideVideo}
+            className={`px-2.5 py-1.5 rounded-full transition-all flex items-center gap-1 text-xs font-semibold cursor-pointer border ${
+              isHideVideo
+                ? 'bg-secondary-container text-on-secondary-container border-secondary/50 shadow-xs'
+                : 'bg-surface-container text-outline hover:text-on-surface border-outline-variant/30'
+            }`}
+            title={isHideVideo ? 'Hiện lại video' : 'Ẩn video để chỉ tập trung nghe chép (Audio-only)'}
+          >
+            {isHideVideo ? <Eye className="w-3.5 h-3.5 text-secondary" /> : <EyeOff className="w-3.5 h-3.5" />}
+            <span>{isHideVideo ? 'Hiện video' : 'Ẩn video'}</span>
           </button>
         </div>
 

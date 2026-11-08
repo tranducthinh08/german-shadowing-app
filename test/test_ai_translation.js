@@ -56,6 +56,11 @@ assert(typeof fallbackRes.translation === 'string', 'Translation must be a strin
 assert(fallbackRes.translation.length > 0, 'Translation should return non-empty text from fallback');
 console.log(`  ✅ Fallback translation succeeded: "${fallbackRes.translation}" (Provider: ${fallbackRes.provider})`);
 
+// 2.3 User screenshot test cases: Easy German sentences
+const easyGermanRes = await translateSentenceWithGemini('Wie heißt du?', 'de', '');
+assert(easyGermanRes && easyGermanRes.translation.length > 0, 'Easy German sentence must return valid translation');
+console.log(`  ✅ Easy German test sentence ("Wie heißt du?") translated: "${easyGermanRes.translation}"`);
+
 // -------------------------------------------------------------
 // Test 3: User Storage Isolation for Custom Gemini API Key
 // -------------------------------------------------------------

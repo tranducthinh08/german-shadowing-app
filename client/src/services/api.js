@@ -64,7 +64,7 @@ export async function translateWithAiApi(text, sourceLang = 'de', customApiKey =
     });
 
     const resJson = await response.json();
-    if (response.ok && resJson.success && resJson.data) {
+    if (response.ok && resJson.success && resJson.data && resJson.data.translation) {
       return resJson.data;
     }
   } catch (e) {
@@ -72,7 +72,16 @@ export async function translateWithAiApi(text, sourceLang = 'de', customApiKey =
   }
 
   // Client-side fallback to standard translation
-  const fallbackText = await translateSentenceApi(text, sourceLang);
+  let fallbackText = await translateSentenceApi(text, sourceLang);
+  if (!fallbackText) {
+    try {
+      const q = encodeURIComponent(text.trim());
+      const r = await fetch(`https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl=${sourceLang}&tl=vi&q=${q}`);
+      const data = await r.json();
+      if (data && typeof data[0] === 'string') fallbackText = data[0].trim();
+    } catch (e) {}
+  }
+
   return {
     translation: fallbackText,
     literal: '',

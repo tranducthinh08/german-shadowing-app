@@ -8,13 +8,19 @@ const translationCache = new Map();
 
 export default function DictationTranslationCard({
   sentenceText,
+  initialTranslation = '',
   language = 'de',
   isStandardMet = false,
   customApiKey = ''
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [translationData, setTranslationData] = useState(null);
+  const [translationData, setTranslationData] = useState(() => {
+    if (initialTranslation) {
+      return { translation: initialTranslation, literal: '', terms: [], grammarTip: '', provider: 'preindexed' };
+    }
+    return null;
+  });
   const [errorMessage, setErrorMessage] = useState(null);
   const [showKeyInput, setShowKeyInput] = useState(false);
   const [keyInputVal, setKeyInputVal] = useState('');
@@ -29,11 +35,13 @@ export default function DictationTranslationCard({
     setErrorMessage(null);
     if (translationCache.has(cacheKey)) {
       setTranslationData(translationCache.get(cacheKey));
+    } else if (initialTranslation) {
+      setTranslationData({ translation: initialTranslation, literal: '', terms: [], grammarTip: '', provider: 'preindexed' });
     } else {
       setTranslationData(null);
     }
     setIsOpen(false);
-  }, [cacheKey]);
+  }, [cacheKey, initialTranslation]);
 
   // Fetch translation data
   const handleFetchTranslation = async (shouldOpen = true) => {
@@ -192,7 +200,20 @@ export default function DictationTranslationCard({
                   Bản dịch tiếng Việt tự nhiên:
                 </span>
                 <div className="p-2.5 rounded-lg bg-surface-container-lowest/90 border border-outline-variant/30 text-sm font-headline text-on-surface leading-relaxed">
-                  {translationData.translation || 'Không có bản dịch'}
+                  {translationData.translation ? (
+                    translationData.translation
+                  ) : (
+                    <div className="flex items-center justify-between text-xs text-outline">
+                      <span>Chưa có bản dịch cho câu này.</span>
+                      <button
+                        type="button"
+                        onClick={() => handleFetchTranslation(true)}
+                        className="px-2.5 py-1 rounded-md bg-secondary/15 hover:bg-secondary/25 text-secondary font-bold cursor-pointer"
+                      >
+                        Thử dịch lại
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
 

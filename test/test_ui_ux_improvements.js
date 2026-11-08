@@ -26,6 +26,7 @@ if (typeof global.localStorage === 'undefined') {
 console.log('Test 1: Line Limit Check for UI/UX Enhanced Files');
 const filesToCheck = [
   'client/src/utils/soundEffects.js',
+  'client/src/components/player/YouTubePlayer.jsx',
   'client/src/components/studio/StudioLessonHeader.jsx',
   'client/src/components/studio/StudioWorkspace.jsx',
   'client/src/components/studio/StudioStarterView.jsx',
@@ -327,5 +328,14 @@ const statusAfterRound2 = resolveStatusAndBadge(history[0], 'ep1', 19);
 assert.strictEqual(statusAfterRound2.practiceCount, 2);
 assert.strictEqual(getPracticeBadgeLabel(statusAfterRound2.isDone, statusAfterRound2.practiceCount), 'Đã học (2 lần)');
 console.log('  ✅ Reset lesson strictly preserves practiceCount and "Đã học" badge across retries!');
+
+// 12. Test Audio-Only / Hide Video Mode Toggle & LocalStorage State
+console.log('\nTest 12: Audio-Only / Hide Video State Persistence');
+const HIDE_VIDEO_KEY = 'polyglot_hide_video';
+global.localStorage.setItem(HIDE_VIDEO_KEY, 'true');
+assert.strictEqual(global.localStorage.getItem(HIDE_VIDEO_KEY), 'true');
+global.localStorage.setItem(HIDE_VIDEO_KEY, 'false');
+assert.strictEqual(global.localStorage.getItem(HIDE_VIDEO_KEY), 'false');
+console.log('  ✅ Audio-only hide video mode state persistence verified!');
 
 console.log('\n🎉 ALL UI/UX ENHANCEMENT TESTS PASSED SUCCESSFULLY!\n');

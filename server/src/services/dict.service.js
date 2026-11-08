@@ -9,21 +9,49 @@ function cleanWord(rawWord) {
 }
 
 /**
- * Translate foreign sentence to Vietnamese using free translation service
+ * Translate foreign sentence to Vietnamese using multi-tier fallback service
  */
 export async function translateToVietnamese(text, fromLang = 'auto') {
   if (!text || !text.trim()) return '';
+  const langParam = fromLang === 'de' ? 'de' : fromLang === 'en' ? 'en' : 'auto';
+  const cleanQ = text.trim();
+
+  // Tier 1: Google dict-chrome-ex (high reliability, low latency, no rate-limit)
   try {
-    const langParam = fromLang === 'de' ? 'de' : fromLang === 'en' ? 'en' : 'auto';
-    const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${langParam}&tl=vi&dt=t&q=${encodeURIComponent(text.trim())}`;
-    const res = await axios.get(url, { timeout: 6000 });
-    if (res.data && res.data[0]) {
-      const translated = res.data[0].map(s => s[0]).join('');
-      return translated.trim();
+    const url1 = `https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl=${langParam}&tl=vi&q=${encodeURIComponent(cleanQ)}`;
+    const res1 = await axios.get(url1, {
+      headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/128.0.0.0' },
+      timeout: 4000
+    });
+    if (res1.data && typeof res1.data[0] === 'string' && res1.data[0].trim()) {
+      return res1.data[0].trim();
+    }
+  } catch (e) {}
+
+  // Tier 2: MyMemory API
+  try {
+    const url2 = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(cleanQ)}&langpair=${langParam}|vi`;
+    const res2 = await axios.get(url2, { timeout: 4000 });
+    const match = res2.data?.responseData?.translatedText;
+    if (match && typeof match === 'string' && match.trim() && !match.includes('MYMEMORY WARNING')) {
+      return match.trim();
+    }
+  } catch (e) {}
+
+  // Tier 3: Google gtx fallback with User-Agent
+  try {
+    const url3 = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${langParam}&tl=vi&dt=t&q=${encodeURIComponent(cleanQ)}`;
+    const res3 = await axios.get(url3, {
+      headers: { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Chrome/128.0.0.0' },
+      timeout: 4000
+    });
+    if (res3.data && res3.data[0]) {
+      return res3.data[0].map(s => s[0]).join('').trim();
     }
   } catch (err) {
     console.warn('Translate to VI failed:', err.message);
   }
+
   return '';
 }
 

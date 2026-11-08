@@ -371,6 +371,7 @@ export default function DictationWorkspace({
       {/* AI Smart Translation Card */}
       <DictationTranslationCard
         sentenceText={activeSegment.text}
+        initialTranslation={activeSegment.translationVi || ''}
         language={language}
         isStandardMet={isStandardMet}
       />
